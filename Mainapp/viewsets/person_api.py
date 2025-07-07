@@ -60,10 +60,7 @@ class PersonViewSet(viewsets.ViewSet):
         return [permission() for permission in self.permission_classes]
 
         #  1. LIST all persons
-    @swagger_auto_schema(
-        operation_description="Retrieve a list of all persons",
-        responses={200: PersonSerializer(many=True)}
-    )
+
     def list(self, request):
         try:
             # Get and order the queryset
@@ -297,6 +294,7 @@ class PersonViewSet(viewsets.ViewSet):
                     document = Document(
                         last_known_detail=detail_instance,
                         person_type=doc_meta.get('person_type', ''),
+                        description=doc_meta.get('description', ''),
                         document_type=doc_meta.get('document_type', ''),
                         created_by=request.user
                     )
@@ -318,78 +316,6 @@ class PersonViewSet(viewsets.ViewSet):
 
         return successful_details
 
-    # def _create_firs(self, person, firs_data, request):
-    #     """
-    #     Create FIR records with associated documents.
-    #
-    #     - Associates FIRs with a police station (if provided).
-    #     - Supports multiple documents per FIR.
-    #     - Uses transaction for atomicity.
-    #     """
-    #     fir_objects = []
-    #     document_objects = []
-    #     successful_firs = []
-    #
-    #     with transaction.atomic():
-    #         for index, fir in enumerate(firs_data):
-    #             if not isinstance(fir, dict):
-    #                 logger.warning(f"Invalid FIR data at index {index}: Not a dictionary")
-    #                 continue
-    #
-    #             try:
-    #                 # Extract and remove document metadata
-    #                 documents_meta = fir.pop('documents', [])
-    #
-    #                 # Handle police station association
-    #                 police_station_id = fir.get('police_station')
-    #                 police_station = None
-    #                 if police_station_id:
-    #                     try:
-    #                         police_station = PoliceStation.objects.get(id=police_station_id)
-    #                     except PoliceStation.DoesNotExist:
-    #                         raise ValueError(f"PoliceStation with ID {police_station_id} does not exist")
-    #
-    #                 # Clean up FIR fields
-    #                 fir_data_cleaned = {
-    #                     k: v for k, v in fir.items()
-    #                     if k not in ['police_station', 'person', 'document']
-    #                 }
-    #
-    #                 # Create and validate FIR instance
-    #                 fir_obj = FIR(
-    #                     person=person,
-    #                     police_station=police_station,
-    #                     **fir_data_cleaned
-    #                 )
-    #                 fir_obj.full_clean()
-    #                 fir_obj.save()
-    #
-    #                 # Create associated documents
-    #                 for doc_meta in documents_meta:
-    #                     document_objects.append(Document(
-    #                         fir=fir_obj,
-    #                         person_type=doc_meta.get('person_type', ''),
-    #                         document_type=doc_meta.get('document_type', ''),
-    #                         document=doc_meta.get('document', ''),
-    #                         created_by=request.user
-    #                     ))
-    #
-    #                 fir_objects.append(fir_obj)
-    #                 successful_firs.append(fir_obj)
-    #
-    #             except Exception as e:
-    #                 logger.error(f"FIR creation failed at index {index}: {str(e)}")
-    #                 continue
-    #
-    #         # Bulk create all related documents
-    #         if document_objects:
-    #             try:
-    #                 Document.objects.bulk_create(document_objects)
-    #             except Exception as e:
-    #                 logger.error(f"FIR Document bulk_create failed: {str(e)}")
-    #                 raise
-    #
-    #     return successful_firs
 
     def _create_firs(self, person, firs_data, request):
         """
@@ -438,10 +364,11 @@ class PersonViewSet(viewsets.ViewSet):
                     document = Document(
                         fir=fir_obj,
                         person_type=doc_meta.get('person_type', ''),
+                        description=doc_meta.get('description', ''),
                         document_type=doc_meta.get('document_type', ''),
                         created_by=request.user
                     )
-                    document.save()  # Save first to get ID
+                    document.save()
 
                     # Attach file if exists
                     if document_file:
