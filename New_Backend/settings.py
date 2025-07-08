@@ -159,6 +159,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'https://products.coderize.in',
     'http://63.250.52.91',
+    "https://beta.tracemapr.com",
 ]
 
 
