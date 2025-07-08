@@ -263,7 +263,6 @@ class PersonViewSet(viewsets.ViewSet):
 
     def _create_last_known_details(self, person, last_known_details_data, request):
         successful_details = []
-        document_objs = []
 
         for detail_index, detail_data in enumerate(last_known_details_data):
             if not isinstance(detail_data, dict):
@@ -271,7 +270,7 @@ class PersonViewSet(viewsets.ViewSet):
 
             try:
                 # Extract document metadata
-                documents_meta = detail_data.pop('documents', [])
+
 
                 # Create LastKnownDetails instance
                 detail_instance = LastKnownDetails(
@@ -285,6 +284,7 @@ class PersonViewSet(viewsets.ViewSet):
                 detail_instance.save()
 
                 # Process documents
+                documents_meta = detail_data.get('documents', [])
                 for doc_index, doc_meta in enumerate(documents_meta):
                     # Get the file from request.FILES
                     file_key = f'documents[{detail_index}][{doc_index}][document]'
@@ -305,9 +305,6 @@ class PersonViewSet(viewsets.ViewSet):
                     # Attach the file if it exists
                     if document_file:
                         document.document.save(document_file.name, document_file)
-
-                    # No need to add to document_objs since we're saving individually
-
                 successful_details.append(detail_instance)
 
             except Exception as e:
