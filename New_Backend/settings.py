@@ -228,7 +228,7 @@ DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
 
-BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 
 
