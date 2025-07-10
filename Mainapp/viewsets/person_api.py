@@ -267,11 +267,7 @@ class PersonViewSet(viewsets.ViewSet):
         for detail_index, detail_data in enumerate(last_known_details_data):
             if not isinstance(detail_data, dict):
                 continue
-
             try:
-                # Extract document metadata
-
-
                 # Create LastKnownDetails instance
                 detail_instance = LastKnownDetails(
                     person=person,
@@ -289,17 +285,18 @@ class PersonViewSet(viewsets.ViewSet):
                     # Get the file from request.FILES
                     file_key = f'documents[{detail_index}][{doc_index}][document]'
                     document_file = request.FILES.get(file_key)
-
+                    description = doc_meta.get('description', '')
                     # Create and save Document instance immediately
                     document = Document(
                         last_known_detail=detail_instance,
                         person_type=doc_meta.get('person_type', ''),
-                        description=doc_meta.get('description', ''),
+                        description=description,
                         document_type=doc_meta.get('document_type', ''),
                         created_by=request.user
                     )
 
                     # Save the instance first to get an ID
+                    document.full_clean()
                     document.save()
 
                     # Attach the file if it exists
@@ -312,7 +309,6 @@ class PersonViewSet(viewsets.ViewSet):
                 continue
 
         return successful_details
-
 
     def _create_firs(self, person, firs_data, request):
         """
@@ -356,15 +352,17 @@ class PersonViewSet(viewsets.ViewSet):
                     # Get file from request.FILES
                     file_key = f'firs[{fir_index}][documents][{doc_index}][document]'
                     document_file = request.FILES.get(file_key)
+                    description = doc_meta.get('description', '')
 
                     # Create Document instance
                     document = Document(
                         fir=fir_obj,
                         person_type=doc_meta.get('person_type', ''),
-                        description=doc_meta.get('description', ''),
+                        description=description,
                         document_type=doc_meta.get('document_type', ''),
                         created_by=request.user
                     )
+                    document.full_clean()
                     document.save()
 
                     # Attach file if exists
@@ -739,10 +737,6 @@ class PersonViewSet(viewsets.ViewSet):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     #  7. SOFT DELETE all persons
-    @swagger_auto_schema(
-        operation_description="Delete all persons",
-        responses={200: openapi.Response("All persons deleted successfully")}
-    )
     def destroy_All(self, request):
         try:
             Person.objects.update(_is_deleted=True)
