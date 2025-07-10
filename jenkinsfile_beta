@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'coderize2' }
     environment {
-        WORKSPACE_DIR = "${WORKSPACE}/Chhaya_new_backend/scripts"
+        WORKSPACE_DIR = "${WORKSPACE}/Chhaya_new_backend/scripts_beta"
     }
     stages {
         stage ('Checkout') {
