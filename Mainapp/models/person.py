@@ -274,7 +274,7 @@ class Person(models.Model):
         choices=DEATH_TYPE_CHOICES,
         blank=True,
         null=True,
-        default='unknown'
+
     )
     date_reported = models.DateField(default=date.today)
     case_status = models.CharField(
@@ -355,27 +355,6 @@ class Person(models.Model):
             self.case_id = self.generate_case_id()
         super().save(*args, **kwargs)
 
-    # def generate_case_id(self):
-    #     case_type_map = {
-    #         'Missing Person': 'MP',
-    #         'Unidentified Person': 'UP',
-    #         'Unidentified Body': 'UB',
-    #     }
-    #
-    #     case_type_code = case_type_map.get(self.type, 'XX')
-    #     report_date = self.reported_date or date.today()
-    #     year_month = report_date.strftime("%Y%m")
-    #     location_code = (self.city[:4].upper() if self.city else 'XXX')
-    #
-    #     with transaction.atomic():
-    #         count = Person.objects.filter(
-    #             type=self.type,
-    #             city=self.city,
-    #             reported_date__year=report_date.year,
-    #             reported_date__month=report_date.month
-    #         ).select_for_update().count() + 1
-    #
-    #     return f"{case_type_code}-{year_month}-{location_code}-{count:03d}"
 
     def generate_case_id(self):
         case_type_map = {
@@ -393,7 +372,7 @@ class Person(models.Model):
             with transaction.atomic():
                 count = Person.objects.filter(
                     type=self.type,
-                    city=self.city,
+                    city=self.city if self.city else None,
                     reported_date__year=report_date.year,
                     reported_date__month=report_date.month
                 ).select_for_update().count() + 1

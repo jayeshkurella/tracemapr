@@ -116,28 +116,19 @@ class PersonViewSet(viewsets.ViewSet):
                     if 'payload' in request.FILES:
                         payload_file = request.FILES['payload']
                         try:
-                            # Read the file content and decode as JSON
                             payload_str = payload_file.read().decode('utf-8')
                             data = json.loads(payload_str)
-                            print("Incoming data:", data)  # Debug log
-
-
+                            print("Incoming data from angular:", data)
                         except json.JSONDecodeError as e:
-                            return Response({'error': 'Invalid JSON in payload'},
-                                            status=status.HTTP_400_BAD_REQUEST)
+                            return Response({'error': 'Invalid JSON in payload'},status=status.HTTP_400_BAD_REQUEST)
                     else:
-                        return Response({'error': 'Missing payload in request'},
-                                        status=status.HTTP_400_BAD_REQUEST)
-
+                        return Response({'error': 'Missing payload in request'},    status=status.HTTP_400_BAD_REQUEST)
                 else:
                     return Response({'error': 'Unsupported media type'}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
                 logger.debug("Extracted JSON Data: %s", json.dumps(data, indent=4))
                 data['photo_photo'] = request.FILES.get('photo_photo')
 
-                # Set status to pending for non-admin users
-                if not request.user.is_staff:
-                    data['person_approve_status'] = 'pending'
 
                 # Extract related data
                 addresses_data = [addr for addr in data.get('addresses', []) if any(addr.values())]
@@ -166,8 +157,8 @@ class PersonViewSet(viewsets.ViewSet):
                         'addresses', 'contacts', 'additional_info', 'last_known_details', 'firs', 'consent', 'hospital'
                     ]
                 }
+                print("Creating person with data:", person_data)
                 person = Person(**person_data, hospital=hospital,created_by=request.user)
-                logger.debug("Person Created: %s", person.id)
 
                 # Extract zero index address and store it directly in the person model
                 if addresses_data:
@@ -197,7 +188,9 @@ class PersonViewSet(viewsets.ViewSet):
                         person.location = Point(lon, lat)
                     except (ValueError, TypeError) as e:
                         raise ValueError(f"Invalid coordinates provided: {e}")
+
                     person.save()
+                    print("Person saved:", person.id)
 
                 # Create related objects
                 self._create_addresses(person, addresses_data[1:])
@@ -277,6 +270,7 @@ class PersonViewSet(viewsets.ViewSet):
                     missing_location_details=detail_data.get('missing_location_details')
                 )
                 detail_instance.full_clean()
+                print(f"Saving LastKnownDetails {detail_index}: {detail_data}")
                 detail_instance.save()
 
                 # Process documents
@@ -788,6 +782,8 @@ class PersonViewSet(viewsets.ViewSet):
                     additional_info_filters['additional_info__marital_status'] = value
                 elif key == 'height_range':
                     filters['height_range'] = value
+                elif key == 'full_name':
+                    filters['full_name__istartswith'] = value
                 else:
                     filters[key] = value
 
