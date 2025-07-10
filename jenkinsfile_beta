@@ -1,21 +1,21 @@
 pipeline {
     agent { label 'coderize2' }
     environment {
-        WORKSPACE_DIR = "${WORKSPACE}/Chhaya_new_backend/scripts_beta"
+        WORKSPACE_DIR = "${WORKSPACE}/scripts_beta"
     }
     stages {
         stage ('Checkout') {
             steps {
                 git branch: 'beta', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/tracemapr.git'
-                sh 'ls -l Chhaya_new_backend/scripts_beta/'
+                sh 'ls -l scripts_beta/'
             }
         }
 
         stage ('Setup Virtual Environment, Install Dependencies') {
             steps {
                 sh '''
-                chmod +x Chhaya_new_backend/scripts_beta/setup_virtualenv.sh
-                ./Chhaya_new_backend/scripts_beta/setup_virtualenv.sh
+                chmod +x scripts_beta/setup_virtualenv.sh
+                ./scripts_beta/setup_virtualenv.sh
                 '''
             }
         }
@@ -23,8 +23,8 @@ pipeline {
         stage ('migration') {
             steps {
                 sh '''
-                chmod +x Chhaya_new_backend/scripts_beta/run_migration.sh
-                ./Chhaya_new_backend/scripts_beta/run_migration.sh
+                chmod +x scripts_beta/run_migration.sh
+                ./scripts_beta/run_migration.sh
                 '''
             }
         }
@@ -32,12 +32,10 @@ pipeline {
         stage ('Setup Gunicorn') {
             steps {
                 sh '''
-                chmod +x Chhaya_new_backend/scripts_beta/gunicorn.sh
-                ./Chhaya_new_backend/scripts_beta/gunicorn.sh
+                chmod +x scripts_beta/gunicorn.sh
+                ./scripts_beta/gunicorn.sh
                 '''
             }
         }
     }
 }
-
-
