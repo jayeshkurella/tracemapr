@@ -296,7 +296,7 @@ class PersonViewSet(viewsets.ViewSet):
                     )
 
                     # Save the instance first to get an ID
-                    document.full_clean()
+
                     document.save()
 
                     # Attach the file if it exists
@@ -362,7 +362,7 @@ class PersonViewSet(viewsets.ViewSet):
                         document_type=doc_meta.get('document_type', ''),
                         created_by=request.user
                     )
-                    document.full_clean()
+
                     document.save()
 
                     # Attach file if exists
