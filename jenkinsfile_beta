@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage ('Checkout') {
             steps {
-                git branch: 'chhaya_jenkins', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/tracemapr.git'
+                git branch: 'beta', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/tracemapr.git'
                 sh 'ls -l Chhaya_new_backend/scripts_beta/'
             }
         }
