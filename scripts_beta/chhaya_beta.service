@@ -3,7 +3,7 @@ Description=Gunicorn for Chhaya_beta
 [Service]
 User=administrator
 Type=simple
-WorkingDirectory=/home/administrator/backend_project/workspace/chhaya-backend_beta/Chhaya_new_backend
+WorkingDirectory=/home/administrator/backend_project/workspace/chhaya-backend_beta
 ExecStart=/home/administrator/backend_project/workspace/chhaya-backend_beta/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:3001  --error-logfile /var/log/chhaya_beta/error.log --access-logfile /var/log/chhaya_beta/access.log
 Restart=always
 RestartSec=3
