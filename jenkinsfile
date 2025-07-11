@@ -1,37 +1,32 @@
 pipeline {
     agent { label 'coderize2' }
     environment {
-        // WORKSPACE_DIR = "${WORKSPACE}/Chhaya_new_backend/scripts"
-        WORKSPACE_DIR = "${WORKSPACE}/scripts_beta"
-    }
+        WORKSPACE_DIR = "${WORKSPACE}/scripts"
+            }
     stages {
         stage ('Checkout') {
             steps {
-                // git branch: 'chhaya_jenkins', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/chhaya_foundation.git'
-                // sh 'ls -l Chhaya_new_backend/scripts/'
                 git branch: 'master', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/chhaya_foundation.git'
-                sh 'ls -l scripts_beta/'
+                sh 'ls -l scripts/'
+                
             }
         }
 
         stage ('Setup Virtual Environment, Install Dependencies') {
             steps {
                 sh '''
-                # chmod +x Chhaya_new_backend/scripts/setup_virtualenv.sh
-                # ./Chhaya_new_backend/scripts/setup_virtualenv.sh
-                chmod +x scripts_beta/setup_virtualenv.sh
-                ./scripts_beta/setup_virtualenv.sh
-                '''
+                 chmod +x scripts/setup_virtualenv.sh
+                 ./scripts/setup_virtualenv.sh
+                                '''
             }
         }
 
         stage ('migration') {
             steps {
                 sh '''
-                # chmod +x Chhaya_new_backend/scripts/run_migration.sh
-               # ./Chhaya_new_backend/scripts/run_migration.sh
-                 chmod +x scripts_beta/run_migration.sh
-                 ./scripts_beta/run_migration.sh
+                chmod +x scripts/run_migration.sh
+               ./scripts/run_migration.sh
+                 
                 '''
             }
         }
@@ -39,10 +34,9 @@ pipeline {
         stage ('Setup Gunicorn') {
             steps {
                 sh '''
-                # chmod +x Chhaya_new_backend/scripts/gunicorn.sh
-                chmod +x scripts_beta/gunicorn.sh
-               # ./Chhaya_new_backend/scripts/gunicorn.sh
-                ./scripts_beta/gunicorn.sh
+                 chmod +x scripts/gunicorn.sh
+                  ./scripts/gunicorn.sh
+                
                 '''
             }
         }
