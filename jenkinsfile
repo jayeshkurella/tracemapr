@@ -17,8 +17,8 @@ pipeline {
         stage ('Setup Virtual Environment, Install Dependencies') {
             steps {
                 sh '''
-                // chmod +x Chhaya_new_backend/scripts/setup_virtualenv.sh
-                // ./Chhaya_new_backend/scripts/setup_virtualenv.sh
+                # chmod +x Chhaya_new_backend/scripts/setup_virtualenv.sh
+                # ./Chhaya_new_backend/scripts/setup_virtualenv.sh
                 chmod +x scripts_beta/setup_virtualenv.sh
                 ./scripts_beta/setup_virtualenv.sh
                 '''
@@ -28,8 +28,8 @@ pipeline {
         stage ('migration') {
             steps {
                 sh '''
-                // chmod +x Chhaya_new_backend/scripts/run_migration.sh
-               // ./Chhaya_new_backend/scripts/run_migration.sh
+                # chmod +x Chhaya_new_backend/scripts/run_migration.sh
+               # ./Chhaya_new_backend/scripts/run_migration.sh
                  chmod +x scripts_beta/run_migration.sh
                  ./scripts_beta/run_migration.sh
                 '''
@@ -39,9 +39,9 @@ pipeline {
         stage ('Setup Gunicorn') {
             steps {
                 sh '''
-                // chmod +x Chhaya_new_backend/scripts/gunicorn.sh
+                # chmod +x Chhaya_new_backend/scripts/gunicorn.sh
                 chmod +x scripts_beta/gunicorn.sh
-               // ./Chhaya_new_backend/scripts/gunicorn.sh
+               # ./Chhaya_new_backend/scripts/gunicorn.sh
                 ./scripts_beta/gunicorn.sh
                 '''
             }
