@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# local
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -87,7 +88,7 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 #     }
 # }
 
-
+# beta (testing)
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -98,6 +99,18 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'chhaya_today',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation

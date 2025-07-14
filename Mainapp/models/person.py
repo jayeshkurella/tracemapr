@@ -355,8 +355,9 @@ class Person(models.Model):
             self.case_id = self.generate_case_id()
         super().save(*args, **kwargs)
 
-
     def generate_case_id(self):
+        from django.utils.crypto import get_random_string
+
         case_type_map = {
             'Missing Person': 'MP',
             'Unidentified Person': 'UP',
@@ -366,23 +367,30 @@ class Person(models.Model):
         case_type_code = case_type_map.get(self.type, 'XX')
         report_date = self.reported_date or date.today()
         year_month = report_date.strftime("%Y%m")
-        location_code = (self.city[:4].upper() if self.city else 'XXX')
 
-        while True:
+        # Normalize city
+        normalized_city = self.city.strip() if self.city and self.city.strip() else None
+        location_code = (normalized_city[:4].upper() if normalized_city else 'XXX')
+
+        max_retries = 5
+        for attempt in range(1, max_retries + 1):
             with transaction.atomic():
                 count = Person.objects.filter(
                     type=self.type,
-                    city=self.city if self.city else None,
+                    city=normalized_city,
                     reported_date__year=report_date.year,
                     reported_date__month=report_date.month
                 ).select_for_update().count() + 1
 
                 new_id = f"{case_type_code}-{year_month}-{location_code}-{count:03d}"
 
-                # Double-check if ID exists (handles race condition)
                 if not Person.objects.filter(case_id=new_id).exists():
                     return new_id
 
+        # Final fallback with random suffix
+        random_suffix = get_random_string(4).upper()
+        fallback_id = f"{case_type_code}-{year_month}-{location_code}-{random_suffix}"
+        return fallback_id
 
     def __str__(self):
         return f"{self.full_name} ({self.type})"
