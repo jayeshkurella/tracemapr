@@ -1,6 +1,6 @@
 #!/bin/bash
 
-project_directory="/home/administrator/backend_project/workspace/"
+project_directory="/home/administrator/backend_project/workspace/chhaya-backend"
 
 echo "Change directory to python project directory"
 
