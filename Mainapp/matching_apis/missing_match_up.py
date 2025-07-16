@@ -328,6 +328,9 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         except PersonMatchHistory.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
+
+
+    # To confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-confirm')
     def match_confirm(self, request, pk=None):
         match_id = request.data.get('match_id')
@@ -369,6 +372,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         except PersonMatchHistory.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
+    # To un confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-unconfirm')
     def match_unconfirm(self, request, pk=None):
         # match_id = request.data.get('match_id')

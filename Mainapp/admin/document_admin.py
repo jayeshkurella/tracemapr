@@ -12,6 +12,7 @@ class DocumentAdmin(admin.ModelAdmin):
         "id",
         "person_type",
         "document_type",
+        "description",
         "get_fir_identifier",
         "get_last_known_detail_identifier",
         "created_at",
@@ -23,7 +24,7 @@ class DocumentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Document Details", {
-            "fields": ("person_type", "document_type", "document", "fir", "last_known_detail")
+            "fields": ("person_type", "document_type","description", "document", "fir", "last_known_detail")
         }),
         ("Metadata", {
             "fields": ("created_at", "updated_at", "created_by", "updated_by")
