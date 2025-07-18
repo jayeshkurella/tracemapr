@@ -1,3 +1,6 @@
 .env
 /GDAL_Files
 /env
+
+__pycache__/
+*.pyc
