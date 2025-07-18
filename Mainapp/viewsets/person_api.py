@@ -196,7 +196,6 @@ class PersonViewSet(viewsets.ViewSet):
                 self._create_addresses(person, addresses_data[1:])
                 self._create_contacts(person, contacts_data)
                 self._create_additional_info(person, additional_info_data)
-                # self._create_last_known_details(person, last_known_details_data)
                 self._create_last_known_details(person, last_known_details_data,request)
                 self._create_firs(person, firs_data,request)
                 self._create_consents(person, consents_data)
