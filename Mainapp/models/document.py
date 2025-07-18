@@ -47,6 +47,7 @@ class Document(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     person_type = models.CharField(max_length=20, choices=PERSON_TYPE_CHOICES,blank=True, null=True )
     document_type  = models.CharField(max_length=90, choices=DOCUMENT_TYPE_CHOICES,blank=True, null=True)
+    description = models.TextField(null=True,blank=True)
     document = models.FileField( blank=True, null=True, upload_to='documents/', validators=[
             FileExtensionValidator([
                 # Images
@@ -58,8 +59,7 @@ class Document(models.Model):
                 # Archives
                 'zip', 'rar'
             ])
-        ]
-    )
+        ])
     fir = models.ForeignKey(FIR,on_delete=models.CASCADE,  null=True, blank=True, related_name='documents')
     last_known_detail = models.ForeignKey( LastKnownDetails, on_delete=models.CASCADE, null=True,blank=True, related_name='documents')
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="created_%(class)s_set")

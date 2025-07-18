@@ -76,6 +76,7 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# local
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -87,7 +88,19 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 #     }
 # }
 
+# beta (testing)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'chhaya_beta',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
+# production
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -159,6 +172,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
     'https://products.coderize.in',
     'http://63.250.52.91',
+    "https://beta.tracemapr.com",
 ]
 
 
@@ -172,7 +186,6 @@ CORS_ALLOW_METHODS = [
 ]
 
 # Google Client ID (replace with your own)
-# GOOGLE_CLIENT_ID='175428916411-vjqlrrr7n468lnoa5g92s7rfgr4apijd.apps.googleusercontent.com'
 GOOGLE_CLIENT_ID ='229838098661-qhi912b4egncp89tqeihbsddpb7mjbud.apps.googleusercontent.com'
 
 
@@ -227,7 +240,7 @@ DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
 
-BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 
 
