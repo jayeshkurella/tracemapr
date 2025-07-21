@@ -116,7 +116,7 @@ class PersonSerializer(serializers.ModelSerializer):
         child=serializers.ChoiceField(choices=Person.ConditionChoices.choices),
         required=False
     )
-    chronic_illnesss = serializers.ListField(child=serializers.CharField(), required=False)
+    chronic_illness_new = serializers.ListField(child=serializers.CharField(), required=False)
     surgery_implants = serializers.ListField(child=serializers.CharField(), required=False)
     prosthetics_amputation = serializers.ListField(child=serializers.CharField(), required=False)
     healed_fractures = serializers.ListField(child=serializers.CharField(), required=False)
