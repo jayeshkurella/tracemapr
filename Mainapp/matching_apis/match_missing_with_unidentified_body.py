@@ -1,6 +1,6 @@
 """
 Created By : Sanket Lodhe
-Created Date : Feb 2025
+Created Date : July 2025
 """
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
@@ -9,11 +9,12 @@ from django.db.models import Q
 
 from Mainapp.Serializers.serializers import PersonSerializer
 from Mainapp.models import Person
-from Mainapp.models.person_match_history import PersonMatchHistory
+from Mainapp.models.match_missing_with_unidentified_body import Missing_match_with_body
+
 from rest_framework.permissions import AllowAny ,IsAuthenticated
 
 
-class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
+class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
     def get_permissions(self):
         if self.action == 'retrieve':
             return [AllowAny()]
@@ -29,26 +30,26 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         except Person.DoesNotExist:
             return Response({"error": "Missing person not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Get previously matched/rejected/confirmed UPs for this MP
-        history_qs = PersonMatchHistory.objects.filter(missing_person=missing_person)
-        # Get previously matched/rejected/confirmed UPs for this MP
+        # Get previously matched/rejected/confirmed ubs for this MP
+        history_qs = Missing_match_with_body.objects.filter(missing_person=missing_person)
+        # Get previously matched/rejected/confirmed Ubs for this MP
 
-        previously_matched_ids = history_qs.values_list('unidentified_person_id', flat=True)
-        # previously_matched_ids = PersonMatchHistory.objects.filter(
+        previously_matched_ids = history_qs.values_list('unidentified_bodies_id', flat=True)
+        # previously_matched_ids = Missing_match_with_body.objects.filter(
         #     missing_person=missing_person
-        # ).values_list('unidentified_person_id', flat=True)
+        # ).values_list('unidentified_bodies_id', flat=True)
 
-        # Get eligible UPs (excluding ones seen before for this MP)
-        eligible_ups = Person.objects.filter(
-            type='Unidentified Person',
+        # Get eligible ubs (excluding ones seen before for this MP)
+        eligible_ubs = Person.objects.filter(
+            type='Unidentified Body',
             person_approve_status='approved',
             case_status__in=['pending', 'matched']
         ).exclude(id__in=previously_matched_ids)
 
         # Calculate scores and find matches
         newly_matched = []
-        for up in eligible_ups:
-            score = self.calculate_match_score(missing_person, up)
+        for ub in eligible_ubs:
+            score = self.calculate_match_score(missing_person, ub)
 
             # Skip if gender doesn't match (score will be 0)
             if score == 0:
@@ -57,19 +58,19 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             created_by = request.user if request.user.is_authenticated else None
 
             # Create match history record
-            match_record = PersonMatchHistory.objects.create(
+            match_record = Missing_match_with_body.objects.create(
                 missing_person=missing_person,
-                unidentified_person=up,
+                unidentified_bodies=ub,
                 match_type='matched' if score >= 70 else 'potential',
                 score=score,
-                match_parameters=self._get_match_parameters(missing_person, up),
+                match_parameters=self._get_match_parameters(missing_person, ub),
                 created_by=created_by,
                 is_viewed=False,
             )
 
             if score >= 50:
                 newly_matched.append({
-                    'person': PersonSerializer(up).data,
+                    'person': PersonSerializer(ub).data,
                     'score': score,
                     'match_id': match_record.match_id,
                     'is_viewed': False
@@ -85,13 +86,13 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         confirmed = []
 
         for match in history_qs:
-            if (match.missing_person.gender and match.unidentified_person.gender and
-                    match.missing_person.gender.lower() != match.unidentified_person.gender.lower()):
+            if (match.missing_person.gender and match.unidentified_bodies.gender and
+                    match.missing_person.gender.lower() != match.unidentified_bodies.gender.lower()):
                 continue
 
-            up_data = PersonSerializer(match.unidentified_person).data
+            ub_data = PersonSerializer(match.unidentified_bodies).data
             match_data = {
-                'person': up_data,
+                'Body': ub_data,
                 'score': match.score,
                 'match_type': match.match_type,
                 'match_id': match.match_id,
@@ -125,13 +126,13 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             "missing_person": PersonSerializer(missing_person).data
         })
 
-    def calculate_match_score(self, mp, up):
+    def calculate_match_score(self, mp, ub):
         score = 0
         gender_mismatch = False
 
         # Gender check (must match for any potential match)
-        if mp.gender and up.gender:
-            if mp.gender.lower() != up.gender.lower():
+        if mp.gender and ub.gender:
+            if mp.gender.lower() != ub.gender.lower():
                 gender_mismatch = True
             else:
                 score += 25  # Gender match points
@@ -141,46 +142,25 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             return 0
 
         # Continue with other scoring criteria
-        if mp.blood_group and up.blood_group and mp.blood_group.lower() == up.blood_group.lower():
+        if mp.blood_group and ub.blood_group and mp.blood_group.lower() == ub.blood_group.lower():
             score += 25
 
-        if mp.complexion and up.complexion and mp.complexion.lower() == up.complexion.lower():
+        if mp.complexion and ub.complexion and mp.complexion.lower() == ub.complexion.lower():
             score += 25
 
-        if mp.hair_color and up.hair_color and mp.hair_color.lower() == up.hair_color.lower():
+        if mp.hair_color and ub.hair_color and mp.hair_color.lower() == ub.hair_color.lower():
             score += 25
 
-        if mp.hair_type and up.hair_type and mp.hair_type.lower() == up.hair_type.lower():
+        if mp.hair_type and ub.hair_type and mp.hair_type.lower() == ub.hair_type.lower():
             score += 25
 
-        if mp.eye_color and up.eye_color and mp.eye_color.lower() == up.eye_color.lower():
+        if mp.eye_color and ub.eye_color and mp.eye_color.lower() == ub.eye_color.lower():
             score += 25
 
-        # Age match (30 points max)
-        # if mp.age is not None and up.age_range is not None:
-        #     try:
-        #         min_age, max_age = map(int, up.age_range.split('-'))
-        #         if min_age <= mp.age <= max_age:
-        #             score += 30
-        #         elif min_age - 2 <= mp.age <= max_age + 2:
-        #             score += 20
-        #         elif min_age - 5 <= mp.age <= max_age + 5:
-        #             score += 10
-        #     except (ValueError, AttributeError):
-        #         pass
-        # elif mp.age is not None and up.age is not None:
-        #     # Fallback if age_range not available but age is
-        #     age_diff = abs(mp.age - up.age)
-        #     if age_diff <= 2:
-        #         score += 30
-        #     elif age_diff <= 5:
-        #         score += 20
-        #     elif age_diff <= 10:
-        #         score += 10
 
-        if mp.age is not None and up.age_range is not None:
+        if mp.age is not None and ub.age_range is not None:
             try:
-                min_age, max_age = map(int, up.age_range.split('-'))
+                min_age, max_age = map(int, ub.age_range.split('-'))
                 if not (min_age <= mp.age <= max_age):
                     return 0  # Reject if age is outside the range
                 else:
@@ -193,19 +173,19 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
 
             # Height match (25 points max)
-        if mp.height_range and up.height_range:
+        if mp.height_range and ub.height_range:
             mp_min, mp_max = self._parse_height_range(mp.height_range)
-            up_min, up_max = self._parse_height_range(up.height_range)
+            ub_min, ub_max = self._parse_height_range(ub.height_range)
 
-            if mp_min is not None and up_min is not None and mp_max is not None and up_max is not None:
-                if mp_min <= up_max and mp_max >= up_min:
+            if mp_min is not None and ub_min is not None and mp_max is not None and ub_max is not None:
+                if mp_min <= ub_max and mp_max >= ub_min:
                     score += 25
-                elif (mp_min - 5 <= up_max and mp_max + 5 >= up_min):
+                elif (mp_min - 5 <= ub_max and mp_max + 5 >= ub_min):
                     score += 15
-                elif (mp_min - 10 <= up_max and mp_max + 10 >= up_min):
+                elif (mp_min - 10 <= ub_max and mp_max + 10 >= ub_min):
                     score += 5
-        elif mp.height is not None and up.height is not None:
-            height_diff = abs(mp.height - up.height)
+        elif mp.height is not None and ub.height is not None:
+            height_diff = abs(mp.height - ub.height)
             if height_diff <= 5:
                 score += 25
             elif height_diff <= 10:
@@ -214,17 +194,17 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                 score += 5
 
         # Weight match (20 points max)
-        if mp.weight is not None and up.weight is not None:
-            weight_diff = abs(mp.weight - up.weight)
+        if mp.weight is not None and ub.weight is not None:
+            weight_diff = abs(mp.weight - ub.weight)
             if weight_diff <= 500:  # 500 grams difference
                 score += 20
             elif weight_diff <= 1000:  # 1 kg difference
                 score += 10
 
-        if mp.birth_mark and up.birth_mark and mp.birth_mark.lower() == up.birth_mark.lower():
+        if mp.birth_mark and ub.birth_mark and mp.birth_mark.lower() == ub.birth_mark.lower():
             score += 25
 
-        if mp.distinctive_mark and up.distinctive_mark and mp.distinctive_mark.lower() == up.distinctive_mark.lower():
+        if mp.distinctive_mark and ub.distinctive_mark and mp.distinctive_mark.lower() == ub.distinctive_mark.lower():
             score += 25
 
         return min(score, 100)
@@ -236,35 +216,35 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         except (ValueError, AttributeError):
             return None, None
 
-    def _get_match_parameters(self, mp, up):
+    def _get_match_parameters(self, mp, ub):
         """
         Returns a dictionary of matching parameters for the history record
         """
         return {
-            'gender_match': mp.gender == up.gender,
+            'gender_match': mp.gender == ub.gender,
             'age_match': {
                 'mp_age': mp.age,
-                'up_age': up.age,
-                'up_age_range': up.age_range
+                'ub_age': ub.age,
+                'ub_age_range': ub.age_range
             },
             'height_match': {
                 'mp_height': mp.height,
-                'up_height': up.height,
+                'ub_height': ub.height,
                 'mp_height_range': mp.height_range,
-                'up_height_range': up.height_range
+                'ub_height_range': ub.height_range
             },
             'weight_match': {
                 'mp_weight': mp.weight,
-                'up_weight': up.weight,
-                'difference': abs(mp.weight - up.weight) if mp.weight and up.weight else None
+                'ub_weight': ub.weight,
+                'difference': abs(mp.weight - ub.weight) if mp.weight and ub.weight else None
             },
-            'complexion_match': mp.complexion == up.complexion,
-            'hair_color_match': mp.hair_color == up.hair_color,
-            'eye_color_match': mp.eye_color == up.eye_color
+            'complexion_match': mp.complexion == ub.complexion,
+            'hair_color_match': mp.hair_color == ub.hair_color,
+            'eye_color_match': mp.eye_color == ub.eye_color
         }
 
     @action(detail=True, methods=['post'], url_path='match-reject')
-    def match_reject(self, request, pk=None):
+    def match_reject_ub(self, request, pk=None):
         match_id = request.data.get('match_id')
         reject_reason = request.data.get('reject_reason')
 
@@ -276,7 +256,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
         try:
             # Now, match_id is treated as a regular string, not UUID
-            match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
@@ -289,11 +269,11 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
             return Response({"message": "Match rejected successfully."}, status=status.HTTP_200_OK)
 
-        except PersonMatchHistory.DoesNotExist:
+        except Missing_match_with_body.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=True, methods=['post'], url_path='match-unreject')
-    def match_unreject(self, request, pk=None):
+    def match_unreject_ub(self, request, pk=None):
         match_id = request.data.get('match_id')
         new_status = request.data.get('new_status', 'matched')
         unreject_reason = request.data.get('unreject_reason')
@@ -309,7 +289,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             return Response({"error": "unreject_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
 
             if match.match_type != 'rejected':
                 return Response({"error": f"Match is not rejected. Current status is {match.match_type}."},
@@ -325,12 +305,12 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             return Response({"message": f"Match status reverted to '{new_status}' successfully."},
                             status=status.HTTP_200_OK)
 
-        except PersonMatchHistory.DoesNotExist:
+        except Missing_match_with_body.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     # To confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-confirm')
-    def match_confirm(self, request, pk=None):
+    def match_confirm_up(self, request, pk=None):
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
 
@@ -338,41 +318,41 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
-            # Update match record
+            # ubdate match record
             match.match_type = 'confirmed'
             match.confirmation_note = confirmation_note
-            match.match_with = 'Unidentified Person'
+            match.match_with = 'Unidentified Body'
             match.is_viewed = False
             match.updated_by = request.user
             match.save()
 
             mp = match.missing_person
-            up = match.unidentified_person
+            ub = match.unidentified_bodies
 
             mp.case_status = 'resolved'
             mp.updated_by = request.user
-            mp.match_with = 'Unidentified Person'
-            mp.matched_person_id = up.id
+            mp.match_with = 'Unidentified Body'
+            mp.matched_person_id = ub.id
             mp.save()
-            up.case_status = 'resolved'
-            up.match_with = 'Missing Person'
-            up.matched_person_id = mp.id
-            up.updated_by = request.user
-            up.save()
+            ub.case_status = 'resolved'
+            ub.match_with = 'Missing Person'
+            ub.matched_person_id = mp.id
+            ub.updated_by = request.user
+            ub.save()
 
             return Response({"message": "Match confirmed successfully."}, status=status.HTTP_200_OK)
 
-        except PersonMatchHistory.DoesNotExist:
+        except Missing_match_with_body.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     # To un confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-unconfirm')
-    def match_unconfirm(self, request, pk=None):
+    def match_unconfirm_ub(self, request, pk=None):
         # match_id = request.data.get('match_id')
         new_status = request.data.get('new_status', 'matched')
         reason = request.data.get('unconfirm_reason')
@@ -388,8 +368,8 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
-            match = PersonMatchHistory.objects.filter(missing_person_id=pk).first()
+            # match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.filter(missing_person_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},
@@ -410,30 +390,31 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             mp.updated_by = request.user
             mp.save()
 
-            # Reset UP (unidentified person)
-            up = match.unidentified_person
-            up.case_status = 'pending'
-            up.match_with = None
-            up.matched_person_id = None
-            up.updated_by = request.user
+            # Reset ub (unidentified person)
+            ub = match.unidentified_bodies
+            ub.case_status = 'pending'
+            ub.match_with = None
+            ub.matched_person_id = None
+            ub.updated_by = request.user
 
-            up.save()
+            ub.save()
 
             return Response({"message": f"Match unconfirmed. Status reverted to '{new_status}'."},
                             status=status.HTTP_200_OK)
 
-        except PersonMatchHistory.DoesNotExist:
+        except Missing_match_with_body.DoesNotExist:
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=False, methods=['post'], url_path='(?P<match_id>MATCH-[\\w-]+)/mark-viewed')
-    def mark_as_viewed(self, request, match_id=None):
+    def mark_as_viewed_up(self, request, match_id=None):
         """Mark a single match record as viewed based on match_id in URL."""
         try:
-            match = PersonMatchHistory.objects.get(match_id=match_id)
+            match = Missing_match_with_body.objects.get(match_id=match_id)
             match.is_viewed = True
+            match.updated_by = request.user
             match.save()
             return Response("status changed successfully")
-        except PersonMatchHistory.DoesNotExist:
+        except Missing_match_with_body.DoesNotExist:
             return Response(
                 {"detail": "Match not found."},
                 status=status.HTTP_404_NOT_FOUND

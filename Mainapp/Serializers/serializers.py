@@ -116,6 +116,14 @@ class PersonSerializer(serializers.ModelSerializer):
         child=serializers.ChoiceField(choices=Person.ConditionChoices.choices),
         required=False
     )
+    chronic_illnesss = serializers.ListField(child=serializers.CharField(), required=False)
+    surgery_implants = serializers.ListField(child=serializers.CharField(), required=False)
+    prosthetics_amputation = serializers.ListField(child=serializers.CharField(), required=False)
+    healed_fractures = serializers.ListField(child=serializers.CharField(), required=False)
+    medical_anomalies = serializers.ListField(child=serializers.CharField(), required=False)
+    substance_use = serializers.ListField(child=serializers.CharField(), required=False)
+    dental_condition = serializers.ListField(child=serializers.CharField(), required=False)
+    lung_bone_pathology = serializers.ListField(child=serializers.CharField(), required=False)
     category = serializers.SerializerMethodField()
     specific_reason = serializers.SerializerMethodField()
 
