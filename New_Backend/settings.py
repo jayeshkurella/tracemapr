@@ -89,28 +89,28 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # }
 
 # beta (testing)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'chhaya_beta',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-# production
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'chhaya_today',
+        'NAME': 'chhaya_beta',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+# production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'chhaya_today',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -240,10 +240,10 @@ DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
 # beta
-# BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
+BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 # production
-BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+# BACKEND_BASE_URL = 'https://tracemapr.com/backend'
 
 
 
