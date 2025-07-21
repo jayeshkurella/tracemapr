@@ -17,5 +17,6 @@ from .volunteer_admin import *
 from .change_log import  *
 from .missingperson_match import PersonMatchHistoryAdmin
 from .tags import *
+from .Missing_match_with_ub import Missing_match_with_bodyAdmin
 
 
