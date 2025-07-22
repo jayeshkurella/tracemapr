@@ -2,6 +2,30 @@
 
 import django.db.models.deletion
 from django.db import migrations, models
+def clean_invalid_json_fields(apps, schema_editor):
+    Person = apps.get_model("Mainapp", "Person")
+    db_alias = schema_editor.connection.alias
+
+    json_fields = [
+        "dental_condition",
+        "healed_fractures",
+        "lung_bone_pathology",
+        "medical_anomalies",
+        "prosthetics_amputation",
+        "substance_use",
+        "surgery_implants",
+        "chronic_illness_latest",  # in case the field was added in earlier attempts
+    ]
+
+    for person in Person.objects.using(db_alias).all():
+        modified = False
+        for field in json_fields:
+            value = getattr(person, field, None)
+            if value and isinstance(value, str) and not value.startswith("[") and not value.startswith("{"):
+                setattr(person, field, [value])
+                modified = True
+        if modified:
+            person.save()
 
 
 class Migration(migrations.Migration):
