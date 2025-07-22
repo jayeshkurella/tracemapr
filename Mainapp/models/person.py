@@ -335,9 +335,6 @@ class Person(models.Model):
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     specific_reason = models.CharField(max_length=255, blank=True, null=True, db_index=True)
 
-    chronic_illness = models.CharField(max_length=255, null=True, blank=True)
-
-    chronic_illness_latest = models.JSONField(default=list, blank=True, null=True)
     surgery_implants = models.JSONField(default=list, blank=True, null=True)
     prosthetics_amputation = models.JSONField(default=list, blank=True, null=True)
     healed_fractures = models.JSONField(default=list, blank=True, null=True)
