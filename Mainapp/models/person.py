@@ -337,7 +337,7 @@ class Person(models.Model):
 
     chronic_illness = models.CharField(max_length=255, null=True, blank=True)
 
-    add_chronic_illness = models.JSONField(default=list, blank=True, null=True)
+    chronic_illness_latest = models.JSONField(default=list, blank=True, null=True)
     surgery_implants = models.JSONField(default=list, blank=True, null=True)
     prosthetics_amputation = models.JSONField(default=list, blank=True, null=True)
     healed_fractures = models.JSONField(default=list, blank=True, null=True)
