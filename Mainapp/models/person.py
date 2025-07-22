@@ -334,7 +334,7 @@ class Person(models.Model):
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     specific_reason = models.CharField(max_length=255, blank=True, null=True, db_index=True)
-
+    add_chronic_illness =models.JSONField(default=list, blank=True, null=True)
     surgery_implants = models.JSONField(default=list, blank=True, null=True)
     prosthetics_amputation = models.JSONField(default=list, blank=True, null=True)
     healed_fractures = models.JSONField(default=list, blank=True, null=True)
