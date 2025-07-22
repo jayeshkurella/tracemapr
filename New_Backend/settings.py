@@ -239,6 +239,9 @@ EMAIL_HOST_PASSWORD = 'svud wnfa hbav sevy'
 DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
+# local
+# BACKEND_BASE_URL='http://127.0.0.1:8000/'
+
 # beta
 BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
