@@ -70,7 +70,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
             if score >= 50:
                 newly_matched.append({
-                    'person': PersonSerializer(ub).data,
+                    'Body': PersonSerializer(ub).data,
                     'score': score,
                     'match_id': match_record.match_id,
                     'is_viewed': False

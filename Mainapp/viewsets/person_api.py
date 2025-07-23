@@ -526,13 +526,37 @@ class PersonViewSet(viewsets.ViewSet):
             else:
                 AdditionalInfo.objects.create(person=person, **info_data)
 
+    # def _update_last_known_details(self, person, last_known_details_data):
+    #     for details in last_known_details_data:
+    #         if not isinstance(details, dict):
+    #             continue
+    #
+    #         detail_id = details.get('id')
+    #         detail_data = {k: v for k, v in details.items() if k != 'id' and k != 'person'}
+    #
+    #         if detail_id:
+    #             try:
+    #                 detail_obj = LastKnownDetails.objects.get(id=detail_id, person=person)
+    #                 for key, value in detail_data.items():
+    #                     setattr(detail_obj, key, value)
+    #                 detail_obj.save()
+    #             except LastKnownDetails.DoesNotExist:
+    #                 continue
+    #         else:
+    #             LastKnownDetails.objects.create(person=person, **detail_data)
+
     def _update_last_known_details(self, person, last_known_details_data):
         for details in last_known_details_data:
             if not isinstance(details, dict):
                 continue
 
             detail_id = details.get('id')
-            detail_data = {k: v for k, v in details.items() if k != 'id' and k != 'person'}
+            documents_data = details.get('documents')  # can be null or list
+
+            detail_data = {
+                k: v for k, v in details.items()
+                if k not in ['id', 'person', 'documents', 'created_at', 'updated_at']
+            }
 
             if detail_id:
                 try:
@@ -540,10 +564,68 @@ class PersonViewSet(viewsets.ViewSet):
                     for key, value in detail_data.items():
                         setattr(detail_obj, key, value)
                     detail_obj.save()
+
+                    # Handle documents only if provided explicitly
+                    if documents_data is not None:
+                        # Optionally clear existing documents
+                        detail_obj.documents.all().delete()
+
+                        for doc_data in documents_data:
+                            if isinstance(doc_data, dict):
+                                Document.objects.create(
+                                    last_known_detail=detail_obj,
+                                    **{k: v for k, v in doc_data.items() if k not in ['id', 'last_known_detail']}
+                                )
+
                 except LastKnownDetails.DoesNotExist:
                     continue
             else:
-                LastKnownDetails.objects.create(person=person, **detail_data)
+                detail_obj = LastKnownDetails.objects.create(person=person, **detail_data)
+
+                # ✅ Create documents only if provided
+                if documents_data:
+                    for doc_data in documents_data:
+                        if isinstance(doc_data, dict):
+                            Document.objects.create(
+                                last_known_detail=detail_obj,
+                                **{k: v for k, v in doc_data.items() if k not in ['id', 'last_known_detail']}
+                            )
+
+    # def _update_firs(self, person, firs_data):
+    #     for fir in firs_data:
+    #         if not isinstance(fir, dict):
+    #             continue
+    #
+    #         fir_id = fir.get('id')
+    #         police_station_id = fir.get('police_station')
+    #         police_station = None
+    #         if police_station_id:
+    #             try:
+    #                 police_station = PoliceStation.objects.get(id=police_station_id)
+    #             except PoliceStation.DoesNotExist:
+    #                 raise ValueError(f"PoliceStation with ID {police_station_id} does not exist")
+    #
+    #         fir_photo = fir.pop('fir_photo', None)
+    #         fir_data = {
+    #             k: v for k, v in fir.items() if k not in ['id', 'person', 'fir_photo', 'document', 'police_station']
+    #         }
+    #
+    #         if fir_id:
+    #             try:
+    #                 fir_obj = FIR.objects.get(id=fir_id, person=person)
+    #                 for key, value in fir_data.items():
+    #                     setattr(fir_obj, key, value)
+    #                 fir_obj.police_station = police_station
+    #                 if fir_photo and isinstance(fir_photo, str):
+    #                     fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
+    #                 fir_obj.save()
+    #             except FIR.DoesNotExist:
+    #                 continue
+    #         else:
+    #             fir_obj = FIR(person=person, police_station=police_station, **fir_data)
+    #             if fir_photo and isinstance(fir_photo, str):
+    #                 fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
+    #             fir_obj.save()
 
     def _update_firs(self, person, firs_data):
         for fir in firs_data:
@@ -561,8 +643,11 @@ class PersonViewSet(viewsets.ViewSet):
 
             fir_photo = fir.pop('fir_photo', None)
             fir_data = {
-                k: v for k, v in fir.items() if k not in ['id', 'person', 'fir_photo', 'document', 'police_station']
+                k: v for k, v in fir.items() if
+                k not in ['id', 'person', 'fir_photo', 'document', 'police_station', 'documents']
             }
+
+            documents_data = fir.get("documents")  # Can be None
 
             if fir_id:
                 try:
@@ -573,6 +658,18 @@ class PersonViewSet(viewsets.ViewSet):
                     if fir_photo and isinstance(fir_photo, str):
                         fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
                     fir_obj.save()
+
+                    # ✅ Only update related documents if explicitly passed
+                    if documents_data is not None:
+                        # Clear old documents if needed
+                        fir_obj.documents.all().delete()
+
+                        for doc_data in documents_data:
+                            if isinstance(doc_data, dict):
+                                doc = Document.objects.create(fir=fir_obj, **{
+                                    k: v for k, v in doc_data.items() if k not in ['id', 'fir']
+                                })
+
                 except FIR.DoesNotExist:
                     continue
             else:
@@ -580,6 +677,13 @@ class PersonViewSet(viewsets.ViewSet):
                 if fir_photo and isinstance(fir_photo, str):
                     fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
                 fir_obj.save()
+
+                if documents_data:
+                    for doc_data in documents_data:
+                        if isinstance(doc_data, dict):
+                            Document.objects.create(fir=fir_obj, **{
+                                k: v for k, v in doc_data.items() if k not in ['id', 'fir']
+                            })
 
     def _update_consents(self, person, consents_data):
         for consent in consents_data:

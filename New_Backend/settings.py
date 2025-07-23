@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'chhaya_beta',
+#         'NAME': 'chhaya_beta_new1',
 #         'USER': 'postgres',
 #         'PASSWORD': 'postgres',
 #         'HOST': 'localhost',
@@ -238,6 +238,9 @@ EMAIL_HOST_USER = 'tracemapr@gmail.com'
 EMAIL_HOST_PASSWORD = 'svud wnfa hbav sevy'
 DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
+
+# local
+# BACKEND_BASE_URL='http://127.0.0.1:8000/'
 
 # beta
 # BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'

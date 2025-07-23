@@ -156,28 +156,6 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         if mp.eye_color and up.eye_color and mp.eye_color.lower() == up.eye_color.lower():
             score += 25
 
-        # Age match (30 points max)
-        # if mp.age is not None and up.age_range is not None:
-        #     try:
-        #         min_age, max_age = map(int, up.age_range.split('-'))
-        #         if min_age <= mp.age <= max_age:
-        #             score += 30
-        #         elif min_age - 2 <= mp.age <= max_age + 2:
-        #             score += 20
-        #         elif min_age - 5 <= mp.age <= max_age + 5:
-        #             score += 10
-        #     except (ValueError, AttributeError):
-        #         pass
-        # elif mp.age is not None and up.age is not None:
-        #     # Fallback if age_range not available but age is
-        #     age_diff = abs(mp.age - up.age)
-        #     if age_diff <= 2:
-        #         score += 30
-        #     elif age_diff <= 5:
-        #         score += 20
-        #     elif age_diff <= 10:
-        #         score += 10
-
         if mp.age is not None and up.age_range is not None:
             try:
                 min_age, max_age = map(int, up.age_range.split('-'))
@@ -189,8 +167,6 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                 return 0  # Skip if age_range is invalid
         else:
             return 0
-
-
 
             # Height match (25 points max)
         if mp.height_range and up.height_range:
