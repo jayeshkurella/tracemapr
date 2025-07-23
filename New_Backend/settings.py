@@ -89,28 +89,28 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # }
 
 # beta (testing)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'chhaya_beta_new1',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-# production
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'chhaya_today',
+        'NAME': 'chhaya_beta_new1',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+# production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'chhaya_today',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -163,7 +163,7 @@ if os.name == 'nt':
     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj')
 
-# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\Chhaya_FullStack\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
+GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\Chhaya_FullStack\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
@@ -243,10 +243,10 @@ DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 # BACKEND_BASE_URL='http://127.0.0.1:8000/'
 
 # beta
-# BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
+BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 # production
-BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+# BACKEND_BASE_URL = 'https://tracemapr.com/backend'
 
 
 
