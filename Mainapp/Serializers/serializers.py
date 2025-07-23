@@ -73,6 +73,11 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = '__all__'
 
+class PoliceStationIdNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceStation
+        fields = ['id', 'name']
+
 class FIRSerializer(serializers.ModelSerializer):
     documents = DocumentSerializer(many=True, read_only=True)
     police_station =serializers.StringRelatedField(read_only=True)
@@ -89,10 +94,6 @@ class HospitalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PoliceStationIdNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PoliceStation
-        fields = ['id', 'name']
 
 
 
