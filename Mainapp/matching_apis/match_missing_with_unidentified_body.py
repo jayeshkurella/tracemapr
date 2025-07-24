@@ -32,12 +32,8 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
         # Get previously matched/rejected/confirmed ubs for this MP
         history_qs = Missing_match_with_body.objects.filter(missing_person=missing_person)
-        # Get previously matched/rejected/confirmed Ubs for this MP
-
         previously_matched_ids = history_qs.values_list('unidentified_bodies_id', flat=True)
-        # previously_matched_ids = Missing_match_with_body.objects.filter(
-        #     missing_person=missing_person
-        # ).values_list('unidentified_bodies_id', flat=True)
+
 
         # Get eligible ubs (excluding ones seen before for this MP)
         eligible_ubs = Person.objects.filter(
@@ -48,6 +44,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
         # Calculate scores and find matches
         newly_matched = []
+        new_match_ids = set()
         for ub in eligible_ubs:
             score = self.calculate_match_score(missing_person, ub)
 
@@ -68,6 +65,8 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
                 is_viewed=False,
             )
 
+            new_match_ids.add(match_record.id)
+
             if score >= 50:
                 newly_matched.append({
                     'Body': PersonSerializer(ub).data,
@@ -86,6 +85,8 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
         confirmed = []
 
         for match in history_qs:
+            if match.id in new_match_ids:
+                continue  # skip newly created matches
             if (match.missing_person.gender and match.unidentified_bodies.gender and
                     match.missing_person.gender.lower() != match.unidentified_bodies.gender.lower()):
                 continue
