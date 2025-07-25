@@ -353,9 +353,10 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         # match_id = request.data.get('match_id')
         new_status = request.data.get('new_status', 'matched')
         reason = request.data.get('unconfirm_reason')
+        matched_person = request.data.get('matched_person_id')
 
-        # if not match_id:
-        #     return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+        if not matched_person:
+            return Response({"error": "Unidentified person id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reason:
             return Response({"error": "unconfirm_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
@@ -365,8 +366,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
-            match = PersonMatchHistory.objects.filter(missing_person_id=pk).first()
+            match = PersonMatchHistory.objects.filter(unidentified_person=matched_person,missing_person_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},

@@ -354,12 +354,12 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
     # To un confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-unconfirm')
     def match_unconfirm_ub(self, request, pk=None):
-        # match_id = request.data.get('match_id')
+        matched_person = request.data.get('matched_person_id')
         new_status = request.data.get('new_status', 'matched')
         reason = request.data.get('unconfirm_reason')
 
-        # if not match_id:
-        #     return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+        if not matched_person:
+            return Response({"error": "Unidentified body id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reason:
             return Response({"error": "unconfirm_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
@@ -370,7 +370,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
         try:
             # match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
-            match = Missing_match_with_body.objects.filter(missing_person_id=pk).first()
+            match = Missing_match_with_body.objects.filter(unidentified_body=matched_person,missing_person_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},

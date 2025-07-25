@@ -177,7 +177,7 @@ class SearchSerializer(serializers.ModelSerializer):
         fields = [
             'type', 'case_status', 'id', 'full_name', 'age', 'age_range',
             'city', 'village', 'state', 'gender', 'photo_photo',
-            'date_reported', 'missing_date'
+            'date_reported', 'missing_date','matched_person_id'
         ]
 
     def get_missing_date(self, obj):
