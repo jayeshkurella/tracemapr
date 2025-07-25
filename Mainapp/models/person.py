@@ -346,7 +346,6 @@ class Person(models.Model):
     dna_match = models.CharField(
         max_length=20,
         choices=DNA_MATCH_CHOICES,
-        default='pending',
         null=True,
         blank=True
     )

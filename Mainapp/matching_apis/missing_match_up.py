@@ -13,6 +13,8 @@ from Mainapp.models.person_match_history import PersonMatchHistory
 from rest_framework.permissions import AllowAny ,IsAuthenticated
 
 
+
+
 class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
     def get_permissions(self):
         if self.action == 'retrieve':
@@ -29,16 +31,9 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         except Person.DoesNotExist:
             return Response({"error": "Missing person not found."}, status=status.HTTP_404_NOT_FOUND)
 
-        # Get previously matched/rejected/confirmed UPs for this MP
         history_qs = PersonMatchHistory.objects.filter(missing_person=missing_person)
-        # Get previously matched/rejected/confirmed UPs for this MP
-
         previously_matched_ids = history_qs.values_list('unidentified_person_id', flat=True)
-        # previously_matched_ids = PersonMatchHistory.objects.filter(
-        #     missing_person=missing_person
-        # ).values_list('unidentified_person_id', flat=True)
 
-        # Get eligible UPs (excluding ones seen before for this MP)
         eligible_ups = Person.objects.filter(
             type='Unidentified Person',
             person_approve_status='approved',
@@ -47,6 +42,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
         # Calculate scores and find matches
         newly_matched = []
+        new_match_ids = set()
         for up in eligible_ups:
             score = self.calculate_match_score(missing_person, up)
 
@@ -67,6 +63,8 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                 is_viewed=False,
             )
 
+            new_match_ids.add(match_record.id)
+
             if score >= 50:
                 newly_matched.append({
                     'person': PersonSerializer(up).data,
@@ -85,6 +83,9 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         confirmed = []
 
         for match in history_qs:
+            if match.id in new_match_ids:
+                continue  # skip newly created matches
+
             if (match.missing_person.gender and match.unidentified_person.gender and
                     match.missing_person.gender.lower() != match.unidentified_person.gender.lower()):
                 continue
@@ -352,9 +353,10 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         # match_id = request.data.get('match_id')
         new_status = request.data.get('new_status', 'matched')
         reason = request.data.get('unconfirm_reason')
+        matched_person = request.data.get('matched_person_id')
 
-        # if not match_id:
-        #     return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+        if not matched_person:
+            return Response({"error": "Unidentified person id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reason:
             return Response({"error": "unconfirm_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
@@ -364,8 +366,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                             status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
-            match = PersonMatchHistory.objects.filter(missing_person_id=pk).first()
+            match = PersonMatchHistory.objects.filter(unidentified_person=matched_person,missing_person_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},
