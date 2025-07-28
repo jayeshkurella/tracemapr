@@ -18,6 +18,7 @@ from .authentication.admin_user_management import AdminUserApprovalView, Approve
     RejectedUsersView
 from .authentication.user_authentication import AuthAPIView
 from .matching_apis.match_missing_with_unidentified_body import MissingPersonMatchWithUBsViewSet
+from .matching_apis.match_unidentified_body_with_mp import UnidentifiedBodyMatchWithMPsViewSet
 from .matching_apis.match_unidentified_person_with_mp import UnidentifiedPersonMatchWithMPsViewSet
 from .viewsets.casetype_apis import PendingPersonsView, ApprovedPersonsView, RejectedPersonsView, OnHoldPersonsView, \
     SuspendedPersonsView, StatusCountView
@@ -41,6 +42,7 @@ router.register(r'changelogs', ChangeLogViewSet ,basename='chnagelog')
 router.register(r'missing-person-with-ups', MissingPersonMatchWithUPsViewSet ,basename='missing-person-with-ups')
 router.register(r'missing-person-with-ubs', MissingPersonMatchWithUBsViewSet ,basename='missing-person-with-ubs')
 router.register(r'unidentified_person-with-mps', UnidentifiedPersonMatchWithMPsViewSet ,basename='unidentified_person-with-mps')
+router.register(r'unidentified_bodies-with-mps', UnidentifiedBodyMatchWithMPsViewSet ,basename='unidentified_bodies-with-mps')
 
 
 urlpatterns = [
