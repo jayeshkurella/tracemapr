@@ -257,7 +257,7 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
 
         try:
             # Now, match_id is treated as a regular string, not UUID
-            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, unidentified_bodies_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
@@ -290,7 +290,7 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
             return Response({"error": "unreject_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, unidentified_bodies_id=pk)
 
             if match.match_type != 'rejected':
                 return Response({"error": f"Match is not rejected. Current status is {match.match_type}."},
@@ -319,7 +319,7 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
+            match = Missing_match_with_body.objects.get(match_id=match_id, unidentified_bodies_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
@@ -370,7 +370,7 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
 
         try:
             # match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
-            match = Missing_match_with_body.objects.filter(unidentified_body=matched_person,missing_person_id=pk).first()
+            match = Missing_match_with_body.objects.filter(missing_person=matched_person,unidentified_bodies_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},
