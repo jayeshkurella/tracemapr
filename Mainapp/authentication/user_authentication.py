@@ -121,7 +121,7 @@ class AuthAPIView(APIView):
         if User.objects.filter(phone_no=phone_no).exists():
             return Response({"error": "Phone number already used"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # ✅ Create user with status 'hold' (admin approval required)
+        #  Create user with status 'hold' (admin approval required)
         user = User.objects.create(
             email_id=email_id,
             phone_no=phone_no,
