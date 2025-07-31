@@ -2,7 +2,7 @@
 Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
-
+import ast
 import hashlib
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -18,7 +18,7 @@ from Mainapp.all_paginations.pagination import CustomPagination
 from django.core.cache import cache
 from rest_framework import generics
 import json
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, GEOSGeometry, GEOSException
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
@@ -264,66 +264,123 @@ class HospitalViewSet(viewsets.ModelViewSet):
         return self._update_hospital(request, pk, partial=True)
 
     def _update_hospital(self, request, pk, partial):
+        print(request.data)
         try:
             with transaction.atomic():
                 hospital = get_object_or_404(Hospital, pk=pk)
+                data = request.data.copy()
 
-                # 1. Extract address_details or address
-                address_data = request.data.pop("address", None) or request.data.pop("address_details", None)
+                # Handle file upload scenarios
+                if 'hospital_photo' in request.FILES:
+                    data['hospital_photo'] = request.FILES['hospital_photo']
+                elif 'hospital_photo' in data:
+                    if data['hospital_photo'] in ['', 'null', None]:
+                        data['hospital_photo'] = None
+                    elif isinstance(data['hospital_photo'], str) and data['hospital_photo'].startswith('http'):
+                        data.pop('hospital_photo', None)
 
-                # 2. Update address if provided
-                if address_data:
+                # Parse address and hospital_contact from JSON strings if needed
+                json_fields = ['address', 'hospital_contact']
+                for field in json_fields:
+                    if field in data:
+                        if isinstance(data[field], str):
+                            try:
+                                data[field] = json.loads(data[field])
+                            except json.JSONDecodeError:
+                                try:
+                                    data[field] = ast.literal_eval(data[field])
+                                except Exception as e:
+                                    return Response(
+                                        {"error": f"Invalid {field} format: {str(e)}"},
+                                        status=status.HTTP_400_BAD_REQUEST
+                                    )
+
+                # Now extract address dict
+                address_data = data.get("address") or data.get("address_details")
+                if isinstance(address_data, dict):
                     location = address_data.get("location")
-                    if isinstance(location, dict) and "latitude" in location and "longitude" in location:
-                        latitude = location["latitude"]
-                        longitude = location["longitude"]
-                        address_data["location"] = Point(float(longitude), float(latitude))
+                    if isinstance(location, dict):
+                        try:
+                            address_data["location"] = Point(
+                                float(location["longitude"]),
+                                float(location["latitude"]),
+                                srid=4326
+                            )
+                        except (ValueError, TypeError, KeyError):
+                            return Response(
+                                {"error": "Invalid location coordinates"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
+                    elif isinstance(location, str) and location.startswith("POINT"):
+                        try:
+                            address_data["location"] = GEOSGeometry(location)
+                        except (GEOSException, ValueError) as e:
+                            return Response(
+                                {"error": f"Invalid WKT format: {str(e)}"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
 
-                    address_serializer = AddressSerializer(hospital.address, data=address_data, partial=partial)
-                    if address_serializer.is_valid():
-                        address_serializer.save()
-                        request.data["address"] = str(hospital.address.id)
-                    else:
-                        return Response(address_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                    address_serializer = AddressSerializer(
+                        hospital.address,
+                        data=address_data,
+                        partial=partial
+                    )
+                    if not address_serializer.is_valid():
+                        return Response(
+                            {"address": address_serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST
+                        )
+                    address_serializer.save()
+                    data["address"] = hospital.address.pk
 
-                contacts_data = request.data.pop("hospital_contact", [])
-
-                # 4. Update hospital
-                serializer = self.get_serializer(hospital, data=request.data, partial=partial)
-                if serializer.is_valid():
-                    serializer.save()
-                else:
+                # Main serializer
+                serializer = self.get_serializer(hospital, data=data, partial=partial)
+                if not serializer.is_valid():
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-                # 5. Handle contacts
-                existing_contacts = {str(contact.id): contact for contact in hospital.hospital_contact.all()}
-                new_contacts = []
+                instance = serializer.save()
 
-                for contact_data in contacts_data:
-                    contact_id = str(contact_data.get("id", ""))
-                    if contact_id and contact_id in existing_contacts:
-                        contact = existing_contacts[contact_id]
-                        for key, value in contact_data.items():
-                            if key != 'id':
-                                setattr(contact, key, value)
-                        contact.save()
-                    else:
-                        clean_data = contact_data.copy()
-                        clean_data.pop('id', None)  # Remove ID if present to avoid conflict
-                        new_contacts.append(Contact(hospital=hospital, **clean_data))
+                if 'hospital_photo' in data and data['hospital_photo'] is None:
+                    instance.hospital_photo = None
+                    instance.save()
 
-                if new_contacts:
-                    Contact.objects.bulk_create(new_contacts)
+                # Contacts
+                contacts_data = data.get("hospital_contact", [])
+                if isinstance(contacts_data, list):
+                    existing_contacts = {str(c.id): c for c in hospital.hospital_contact.all()}
+                    new_contacts = []
 
-                # 6. Final response
+                    for contact_data in contacts_data:
+                        if not isinstance(contact_data, dict):
+                            continue
+
+                        contact_id = str(contact_data.get("id", ""))
+                        if contact_id in existing_contacts:
+                            contact = existing_contacts[contact_id]
+                            for field, value in contact_data.items():
+                                if field != 'id' and hasattr(contact, field):
+                                    setattr(contact, field, value)
+                            contact.save()
+                        else:
+                            clean_data = {
+                                k: v for k, v in contact_data.items()
+                                if k not in ['id', 'hospital']
+                            }
+                            new_contacts.append(Contact(hospital=instance, **clean_data))
+
+                    if new_contacts:
+                        Contact.objects.bulk_create(new_contacts)
+
+                # Final response
                 response_data = serializer.data
-                response_data['hospital_contact'] = ContactSerializer(hospital.hospital_contact.all(), many=True).data
+                response_data['hospital_contact'] = ContactSerializer(
+                    instance.hospital_contact.all(), many=True
+                ).data
 
                 return Response(response_data, status=status.HTTP_200_OK)
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
     #  6. DELETE Hospital
     def destroy(self, request, pk=None):
         try:
