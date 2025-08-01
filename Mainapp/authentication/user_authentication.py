@@ -110,18 +110,18 @@ class AuthAPIView(APIView):
         sub_user_type = request.data.get("sub_user_type", "")
         is_consent = request.data.get("is_consent", False)
 
-        # ✅ Check if passwords match
+        # Check if passwords match
         if password != password2:
             return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # ✅ Check for existing email and phone number
+        # Check for existing email and phone number
         if User.objects.filter(email_id=email_id).exists():
             return Response({"error": "Email already registered"}, status=status.HTTP_400_BAD_REQUEST)
 
         if User.objects.filter(phone_no=phone_no).exists():
             return Response({"error": "Phone number already used"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # ✅ Create user with status 'hold' (admin approval required)
+        #  Create user with status 'hold' (admin approval required)
         user = User.objects.create(
             email_id=email_id,
             phone_no=phone_no,
@@ -134,7 +134,7 @@ class AuthAPIView(APIView):
             status=User.StatusChoices.HOLD,
             is_consent=is_consent
         )
-        # ✅ Send email notification
+        # Send email notification
         try:
             subject = "Welcome to Our Platform"
             message = (

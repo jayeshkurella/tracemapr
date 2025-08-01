@@ -189,7 +189,7 @@ class ApprovePersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         ordering = ['-created_at']
-        fields = ['case_id','id','full_name', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
+        fields = ['case_id','id','full_name','type', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
 
 
 class VolunteerSerializer(serializers.ModelSerializer):
