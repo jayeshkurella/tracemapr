@@ -110,11 +110,11 @@ class AuthAPIView(APIView):
         sub_user_type = request.data.get("sub_user_type", "")
         is_consent = request.data.get("is_consent", False)
 
-        # ✅ Check if passwords match
+        # Check if passwords match
         if password != password2:
             return Response({"error": "Passwords do not match"}, status=status.HTTP_400_BAD_REQUEST)
 
-        # ✅ Check for existing email and phone number
+        # Check for existing email and phone number
         if User.objects.filter(email_id=email_id).exists():
             return Response({"error": "Email already registered"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -134,7 +134,7 @@ class AuthAPIView(APIView):
             status=User.StatusChoices.HOLD,
             is_consent=is_consent
         )
-        # ✅ Send email notification
+        # Send email notification
         try:
             subject = "Welcome to Our Platform"
             message = (
@@ -299,10 +299,10 @@ class AuthAPIView(APIView):
         # reset_url = f"http://localhost:4200/authentication/reset-password/{reset_token}"
 
         # production
-        # reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
+        reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
 
         # Testing(beta)
-        reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
+        # reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
         try:
             send_mail(
                 "Password Reset Request",
