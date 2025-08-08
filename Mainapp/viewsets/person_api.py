@@ -4,8 +4,10 @@ Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
 
+from django.utils import timezone
 
 import logging
+import threading
 from uuid import UUID
 from dateutil import parser
 from django.db.models import Q
@@ -18,6 +20,11 @@ from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
+
+from ..Emails import case_pending
+from ..Emails.Case_submit import send_submission_email
+from ..Emails.case_approval import send_case_approval_email
+from ..Emails.case_pending import send_case_back_to_pending_email
 from ..all_paginations.search_case import searchCase_Pagination
 from ..models.fir import FIR
 from ..access_permision import IsAdminUser
@@ -191,6 +198,17 @@ class PersonViewSet(viewsets.ViewSet):
 
                     person.save()
                     print("Person saved:", person.id)
+                    reporter_name = f"{request.user.first_name} {request.user.last_name}".strip()
+
+                    # send_submission_email(
+                    #     user_email=request.user,
+                    #     reporter_name=reporter_name,
+                    #     full_name=person.full_name,
+                    #     case_id=person.case_id,
+                    #     type=person.type,
+                    #     submitted_at=person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    # )
+
 
                 # Create related objects
                 self._create_addresses(person, addresses_data[1:])
@@ -202,10 +220,24 @@ class PersonViewSet(viewsets.ViewSet):
 
                 # Prepare response
                 serializer = PersonSerializer(person)
-                return Response(
+                response = Response(
                     {'message': 'Person created successfully', 'person_id': str(person.id), 'data': serializer.data},
                     status=status.HTTP_201_CREATED
                 )
+                # Send email in background
+                threading.Thread(
+                    target=send_submission_email,
+                    kwargs={
+                        'user_email': request.user,
+                        'reporter_name': reporter_name,
+                        'full_name': person.full_name,
+                        'case_id': person.case_id,
+                        'type': person.type,
+                        'submitted_at': person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    }
+                ).start()
+
+                return response
 
         except ValueError as e:
             logger.error("Validation error: %s", str(e))
@@ -380,10 +412,13 @@ class PersonViewSet(viewsets.ViewSet):
 
     # To update the records
     def update(self, request, pk=None):
+        print(request.data)
+
         try:
             with transaction.atomic():
                 person = Person.objects.get(pk=pk)
                 # Extract content from request
+
                 if request.content_type == 'application/json':
                     data = request.data
                 elif request.content_type.startswith('multipart/form-data'):
@@ -395,7 +430,17 @@ class PersonViewSet(viewsets.ViewSet):
                 else:
                     return Response({'error': 'Unsupported media type'}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
-                data['photo_photo'] = request.FILES.get('photo_photo')
+                    # Handle photo_photo field
+                new_photo = request.FILES.get('photo_photo')
+                if new_photo:
+                    # New photo uploaded - use it
+                    data['photo_photo'] = new_photo
+                elif hasattr(person, 'photo_photo') and person.photo_photo:
+                    # Keep existing photo if no new one was uploaded
+                    data['photo_photo'] = person.photo_photo.name  # This gives the proper media path
+                else:
+                    # No photo at all - set to None
+                    data['photo_photo'] = None
 
                 addresses_data = data.get('addresses', [])
                 contacts_data = data.get('contacts', [])
@@ -414,14 +459,17 @@ class PersonViewSet(viewsets.ViewSet):
                         except Hospital.DoesNotExist:
                             raise ValueError(f"Hospital with ID {hospital_id} does not exist")
 
-                # Update top-level fields
+                # Update top-level fields - exclude photo_photo if it wasn't in the original data
                 person_data = {
                     k: v for k, v in data.items()
                     if k not in ['addresses', 'contacts', 'additional_info', 'last_known_details', 'firs', 'consent',
                                  'hospital']
                 }
+
                 for key, value in person_data.items():
-                    setattr(person, key, value)
+                    # Only update fields that are actually in the payload or have new values
+                    if value is not None or key in data:
+                        setattr(person, key, value)
 
                 # Update top-level address info from first address
                 if addresses_data:
@@ -526,112 +574,74 @@ class PersonViewSet(viewsets.ViewSet):
             else:
                 AdditionalInfo.objects.create(person=person, **info_data)
 
-    # def _update_last_known_details(self, person, last_known_details_data):
-    #     for details in last_known_details_data:
-    #         if not isinstance(details, dict):
-    #             continue
-    #
-    #         detail_id = details.get('id')
-    #         detail_data = {k: v for k, v in details.items() if k != 'id' and k != 'person'}
-    #
-    #         if detail_id:
-    #             try:
-    #                 detail_obj = LastKnownDetails.objects.get(id=detail_id, person=person)
-    #                 for key, value in detail_data.items():
-    #                     setattr(detail_obj, key, value)
-    #                 detail_obj.save()
-    #             except LastKnownDetails.DoesNotExist:
-    #                 continue
-    #         else:
-    #             LastKnownDetails.objects.create(person=person, **detail_data)
-
     def _update_last_known_details(self, person, last_known_details_data):
-        for details in last_known_details_data:
-            if not isinstance(details, dict):
-                continue
-
+        for detail_idx, details in enumerate(last_known_details_data):
             detail_id = details.get('id')
-            documents_data = details.get('documents')  # can be null or list
-
-            detail_data = {
-                k: v for k, v in details.items()
-                if k not in ['id', 'person', 'documents', 'created_at', 'updated_at']
-            }
+            documents_data = details.pop('documents', [])
+            detail_data = {k: v for k, v in details.items()
+                           if k not in ['id', 'person', 'documents']}
 
             if detail_id:
                 try:
                     detail_obj = LastKnownDetails.objects.get(id=detail_id, person=person)
+                    # Update basic fields
                     for key, value in detail_data.items():
                         setattr(detail_obj, key, value)
                     detail_obj.save()
 
-                    # Handle documents only if provided explicitly
-                    if documents_data is not None:
-                        # Optionally clear existing documents
-                        detail_obj.documents.all().delete()
+                    # Handle documents - only process if documents_data is not empty
+                    if documents_data:
+                        existing_doc_ids = []
+                        for doc_idx, doc_data in enumerate(documents_data):
+                            doc_id = doc_data.get('id')
 
-                        for doc_data in documents_data:
-                            if isinstance(doc_data, dict):
-                                Document.objects.create(
+                            # Existing document being kept
+                            if doc_id and doc_data.get('existing_document_path'):
+                                existing_doc_ids.append(doc_id)
+                                continue
+
+                            # New document upload
+                            file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
+                            if file_key in self.request.FILES:
+                                doc_file = self.request.FILES[file_key]
+                                doc = Document.objects.create(
+                                    person_type="missing person",
+                                    document_type=doc_data.get('document_type', 'other'),
+                                    description=doc_data.get('description', ''),
+                                    document=doc_file,
                                     last_known_detail=detail_obj,
-                                    **{k: v for k, v in doc_data.items() if k not in ['id', 'last_known_detail']}
+                                    created_by=self.request.user
                                 )
+                                existing_doc_ids.append(doc.id)
+
+                        # Only remove documents if we're processing updates
+                        if documents_data:
+                            detail_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
                 except LastKnownDetails.DoesNotExist:
                     continue
             else:
+                # Create new last known detail with documents
                 detail_obj = LastKnownDetails.objects.create(person=person, **detail_data)
-
-                # ✅ Create documents only if provided
+                # Handle document creation only if documents_data exists
                 if documents_data:
-                    for doc_data in documents_data:
-                        if isinstance(doc_data, dict):
-                            Document.objects.create(
+                    existing_doc_ids = []
+                    for doc_idx, doc_data in enumerate(documents_data):
+                        file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
+                        if file_key in self.request.FILES:
+                            doc_file = self.request.FILES[file_key]
+                            doc = Document.objects.create(
+                                person_type="missing person",
+                                document_type=doc_data.get('document_type', 'other'),
+                                description=doc_data.get('description', ''),
+                                document=doc_file,
                                 last_known_detail=detail_obj,
-                                **{k: v for k, v in doc_data.items() if k not in ['id', 'last_known_detail']}
+                                created_by=self.request.user
                             )
-
-    # def _update_firs(self, person, firs_data):
-    #     for fir in firs_data:
-    #         if not isinstance(fir, dict):
-    #             continue
-    #
-    #         fir_id = fir.get('id')
-    #         police_station_id = fir.get('police_station')
-    #         police_station = None
-    #         if police_station_id:
-    #             try:
-    #                 police_station = PoliceStation.objects.get(id=police_station_id)
-    #             except PoliceStation.DoesNotExist:
-    #                 raise ValueError(f"PoliceStation with ID {police_station_id} does not exist")
-    #
-    #         fir_photo = fir.pop('fir_photo', None)
-    #         fir_data = {
-    #             k: v for k, v in fir.items() if k not in ['id', 'person', 'fir_photo', 'document', 'police_station']
-    #         }
-    #
-    #         if fir_id:
-    #             try:
-    #                 fir_obj = FIR.objects.get(id=fir_id, person=person)
-    #                 for key, value in fir_data.items():
-    #                     setattr(fir_obj, key, value)
-    #                 fir_obj.police_station = police_station
-    #                 if fir_photo and isinstance(fir_photo, str):
-    #                     fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
-    #                 fir_obj.save()
-    #             except FIR.DoesNotExist:
-    #                 continue
-    #         else:
-    #             fir_obj = FIR(person=person, police_station=police_station, **fir_data)
-    #             if fir_photo and isinstance(fir_photo, str):
-    #                 fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
-    #             fir_obj.save()
+                            existing_doc_ids.append(doc.id)
 
     def _update_firs(self, person, firs_data):
-        for fir in firs_data:
-            if not isinstance(fir, dict):
-                continue
-
+        for fir_idx, fir in enumerate(firs_data):
             fir_id = fir.get('id')
             police_station_id = fir.get('police_station')
             police_station = None
@@ -641,49 +651,71 @@ class PersonViewSet(viewsets.ViewSet):
                 except PoliceStation.DoesNotExist:
                     raise ValueError(f"PoliceStation with ID {police_station_id} does not exist")
 
-            fir_photo = fir.pop('fir_photo', None)
+            documents_data = fir.pop('documents', [])
             fir_data = {
-                k: v for k, v in fir.items() if
-                k not in ['id', 'person', 'fir_photo', 'document', 'police_station', 'documents']
+                k: v for k, v in fir.items()
+                if k not in ['id', 'person', 'documents', 'police_station']
             }
-
-            documents_data = fir.get("documents")  # Can be None
 
             if fir_id:
                 try:
                     fir_obj = FIR.objects.get(id=fir_id, person=person)
+                    # Update basic fields
                     for key, value in fir_data.items():
                         setattr(fir_obj, key, value)
                     fir_obj.police_station = police_station
-                    if fir_photo and isinstance(fir_photo, str):
-                        fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
                     fir_obj.save()
 
-                    # ✅ Only update related documents if explicitly passed
-                    if documents_data is not None:
-                        # Clear old documents if needed
-                        fir_obj.documents.all().delete()
+                    # Handle documents - only if documents_data is provided
+                    if documents_data:
+                        existing_doc_ids = []
+                        for doc_idx, doc_data in enumerate(documents_data):
+                            doc_id = doc_data.get('id')
 
-                        for doc_data in documents_data:
-                            if isinstance(doc_data, dict):
-                                doc = Document.objects.create(fir=fir_obj, **{
-                                    k: v for k, v in doc_data.items() if k not in ['id', 'fir']
-                                })
+                            # Existing document being kept
+                            if doc_id and doc_data.get('existing_document_path'):
+                                existing_doc_ids.append(doc_id)
+                                continue
+
+                            # New document upload
+                            file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
+                            if file_key in self.request.FILES:
+                                doc_file = self.request.FILES[file_key]
+                                doc = Document.objects.create(
+                                    person_type="missing person",
+                                    document_type=doc_data.get('document_type', 'fir_attachment'),
+                                    description=doc_data.get('description', ''),
+                                    document=doc_file,
+                                    fir=fir_obj,
+                                    created_by=self.request.user
+                                )
+                                existing_doc_ids.append(doc.id)
+
+                        # Only remove documents if we're processing updates
+                        if documents_data:
+                            fir_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
                 except FIR.DoesNotExist:
                     continue
             else:
-                fir_obj = FIR(person=person, police_station=police_station, **fir_data)
-                if fir_photo and isinstance(fir_photo, str):
-                    fir_obj.fir_photo.name = f'fir_photos/{fir_photo}'
-                fir_obj.save()
-
+                # Create new FIR with documents
+                fir_obj = FIR.objects.create(person=person, police_station=police_station, **fir_data)
+                # Handle document creation only if documents_data exists
                 if documents_data:
-                    for doc_data in documents_data:
-                        if isinstance(doc_data, dict):
-                            Document.objects.create(fir=fir_obj, **{
-                                k: v for k, v in doc_data.items() if k not in ['id', 'fir']
-                            })
+                    existing_doc_ids = []
+                    for doc_idx, doc_data in enumerate(documents_data):
+                        file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
+                        if file_key in self.request.FILES:
+                            doc_file = self.request.FILES[file_key]
+                            doc = Document.objects.create(
+                                person_type="missing person",
+                                document_type=doc_data.get('document_type', 'fir_attachment'),
+                                description=doc_data.get('description', ''),
+                                document=doc_file,
+                                fir=fir_obj,
+                                created_by=self.request.user
+                            )
+                            existing_doc_ids.append(doc.id)
 
     def _update_consents(self, person, consents_data):
         for consent in consents_data:
@@ -1023,23 +1055,42 @@ class PersonViewSet(viewsets.ViewSet):
             )
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def approve_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-            # if person.person_approve_status != 'pending':
-            #     return Response(
-            #         {'error': 'Only pending records can be approved'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
 
+            # Update approval details
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
+
             serializer = PersonSerializer(person)
+
+            # Extract reporter info (assuming created_by is the reporter)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id  # This must be the reporter's email field
+
+            # Send approval email in the background
+            threading.Thread(
+                target=send_case_approval_email,
+                kwargs={
+                    'user_email': reporter_email,
+                    'reporter_name': reporter_name,
+                    'full_name': person.full_name,
+                    'case_id': person.case_id,
+                    'type': person.type,  # Missing person, unidentified body, etc.
+                    'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
+                }
+            ).start()
+
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -1047,12 +1098,6 @@ class PersonViewSet(viewsets.ViewSet):
     def reject_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-            # if person.person_approve_status != 'pending':
-            #     return Response(
-            #         {'error': 'Only pending records can be rejected'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
             person.person_approve_status = 'rejected'
             person.approved_by = request.user
             person.save()
@@ -1068,13 +1113,6 @@ class PersonViewSet(viewsets.ViewSet):
     def reapprove_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-
-            # if person.person_approve_status != 'rejected':
-            #     return Response(
-            #         {'error': 'Only rejected records can be re-approved'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
@@ -1093,24 +1131,36 @@ class PersonViewSet(viewsets.ViewSet):
             person = Person.objects.get(pk=pk)
             new_status = request.data.get('status')
 
-            # Validate allowed transitions
-            # if person.person_approve_status != 'approved':
-            #     return Response(
-            #         {'error': 'Only approved records can be changed using this action'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
+            if not new_status:
+                return Response({'error': 'Status is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # if new_status not in ['pending', 'rejected']:
-            #     return Response(
-            #         {'error': 'Invalid target status. Allowed: pending, rejected'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
+            previous_status = person.person_approve_status
             person.person_approve_status = new_status
             person.approved_by = request.user
             person.save()
 
             serializer = PersonSerializer(person)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            # Send email only if moved to Pending
+            if new_status.lower() == 'pending':
+                reason = request.data.get(
+                    'reason',
+                    'The case has been moved back to pending review for further evaluation by the administration team.'
+                )
+                threading.Thread(
+                    target=send_case_back_to_pending_email,
+                    kwargs={
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'previous_status': previous_status,
+                        'reason': reason
+                    }
+                ).start()
+
             return Response(
                 {'message': f'Person status changed to {new_status}', 'data': serializer.data},
                 status=status.HTTP_200_OK

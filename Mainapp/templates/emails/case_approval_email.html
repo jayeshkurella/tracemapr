@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+    <div style="max-width: 600px; margin: auto; background: #fff; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
+
+        <h2 style="color: #28a745; text-align: center;">Case Approved</h2>
+
+        <p style="margin: 0; color: #444;">
+            Dear <strong>{{ reporter_name }}</strong>,
+        </p>
+
+        <p style="color: #444;">
+            We are pleased to inform you that your case with
+            <strong>Case ID: {{ case_id }}</strong> has been approved by our admin team.
+        </p>
+
+        <div style="background-color: #f0f9f5; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+            <strong style="color: #444;">{{ type }}:</strong>
+            <span style="font-weight: bold; color: #000;">{{ full_name }}</span>
+        </div>
+        <div style="background-color: #e8f4ff; padding: 10px; border-radius: 5px; margin-top: 15px;">
+            <strong style="color: #444;">Approval Date:</strong> {{ approved_at }}
+        </div>
+
+         <p style="color: #444; margin-top: 15px;">
+            You can now log in to the portal and track further updates regarding your case. or you can click below link to view.
+        </p>
+
+        <!-- Dynamic link based on case type -->
+        {% if type == 'Missing Person' %}
+            <p style="margin: 10px 0;">
+                <a href="https://tracemapr.com/search/missing-person"
+                   style="color: #007bff; text-decoration: none;">View details of Missing Persons</a>
+            </p>
+        {% elif type == 'Unidentified Person' %}
+            <p style="margin: 10px 0;">
+                <a href="https://tracemapr.com/search/unidentified-person"
+                   style="color: #007bff; text-decoration: none;">View details of Unidentified Persons</a>
+            </p>
+        {% elif type == 'Unidentified Body' %}
+            <p style="margin: 10px 0;">
+                <a href="https://tracemapr.com/search/unidentified-bodies"
+                   style="color: #007bff; text-decoration: none;">View details of Unidentified Bodies</a>
+            </p>
+        {% endif %}
+
+
+
+
+
+        <p style="color: #444; margin-top: 20px;">
+            Thank you for your patience and trust.
+        </p>
+
+        <p style="color: #444; margin-top: 05px;">
+            Regards,<br>
+            <strong>Chhaya Foundation Team</strong>
+        </p>
+    </div>
+</body>
+</html>
