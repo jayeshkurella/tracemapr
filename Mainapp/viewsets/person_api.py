@@ -4,8 +4,10 @@ Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
 
+from django.utils import timezone
 
 import logging
+import threading
 from uuid import UUID
 from dateutil import parser
 from django.db.models import Q
@@ -18,6 +20,11 @@ from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
+
+from ..Emails import case_pending
+from ..Emails.Case_submit import send_submission_email
+from ..Emails.case_approval import send_case_approval_email
+from ..Emails.case_pending import send_case_back_to_pending_email
 from ..all_paginations.search_case import searchCase_Pagination
 from ..models.fir import FIR
 from ..access_permision import IsAdminUser
@@ -191,6 +198,17 @@ class PersonViewSet(viewsets.ViewSet):
 
                     person.save()
                     print("Person saved:", person.id)
+                    reporter_name = f"{request.user.first_name} {request.user.last_name}".strip()
+
+                    # send_submission_email(
+                    #     user_email=request.user,
+                    #     reporter_name=reporter_name,
+                    #     full_name=person.full_name,
+                    #     case_id=person.case_id,
+                    #     type=person.type,
+                    #     submitted_at=person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    # )
+
 
                 # Create related objects
                 self._create_addresses(person, addresses_data[1:])
@@ -202,10 +220,24 @@ class PersonViewSet(viewsets.ViewSet):
 
                 # Prepare response
                 serializer = PersonSerializer(person)
-                return Response(
+                response = Response(
                     {'message': 'Person created successfully', 'person_id': str(person.id), 'data': serializer.data},
                     status=status.HTTP_201_CREATED
                 )
+                # Send email in background
+                threading.Thread(
+                    target=send_submission_email,
+                    kwargs={
+                        'user_email': request.user,
+                        'reporter_name': reporter_name,
+                        'full_name': person.full_name,
+                        'case_id': person.case_id,
+                        'type': person.type,
+                        'submitted_at': person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    }
+                ).start()
+
+                return response
 
         except ValueError as e:
             logger.error("Validation error: %s", str(e))
@@ -1023,23 +1055,42 @@ class PersonViewSet(viewsets.ViewSet):
             )
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def approve_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-            # if person.person_approve_status != 'pending':
-            #     return Response(
-            #         {'error': 'Only pending records can be approved'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
 
+            # Update approval details
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
+
             serializer = PersonSerializer(person)
+
+            # Extract reporter info (assuming created_by is the reporter)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id  # This must be the reporter's email field
+
+            # Send approval email in the background
+            threading.Thread(
+                target=send_case_approval_email,
+                kwargs={
+                    'user_email': reporter_email,
+                    'reporter_name': reporter_name,
+                    'full_name': person.full_name,
+                    'case_id': person.case_id,
+                    'type': person.type,  # Missing person, unidentified body, etc.
+                    'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
+                }
+            ).start()
+
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -1047,12 +1098,6 @@ class PersonViewSet(viewsets.ViewSet):
     def reject_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-            # if person.person_approve_status != 'pending':
-            #     return Response(
-            #         {'error': 'Only pending records can be rejected'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
             person.person_approve_status = 'rejected'
             person.approved_by = request.user
             person.save()
@@ -1068,13 +1113,6 @@ class PersonViewSet(viewsets.ViewSet):
     def reapprove_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
-
-            # if person.person_approve_status != 'rejected':
-            #     return Response(
-            #         {'error': 'Only rejected records can be re-approved'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
@@ -1093,24 +1131,36 @@ class PersonViewSet(viewsets.ViewSet):
             person = Person.objects.get(pk=pk)
             new_status = request.data.get('status')
 
-            # Validate allowed transitions
-            # if person.person_approve_status != 'approved':
-            #     return Response(
-            #         {'error': 'Only approved records can be changed using this action'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
+            if not new_status:
+                return Response({'error': 'Status is required'}, status=status.HTTP_400_BAD_REQUEST)
 
-            # if new_status not in ['pending', 'rejected']:
-            #     return Response(
-            #         {'error': 'Invalid target status. Allowed: pending, rejected'},
-            #         status=status.HTTP_400_BAD_REQUEST
-            #     )
-
+            previous_status = person.person_approve_status
             person.person_approve_status = new_status
             person.approved_by = request.user
             person.save()
 
             serializer = PersonSerializer(person)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            # Send email only if moved to Pending
+            if new_status.lower() == 'pending':
+                reason = request.data.get(
+                    'reason',
+                    'The case has been moved back to pending review for further evaluation by the administration team.'
+                )
+                threading.Thread(
+                    target=send_case_back_to_pending_email,
+                    kwargs={
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'previous_status': previous_status,
+                        'reason': reason
+                    }
+                ).start()
+
             return Response(
                 {'message': f'Person status changed to {new_status}', 'data': serializer.data},
                 status=status.HTTP_200_OK
