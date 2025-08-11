@@ -1,3 +1,13 @@
+"""
+Created By : Sanket Lodhe
+Created Date : AUG 2025
+"""
+
+
+
+
+
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.conf import settings

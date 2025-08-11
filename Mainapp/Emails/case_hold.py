@@ -5,19 +5,20 @@ Created Date : AUG 2025
 
 
 
+
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from New_Backend import settings
 
-def send_case_back_to_pending_email(user_email, reporter_name, case_id, previous_status, reason):
-    subject = f"Your Case {case_id} is Back to Pending Review"
+def send_case_to_hold_email(user_email, reporter_name, case_id, reason):
+    subject = f"Your Case {case_id} is on Hold."
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [user_email]
 
     text_content = f"""
     Dear {reporter_name},
 
-    Your case with Case ID: {case_id} has been moved from {previous_status} status back to Pending.
+    Your case with Case ID: {case_id} is on hold.
 
     Reason: {reason}
 
@@ -27,10 +28,9 @@ def send_case_back_to_pending_email(user_email, reporter_name, case_id, previous
     Chhaya Foundation Team
     """
 
-    html_content = render_to_string('emails/case_back_to_pending.html', {
+    html_content = render_to_string('emails/case_move_to_hold.html', {
         'reporter_name': reporter_name,
         'case_id': case_id,
-        'previous_status': previous_status,
         'reason': reason
     })
 

@@ -2,6 +2,7 @@
 Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
+import threading
 import uuid
 from django.utils.timezone import now
 from django.utils import timezone
@@ -29,6 +30,7 @@ from django.db.utils import IntegrityError
 from django.core.mail import send_mail  # For email functionality (optional)
 from django.conf import settings
 
+from ..Emails.user_registration import send_welcome_email
 from ..models import User
 
 class AuthAPIView(APIView):
@@ -135,27 +137,11 @@ class AuthAPIView(APIView):
             is_consent=is_consent
         )
         # Send email notification
-        try:
-            subject = "Welcome to Our Platform"
-            message = (
-                f"Hi {first_name},\n\n"
-                "Thank you for registering with us.\n"
-                "Your account is currently under review and will be activated once approved by the admin.\n\n"
-                "Regards,\nSupport Team"
-            )
-            send_mail(
-                subject,
-                message,
-                settings.DEFAULT_FROM_EMAIL,
-                [email_id],
-                fail_silently=False
-            )
-        except Exception as e:
-            return Response({
-                "message": "User registered successfully, but email sending failed.",
-                "error": str(e),
-                "user": self.get_user_data(user)
-            }, status=status.HTTP_201_CREATED)
+        full_name = f"{first_name} {last_name}".strip()
+        threading.Thread(
+            target=send_welcome_email,
+            args=(full_name, email_id), daemon=True
+        ).start()
 
         return Response({
             "message": "User registered successfully. Awaiting admin approval.",
@@ -224,17 +210,21 @@ class AuthAPIView(APIView):
                     sub_user_type=sub_user_type or "",
                     picture=picture,
                     status=User.StatusChoices.HOLD,
-                    phone_no=None,  # Explicitly set to None instead of empty string
+                    phone_no=None,
                 )
 
                 # Send email notification upon registration (if the account is on hold)
-                send_mail(
-                    "Account Registration Pending Approval",
-                    "Your account has been registered successfully. It is now pending admin approval",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email_id],
-                    fail_silently=False,
-                )
+                threading.Thread(
+                    target=send_mail,
+                    args=(
+                        "Account Registration Pending Approval",
+                        "Your account has been registered successfully. It is now pending admin approval",
+                        settings.DEFAULT_FROM_EMAIL,
+                        [user.email_id],
+                    ),
+                    kwargs={'fail_silently': False}
+                ).start()
+
 
             else:
                 # Update user details if missing
@@ -256,13 +246,16 @@ class AuthAPIView(APIView):
 
             # Send email notification upon successful approval
             if user.status == User.StatusChoices.ACTIVE:
-                send_mail(
-                    "Account Approved",
-                    "Your account has been successfully approved and activated. You may now log in and access your dashboard.",
-                    settings.DEFAULT_FROM_EMAIL,
-                    [user.email_id],
-                    fail_silently=False,
-                )
+                threading.Thread(
+                    target=send_mail,
+                    args=(
+                        "Account Approved",
+                        "Your account has been successfully approved and activated. You may now log in and access your dashboard.",
+                        settings.DEFAULT_FROM_EMAIL,
+                        [user.email_id],
+                    ),
+                    kwargs={'fail_silently': False}
+                ).start()
 
             # Generate or get token
             token_obj, _ = Token.objects.get_or_create(user=user)

@@ -24,7 +24,9 @@ from rest_framework import status
 from ..Emails import case_pending
 from ..Emails.Case_submit import send_submission_email
 from ..Emails.case_approval import send_case_approval_email
+from ..Emails.case_hold import send_case_to_hold_email
 from ..Emails.case_pending import send_case_back_to_pending_email
+from ..Emails.case_suspend import send_case_to_suspend_email
 from ..all_paginations.search_case import searchCase_Pagination
 from ..models.fir import FIR
 from ..access_permision import IsAdminUser
@@ -1185,8 +1187,23 @@ class PersonViewSet(viewsets.ViewSet):
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
-
             serializer = PersonSerializer(person)
+
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            if person.person_approve_status.lower() == 'suspended':
+                reason = request.data.get("reason")
+                threading.Thread(
+                    target=send_case_to_suspend_email,
+                    kwargs={
+                        "user_email":reporter_email,
+                        "reporter_name":reporter_name,
+                        "case_id":person.case_id,
+                        "reason":reason
+                    }
+                ).start()
             return Response(
                 {'message': 'Person suspended successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
@@ -1212,6 +1229,21 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            if person.person_approve_status.lower() == 'on_hold':
+                reason = request.data.get("reason")
+                threading.Thread(
+                    target=send_case_to_hold_email,
+                    kwargs={
+                        "user_email": reporter_email,
+                        "reporter_name": reporter_name,
+                        "case_id": person.case_id,
+                        "reason": reason
+                    }
+                ).start()
             return Response(
                 {'message': 'Person put on hold successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
