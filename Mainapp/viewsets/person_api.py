@@ -859,6 +859,7 @@ class PersonViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
+            person.person_approve_status ='pending'
             person._is_deleted = True
             person.save()
             return Response({'message': 'Person deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
@@ -870,8 +871,27 @@ class PersonViewSet(viewsets.ViewSet):
     #  7. SOFT DELETE all persons
     def destroy_All(self, request):
         try:
-            Person.objects.update(_is_deleted=True)
-            return Response({'message': 'All persons deleted successfully'}, status=status.HTTP_200_OK)
+            updated_count = Person.objects.filter(_is_deleted=False).update(
+                _is_deleted=True,
+                person_approve_status='pending'
+            )
+            return Response(
+                {'message': f'{updated_count} persons deleted successfully'},
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['post'])
+    def restore(self, request, pk=None):
+        try:
+            person = Person.objects.get(pk=pk, _is_deleted=True)
+            person._is_deleted = False
+            person.person_approve_status = 'approved'
+            person.save()
+            return Response({'message': 'Person restored and approved successfully'}, status=status.HTTP_200_OK)
+        except Person.DoesNotExist:
+            return Response({'error': 'Person not found or not deleted'}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

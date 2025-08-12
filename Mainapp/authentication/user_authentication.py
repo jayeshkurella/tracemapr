@@ -30,6 +30,7 @@ from django.db.utils import IntegrityError
 from django.core.mail import send_mail  # For email functionality (optional)
 from django.conf import settings
 
+from .utils import get_client_info
 from ..Emails.user_registration import send_welcome_email
 from ..models import User
 
@@ -124,6 +125,7 @@ class AuthAPIView(APIView):
             return Response({"error": "Phone number already used"}, status=status.HTTP_400_BAD_REQUEST)
 
         #  Create user with status 'hold' (admin approval required)
+        ip, user_agent = get_client_info(request)
         user = User.objects.create(
             email_id=email_id,
             phone_no=phone_no,
@@ -134,7 +136,9 @@ class AuthAPIView(APIView):
             user_type=user_type,
             sub_user_type=sub_user_type,
             status=User.StatusChoices.HOLD,
-            is_consent=is_consent
+            is_consent=is_consent,
+            last_login_ip=ip,
+            last_login_user_agent=user_agent
         )
         # Send email notification
         full_name = f"{first_name} {last_name}".strip()
@@ -165,6 +169,10 @@ class AuthAPIView(APIView):
 
         if check_password(password, user.password):
             token, created = Token.objects.get_or_create(user=user)
+            ip, user_agent = get_client_info(request)
+            user.last_login_ip = ip
+            user.last_login_user_agent = user_agent
+            user.save(update_fields=['last_login_ip', 'last_login_user_agent'])
             return Response({
                 "message": "Login successful",
                 "token": token.key,
