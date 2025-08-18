@@ -42,6 +42,7 @@ router.register(r'missing-person-with-ups', MissingPersonMatchWithUPsViewSet ,ba
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/users/', AuthAPIView.as_view(), name='user-auth'),
+path('api/users/<uuid:user_id>/', AuthAPIView.as_view(), name='user-auth'),
     path('reset-password/<str:reset_token>/', AuthAPIView.as_view(), name='reset-password-get'),
     path('reset-password/', AuthAPIView.as_view(), name='reset-password-post'),
     path("api/hospital-name-list/", HospitalListView.as_view(), name="hospital-list"),

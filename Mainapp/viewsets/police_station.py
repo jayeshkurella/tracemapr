@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework.parsers import MultiPartParser
 from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status, generics
-from rest_framework.parsers import FormParser
+from rest_framework.parsers import FormParser,JSONParser
 from rest_framework.response import Response
 from django.db import transaction
 from rest_framework.pagination import PageNumberPagination
@@ -19,8 +19,12 @@ from ..models import PoliceStation, Contact
 from Mainapp.all_paginations.pagination import CustomPagination
 from django.core.cache import cache
 from django.db.models import Q
+from django.contrib.gis.geos import GEOSGeometry, GEOSException, Point
+import ast
+
 
 import json
+
 
 from rest_framework.permissions import AllowAny, IsAuthenticated  # ✅ Imports
 
@@ -34,7 +38,7 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
     serializer_class = PoliceStationSerializer
     pagination_class = PageNumberPagination
     queryset = PoliceStation.objects.all()
-    parser_classes = (MultiPartParser, FormParser)
+    parser_classes = (MultiPartParser, FormParser,JSONParser)
 
     def get_permissions(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
@@ -74,19 +78,29 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+        def retrieve(self, request, pk=None):
+            try:
+                police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(
+                    pk=pk)
+                serializer = self.get_serializer(police_station)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            except PoliceStation.DoesNotExist:
+                return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
+
     #  2. RETRIEVE Police Station by ID
-    def retrieve(self, request, pk=None):
-        try:
-            police_station = cache.get(f'police_station_{pk}')
-
-            if not police_station:
-                police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(pk=pk)
-                cache.set(f'police_station_{pk}', police_station, timeout=300)
-
-            serializer = self.get_serializer(police_station)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except PoliceStation.DoesNotExist:
-            return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
+    # def retrieve(self, request, pk=None):
+    #     try:
+    #         police_station = cache.get(f'police_station_{pk}')
+    #
+    #         if not police_station:
+    #             police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(pk=pk)
+    #             cache.set(f'police_station_{pk}', police_station, timeout=300)
+    #
+    #         serializer = self.get_serializer(police_station)
+    #         return Response(serializer.data, status=status.HTTP_200_OK)
+    #     except PoliceStation.DoesNotExist:
+    #         return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
 
     #  3. CREATE a new Police Station
     def create(self, request, *args, **kwargs):
@@ -169,55 +183,124 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, pk=None):
         return self._update_police_station(request, pk, partial=True)
 
-    # Common function for PUT & PATCH
     def _update_police_station(self, request, pk, partial):
+        print(request.data)
         try:
             with transaction.atomic():
                 police_station = get_object_or_404(PoliceStation, pk=pk)
+                data = request.data.copy()
 
-                # Extract and update address if provided
-                address_data = request.data.pop("address", None)
-                if address_data:
-                    address_serializer = AddressSerializer(police_station.address, data=address_data, partial=partial)
-                    if address_serializer.is_valid():
-                        address_serializer.save()
-                    else:
-                        return Response(address_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                # Handle file upload scenarios
+                if 'station_photo' in request.FILES:
+                    data['station_photo'] = request.FILES['station_photo']
+                elif 'station_photo' in data:
+                    if data['station_photo'] in ['', 'null', None]:
+                        data['station_photo'] = None
+                    elif isinstance(data['station_photo'], str) and data['station_photo'].startswith('http'):
+                        data.pop('station_photo', None)
 
-                # Extract contacts
-                contacts_data = request.data.pop("contacts", [])
+                # Parse address and police_contact from JSON strings if needed
+                json_fields = ['address', 'police_contact']
+                for field in json_fields:
+                    if field in data:
+                        if isinstance(data[field], str):
+                            try:
+                                data[field] = json.loads(data[field])
+                            except json.JSONDecodeError:
+                                try:
+                                    data[field] = ast.literal_eval(data[field])
+                                except Exception as e:
+                                    return Response(
+                                        {"error": f"Invalid {field} format: {str(e)}"},
+                                        status=status.HTTP_400_BAD_REQUEST
+                                    )
 
-                # Update police station data
-                serializer = self.get_serializer(police_station, data=request.data, partial=partial)
-                if serializer.is_valid():
-                    serializer.save()
-                else:
+                # Now extract address dict
+                address_data = data.get("address") or data.get("address_details")
+                if isinstance(address_data, dict):
+                    location = address_data.get("location")
+                    if isinstance(location, dict):
+                        try:
+                            address_data["location"] = Point(
+                                float(location["longitude"]),
+                                float(location["latitude"]),
+                                srid=4326
+                            )
+                        except (ValueError, TypeError, KeyError):
+                            return Response(
+                                {"error": "Invalid location coordinates"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
+                    elif isinstance(location, str) and location.startswith("POINT"):
+                        try:
+                            address_data["location"] = GEOSGeometry(location)
+                        except (GEOSException, ValueError) as e:
+                            return Response(
+                                {"error": f"Invalid WKT format: {str(e)}"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
+
+                    address_serializer = AddressSerializer(
+                        police_station.address,
+                        data=address_data,
+                        partial=partial
+                    )
+                    if not address_serializer.is_valid():
+                        return Response(
+                            {"address": address_serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST
+                        )
+                    address_serializer.save()
+                    # You MUST now assign address to the correct field
+                    data["address"] = police_station.address.pk
+
+
+                # Main serializer
+                serializer = self.get_serializer(police_station, data=data, partial=partial)
+                if not serializer.is_valid():
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-                # Update contacts
-                existing_contacts = {contact.id: contact for contact in police_station.police_contact.all()}
-                new_contacts = []
+                instance = serializer.save()
 
-                for contact_data in contacts_data:
-                    contact_id = contact_data.get("id")
-                    if contact_id and contact_id in existing_contacts:
-                        # Update existing contact
-                        contact = existing_contacts[contact_id]
-                        for key, value in contact_data.items():
-                            setattr(contact, key, value)
-                        contact.save()
-                    else:
-                        # Create new contact
-                        new_contacts.append(Contact(police_station=police_station, **contact_data))
+                if 'station_photo' in data and data['station_photo'] is None:
+                    instance.station_photo = None
+                    instance.save()
 
-                if new_contacts:
-                    Contact.objects.bulk_create(new_contacts)
+                # Contacts
+                contacts_data = data.get("police_contact", [])
+                if isinstance(contacts_data, list):
+                    existing_contacts = {str(c.id): c for c in police_station.police_contact.all()}
+                    new_contacts = []
 
-                # Return response with updated contacts
+                    for contact_data in contacts_data:
+                        if not isinstance(contact_data, dict):
+                            continue
+
+                        contact_id = str(contact_data.get("id", ""))
+                        if contact_id in existing_contacts:
+                            contact = existing_contacts[contact_id]
+                            for field, value in contact_data.items():
+                                if field != 'id' and hasattr(contact, field):
+                                    setattr(contact, field, value)
+                            contact.save()
+                        else:
+                            clean_data = {
+                                k: v for k, v in contact_data.items()
+                                if k not in ['id', 'police_station']
+                            }
+                            new_contacts.append(Contact(police_station=instance, **clean_data))
+
+                    if new_contacts:
+                        Contact.objects.bulk_create(new_contacts)
+
+                # Final response
                 response_data = serializer.data
-                response_data['police_contact'] = ContactSerializer(police_station.police_contact.all(), many=True).data
+                response_data['police_contact'] = ContactSerializer(
+                    instance.police_contact.all(), many=True
+                ).data
 
                 return Response(response_data, status=status.HTTP_200_OK)
+
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

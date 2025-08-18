@@ -89,6 +89,8 @@ class AuthAPIView(APIView):
         elif action == "get_profile":
             return self.get_profile(request)
 
+
+
         return Response({"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
 
     # =================== HELPER FUNCTIONS =================== #
