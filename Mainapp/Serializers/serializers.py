@@ -73,6 +73,11 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = '__all__'
 
+class PoliceStationIdNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceStation
+        fields = ['id', 'name']
+
 class FIRSerializer(serializers.ModelSerializer):
     documents = DocumentSerializer(many=True, read_only=True)
     police_station =serializers.StringRelatedField(read_only=True)
@@ -89,10 +94,6 @@ class HospitalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PoliceStationIdNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PoliceStation
-        fields = ['id', 'name']
 
 
 
@@ -116,6 +117,14 @@ class PersonSerializer(serializers.ModelSerializer):
         child=serializers.ChoiceField(choices=Person.ConditionChoices.choices),
         required=False
     )
+    add_chronic_illness = serializers.ListField(child=serializers.CharField(), required=False)
+    surgery_implants = serializers.ListField(child=serializers.CharField(), required=False)
+    prosthetics_amputation = serializers.ListField(child=serializers.CharField(), required=False)
+    healed_fractures = serializers.ListField(child=serializers.CharField(), required=False)
+    medical_anomalies = serializers.ListField(child=serializers.CharField(), required=False)
+    substance_use = serializers.ListField(child=serializers.CharField(), required=False)
+    dental_condition = serializers.ListField(child=serializers.CharField(), required=False)
+    lung_bone_pathology = serializers.ListField(child=serializers.CharField(), required=False)
     category = serializers.SerializerMethodField()
     specific_reason = serializers.SerializerMethodField()
 
@@ -168,7 +177,7 @@ class SearchSerializer(serializers.ModelSerializer):
         fields = [
             'type', 'case_status', 'id', 'full_name', 'age', 'age_range',
             'city', 'village', 'state', 'gender', 'photo_photo',
-            'date_reported', 'missing_date'
+            'date_reported', 'missing_date','matched_person_id'
         ]
 
     def get_missing_date(self, obj):
@@ -180,7 +189,7 @@ class ApprovePersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         ordering = ['-created_at']
-        fields = ['case_id','id','full_name', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
+        fields = ['case_id','id','full_name','type', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
 
 
 class VolunteerSerializer(serializers.ModelSerializer):

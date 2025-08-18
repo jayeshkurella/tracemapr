@@ -258,8 +258,13 @@ class Person(models.Model):
     Body_Condition = models.CharField(max_length=50, blank=True, null=True,choices=BodyconditionChoices.choices,db_index=True)
     bodies_condition =models.JSONField(default=list, blank=True)
     up_condition = models.JSONField(default=list, blank=True)
+<<<<<<< HEAD
     birth_mark = models.CharField(max_length=100, blank=True, null=True)
     distinctive_mark = models.CharField(max_length=100, blank=True, null=True)
+=======
+    birth_mark = models.CharField(max_length=300, blank=True, null=True)
+    distinctive_mark = models.CharField(max_length=300, blank=True, null=True)
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     hospital = models.ForeignKey(Hospital, on_delete=models.SET_NULL, null=True, blank=True)
     document_ids = models.TextField(blank=True, null=True, help_text="Comma-separated document IDs")
     created_at = models.DateTimeField(auto_now_add=True,blank=True, null=True)
@@ -334,6 +339,7 @@ class Person(models.Model):
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     specific_reason = models.CharField(max_length=255, blank=True, null=True, db_index=True)
+<<<<<<< HEAD
     chronic_illness = models.CharField(max_length=255, null=True, blank=True)
     surgery_implants = models.CharField(max_length=255, null=True, blank=True)
     prosthetics_amputation = models.CharField(max_length=255, null=True, blank=True)
@@ -346,6 +352,20 @@ class Person(models.Model):
         max_length=20,
         choices=DNA_MATCH_CHOICES,
         default='pending',
+=======
+    add_chronic_illness =models.JSONField(default=list, blank=True, null=True)
+    surgery_implants = models.JSONField(default=list, blank=True, null=True)
+    prosthetics_amputation = models.JSONField(default=list, blank=True, null=True)
+    healed_fractures = models.JSONField(default=list, blank=True, null=True)
+    medical_anomalies = models.JSONField(default=list, blank=True, null=True)
+    substance_use = models.JSONField(default=list, blank=True, null=True)
+    dental_condition = models.JSONField(default=list, blank=True, null=True)
+    lung_bone_pathology = models.JSONField(default=list, blank=True, null=True)
+
+    dna_match = models.CharField(
+        max_length=20,
+        choices=DNA_MATCH_CHOICES,
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
         null=True,
         blank=True
     )

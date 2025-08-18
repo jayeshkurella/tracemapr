@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; background-color: #f9f9f9; padding: 20px;">
+    <div style="max-width: 600px; margin: auto; background: #fff; border-radius: 8px; padding: 20px; border: 1px solid #ddd;">
+
+        <h2 style="color: #ff6600; text-align: center;">Submission Successful</h2>
+
+        <!-- Thank the logged-in user -->
+        <p style="margin: 0; color: #444;">
+            Thank you, <strong>{{ reporter_name }}</strong>, for submitting your case.
+        </p>
+
+        <br>
+
+        <!-- Case ID -->
+        <div style="background-color: #e8f4ff; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+            <strong style="color: #444;">&#35; Case ID:</strong> {{ case_id }}
+        </div>
+
+        <!-- Missing Person Details -->
+        <div style="background-color: #f0f9f5; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+            <strong style="color: #444;">{{ type }}:</strong>
+            <span style="font-weight: bold; color: #000;">{{ full_name }}</span>
+        </div>
+
+        <!-- Submission Date -->
+        <div style="color: #666; font-size: 14px; margin-bottom: 15px;">
+            &#128197; Submitted: {{ submitted_at }}
+        </div>
+
+        <!-- Info Text -->
+        <p style="margin: 0; color: #444;">
+            Our admin team will review the details. If your case is approved,
+            <strong>you will receive an approval email</strong> with further instructions.
+        </p>
+        <p style="margin: 0; color: #444;">
+            After approval, you can also view the details of your case at any time by
+            entering the Case ID in the search section.
+        </p>
+
+
+        <p style="color: #444; margin-top: 15px;">
+            Thank you for your patience and trust.
+        </p>
+
+        <p style="color: #444; margin-top: 15px;">
+            Regards,<br>
+            <strong>Chhaya Foundation Team</strong>
+        </p>
+    </div>
+</body>
+</html>

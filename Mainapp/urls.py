@@ -17,6 +17,9 @@ from .Additional_info_Tags.tags_apis import CasteListCreateAPIView, CasteDestroy
 from .authentication.admin_user_management import AdminUserApprovalView, ApprovedUsersView, HoldUsersView, \
     RejectedUsersView
 from .authentication.user_authentication import AuthAPIView
+from .matching_apis.match_missing_with_unidentified_body import MissingPersonMatchWithUBsViewSet
+from .matching_apis.match_unidentified_body_with_mp import UnidentifiedBodyMatchWithMPsViewSet
+from .matching_apis.match_unidentified_person_with_mp import UnidentifiedPersonMatchWithMPsViewSet
 from .viewsets.casetype_apis import PendingPersonsView, ApprovedPersonsView, RejectedPersonsView, OnHoldPersonsView, \
     SuspendedPersonsView, StatusCountView
 from .viewsets.fetch_by_id_Case import RetrieveUnfilteredPersonView
@@ -30,19 +33,31 @@ from .viewsets.volunteer import VolunteerViewSet
 from .viewsets.change_log import ChangeLogViewSet
 
 router = DefaultRouter()
+
+# to get , post and update of person and body details
 router.register(r'persons', PersonViewSet, basename='person')
 router.register(r'police-stations', PoliceStationViewSet, basename='police-station')
 router.register(r'hospitals', HospitalViewSet, basename='hospital')
 router.register(r'filters_address', filter_Address_ViewSet, basename='filters')
 router.register(r'volunteers',VolunteerViewSet,basename='volunteer')
 router.register(r'changelogs', ChangeLogViewSet ,basename='chnagelog')
+
+# match data between missing person and Unidentified Persons
 router.register(r'missing-person-with-ups', MissingPersonMatchWithUPsViewSet ,basename='missing-person-with-ups')
+
+# match data between missing person and Unidentified Bodies
+router.register(r'missing-person-with-ubs', MissingPersonMatchWithUBsViewSet ,basename='missing-person-with-ubs')
+
+# match data between Unidentified Person and Missing persons
+router.register(r'unidentified_person-with-mps', UnidentifiedPersonMatchWithMPsViewSet ,basename='unidentified_person-with-mps')
+
+# match data between Unidentified body and Missing persons
+router.register(r'unidentified_bodies-with-mps', UnidentifiedBodyMatchWithMPsViewSet ,basename='unidentified_bodies-with-mps')
 
 
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/users/', AuthAPIView.as_view(), name='user-auth'),
-path('api/users/<uuid:user_id>/', AuthAPIView.as_view(), name='user-auth'),
     path('reset-password/<str:reset_token>/', AuthAPIView.as_view(), name='reset-password-get'),
     path('reset-password/', AuthAPIView.as_view(), name='reset-password-post'),
     path("api/hospital-name-list/", HospitalListView.as_view(), name="hospital-list"),

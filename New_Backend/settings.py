@@ -1,6 +1,8 @@
 
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -33,6 +35,8 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken'
+
+
 
 ]
 
@@ -75,28 +79,28 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # local
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'chhaya_today',
-        'USER': 'postgres',
-        'PASSWORD': 'Swagati@1311',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-
-# beta (testing)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'chhaya_beta',
+#         'NAME': 'New_Backend',
 #         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
+#         'PASSWORD': 'Sanket@123',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
 # }
+
+# beta (testing)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'chhaya_beta_new1',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # production
 # DATABASES = {
@@ -110,6 +114,18 @@ DATABASES = {
 #     }
 # }
 
+
+# from .env file
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST', default='localhost'),
+#         'PORT': config('DB_PORT', default='5432'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -161,7 +177,7 @@ if os.name == 'nt':
     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj')
 
-GDAL_LIBRARY_PATH = r'C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\osgeo\gdal.dll'
+# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\Chhaya_FullStack\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
@@ -184,7 +200,6 @@ CORS_ALLOW_METHODS = [
 ]
 
 # Google Client ID (replace with your own)
-
 GOOGLE_CLIENT_ID ='229838098661-qhi912b4egncp89tqeihbsddpb7mjbud.apps.googleusercontent.com'
 
 
@@ -238,8 +253,16 @@ EMAIL_HOST_PASSWORD = 'svud wnfa hbav sevy'
 DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
-
+# local
+# BACKEND_BASE_URL='http://127.0.0.1:8000/'
+#
+# beta
 BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
+
+# production
+# BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+
+
 
 
 
@@ -253,6 +276,3 @@ BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 #         }
 #     }
 # }
-
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning, module="coreapi.utils")

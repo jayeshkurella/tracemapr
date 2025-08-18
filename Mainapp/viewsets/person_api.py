@@ -4,8 +4,15 @@ Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
 
+<<<<<<< HEAD
 
 import logging
+=======
+from django.utils import timezone
+
+import logging
+import threading
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 from uuid import UUID
 from dateutil import parser
 from django.db.models import Q
@@ -18,6 +25,16 @@ from rest_framework.response import Response
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import status
+<<<<<<< HEAD
+=======
+
+from ..Emails import case_pending
+from ..Emails.Case_submit import send_submission_email
+from ..Emails.case_approval import send_case_approval_email
+from ..Emails.case_hold import send_case_to_hold_email
+from ..Emails.case_pending import send_case_back_to_pending_email
+from ..Emails.case_suspend import send_case_to_suspend_email
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 from ..all_paginations.search_case import searchCase_Pagination
 from ..models.fir import FIR
 from ..access_permision import IsAdminUser
@@ -191,22 +208,60 @@ class PersonViewSet(viewsets.ViewSet):
 
                     person.save()
                     print("Person saved:", person.id)
+<<<<<<< HEAD
+=======
+                    reporter_name = f"{request.user.first_name} {request.user.last_name}".strip()
+
+                    # send_submission_email(
+                    #     user_email=request.user,
+                    #     reporter_name=reporter_name,
+                    #     full_name=person.full_name,
+                    #     case_id=person.case_id,
+                    #     type=person.type,
+                    #     submitted_at=person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    # )
+
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
                 # Create related objects
                 self._create_addresses(person, addresses_data[1:])
                 self._create_contacts(person, contacts_data)
                 self._create_additional_info(person, additional_info_data)
+<<<<<<< HEAD
                 # self._create_last_known_details(person, last_known_details_data)
+=======
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
                 self._create_last_known_details(person, last_known_details_data,request)
                 self._create_firs(person, firs_data,request)
                 self._create_consents(person, consents_data)
 
                 # Prepare response
                 serializer = PersonSerializer(person)
+<<<<<<< HEAD
                 return Response(
                     {'message': 'Person created successfully', 'person_id': str(person.id), 'data': serializer.data},
                     status=status.HTTP_201_CREATED
                 )
+=======
+                response = Response(
+                    {'message': 'Person created successfully', 'person_id': str(person.id), 'data': serializer.data},
+                    status=status.HTTP_201_CREATED
+                )
+                # Send email in background
+                threading.Thread(
+                    target=send_submission_email,
+                    kwargs={
+                        'user_email': request.user,
+                        'reporter_name': reporter_name,
+                        'full_name': person.full_name,
+                        'case_id': person.case_id,
+                        'type': person.type,
+                        'submitted_at': person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    }
+                ).start()
+
+                return response
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
         except ValueError as e:
             logger.error("Validation error: %s", str(e))
@@ -380,7 +435,10 @@ class PersonViewSet(viewsets.ViewSet):
 
 
     # To update the records
+<<<<<<< HEAD
 
+=======
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     def update(self, request, pk=None):
         print(request.data)
 
@@ -827,6 +885,10 @@ class PersonViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
+<<<<<<< HEAD
+=======
+            person.person_approve_status ='pending'
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             person._is_deleted = True
             person.save()
             return Response({'message': 'Person deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
@@ -838,8 +900,32 @@ class PersonViewSet(viewsets.ViewSet):
     #  7. SOFT DELETE all persons
     def destroy_All(self, request):
         try:
+<<<<<<< HEAD
             Person.objects.update(_is_deleted=True)
             return Response({'message': 'All persons deleted successfully'}, status=status.HTTP_200_OK)
+=======
+            updated_count = Person.objects.filter(_is_deleted=False).update(
+                _is_deleted=True,
+                person_approve_status='pending'
+            )
+            return Response(
+                {'message': f'{updated_count} persons deleted successfully'},
+                status=status.HTTP_200_OK
+            )
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['post'])
+    def restore(self, request, pk=None):
+        try:
+            person = Person.objects.get(pk=pk, _is_deleted=True)
+            person._is_deleted = False
+            person.person_approve_status = 'approved'
+            person.save()
+            return Response({'message': 'Person restored and approved successfully'}, status=status.HTTP_200_OK)
+        except Person.DoesNotExist:
+            return Response({'error': 'Person not found or not deleted'}, status=status.HTTP_404_NOT_FOUND)
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -1025,6 +1111,7 @@ class PersonViewSet(viewsets.ViewSet):
             )
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+<<<<<<< HEAD
     def approve_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
@@ -1038,10 +1125,47 @@ class PersonViewSet(viewsets.ViewSet):
             person.approved_by = request.user
             person.save()
             serializer = PersonSerializer(person)
+=======
+
+    @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
+    def approve_person(self, request, pk=None):
+        try:
+            person = Person.objects.get(pk=pk)
+
+            # Update approval details
+            person.person_approve_status = 'approved'
+            person.approved_by = request.user
+            person.save()
+
+            serializer = PersonSerializer(person)
+
+            # Extract reporter info (assuming created_by is the reporter)
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id  # This must be the reporter's email field
+
+            # Send approval email in the background
+            threading.Thread(
+                target=send_case_approval_email,
+                kwargs={
+                    'user_email': reporter_email,
+                    'reporter_name': reporter_name,
+                    'full_name': person.full_name,
+                    'case_id': person.case_id,
+                    'type': person.type,  # Missing person, unidentified body, etc.
+                    'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
+                }
+            ).start()
+
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+<<<<<<< HEAD
+=======
+
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
         except Person.DoesNotExist:
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -1049,12 +1173,15 @@ class PersonViewSet(viewsets.ViewSet):
     def reject_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
+<<<<<<< HEAD
             # if person.person_approve_status != 'pending':
             #     return Response(
             #         {'error': 'Only pending records can be rejected'},
             #         status=status.HTTP_400_BAD_REQUEST
             #     )
 
+=======
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             person.person_approve_status = 'rejected'
             person.approved_by = request.user
             person.save()
@@ -1070,6 +1197,7 @@ class PersonViewSet(viewsets.ViewSet):
     def reapprove_person(self, request, pk=None):
         try:
             person = Person.objects.get(pk=pk)
+<<<<<<< HEAD
 
             # if person.person_approve_status != 'rejected':
             #     return Response(
@@ -1077,6 +1205,8 @@ class PersonViewSet(viewsets.ViewSet):
             #         status=status.HTTP_400_BAD_REQUEST
             #     )
 
+=======
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
@@ -1095,6 +1225,7 @@ class PersonViewSet(viewsets.ViewSet):
             person = Person.objects.get(pk=pk)
             new_status = request.data.get('status')
 
+<<<<<<< HEAD
             # Validate allowed transitions
             # if person.person_approve_status != 'approved':
             #     return Response(
@@ -1108,11 +1239,41 @@ class PersonViewSet(viewsets.ViewSet):
             #         status=status.HTTP_400_BAD_REQUEST
             #     )
 
+=======
+            if not new_status:
+                return Response({'error': 'Status is required'}, status=status.HTTP_400_BAD_REQUEST)
+
+            previous_status = person.person_approve_status
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             person.person_approve_status = new_status
             person.approved_by = request.user
             person.save()
 
             serializer = PersonSerializer(person)
+<<<<<<< HEAD
+=======
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            # Send email only if moved to Pending
+            if new_status.lower() == 'pending':
+                reason = request.data.get(
+                    'reason',
+                    'The case has been moved back to pending review for further evaluation by the administration team.'
+                )
+                threading.Thread(
+                    target=send_case_back_to_pending_email,
+                    kwargs={
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'previous_status': previous_status,
+                        'reason': reason
+                    }
+                ).start()
+
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             return Response(
                 {'message': f'Person status changed to {new_status}', 'data': serializer.data},
                 status=status.HTTP_200_OK
@@ -1137,8 +1298,28 @@ class PersonViewSet(viewsets.ViewSet):
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
+<<<<<<< HEAD
 
             serializer = PersonSerializer(person)
+=======
+            serializer = PersonSerializer(person)
+
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            if person.person_approve_status.lower() == 'suspended':
+                reason = request.data.get("reason")
+                threading.Thread(
+                    target=send_case_to_suspend_email,
+                    kwargs={
+                        "user_email":reporter_email,
+                        "reporter_name":reporter_name,
+                        "case_id":person.case_id,
+                        "reason":reason
+                    }
+                ).start()
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             return Response(
                 {'message': 'Person suspended successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
@@ -1164,6 +1345,24 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
+<<<<<<< HEAD
+=======
+            reporter = person.created_by
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
+
+            if person.person_approve_status.lower() == 'on_hold':
+                reason = request.data.get("reason")
+                threading.Thread(
+                    target=send_case_to_hold_email,
+                    kwargs={
+                        "user_email": reporter_email,
+                        "reporter_name": reporter_name,
+                        "case_id": person.case_id,
+                        "reason": reason
+                    }
+                ).start()
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
             return Response(
                 {'message': 'Person put on hold successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK

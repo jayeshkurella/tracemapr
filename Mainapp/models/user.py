@@ -136,6 +136,12 @@ class User(AbstractBaseUser, PermissionsMixin):
     reset_token = models.CharField(max_length=255, blank=True, null=True)
     reset_token_created_at = models.DateTimeField(blank=True, null=True)
 
+<<<<<<< HEAD
+=======
+    last_login_ip = models.GenericIPAddressField(null=True, blank=True)
+    last_login_user_agent = models.TextField(null=True, blank=True)
+
+>>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     def is_reset_token_valid(self):
         """Check if the reset token is valid (e.g., expires after 1 hour)."""
         if self.reset_token_created_at:
