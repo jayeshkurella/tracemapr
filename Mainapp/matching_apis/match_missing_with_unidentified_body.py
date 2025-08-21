@@ -338,10 +338,12 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             mp.case_status = 'resolved'
             mp.updated_by = request.user
             mp.match_with = 'Unidentified Body'
+            mp.matched_case_id = ub.case_id
             mp.matched_person_id = ub.id
             mp.save()
             ub.case_status = 'resolved'
             ub.match_with = 'Missing Person'
+            ub.matched_case_id = mp.case_id
             ub.matched_person_id = mp.id
             ub.updated_by = request.user
             ub.save()
@@ -388,6 +390,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             mp.case_status = 'pending'
             mp.match_with = None
             mp.matched_person_id = None
+            mp.matched_case_id = None
             mp.updated_by = request.user
             mp.save()
 
@@ -396,6 +399,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             ub.case_status = 'pending'
             ub.match_with = None
             ub.matched_person_id = None
+            ub.matched_case_id = None
             ub.updated_by = request.user
 
             ub.save()
