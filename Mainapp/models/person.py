@@ -311,7 +311,12 @@ class Person(models.Model):
     approved_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='approved_persons')
     modified_at = models.DateTimeField(auto_now=True)
     status_reason = models.TextField(blank=True, null=True, help_text="Reason for suspension or hold")
-
+    matched_case_id = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text="Case ID of the matched person or entity"
+    )
     match_entity_id = models.UUIDField(
         blank=True,
         null=True,
