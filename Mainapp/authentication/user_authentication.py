@@ -300,10 +300,10 @@ class AuthAPIView(APIView):
         # reset_url = f"http://localhost:4200/authentication/reset-password/{reset_token}"
 
         # production
-        reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
+        # reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
 
         # Testing(beta)
-        # reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
+        reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
         try:
             send_mail(
                 "Password Reset Request",
