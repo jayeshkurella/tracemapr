@@ -335,6 +335,12 @@ class Person(models.Model):
         help_text="The type of the matched entity"
     )
     matched_person_id = models.UUIDField(null=True, blank=True, help_text="UUID of the matched person")
+    matched_case_id = models.CharField(
+    max_length=50,
+    blank=True,
+    null=True,
+    help_text="Case ID of the matched person or entity"
+)
     # below fields for the DNA and mental
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)

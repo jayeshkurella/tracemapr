@@ -79,12 +79,13 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # local
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'New_Backend',
+#         'NAME': 'tracemapr',
 #         'USER': 'postgres',
-#         'PASSWORD': 'Sanket@123',
+#         'PASSWORD': 'Swagati@1311',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
@@ -177,7 +178,7 @@ if os.name == 'nt':
     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj')
 
-# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\Chhaya_FullStack\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
+# GDAL_LIBRARY_PATH = r'C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\osgeo\gdal.dll'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
@@ -275,4 +276,4 @@ BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 #             "CLIENT_CLASS": "django_redis.client.DefaultClient",
 #         }
 #     }
-# }
+# }cd   

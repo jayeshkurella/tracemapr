@@ -336,6 +336,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             mp.match_with = 'Unidentified Person'
             mp.matched_case_id = up.case_id
             mp.matched_person_id = up.id
+            mp.matched_case_id = up.case_id
             mp.save()
             up.case_status = 'resolved'
             up.match_with = 'Missing Person'
