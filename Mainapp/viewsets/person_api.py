@@ -924,6 +924,7 @@ class PersonViewSet(viewsets.ViewSet):
         try:
             filters = {}
             additional_info_filters = {}
+            order_by = '-updated_at'
 
             age_range = request.query_params.get('age_range')
             age = request.query_params.get('age')
@@ -984,7 +985,7 @@ class PersonViewSet(viewsets.ViewSet):
             ).prefetch_related(
                 'addresses', 'contacts', 'additional_info',
                 'last_known_details', 'firs', 'consent'
-            ).order_by('-created_at').distinct()
+            ).order_by(order_by).distinct()
 
             if not persons.exists():
                 return Response({'message': f'No {person_type.lower()} found'}, status=status.HTTP_200_OK)
