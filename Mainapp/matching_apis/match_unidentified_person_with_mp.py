@@ -344,10 +344,12 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             mp.updated_by = request.user
             mp.match_with = 'Unidentified Person'
             mp.matched_person_id = up.id
+            mp.matched_case_id = up.case_id
             mp.save()
             up.case_status = 'resolved'
             up.match_with = 'Missing Person'
             up.matched_person_id = mp.id
+            up.matched_case_id = mp.case_id
             up.updated_by = request.user
             up.save()
 

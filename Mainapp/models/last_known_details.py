@@ -15,13 +15,8 @@ class LastKnownDetails(models.Model):
     reference_photo = models.ImageField(blank=True, null=True, help_text="URL or Base64 encoded reference photo",upload_to='All_Photos')
     missing_time = models.TimeField(blank=True, null=True)
     missing_date = models.DateField(help_text="Date the person went missing",blank=True, null=True)
-<<<<<<< HEAD
-    last_seen_location = models.TextField(null=True, blank=True, db_index=True)
-    missing_location_details = models.TextField(null=True, blank=True, db_index=True)
-=======
     last_seen_location = models.TextField(max_length=300,null=True, blank=True, db_index=True)
     missing_location_details = models.TextField(max_length=300,null=True, blank=True, db_index=True)
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
 
     address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True, blank=True)

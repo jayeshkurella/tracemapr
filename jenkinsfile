@@ -1,50 +1,6 @@
 pipeline {
     agent { label 'coderize2' }
     environment {
-        WORKSPACE_DIR = "${WORKSPACE}/Chhaya_new_backend/scripts"
-    }
-    stages {
-        stage ('Checkout') {
-            steps {
-                git branch: 'chhaya_jenkins', credentialsId: 'new-token1', url: 'https://gitlab.com/coderizers/app_view/chhaya_foundation.git'
-                sh 'ls -l Chhaya_new_backend/scripts/'
-            }
-        }
-
-        stage ('Setup Virtual Environment, Install Dependencies') {
-            steps {
-                sh '''
-                chmod +x Chhaya_new_backend/scripts/setup_virtualenv.sh
-                ./Chhaya_new_backend/scripts/setup_virtualenv.sh
-                '''
-            }
-        }
-
-        stage ('migration') {
-            steps {
-                sh '''
-                chmod +x Chhaya_new_backend/scripts/run_migration.sh
-                ./Chhaya_new_backend/scripts/run_migration.sh
-                '''
-            }
-        }
-
-        stage ('Setup Gunicorn') {
-            steps {
-                sh '''
-                chmod +x Chhaya_new_backend/scripts/gunicorn.sh
-                ./Chhaya_new_backend/scripts/gunicorn.sh
-                '''
-            }
-        }
-    }
-}
-
-
-
-pipeline {
-    agent { label 'coderize2' }
-    environment {
         WORKSPACE_DIR = "${WORKSPACE}/scripts"
             }
     stages {

@@ -17,11 +17,7 @@ else
 fi
 
 #echo "Processing for makemigrations"
-<<<<<<< HEAD
-cd $project_directory/Chhaya_new_backend
-=======
 cd $project_directory
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 #python3 manage.py makemigrations --noinput
 
 echo "Processing for migrations"

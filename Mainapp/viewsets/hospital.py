@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 """
 Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
-<<<<<<< HEAD
-
-
-=======
 import ast
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 import hashlib
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -27,16 +18,10 @@ from Mainapp.all_paginations.pagination import CustomPagination
 from django.core.cache import cache
 from rest_framework import generics
 import json
-<<<<<<< HEAD
-from django.contrib.gis.geos import Point
-from rest_framework.permissions import AllowAny, IsAuthenticated
-
-=======
 from django.contrib.gis.geos import Point, GEOSGeometry, GEOSException
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 class HospitalViewSet(viewsets.ModelViewSet):
     """
     API Endpoints for Hospital Management
@@ -75,12 +60,8 @@ class HospitalViewSet(viewsets.ModelViewSet):
             if status_filter:
                 filters &= Q(activ_Status__iexact=status_filter)
 
-<<<<<<< HEAD
-            queryset = Hospital.objects.select_related('address').prefetch_related('hospital_contact').filter(filters).order_by('name')
-=======
             queryset = Hospital.objects.select_related('address').prefetch_related('hospital_contact').filter(
                 filters).order_by('name')
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
             paginator = CustomPagination()
             paginated_queryset = paginator.paginate_queryset(queryset, request)
@@ -90,10 +71,6 @@ class HospitalViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     # def list(self, request):
     #     try:
     #         name = request.query_params.get('name', '').strip()
@@ -404,32 +381,20 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-<<<<<<< HEAD
-
-=======
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     #  6. DELETE Hospital
     def destroy(self, request, pk=None):
         try:
             hospital = get_object_or_404(Hospital, pk=pk)
             hospital_name = hospital.name
             hospital.delete()
-<<<<<<< HEAD
-            return Response({"message": f"Hospital '{hospital_name}' is deleted successfully"}, status=status.HTTP_200_OK)
-=======
             return Response({"message": f"Hospital '{hospital_name}' is deleted successfully"},
                             status=status.HTTP_200_OK)
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
         except Hospital.DoesNotExist:
             return Response({"error": "Hospital not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-<<<<<<< HEAD
-        
-=======
 
 
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 # To Get all Hospitals
 class HospitalListView(generics.ListAPIView):
     queryset = Hospital.objects.all().order_by("id")
@@ -439,8 +404,4 @@ class HospitalListView(generics.ListAPIView):
 # To filter only govt hospitals
 class GovtHospitalListView(generics.ListAPIView):
     queryset = Hospital.objects.all().filter(type='govt').order_by("id")
-<<<<<<< HEAD
     serializer_class = HospitalIdNameSerializer
-=======
-    serializer_class = HospitalIdNameSerializer
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0

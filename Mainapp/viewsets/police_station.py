@@ -20,10 +20,6 @@ from Mainapp.all_paginations.pagination import CustomPagination
 from django.core.cache import cache
 from django.db.models import Q
 from django.contrib.gis.geos import GEOSGeometry, GEOSException, Point
-<<<<<<< HEAD
-import ast
-=======
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
 
 import json
@@ -82,16 +78,6 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
-<<<<<<< HEAD
-        def retrieve(self, request, pk=None):
-            try:
-                police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(
-                    pk=pk)
-                serializer = self.get_serializer(police_station)
-                return Response(serializer.data, status=status.HTTP_200_OK)
-            except PoliceStation.DoesNotExist:
-                return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
-=======
     def retrieve(self, request, pk=None):
         try:
             police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(
@@ -100,7 +86,6 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except PoliceStation.DoesNotExist:
             return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
     #  2. RETRIEVE Police Station by ID
     # def retrieve(self, request, pk=None):
@@ -117,10 +102,7 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
     #         return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
 
     #  3. CREATE a new Police Station
-<<<<<<< HEAD
-=======
 
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     def create(self, request, *args, **kwargs):
         try:
             print("\n🔹 Received API Request Data:", request.data)  # Log incoming data
@@ -321,10 +303,6 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-<<<<<<< HEAD
-
-=======
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
     # 6. DELETE Police Station
     def destroy(self, request, pk=None):
         try:
@@ -359,8 +337,4 @@ def police_station_search(request):
         stations = PoliceStation.objects.none()  # Return empty if <4 chars
 
     data = [{"id": station.id, "name": station.name} for station in stations]
-<<<<<<< HEAD
     return Response(data)
-=======
-    return Response(data)
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0

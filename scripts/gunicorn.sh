@@ -11,11 +11,7 @@ echo "Validate the present working directory"
 pwd
 
 # Check if gunicorn.service file exists in the correct location
-<<<<<<< HEAD
-service_file="$project_directory/Chhaya_new_backend/scripts/chhaya_new.service"
-=======
 service_file="$project_directory/scripts/chhaya_new.service"
->>>>>>> 69f7355bdf0f26b2138b83f227520f994175b8e0
 
 if [ -f "$service_file" ]; then
     echo "gunicorn.service found. Copying the service file..."
