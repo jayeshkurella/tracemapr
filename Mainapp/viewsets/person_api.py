@@ -454,12 +454,17 @@ class PersonViewSet(viewsets.ViewSet):
                 hospital_data = data.get('hospital')
                 hospital_id = hospital_data.get('id') if isinstance(hospital_data, dict) else hospital_data
 
-                if hospital_id:
-                    if not person.hospital or str(person.hospital.id) != str(hospital_id):
-                        try:
-                            person.hospital = Hospital.objects.get(id=hospital_id)
-                        except Hospital.DoesNotExist:
-                            raise ValueError(f"Hospital with ID {hospital_id} does not exist")
+                if hospital_data is None:
+                    # If payload explicitly sent null → clear the hospital
+                    person.hospital = None
+                else:
+                    # If payload has a hospital id → update it
+                    if hospital_id:
+                        if not person.hospital or str(person.hospital.id) != str(hospital_id):
+                            try:
+                                person.hospital = Hospital.objects.get(id=hospital_id)
+                            except Hospital.DoesNotExist:
+                                raise ValueError(f"Hospital with ID {hospital_id} does not exist")
 
                 # Update top-level fields - exclude photo_photo if it wasn't in the original data
                 person_data = {
