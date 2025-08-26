@@ -361,6 +361,7 @@ class Person(models.Model):
         blank=True
     )
 
+
     def save(self, *args, **kwargs):
         if not self.case_id:
             self.case_id = self.generate_case_id()
