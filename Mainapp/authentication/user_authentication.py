@@ -373,6 +373,55 @@ class AuthAPIView(APIView):
             "user": serializer.data
         }, status=status.HTTP_200_OK)
 
+    # def update_profile(self, request):
+    #     """Handles profile update"""
+    #     if not request.user.is_authenticated:
+    #         return Response({"error": "Authentication required"}, status=status.HTTP_401_UNAUTHORIZED)
+    #
+    #     user = request.user  # Current user instance
+    #     data = request.data.copy()
+    #
+    #     # Handle file upload separately if using multipart/form-data
+    #     if 'profile_image' in request.FILES:
+    #         # Clear old image if exists
+    #         if user.profile_image_upload:
+    #             user.profile_image_upload.delete(save=False)
+    #         # Assign new image
+    #         data['profile_image_upload'] = request.FILES['profile_image']
+    #
+    #     #  Validate email and phone uniqueness before updating
+    #     new_email = request.data.get('email_id')
+    #     new_phone_no = request.data.get('phone_no')
+    #
+    #     if new_email and new_email != user.email_id and User.objects.filter(email_id=new_email).exists():
+    #         return Response({"error": "Email is already registered with another account"},
+    #                         status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     if new_phone_no and new_phone_no != user.phone_no and User.objects.filter(phone_no=new_phone_no).exists():
+    #         return Response({"error": "Phone number is already in use"}, status=status.HTTP_400_BAD_REQUEST)
+    #
+    #     #  Prevent users from changing sensitive fields (Return Error)
+    #     restricted_fields = [
+    #         "status", "password",
+    #         "is_superuser", "is_staff", "is_consent", "google_id"
+    #     ]
+    #
+    #     attempted_changes = [field for field in restricted_fields if field in request.data]
+    #     if attempted_changes:
+    #         return Response(
+    #             {"error": f"You are not allowed to update the following fields: {', '.join(attempted_changes)}"},
+    #             status=status.HTTP_403_FORBIDDEN
+    #         )
+    #
+    #     #  Use Serializer for updating user profile safely
+    #     serializer = UserProfileUpdateSerializer(user, data=data, partial=True)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response({"message": "Profile updated successfully", "user": serializer.data},
+    #                         status=status.HTTP_200_OK)
+    #
+    #     return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
     def update_profile(self, request):
         """Handles profile update"""
         if not request.user.is_authenticated:
@@ -381,15 +430,24 @@ class AuthAPIView(APIView):
         user = request.user  # Current user instance
         data = request.data.copy()
 
+        # Handle profile image removal if requested
+        remove_image = request.data.get('remove_image') == 'true'
+        if remove_image:
+            # Delete the current profile image if it exists
+            if user.profile_image_upload:
+                user.profile_image_upload.delete(save=False)
+                user.profile_image_upload = None  # Set to None instead of empty string
+                user.save(update_fields=['profile_image_upload'])
+
         # Handle file upload separately if using multipart/form-data
-        if 'profile_image' in request.FILES:
+        elif 'profile_image' in request.FILES:
             # Clear old image if exists
             if user.profile_image_upload:
                 user.profile_image_upload.delete(save=False)
             # Assign new image
             data['profile_image_upload'] = request.FILES['profile_image']
 
-        #  Validate email and phone uniqueness before updating
+        # Validate email and phone uniqueness before updating
         new_email = request.data.get('email_id')
         new_phone_no = request.data.get('phone_no')
 
@@ -400,7 +458,7 @@ class AuthAPIView(APIView):
         if new_phone_no and new_phone_no != user.phone_no and User.objects.filter(phone_no=new_phone_no).exists():
             return Response({"error": "Phone number is already in use"}, status=status.HTTP_400_BAD_REQUEST)
 
-        #  Prevent users from changing sensitive fields (Return Error)
+        # Prevent users from changing sensitive fields (Return Error)
         restricted_fields = [
             "status", "password",
             "is_superuser", "is_staff", "is_consent", "google_id"
@@ -413,16 +471,26 @@ class AuthAPIView(APIView):
                 status=status.HTTP_403_FORBIDDEN
             )
 
-        #  Use Serializer for updating user profile safely
+        # Use Serializer for updating user profile safely
         serializer = UserProfileUpdateSerializer(user, data=data, partial=True)
         if serializer.is_valid():
             serializer.save()
-            return Response({"message": "Profile updated successfully", "user": serializer.data},
-                            status=status.HTTP_200_OK)
+
+            # Return the updated user data
+            response_data = {
+                "message": "Profile updated successfully",
+                "user": serializer.data
+            }
+
+            # If image was removed, make sure profile_image_upload is null in response
+            if remove_image:
+                response_data["user"]["profile_image_upload"] = None
+
+            return Response(response_data, status=status.HTTP_200_OK)
 
         return Response({"error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+    #     #  DELETE ACCOUNT
 
-        #  DELETE ACCOUNT
 
     def delete_profile(self, request):
         """Handles user account deletion with optional password confirmation and email notification"""
