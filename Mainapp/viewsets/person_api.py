@@ -1096,23 +1096,28 @@ class PersonViewSet(viewsets.ViewSet):
 
             serializer = PersonSerializer(person)
 
-            # Extract reporter info (assuming created_by is the reporter)
+            # Extract reporter info safely
             reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id  # This must be the reporter's email field
+            if reporter:
+                reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+                reporter_email = reporter.email_id
+            else:
+                reporter_name = "Reporter not found"
+                reporter_email = None
 
-            # Send approval email in the background
-            threading.Thread(
-                target=send_case_approval_email,
-                kwargs={
-                    'user_email': reporter_email,
-                    'reporter_name': reporter_name,
-                    'full_name': person.full_name,
-                    'case_id': person.case_id,
-                    'type': person.type,  # Missing person, unidentified body, etc.
-                    'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
-                }
-            ).start()
+            # Send approval email only if reporter email exists
+            if reporter_email:
+                threading.Thread(
+                    target=send_case_approval_email,
+                    kwargs={
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'full_name': person.full_name,
+                        'case_id': person.case_id,
+                        'type': person.type,
+                        'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
+                    }
+                ).start()
 
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
@@ -1168,12 +1173,14 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
-            reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
 
-            # Send email only if moved to Pending
-            if new_status.lower() == 'pending':
+            # Safe reporter handling
+            reporter = person.created_by
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
+
+            # Send email only if moved to Pending and reporter email exists
+            if reporter_email and new_status.lower() == 'pending':
                 reason = request.data.get(
                     'reason',
                     'The case has been moved back to pending review for further evaluation by the administration team.'
@@ -1204,36 +1211,36 @@ class PersonViewSet(viewsets.ViewSet):
             reason = request.data.get('reason')
 
             if not reason:
-                return Response(
-                    {'error': 'Reason is required to suspend a person'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({'error': 'Reason is required to suspend a person'}, status=status.HTTP_400_BAD_REQUEST)
 
             person.person_approve_status = 'suspended'
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
+
             serializer = PersonSerializer(person)
 
+            # Safe reporter handling
             reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
 
-            if person.person_approve_status.lower() == 'suspended':
-                reason = request.data.get("reason")
+            if reporter_email and person.person_approve_status.lower() == 'suspended':
                 threading.Thread(
                     target=send_case_to_suspend_email,
                     kwargs={
-                        "user_email":reporter_email,
-                        "reporter_name":reporter_name,
-                        "case_id":person.case_id,
-                        "reason":reason
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'reason': reason
                     }
                 ).start()
+
             return Response(
                 {'message': 'Person suspended successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
 
@@ -1244,10 +1251,8 @@ class PersonViewSet(viewsets.ViewSet):
             reason = request.data.get('reason')
 
             if not reason:
-                return Response(
-                    {'error': 'Reason is required to put a person on hold'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({'error': 'Reason is required to put a person on hold'},
+                                status=status.HTTP_400_BAD_REQUEST)
 
             person.person_approve_status = 'on_hold'
             person.status_reason = reason
@@ -1255,25 +1260,28 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
-            reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
 
-            if person.person_approve_status.lower() == 'on_hold':
-                reason = request.data.get("reason")
+            # Safe reporter handling
+            reporter = person.created_by
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
+
+            if reporter_email and person.person_approve_status.lower() == 'on_hold':
                 threading.Thread(
                     target=send_case_to_hold_email,
                     kwargs={
-                        "user_email": reporter_email,
-                        "reporter_name": reporter_name,
-                        "case_id": person.case_id,
-                        "reason": reason
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'reason': reason
                     }
                 ).start()
+
             return Response(
                 {'message': 'Person put on hold successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
 
