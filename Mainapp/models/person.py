@@ -345,13 +345,17 @@ class Person(models.Model):
     confirmed_from = models.CharField(
         max_length=20,
         choices=[
-            ("MP", "Missing Person"),
-            ("UP", "Unidentified Person"),
-            ("UB", "Unidentified Body"),
+            ("MPtoUP", "Missing Person → Unidentified Person"),
+            ("MPtoUB", "Missing Person → Unidentified Body"),
+            ("UPtoMP", "Unidentified Person → Missing Person"),
+            ("UBtoMP", "Unidentified Body → Missing Person"),
         ],
         null=True,
         blank=True,
-        help_text="Indicates whether the confirmation was initiated from Missing Person, Unidentified Person, or Unidentified Body section"
+        help_text=(
+            "Indicates whether the confirmation was initiated from "
+            "Missing Person, Unidentified Person, or Unidentified Body section"
+        ),
     )
 
     # below fields for the DNA and mental

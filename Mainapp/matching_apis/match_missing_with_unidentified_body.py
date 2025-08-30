@@ -312,6 +312,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
     # To confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-confirm')
     def match_confirm_up(self, request, pk=None):
+        print("data_________",request.data)
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
         confirmed_from = request.data.get('confirmed_from')
@@ -319,11 +320,13 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
         if not match_id:
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
-        if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
-            return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
+        # if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
+        #     return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
+
+
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
@@ -389,7 +392,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
         try:
             # match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
-            match = Missing_match_with_body.objects.filter(unidentified_body=matched_person,missing_person_id=pk).first()
+            match = Missing_match_with_body.objects.filter(unidentified_bodies_id=matched_person,missing_person_id=pk).first()
 
             if match.match_type != 'confirmed':
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},
