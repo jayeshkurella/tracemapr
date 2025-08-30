@@ -188,7 +188,7 @@ class SearchSerializer(serializers.ModelSerializer):
         fields = [
             'type', 'case_status', 'id', 'full_name', 'age', 'age_range',
             'city', 'village', 'state', 'gender', 'photo_photo',
-            'date_reported', 'missing_date','matched_person_id'
+            'date_reported', 'missing_date','matched_person_id','confirmed_from'
         ]
 
     def to_representation(self, instance):

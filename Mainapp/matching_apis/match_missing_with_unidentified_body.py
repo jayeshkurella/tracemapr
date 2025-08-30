@@ -314,9 +314,13 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
     def match_confirm_up(self, request, pk=None):
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
+        confirmed_from = request.data.get('confirmed_from')
 
         if not match_id:
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
+            return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
@@ -324,6 +328,15 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
+            if match.missing_person.case_status == 'resolved':
+                return Response(
+                    {"error": "This Missing Person is already resolved with another Unidentified Body."},
+                    status=status.HTTP_400_BAD_REQUEST)
+
+            if match.unidentified_bodies.case_status == 'resolved':
+                return Response(
+                    {"error": "This Unidentified Body is already resolved with another Missing Person."},
+                    status=status.HTTP_400_BAD_REQUEST)
             # ubdate match record
             match.match_type = 'confirmed'
             match.confirmation_note = confirmation_note
@@ -341,6 +354,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             mp.matched_case_id = ub.case_id
             mp.matched_person_id = ub.id
             mp.matched_case_id = ub.case_id
+            mp.confirmed_from = confirmed_from
             mp.save()
             ub.case_status = 'resolved'
             ub.match_with = 'Missing Person'
@@ -348,6 +362,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             ub.matched_person_id = mp.id
             ub.matched_case_id = mp.case_id
             ub.updated_by = request.user
+            ub.confirmed_from = confirmed_from
             ub.save()
 
             return Response({"message": "Match confirmed successfully."}, status=status.HTTP_200_OK)
@@ -393,6 +408,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             mp.match_with = None
             mp.matched_person_id = None
             mp.matched_case_id = None
+            mp.confirmed_from = None
             mp.updated_by = request.user
             mp.save()
 
@@ -402,6 +418,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             ub.match_with = None
             ub.matched_person_id = None
             ub.matched_case_id = None
+            ub.confirmed_from = None
             ub.updated_by = request.user
 
             ub.save()
