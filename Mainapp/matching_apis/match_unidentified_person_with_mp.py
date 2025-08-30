@@ -324,9 +324,9 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
         if not match_id:
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
-        if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
-            return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
-
+        # if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
+        #     return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
+        #
 
         try:
             match = PersonMatchHistory.objects.get(match_id=match_id, unidentified_person_id=pk)
