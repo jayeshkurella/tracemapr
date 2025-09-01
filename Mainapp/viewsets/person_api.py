@@ -596,18 +596,36 @@ class PersonViewSet(viewsets.ViewSet):
                         setattr(detail_obj, key, value)
                     detail_obj.save()
 
-                    # Handle documents - only process if documents_data is not empty
-                    if documents_data:
-                        existing_doc_ids = []
-                        for doc_idx, doc_data in enumerate(documents_data):
-                            doc_id = doc_data.get('id')
+                    # Handle documents - process all documents data
+                    existing_doc_ids = []
+                    for doc_idx, doc_data in enumerate(documents_data):
+                        doc_id = doc_data.get('id')
 
-                            # Existing document being kept
-                            if doc_id and doc_data.get('existing_document_path'):
+                        # Existing document - update metadata and/or file
+                        if doc_id:
+                            try:
+                                doc_obj = Document.objects.get(id=doc_id, last_known_detail=detail_obj)
+
+                                # Update document metadata if provided
+                                if 'document_type' in doc_data:
+                                    doc_obj.document_type = doc_data.get('document_type')
+                                if 'description' in doc_data:
+                                    doc_obj.description = doc_data.get('description')
+
+                                # Handle file upload if provided
+                                file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
+                                if file_key in self.request.FILES:
+                                    doc_file = self.request.FILES[file_key]
+                                    doc_obj.document = doc_file
+
+                                doc_obj.save()
                                 existing_doc_ids.append(doc_id)
+
+                            except Document.DoesNotExist:
                                 continue
 
-                            # New document upload
+                        # New document upload (only create if file is provided)
+                        else:
                             file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
                             if file_key in self.request.FILES:
                                 doc_file = self.request.FILES[file_key]
@@ -620,32 +638,51 @@ class PersonViewSet(viewsets.ViewSet):
                                     created_by=self.request.user
                                 )
                                 existing_doc_ids.append(doc.id)
+                            # If no file but metadata exists, don't create empty document
+                            elif doc_data.get('document_type') or doc_data.get('description'):
+                                # Optional: Create document without file if metadata exists
+                                doc = Document.objects.create(
+                                    person_type="missing person",
+                                    document_type=doc_data.get('document_type', 'other'),
+                                    description=doc_data.get('description', ''),
+                                    last_known_detail=detail_obj,
+                                    created_by=self.request.user
+                                )
+                                existing_doc_ids.append(doc.id)
 
-                        # Only remove documents if we're processing updates
-                        if documents_data:
-                            detail_obj.documents.exclude(id__in=existing_doc_ids).delete()
+                    # Remove documents that are no longer in the list
+                    detail_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
                 except LastKnownDetails.DoesNotExist:
                     continue
             else:
                 # Create new last known detail with documents
                 detail_obj = LastKnownDetails.objects.create(person=person, **detail_data)
-                # Handle document creation only if documents_data exists
-                if documents_data:
-                    existing_doc_ids = []
-                    for doc_idx, doc_data in enumerate(documents_data):
-                        file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
-                        if file_key in self.request.FILES:
-                            doc_file = self.request.FILES[file_key]
-                            doc = Document.objects.create(
-                                person_type="missing person",
-                                document_type=doc_data.get('document_type', 'other'),
-                                description=doc_data.get('description', ''),
-                                document=doc_file,
-                                last_known_detail=detail_obj,
-                                created_by=self.request.user
-                            )
-                            existing_doc_ids.append(doc.id)
+                # Handle document creation
+                existing_doc_ids = []
+                for doc_idx, doc_data in enumerate(documents_data):
+                    file_key = f"last_known_details[{detail_idx}][documents][{doc_idx}][document]"
+                    if file_key in self.request.FILES:
+                        doc_file = self.request.FILES[file_key]
+                        doc = Document.objects.create(
+                            person_type="missing person",
+                            document_type=doc_data.get('document_type', 'other'),
+                            description=doc_data.get('description', ''),
+                            document=doc_file,
+                            last_known_detail=detail_obj,
+                            created_by=self.request.user
+                        )
+                        existing_doc_ids.append(doc.id)
+                    # Create document without file if only metadata is provided
+                    elif doc_data.get('document_type') or doc_data.get('description'):
+                        doc = Document.objects.create(
+                            person_type="missing person",
+                            document_type=doc_data.get('document_type', 'other'),
+                            description=doc_data.get('description', ''),
+                            last_known_detail=detail_obj,
+                            created_by=self.request.user
+                        )
+                        existing_doc_ids.append(doc.id)
 
     def _update_firs(self, person, firs_data):
         for fir_idx, fir in enumerate(firs_data):
@@ -673,18 +710,36 @@ class PersonViewSet(viewsets.ViewSet):
                     fir_obj.police_station = police_station
                     fir_obj.save()
 
-                    # Handle documents - only if documents_data is provided
-                    if documents_data:
-                        existing_doc_ids = []
-                        for doc_idx, doc_data in enumerate(documents_data):
-                            doc_id = doc_data.get('id')
+                    # Handle documents - process all documents data
+                    existing_doc_ids = []
+                    for doc_idx, doc_data in enumerate(documents_data):
+                        doc_id = doc_data.get('id')
 
-                            # Existing document being kept
-                            if doc_id and doc_data.get('existing_document_path'):
+                        # Existing document - update metadata and/or file
+                        if doc_id:
+                            try:
+                                doc_obj = Document.objects.get(id=doc_id, fir=fir_obj)
+
+                                # Update document metadata if provided
+                                if 'document_type' in doc_data:
+                                    doc_obj.document_type = doc_data.get('document_type')
+                                if 'description' in doc_data:
+                                    doc_obj.description = doc_data.get('description')
+
+                                # Handle file upload if provided
+                                file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
+                                if file_key in self.request.FILES:
+                                    doc_file = self.request.FILES[file_key]
+                                    doc_obj.document = doc_file
+
+                                doc_obj.save()
                                 existing_doc_ids.append(doc_id)
+
+                            except Document.DoesNotExist:
                                 continue
 
-                            # New document upload
+                        # New document upload (only create if file is provided)
+                        else:
                             file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
                             if file_key in self.request.FILES:
                                 doc_file = self.request.FILES[file_key]
@@ -697,32 +752,51 @@ class PersonViewSet(viewsets.ViewSet):
                                     created_by=self.request.user
                                 )
                                 existing_doc_ids.append(doc.id)
+                            # If no file but metadata exists, don't create empty document
+                            elif doc_data.get('document_type') or doc_data.get('description'):
+                                # Optional: Create document without file if metadata exists
+                                doc = Document.objects.create(
+                                    person_type="missing person",
+                                    document_type=doc_data.get('document_type', 'fir_attachment'),
+                                    description=doc_data.get('description', ''),
+                                    fir=fir_obj,
+                                    created_by=self.request.user
+                                )
+                                existing_doc_ids.append(doc.id)
 
-                        # Only remove documents if we're processing updates
-                        if documents_data:
-                            fir_obj.documents.exclude(id__in=existing_doc_ids).delete()
+                    # Remove documents that are no longer in the list
+                    fir_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
                 except FIR.DoesNotExist:
                     continue
             else:
                 # Create new FIR with documents
                 fir_obj = FIR.objects.create(person=person, police_station=police_station, **fir_data)
-                # Handle document creation only if documents_data exists
-                if documents_data:
-                    existing_doc_ids = []
-                    for doc_idx, doc_data in enumerate(documents_data):
-                        file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
-                        if file_key in self.request.FILES:
-                            doc_file = self.request.FILES[file_key]
-                            doc = Document.objects.create(
-                                person_type="missing person",
-                                document_type=doc_data.get('document_type', 'fir_attachment'),
-                                description=doc_data.get('description', ''),
-                                document=doc_file,
-                                fir=fir_obj,
-                                created_by=self.request.user
-                            )
-                            existing_doc_ids.append(doc.id)
+                # Handle document creation
+                existing_doc_ids = []
+                for doc_idx, doc_data in enumerate(documents_data):
+                    file_key = f"firs[{fir_idx}][documents][{doc_idx}][document]"
+                    if file_key in self.request.FILES:
+                        doc_file = self.request.FILES[file_key]
+                        doc = Document.objects.create(
+                            person_type="missing person",
+                            document_type=doc_data.get('document_type', 'fir_attachment'),
+                            description=doc_data.get('description', ''),
+                            document=doc_file,
+                            fir=fir_obj,
+                            created_by=self.request.user
+                        )
+                        existing_doc_ids.append(doc.id)
+                    # Create document without file if only metadata is provided
+                    elif doc_data.get('document_type') or doc_data.get('description'):
+                        doc = Document.objects.create(
+                            person_type="missing person",
+                            document_type=doc_data.get('document_type', 'fir_attachment'),
+                            description=doc_data.get('description', ''),
+                            fir=fir_obj,
+                            created_by=self.request.user
+                        )
+                        existing_doc_ids.append(doc.id)
 
     def _update_consents(self, person, consents_data):
         for consent in consents_data:
