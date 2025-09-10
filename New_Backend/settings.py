@@ -259,10 +259,10 @@ DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 # BACKEND_BASE_URL='http://127.0.0.1:8000/'
 #
 # beta
-BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
+# BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 # production
-# BACKEND_BASE_URL = 'https://tracemapr.com/backend'
+BACKEND_BASE_URL = 'https://tracemapr.com/backend'
 
 
 

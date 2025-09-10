@@ -319,15 +319,31 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
     def match_confirm(self, request, pk=None):
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
+        confirmed_from = request.data.get("confirmed_from")
 
         if not match_id:
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
+        #     return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
+        #
 
         try:
             match = PersonMatchHistory.objects.get(match_id=match_id, unidentified_person_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
+
+            #  Prevent duplicate confirmations
+            if match.missing_person.case_status == 'resolved':
+                return Response(
+                    {"error": "This Missing Person is already resolved with another Unidentified Person."},
+                    status=status.HTTP_400_BAD_REQUEST)
+
+            if match.unidentified_person.case_status == 'resolved':
+                return Response(
+                    {"error": "This Unidentified Person is already resolved with another Missing Person."},
+                    status=status.HTTP_400_BAD_REQUEST)
 
             # Update match record
             match.match_type = 'confirmed'
@@ -346,12 +362,14 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             mp.matched_case_id = up.case_id
             mp.matched_person_id = up.id
             mp.matched_case_id = up.case_id
+            mp.confirmed_from =confirmed_from
             mp.save()
             up.case_status = 'resolved'
             up.match_with = 'Missing Person'
             up.matched_case_id = mp.case_id
             up.matched_person_id = mp.id
             up.matched_case_id = mp.case_id
+            up.confirmed_from=confirmed_from
             up.updated_by = request.user
             up.save()
 
@@ -400,6 +418,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             mp.matched_person_id = None
             mp.matched_case_id = None
             mp.updated_by = request.user
+            mp.confirmed_from=None
             mp.save()
 
             # Reset UP (unidentified person)
@@ -408,6 +427,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             up.match_with = None
             up.matched_person_id = None
             up.matched_case_id =None
+            up.confirmed_from=None
             up.updated_by = request.user
 
             up.save()

@@ -339,8 +339,25 @@ class Person(models.Model):
     max_length=50,
     blank=True,
     null=True,
-    help_text="Case ID of the matched person or entity"
-)
+    help_text="Case ID of the matched person or entity")
+
+    # in your Match or Confirmation model
+    confirmed_from = models.CharField(
+        max_length=20,
+        choices=[
+            ("MPtoUP", "Missing Person → Unidentified Person"),
+            ("MPtoUB", "Missing Person → Unidentified Body"),
+            ("UPtoMP", "Unidentified Person → Missing Person"),
+            ("UBtoMP", "Unidentified Body → Missing Person"),
+        ],
+        null=True,
+        blank=True,
+        help_text=(
+            "Indicates whether the confirmation was initiated from "
+            "Missing Person, Unidentified Person, or Unidentified Body section"
+        ),
+    )
+
     # below fields for the DNA and mental
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
