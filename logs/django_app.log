@@ -475,3 +475,4 @@ NameError: name 'url' is not defined
 2025-09-26 17:42:33,987 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
 2025-09-26 17:44:19,233 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\viewsets\person_api.py changed, reloading.
 2025-09-26 17:44:24,176 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 17:45:22,185 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\New_Backend\settings.py changed, reloading.
