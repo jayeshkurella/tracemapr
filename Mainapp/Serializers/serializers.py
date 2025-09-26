@@ -202,6 +202,13 @@ class SearchSerializer(serializers.ModelSerializer):
         last_known = obj.last_known_details.first()
         return last_known.missing_date if last_known else None
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+        return data
+
 
 class ApprovePersonSerializer(serializers.ModelSerializer):
     class Meta:

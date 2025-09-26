@@ -1,0 +1,285 @@
+2025-09-22 14:59:29,965 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:00:31,369 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-22 15:00:32,721 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:01:03,327 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-22 15:01:04,720 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:01:33,458 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-22 15:01:34,927 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:01:52,297 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-22 15:01:53,549 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:02:05,256 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:03:32,860 [INFO] django.server - "GET /admin/ HTTP/1.1" 302 0
+2025-09-22 15:03:33,320 [INFO] django.server - "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4176
+2025-09-22 15:03:33,564 [INFO] django.server - "GET /static/admin/css/responsive.css HTTP/1.1" 304 0
+2025-09-22 15:03:33,602 [INFO] django.server - "GET /static/admin/css/dark_mode.css HTTP/1.1" 304 0
+2025-09-22 15:03:33,615 [INFO] django.server - "GET /static/admin/css/base.css HTTP/1.1" 304 0
+2025-09-22 15:03:33,615 [INFO] django.server - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 304 0
+2025-09-22 15:03:33,634 [INFO] django.server - "GET /static/admin/css/login.css HTTP/1.1" 304 0
+2025-09-22 15:03:33,659 [INFO] django.server - "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+2025-09-22 15:03:33,665 [INFO] django.server - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+2025-09-22 15:03:33,810 [WARNING] django.request - Not Found: /favicon.ico
+2025-09-22 15:03:33,815 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 9663
+2025-09-22 15:03:41,768 [INFO] django.server - "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+2025-09-22 15:03:42,031 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 23658
+2025-09-22 15:03:42,083 [INFO] django.server - "GET /static/admin/css/dashboard.css HTTP/1.1" 304 0
+2025-09-22 15:03:42,091 [INFO] django.server - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 304 0
+2025-09-22 15:03:42,093 [INFO] django.server - "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 304 0
+2025-09-22 15:03:42,304 [INFO] django.server - "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+2025-09-22 15:18:19,897 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:18:19,911 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:18:19,914 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:18:20,120 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:18:20,159 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:18:20,178 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:18:20,182 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:20,187 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:18:20,191 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:20,194 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:18:20,195 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:18:20,208 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:18:20,586 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:18:20,587 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:18:20,588 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:18:20,742 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:18:20,774 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:18:20,778 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:18:20,779 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:20,781 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:18:20,783 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:20,786 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:18:20,787 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:18:20,791 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:18:27,896 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:18:27,897 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:18:27,898 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:18:28,126 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:18:28,159 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:18:28,162 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:18:28,162 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:28,165 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:18:28,166 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:28,167 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:18:28,168 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:18:28,169 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:18:28,176 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:18:28,178 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:18:28,180 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:18:28,457 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:18:28,504 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:18:28,514 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:18:28,515 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:28,518 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:18:28,519 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:18:28,520 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:18:28,521 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:18:28,524 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:39:34,053 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:40:04,343 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\urls.py changed, reloading.
+2025-09-22 15:40:07,806 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:50:07,488 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\authentication\user_authentication.py changed, reloading.
+2025-09-22 15:50:08,829 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 15:54:14,553 [INFO] django.server - "GET /api/users HTTP/1.1" 301 0
+2025-09-22 15:54:14,641 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 15:54:14,643 [WARNING] django.server - "GET /api/users/ HTTP/1.1" 401 172
+2025-09-22 15:54:20,672 [INFO] django.server - "GET /api/users HTTP/1.1" 301 0
+2025-09-22 15:54:20,677 [WARNING] django.request - Bad Request: /api/users/
+2025-09-22 15:54:20,679 [WARNING] django.server - "GET /api/users/ HTTP/1.1" 400 32
+2025-09-22 15:54:57,868 [WARNING] django.request - Not Found: /api/users/login/
+2025-09-22 15:54:57,870 [WARNING] django.server - "POST /api/users/login/ HTTP/1.1" 404 54497
+2025-09-22 15:55:54,753 [WARNING] django.request - Bad Request: /api/users/
+2025-09-22 15:55:54,755 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 37
+2025-09-22 15:56:06,442 [INFO] Mainapp.Emails.user_registration - Preparing to send welcome email to: testuser@example.com
+2025-09-22 15:56:06,442 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 15:56:06,442 [DEBUG] Mainapp.Emails.user_registration - Email parameters - Full Name: Test User, Email: testuser@example.com
+2025-09-22 15:56:06,442 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 15:56:06,450 [DEBUG] Mainapp.Emails.user_registration - Email content - Subject: Welcome to Our Platform, Message length: 171 characters
+2025-09-22 15:56:06,478 [INFO] django.server - "POST /api/users/ HTTP/1.1" 201 571
+2025-09-22 15:56:13,288 [ERROR] Mainapp.Emails.user_registration - Failed to send welcome email to testuser@example.com: name 'result' is not defined
+2025-09-22 15:56:13,334 [ERROR] Mainapp.Emails.user_registration - Traceback: Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\Emails\user_registration.py", line 36, in send_welcome_email
+    logger.info(f"Welcome email sent successfully to {email_id}. Send result: {result}")
+                                                                               ^^^^^^
+NameError: name 'result' is not defined
+
+2025-09-22 15:56:50,651 [WARNING] django.request - Forbidden: /api/users/
+2025-09-22 15:56:50,653 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 403 45
+2025-09-22 15:57:21,770 [INFO] django.server - "OPTIONS //api/users/ HTTP/1.1" 200 0
+2025-09-22 15:57:23,418 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:57:23,426 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:57:23,431 [INFO] django.server - "POST //api/users/ HTTP/1.1" 200 1136
+2025-09-22 15:57:23,590 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:57:23,592 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:57:23,593 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:57:23,750 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:57:23,772 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:57:23,772 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:57:23,772 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:23,772 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:57:23,772 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:23,780 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:57:23,781 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:57:23,781 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:57:23,902 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:57:23,912 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:57:23,961 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:57:24,179 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-22 15:57:24,347 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:57:24,473 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:57:24,479 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:57:24,487 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:24,490 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:57:24,492 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:24,493 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:57:24,494 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:57:24,497 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:57:55,562 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:57:55,563 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:57:55,566 [INFO] django.server - "POST //api/users/ HTTP/1.1" 200 1136
+2025-09-22 15:57:55,686 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:57:55,687 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:57:55,688 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:57:55,810 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:57:55,831 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:57:55,833 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:57:55,834 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:55,836 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:57:55,844 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:55,846 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:57:55,847 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:57:55,848 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:57:55,992 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:57:55,994 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:57:55,995 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:57:56,385 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-22 15:57:56,392 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:57:56,551 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:57:56,616 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:57:56,655 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:56,706 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:57:56,711 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:57:56,751 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:57:56,752 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:57:56,759 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:58:47,980 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:58:47,980 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-22 15:58:48,001 [INFO] django.server - "POST //api/users/ HTTP/1.1" 200 1136
+2025-09-22 15:58:48,318 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:58:48,327 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:58:48,329 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:58:48,583 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:58:48,594 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:58:48,604 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:58:48,605 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:58:48,606 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:58:48,606 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:58:48,610 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:58:48,610 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:58:48,611 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:58:49,006 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-22 15:58:49,021 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-22 15:58:49,023 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-22 15:58:49,101 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-22 15:58:49,513 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-22 15:58:49,552 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-22 15:58:49,603 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-22 15:58:49,611 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:58:49,626 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-22 15:58:49,685 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-22 15:58:49,710 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-22 15:58:49,711 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-22 15:58:49,718 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-22 15:59:16,069 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 22550
+2025-09-22 15:59:22,223 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 21872
+2025-09-22 15:59:22,336 [INFO] django.server - "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,347 [INFO] django.server - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,350 [INFO] django.server - "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,383 [INFO] django.server - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,388 [INFO] django.server - "GET /static/admin/css/changelists.css HTTP/1.1" 304 0
+2025-09-22 15:59:22,389 [INFO] django.server - "GET /static/admin/js/core.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,395 [INFO] django.server - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,496 [INFO] django.server - "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,519 [INFO] django.server - "GET /static/admin/img/search.svg HTTP/1.1" 304 0
+2025-09-22 15:59:22,531 [INFO] django.server - "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,592 [INFO] django.server - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 304 0
+2025-09-22 15:59:22,896 [INFO] django.server - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2025-09-22 15:59:22,906 [INFO] django.server - "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+2025-09-22 15:59:22,931 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 15:59:23,075 [INFO] django.server - "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 304 0
+2025-09-22 15:59:23,076 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 304 0
+2025-09-22 15:59:32,259 [INFO] django.server - "GET /admin/Mainapp/user/22ae4c09-c333-45f8-930c-ddc1abea3054/change/ HTTP/1.1" 200 57030
+2025-09-22 15:59:32,345 [INFO] django.server - "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+2025-09-22 15:59:32,378 [INFO] django.server - "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+2025-09-22 15:59:32,380 [INFO] django.server - "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+2025-09-22 15:59:32,396 [INFO] django.server - "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+2025-09-22 15:59:32,399 [INFO] django.server - "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+2025-09-22 15:59:32,456 [INFO] django.server - "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+2025-09-22 15:59:32,486 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 15:59:32,638 [INFO] django.server - "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+2025-09-22 15:59:32,643 [INFO] django.server - "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+2025-09-22 15:59:50,899 [INFO] django.server - "POST /admin/Mainapp/user/22ae4c09-c333-45f8-930c-ddc1abea3054/change/ HTTP/1.1" 302 0
+2025-09-22 15:59:51,047 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 22162
+2025-09-22 15:59:51,229 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 16:00:03,380 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:00:03,382 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:00:03,383 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-09-22 16:02:13,732 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-09-22 16:02:55,064 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 92
+2025-09-22 16:03:38,529 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 40
+2025-09-22 16:07:43,900 [INFO] Mainapp.Emails.user_registration - Preparing to send welcome email to: testuser1@example.com
+2025-09-22 16:07:43,903 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-09-22 16:07:43,906 [DEBUG] Mainapp.Emails.user_registration - Email parameters - Full Name: Test User, Email: testuser1@example.com
+2025-09-22 16:07:43,907 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-09-22 16:07:43,909 [DEBUG] Mainapp.Emails.user_registration - Email content - Subject: Welcome to Our Platform, Message length: 171 characters
+2025-09-22 16:07:43,911 [INFO] django.server - "POST /api/users/ HTTP/1.1" 201 572
+2025-09-22 16:07:48,252 [ERROR] Mainapp.Emails.user_registration - Failed to send welcome email to testuser1@example.com: name 'result' is not defined
+2025-09-22 16:07:48,256 [ERROR] Mainapp.Emails.user_registration - Traceback: Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\Emails\user_registration.py", line 36, in send_welcome_email
+    logger.info(f"Welcome email sent successfully to {email_id}. Send result: {result}")
+                                                                               ^^^^^^
+NameError: name 'result' is not defined
+
+2025-09-22 16:08:09,698 [WARNING] django.request - Forbidden: /api/users/
+2025-09-22 16:08:09,699 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 403 45
+2025-09-22 16:08:16,989 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 22626
+2025-09-22 16:08:17,140 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 16:08:21,258 [INFO] django.server - "GET /admin/Mainapp/user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/change/ HTTP/1.1" 200 57150
+2025-09-22 16:08:21,402 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 16:08:28,017 [INFO] django.server - "POST /admin/Mainapp/user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/change/ HTTP/1.1" 302 0
+2025-09-22 16:08:28,134 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 22917
+2025-09-22 16:08:28,254 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-22 16:08:35,532 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-09-22 16:08:35,533 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-09-22 16:08:35,534 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1137
+2025-09-22 16:09:12,026 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-09-22 16:09:41,573 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 92
+2025-09-22 16:10:07,106 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 40
+2025-09-22 16:11:54,886 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\New_Backend\settings.py changed, reloading.
+2025-09-22 16:12:23,618 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-22 16:13:02,123 [WARNING] django.request - Bad Request: /api/users/
+2025-09-22 16:13:02,124 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 31
+2025-09-22 16:13:19,460 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:13:19,460 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:13:19,479 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-09-22 16:15:18,191 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:15:18,192 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:16:05,470 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:16:05,471 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:16:07,321 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:16:07,321 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:19:01,437 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:19:01,437 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:19:01,444 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-09-22 16:19:38,993 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:19:38,994 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:19:46,648 [WARNING] django.request - Bad Request: /api/token/refresh/
+2025-09-22 16:19:46,650 [WARNING] django.server - "POST /api/token/refresh/ HTTP/1.1" 400 39
+2025-09-22 16:20:29,812 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:20:29,813 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:21:18,690 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:21:18,690 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-09-22 16:21:18,691 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-09-22 16:22:09,081 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-09-22 16:23:07,902 [WARNING] django.request - Unauthorized: /api/users/
+2025-09-22 16:23:07,904 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-09-22 16:23:40,060 [INFO] django.server - "POST /api/token/refresh/ HTTP/1.1" 200 582
+2025-09-22 16:23:56,947 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495

@@ -16,7 +16,7 @@ from .Additional_info_Tags.tags_apis import CasteListCreateAPIView, CasteDestroy
     occupationtagAPIView
 from .authentication.admin_user_management import AdminUserApprovalView, ApprovedUsersView, HoldUsersView, \
     RejectedUsersView
-from .authentication.user_authentication import AuthAPIView
+from .authentication.user_authentication import AuthAPIView,UserListAPIView
 from .matching_apis.match_missing_with_unidentified_body import MissingPersonMatchWithUBsViewSet
 from .matching_apis.match_unidentified_body_with_mp import UnidentifiedBodyMatchWithMPsViewSet
 from .matching_apis.match_unidentified_person_with_mp import UnidentifiedPersonMatchWithMPsViewSet
@@ -31,6 +31,12 @@ from .viewsets.police_station import PoliceStationViewSet, PoliceStationListView
 from .matching_apis.missing_match_up import MissingPersonMatchWithUPsViewSet
 from .viewsets.volunteer import VolunteerViewSet
 from .viewsets.change_log import ChangeLogViewSet
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
+
 
 router = DefaultRouter()
 
@@ -58,6 +64,7 @@ router.register(r'unidentified_bodies-with-mps', UnidentifiedBodyMatchWithMPsVie
 urlpatterns = [
     path('api/', include(router.urls)),
     path('api/users/', AuthAPIView.as_view(), name='user-auth'),
+    path("users/", UserListAPIView.as_view(), name="user-list"),
     path('reset-password/<str:reset_token>/', AuthAPIView.as_view(), name='reset-password-get'),
     path('reset-password/', AuthAPIView.as_view(), name='reset-password-post'),
     path("api/hospital-name-list/", HospitalListView.as_view(), name="hospital-list"),
@@ -79,6 +86,9 @@ urlpatterns = [
     path('api/educational_tags/', educationaltagAPIView.as_view(), name='educational-list-create'),
     path('api/occupation_tags/', occupationtagAPIView.as_view(), name='occupation-list-create'),
     path('api/case/<uuid:pk>/admin-retrieve/', RetrieveUnfilteredPersonView.as_view(), name='admin-retrieve-person'),
+path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
 
 ]
 

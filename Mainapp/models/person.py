@@ -298,6 +298,16 @@ class Person(models.Model):
     village = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True, db_index=True)
     district = models.CharField(max_length=50, blank=True, null=True, db_index=True)
+
+    def save(self, *args, **kwargs):
+        if self.village:
+            self.village = self.village.strip()
+        if self.city:
+            self.city = self.city.strip()
+        if self.district:
+            self.district = self.district.strip()
+        super().save(*args, **kwargs)
+
     state = models.CharField(max_length=50, choices=StateChoices.choices, db_index=True, blank=True, null=True)
     pincode = models.CharField(max_length=50, blank=True, null=True, db_index=True)
     country = models.CharField(max_length=50, help_text="Country code or ID", choices=CountryChoices.choices,

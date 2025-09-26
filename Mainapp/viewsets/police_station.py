@@ -29,6 +29,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated  # ✅ Imports
 
 
 
+import logging
+logger = logging.getLogger(__name__)
 
 class PoliceStationViewSet(viewsets.ModelViewSet):
     """
@@ -41,12 +43,15 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
 
     def get_permissions(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
+            logger.info("🔓 Public access request: %s %s", self.request.method, self.request.get_full_path())
             return [AllowAny()]  # Public access for safe methods
+        logger.info("🔒 Authenticated access request: %s %s", self.request.method, self.request.get_full_path())
         return [IsAuthenticated()]
 
 
         #  1. LIST Police Stations with Pagination
     def list(self, request):
+        logger.info("📌 LIST PoliceStations | Params: %s", request.query_params.dict())
         try:
             # Extract query parameters
             name = request.query_params.get('name', '').strip()
@@ -73,18 +78,23 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
             paginator = CustomPagination()
             paginated_queryset = paginator.paginate_queryset(queryset, request)
             serializer = PoliceStationSerializer(paginated_queryset, many=True)
+            logger.info("✅ LIST Response count: %d", len(serializer.data))
             return paginator.get_paginated_response(serializer.data)
 
         except Exception as e:
+            logger.error("❌ LIST Error: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     def retrieve(self, request, pk=None):
+        logger.info("📌 RETRIEVE PoliceStation ID=%s", pk)
         try:
             police_station = PoliceStation.objects.select_related('address').prefetch_related('police_contact').get(
                 pk=pk)
             serializer = self.get_serializer(police_station)
+            logger.info("✅ RETRIEVE Data: %s", serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except PoliceStation.DoesNotExist:
+            logger.warning("⚠️ PoliceStation ID=%s not found", pk)
             return Response({'error': 'Police station not found'}, status=status.HTTP_404_NOT_FOUND)
 
     #  2. RETRIEVE Police Station by ID
@@ -104,6 +114,8 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
     #  3. CREATE a new Police Station
 
     def create(self, request, *args, **kwargs):
+        logger.info("📌 CREATE Request Data: %s | FILES: %s", dict(request.data), request.FILES.keys())
+
         try:
             print("\n🔹 Received API Request Data:", request.data)  # Log incoming data
 
@@ -131,6 +143,7 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
                 #  Validate and create address
                 address_serializer = AddressSerializer(data=address_data)
                 if not address_serializer.is_valid():
+                    logger.warning("⚠️ Invalid Address Data: %s", address_serializer.errors)
                     return Response({"address": address_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
                 address = address_serializer.save()
@@ -170,13 +183,16 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
                 response_data['police_contact'] = ContactSerializer(police_station.police_contact.all(), many=True).data
 
                 print("\n Final Response Data:", response_data)
+                logger.info("✅ CREATED PoliceStation ID=%s", police_station.id)
                 return Response(response_data, status=status.HTTP_201_CREATED)
 
         except Exception as e:
+            logger.error("❌ CREATE Error: %s", str(e), exc_info=True)
             print("\n API Error:", str(e))
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     #  4. FULL UPDATE (PUT)
     def update(self, request, pk=None):
+
         return self._update_police_station(request, pk, partial=False)
 
     #  5. PARTIAL UPDATE (PATCH)
@@ -184,6 +200,8 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
         return self._update_police_station(request, pk, partial=True)
 
     def _update_police_station(self, request, pk, partial):
+        logger.info("📌 %s UPDATE PoliceStation ID=%s | Data: %s", "PARTIAL" if partial else "FULL", pk,
+                    dict(request.data))
         print(request.data)
         try:
             with transaction.atomic():
@@ -258,6 +276,7 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
                 # Main serializer
                 serializer = self.get_serializer(police_station, data=data, partial=partial)
                 if not serializer.is_valid():
+                    logger.warning("⚠️ Update Validation Errors: %s", serializer.errors)
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
                 instance = serializer.save()
@@ -298,21 +317,27 @@ class PoliceStationViewSet(viewsets.ModelViewSet):
                 response_data['police_contact'] = ContactSerializer(
                     instance.police_contact.all(), many=True
                 ).data
+                logger.info("✅ UPDATED PoliceStation ID=%s", pk)
 
                 return Response(response_data, status=status.HTTP_200_OK)
 
         except Exception as e:
+            logger.error("❌ UPDATE Error: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     # 6. DELETE Police Station
     def destroy(self, request, pk=None):
+        logger.info("📌 DELETE PoliceStation ID=%s", pk)
         try:
             police_station = get_object_or_404(PoliceStation, pk=pk)
             station_name = police_station.name
             police_station.delete()
+            logger.info("✅ DELETED PoliceStation ID=%s (%s)", pk, station_name)
             return Response({"message": f"Police station '{station_name}' is deleted successfully"}, status=status.HTTP_200_OK)
         except PoliceStation.DoesNotExist:
+            logger.warning("⚠️ PoliceStation ID=%s not found for delete", pk)
             return Response({"error": "Police station not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+            logger.error("❌ DELETE Error: %s", str(e), exc_info=True)
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
