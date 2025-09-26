@@ -323,3 +323,8 @@
 2025-09-26 15:22:30,900 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
 2025-09-26 15:22:30,905 [INFO] django.server - "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
 2025-09-26 15:24:53,017 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\authentication\user_authentication.py changed, reloading.
+2025-09-26 15:24:56,128 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:52:24,684 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:52:37,860 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\New_Backend\settings.py changed, reloading.
+2025-09-26 15:52:40,500 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:53:04,280 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\New_Backend\settings.py changed, reloading.
