@@ -321,3 +321,5 @@
 2025-09-26 15:22:30,518 [INFO] django.server - "GET /static/admin/js/filters.js HTTP/1.1" 200 978
 2025-09-26 15:22:30,535 [INFO] django.server - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
 2025-09-26 15:22:30,900 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+2025-09-26 15:22:30,905 [INFO] django.server - "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+2025-09-26 15:24:53,017 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\authentication\user_authentication.py changed, reloading.
