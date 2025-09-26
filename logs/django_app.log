@@ -280,3 +280,44 @@
 2025-09-26 10:12:34,867 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6)
 2025-09-26 10:12:34,868 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6
 2025-09-26 10:12:34,915 [INFO] django.server - "GET /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/ HTTP/1.1" 200 4039
+2025-09-26 15:17:48,083 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:18:58,598 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\New_Backend\settings.py changed, reloading.
+2025-09-26 15:19:00,836 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:19:59,205 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:20:34,446 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\matching_apis\match_missing_with_unidentified_body.py changed, reloading.
+2025-09-26 15:20:36,655 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:21:15,945 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-09-26 15:21:20,825 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:21:49,671 [INFO] django.utils.autoreload - C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-09-26 15:21:53,041 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-26 15:22:16,307 [WARNING] django.request - Not Found: /
+2025-09-26 15:22:16,309 [WARNING] django.server - "GET / HTTP/1.1" 404 10829
+2025-09-26 15:22:20,316 [WARNING] django.request - Not Found: /favicon.ico
+2025-09-26 15:22:20,318 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 10880
+2025-09-26 15:22:21,660 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 22007
+2025-09-26 15:22:22,579 [INFO] django.server - "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+2025-09-26 15:22:22,581 [INFO] django.server - "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+2025-09-26 15:22:22,698 [INFO] django.server - "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+2025-09-26 15:22:22,762 [INFO] django.server - "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+2025-09-26 15:22:22,774 [INFO] django.server - "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+2025-09-26 15:22:22,784 [INFO] django.server - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+2025-09-26 15:22:22,826 [INFO] django.server - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+2025-09-26 15:22:22,840 [INFO] django.server - "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+2025-09-26 15:22:22,843 [INFO] django.server - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+2025-09-26 15:22:22,846 [INFO] django.server - "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+2025-09-26 15:22:30,075 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 21371
+2025-09-26 15:22:30,205 [INFO] django.server - "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+2025-09-26 15:22:30,232 [INFO] django.server - "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+2025-09-26 15:22:30,267 [INFO] django.server - "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+2025-09-26 15:22:30,272 [INFO] django.server - "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+2025-09-26 15:22:30,279 [INFO] django.server - "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+2025-09-26 15:22:30,279 [INFO] django.server - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+2025-09-26 15:22:30,287 [INFO] django.server - "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+2025-09-26 15:22:30,394 [INFO] django.server - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+2025-09-26 15:22:30,419 [INFO] django.server - "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+2025-09-26 15:22:30,420 [INFO] django.server - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+2025-09-26 15:22:30,448 [INFO] django.server - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2025-09-26 15:22:30,458 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-26 15:22:30,518 [INFO] django.server - "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+2025-09-26 15:22:30,535 [INFO] django.server - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+2025-09-26 15:22:30,900 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331

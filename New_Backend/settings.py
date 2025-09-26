@@ -201,7 +201,7 @@ CORS_ALLOW_METHODS = [
     "OPTIONS"
 ]
 
-# Google Client ID (replace with your own)
+# Google Client ID
 GOOGLE_CLIENT_ID ='229838098661-qhi912b4egncp89tqeihbsddpb7mjbud.apps.googleusercontent.com'
 
 

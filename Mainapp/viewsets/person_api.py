@@ -544,10 +544,7 @@ class PersonViewSet(viewsets.ViewSet):
                 hospital_id = hospital_data.get('id') if isinstance(hospital_data, dict) else hospital_data
 
                 if hospital_data is None:
-<<<<<<< HEAD
-=======
                     logger.debug("Clearing hospital association")
->>>>>>> origin/dev
                     # If payload explicitly sent null → clear the hospital
                     person.hospital = None
                 else:
@@ -556,16 +553,11 @@ class PersonViewSet(viewsets.ViewSet):
                         if not person.hospital or str(person.hospital.id) != str(hospital_id):
                             try:
                                 person.hospital = Hospital.objects.get(id=hospital_id)
-<<<<<<< HEAD
-                            except Hospital.DoesNotExist:
-                                raise ValueError(f"Hospital with ID {hospital_id} does not exist")
-=======
                                 logger.debug(f"Updated hospital to: {person.hospital.name}")
                             except Hospital.DoesNotExist:
                                 logger.error(f"Hospital with ID {hospital_id} does not exist")
                                 raise ValueError(f"Hospital with ID {hospital_id} does not exist")
 
->>>>>>> origin/dev
 
                 # Update top-level fields - exclude photo_photo if it wasn't in the original data
                 person_data = {
@@ -748,15 +740,10 @@ class PersonViewSet(viewsets.ViewSet):
 
                                 doc_obj.save()
                                 existing_doc_ids.append(doc_id)
-<<<<<<< HEAD
-
-                            except Document.DoesNotExist:
-=======
                                 logger.debug(f"Updated document ID: {doc_id}")
 
                             except Document.DoesNotExist:
                                 logger.warning(f"Document with ID {doc_id} not found")
->>>>>>> origin/dev
                                 continue
 
                         # New document upload (only create if file is provided)
@@ -773,20 +760,6 @@ class PersonViewSet(viewsets.ViewSet):
                                     created_by=self.request.user
                                 )
                                 existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-                            # If no file but metadata exists, don't create empty document
-                            elif doc_data.get('document_type') or doc_data.get('description'):
-                                # Optional: Create document without file if metadata exists
-                                doc = Document.objects.create(
-                                    person_type="missing person",
-                                    document_type=doc_data.get('document_type', 'other'),
-                                    description=doc_data.get('description', ''),
-                                    last_known_detail=detail_obj,
-                                    created_by=self.request.user
-                                )
-                                existing_doc_ids.append(doc.id)
-
-=======
                                 logger.debug(f"Created new document ID: {doc.id}")
 
                             # If no file but metadata exists, don't create empty document
@@ -802,7 +775,6 @@ class PersonViewSet(viewsets.ViewSet):
                                 existing_doc_ids.append(doc.id)
                                 logger.debug(f"Created new document without file ID: {doc.id}")
 
->>>>>>> origin/dev
                     # Remove documents that are no longer in the list
                     detail_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
@@ -812,11 +784,8 @@ class PersonViewSet(viewsets.ViewSet):
             else:
                 # Create new last known detail with documents
                 detail_obj = LastKnownDetails.objects.create(person=person, **detail_data)
-<<<<<<< HEAD
-=======
                 logger.debug(f"Created new last known detail ID: {detail_obj.id}")
 
->>>>>>> origin/dev
                 # Handle document creation
                 existing_doc_ids = []
                 for doc_idx, doc_data in enumerate(documents_data):
@@ -832,11 +801,8 @@ class PersonViewSet(viewsets.ViewSet):
                             created_by=self.request.user
                         )
                         existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                         logger.debug(f"Created new document with file ID: {doc.id}")
 
->>>>>>> origin/dev
                     # Create document without file if only metadata is provided
                     elif doc_data.get('document_type') or doc_data.get('description'):
                         doc = Document.objects.create(
@@ -847,10 +813,7 @@ class PersonViewSet(viewsets.ViewSet):
                             created_by=self.request.user
                         )
                         existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                         logger.debug(f"Created new document without file ID: {doc.id}")
->>>>>>> origin/dev
 
     def _update_firs(self, person, firs_data):
         logger.debug(f"Updating {len(firs_data)} FIR records")
@@ -906,15 +869,10 @@ class PersonViewSet(viewsets.ViewSet):
 
                                 doc_obj.save()
                                 existing_doc_ids.append(doc_id)
-<<<<<<< HEAD
-
-                            except Document.DoesNotExist:
-=======
                                 logger.debug(f"Updated FIR document ID: {doc_id}")
 
                             except Document.DoesNotExist:
                                 logger.warning(f"FIR Document with ID {doc_id} not found")
->>>>>>> origin/dev
                                 continue
 
                         # New document upload (only create if file is provided)
@@ -931,10 +889,7 @@ class PersonViewSet(viewsets.ViewSet):
                                     created_by=self.request.user
                                 )
                                 existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                                 logger.debug(f"Created new FIR document ID: {doc.id}")
->>>>>>> origin/dev
                             # If no file but metadata exists, don't create empty document
                             elif doc_data.get('document_type') or doc_data.get('description'):
                                 # Optional: Create document without file if metadata exists
@@ -946,10 +901,7 @@ class PersonViewSet(viewsets.ViewSet):
                                     created_by=self.request.user
                                 )
                                 existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                                 logger.debug(f"Created new FIR document without file ID: {doc.id}")
->>>>>>> origin/dev
 
                     # Remove documents that are no longer in the list
                     fir_obj.documents.exclude(id__in=existing_doc_ids).delete()
@@ -960,10 +912,7 @@ class PersonViewSet(viewsets.ViewSet):
             else:
                 # Create new FIR with documents
                 fir_obj = FIR.objects.create(person=person, police_station=police_station, **fir_data)
-<<<<<<< HEAD
-=======
                 logger.debug(f"Created new FIR ID: {fir_obj.id}")
->>>>>>> origin/dev
                 # Handle document creation
                 existing_doc_ids = []
                 for doc_idx, doc_data in enumerate(documents_data):
@@ -979,10 +928,7 @@ class PersonViewSet(viewsets.ViewSet):
                             created_by=self.request.user
                         )
                         existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                         logger.debug(f"Created new FIR document with file ID: {doc.id}")
->>>>>>> origin/dev
                     # Create document without file if only metadata is provided
                     elif doc_data.get('document_type') or doc_data.get('description'):
                         doc = Document.objects.create(
@@ -993,10 +939,7 @@ class PersonViewSet(viewsets.ViewSet):
                             created_by=self.request.user
                         )
                         existing_doc_ids.append(doc.id)
-<<<<<<< HEAD
-=======
                         logger.debug(f"Created new FIR document without file ID: {doc.id}")
->>>>>>> origin/dev
 
     def _update_consents(self, person, consents_data):
         logger.debug(f"Updating {len(consents_data)} consent records")
@@ -1442,30 +1385,11 @@ class PersonViewSet(viewsets.ViewSet):
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} approved successfully")
 
-            # Extract reporter info safely
+            # Extract reporter info (assuming created_by is the reporter)
             reporter = person.created_by
-            if reporter:
-                reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-                reporter_email = reporter.email_id
-            else:
-                reporter_name = "Reporter not found"
-                reporter_email = None
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id  # This must be the reporter's email field
 
-<<<<<<< HEAD
-            # Send approval email only if reporter email exists
-            if reporter_email:
-                threading.Thread(
-                    target=send_case_approval_email,
-                    kwargs={
-                        'user_email': reporter_email,
-                        'reporter_name': reporter_name,
-                        'full_name': person.full_name,
-                        'case_id': person.case_id,
-                        'type': person.type,
-                        'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
-                    }
-                ).start()
-=======
             # Send approval email in the background
             threading.Thread(
                 target=send_case_approval_email,
@@ -1479,7 +1403,6 @@ class PersonViewSet(viewsets.ViewSet):
                 }
             ).start()
             logger.info("Approval email thread started")
->>>>>>> origin/dev
 
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
@@ -1560,21 +1483,13 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
-<<<<<<< HEAD
-=======
             logger.info(f"Person ID {pk} status changed from {previous_status} to {new_status}")
             reporter = person.created_by
             reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
             reporter_email = reporter.email_id
->>>>>>> origin/dev
 
-            # Safe reporter handling
-            reporter = person.created_by
-            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
-            reporter_email = getattr(reporter, 'email_id', None)
-
-            # Send email only if moved to Pending and reporter email exists
-            if reporter_email and new_status.lower() == 'pending':
+            # Send email only if moved to Pending
+            if new_status.lower() == 'pending':
                 reason = request.data.get(
                     'reason',
                     'The case has been moved back to pending review for further evaluation by the administration team.'
@@ -1613,49 +1528,39 @@ class PersonViewSet(viewsets.ViewSet):
             reason = request.data.get('reason')
 
             if not reason:
-<<<<<<< HEAD
-                return Response({'error': 'Reason is required to suspend a person'}, status=status.HTTP_400_BAD_REQUEST)
-=======
                 logger.warning("Reason is required to suspend a person")
                 return Response(
                     {'error': 'Reason is required to suspend a person'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
->>>>>>> origin/dev
 
             person.person_approve_status = 'suspended'
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
-
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} suspended with reason: {reason}")
 
-            # Safe reporter handling
             reporter = person.created_by
-            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
-            reporter_email = getattr(reporter, 'email_id', None)
+            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+            reporter_email = reporter.email_id
 
-            if reporter_email and person.person_approve_status.lower() == 'suspended':
+            if person.person_approve_status.lower() == 'suspended':
+                reason = request.data.get("reason")
                 threading.Thread(
                     target=send_case_to_suspend_email,
                     kwargs={
-                        'user_email': reporter_email,
-                        'reporter_name': reporter_name,
-                        'case_id': person.case_id,
-                        'reason': reason
+                        "user_email":reporter_email,
+                        "reporter_name":reporter_name,
+                        "case_id":person.case_id,
+                        "reason":reason
                     }
                 ).start()
-<<<<<<< HEAD
-
-=======
                 logger.info("Suspension email thread started")
->>>>>>> origin/dev
             return Response(
                 {'message': 'Person suspended successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
-
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for suspension")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
@@ -1673,16 +1578,11 @@ class PersonViewSet(viewsets.ViewSet):
             reason = request.data.get('reason')
 
             if not reason:
-<<<<<<< HEAD
-                return Response({'error': 'Reason is required to put a person on hold'},
-                                status=status.HTTP_400_BAD_REQUEST)
-=======
                 logger.warning("Reason is required to put a person on hold")
                 return Response(
                     {'error': 'Reason is required to put a person on hold'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
->>>>>>> origin/dev
 
             person.person_approve_status = 'on_hold'
             person.status_reason = reason
@@ -1690,39 +1590,27 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
 
             serializer = PersonSerializer(person)
-<<<<<<< HEAD
-=======
             logger.info(f"Person ID {pk} put on hold with reason: {reason}")
             reporter = person.created_by
             reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
             reporter_email = reporter.email_id
->>>>>>> origin/dev
 
-            # Safe reporter handling
-            reporter = person.created_by
-            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
-            reporter_email = getattr(reporter, 'email_id', None)
-
-            if reporter_email and person.person_approve_status.lower() == 'on_hold':
+            if person.person_approve_status.lower() == 'on_hold':
+                reason = request.data.get("reason")
                 threading.Thread(
                     target=send_case_to_hold_email,
                     kwargs={
-                        'user_email': reporter_email,
-                        'reporter_name': reporter_name,
-                        'case_id': person.case_id,
-                        'reason': reason
+                        "user_email": reporter_email,
+                        "reporter_name": reporter_name,
+                        "case_id": person.case_id,
+                        "reason": reason
                     }
                 ).start()
-<<<<<<< HEAD
-
-=======
                 logger.info("Hold email thread started")
->>>>>>> origin/dev
             return Response(
                 {'message': 'Person put on hold successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
-
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for hold")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)

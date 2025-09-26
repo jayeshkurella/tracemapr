@@ -355,11 +355,11 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
     # To confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-confirm')
     def match_confirm_up(self, request, pk=None):
-<<<<<<< HEAD
+
         print("data_________",request.data)
-=======
+
         logger.info(f"Confirming match for missing person ID: {pk}")
->>>>>>> origin/dev
+
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
         confirmed_from = request.data.get('confirmed_from')
@@ -451,13 +451,13 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
 
         try:
             # match = Missing_match_with_body.objects.get(match_id=match_id, missing_person_id=pk)
-<<<<<<< HEAD
+
             match = Missing_match_with_body.objects.filter(unidentified_bodies_id=matched_person,missing_person_id=pk).first()
 
-=======
+
             match = Missing_match_with_body.objects.filter(unidentified_body=matched_person,missing_person_id=pk).first()
             logger.debug(f"Found match record for UB: {matched_person}")
->>>>>>> origin/dev
+
             if match.match_type != 'confirmed':
                 logger.warning(
                     f"Attempted to unconfirm non-confirmed match: {match.match_id}, current status: {match.match_type}")
