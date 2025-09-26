@@ -1,0 +1,181 @@
+2025-09-15 09:19:39,452 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-15 10:13:57,482 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-15 10:13:57,494 [WARNING] django.request - Not Found: /media/All_Photos/missing_person_image.png
+2025-09-15 10:13:57,499 [WARNING] django.server - "GET //media/All_Photos/missing_person_image.png HTTP/1.1" 404 9271
+2025-09-15 10:14:00,826 [WARNING] django.request - Not Found: /media/All_Photos/missing_person_image.png
+2025-09-15 10:14:00,838 [WARNING] django.server - "GET //media/All_Photos/missing_person_image.png HTTP/1.1" 404 9271
+2025-09-15 10:14:00,967 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:14:01,117 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:14:01,207 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:14:01,252 [WARNING] django.request - Not Found: /media/All_Photos/mp4.png
+2025-09-15 10:14:01,350 [WARNING] django.request - Not Found: /media/All_Photos/mp_ovSSyuT.jpeg
+2025-09-15 10:14:01,380 [WARNING] django.server - "GET //media/All_Photos/mp4.png HTTP/1.1" 404 9203
+2025-09-15 10:14:01,386 [WARNING] django.request - Not Found: /media/All_Photos/Roshni-kumari-sha.jpg
+2025-09-15 10:14:01,465 [WARNING] django.server - "GET //media/All_Photos/mp_ovSSyuT.jpeg HTTP/1.1" 404 9235
+2025-09-15 10:14:01,476 [WARNING] django.request - Not Found: /media/All_Photos/mp_geECiIV.jpeg
+2025-09-15 10:14:01,476 [WARNING] django.server - "GET //media/All_Photos/Roshni-kumari-sha.jpg HTTP/1.1" 404 9259
+2025-09-15 10:14:01,495 [WARNING] django.server - "GET //media/All_Photos/mp_geECiIV.jpeg HTTP/1.1" 404 9235
+2025-09-15 10:14:01,507 [WARNING] django.request - Not Found: /media/All_Photos/mp_EOJypQm.jpeg
+2025-09-15 10:14:01,529 [WARNING] django.server - "GET //media/All_Photos/mp_EOJypQm.jpeg HTTP/1.1" 404 9235
+2025-09-15 10:14:02,250 [WARNING] django.request - Not Found: /media/All_Photos/mp_DNkeOBZ.jpeg
+2025-09-15 10:14:02,254 [WARNING] django.server - "GET //media/All_Photos/mp_DNkeOBZ.jpeg HTTP/1.1" 404 9235
+2025-09-15 10:14:02,270 [WARNING] django.request - Not Found: /media/All_Photos/mp_0f1KgA1.jpeg
+2025-09-15 10:14:02,284 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:14:02,572 [WARNING] django.server - "GET //media/All_Photos/mp_0f1KgA1.jpeg HTTP/1.1" 404 9235
+2025-09-15 10:14:02,629 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:14:02,636 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:14:02,651 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:02,656 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:14:02,683 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:02,686 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:14:02,717 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:14:02,773 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:14:16,583 [INFO] django.server - "OPTIONS //api/users/ HTTP/1.1" 200 0
+2025-09-15 10:14:19,268 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-15 10:14:19,270 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-09-15 10:14:19,346 [INFO] django.server - "POST //api/users/ HTTP/1.1" 200 595
+2025-09-15 10:14:19,669 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:14:19,673 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:14:19,704 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:14:19,935 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:14:19,969 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:14:19,972 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:14:19,973 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:19,979 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:14:19,980 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:20,003 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:14:20,070 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:14:20,236 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:14:20,322 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:14:20,428 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:14:20,440 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:14:20,455 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-15 10:14:20,680 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:14:20,727 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:14:20,733 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:14:20,735 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:20,746 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:14:20,749 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:20,751 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:14:20,754 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:14:20,771 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:14:26,179 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:14:26,184 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: missing_persons
+2025-09-15 10:14:26,185 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:14:26,186 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: missing_persons
+2025-09-15 10:14:26,200 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:14:26,190 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: missing_persons
+2025-09-15 10:14:26,223 [INFO] Mainapp.viewsets.person_api - MISSING PERSONS list request
+2025-09-15 10:14:26,248 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: missing_persons
+2025-09-15 10:14:26,253 [INFO] Mainapp.viewsets.person_api - Getting persons by type: Missing Person
+2025-09-15 10:14:26,318 [INFO] Mainapp.viewsets.person_api - MISSING PERSONS list request
+2025-09-15 10:14:26,327 [DEBUG] Mainapp.viewsets.person_api - Query parameters: {'state': ['Maharashtra'], 'case_status': ['resolved'], 'page': ['1'], 'page_size': ['10']}
+2025-09-15 10:14:26,328 [INFO] Mainapp.viewsets.person_api - Getting persons by type: Missing Person
+2025-09-15 10:14:26,355 [DEBUG] Mainapp.viewsets.person_api - Query parameters: {'state': ['Maharashtra'], 'case_status': ['pending'], 'page': ['1'], 'page_size': ['10']}
+2025-09-15 10:14:26,549 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:14:26,606 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:14:26,615 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:14:26,616 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:26,621 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:14:26,636 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:26,638 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:14:26,639 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:14:26,643 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:14:26,870 [DEBUG] Mainapp.viewsets.person_api - Filtered persons count: 2
+2025-09-15 10:14:26,871 [DEBUG] Mainapp.viewsets.person_api - Filtered persons count: 5
+2025-09-15 10:14:27,125 [INFO] Mainapp.viewsets.person_api - Returning paginated missing person (page size: 2)
+2025-09-15 10:14:27,129 [INFO] Mainapp.viewsets.person_api - Returning paginated missing person (page size: 5)
+2025-09-15 10:14:27,183 [INFO] django.server - "GET //api/persons/missing-persons/?state=Maharashtra&case_status=resolved&page=1&page_size=10 HTTP/1.1" 200 986
+2025-09-15 10:14:27,212 [INFO] django.server - "GET //api/persons/missing-persons/?state=Maharashtra&case_status=pending&page=1&page_size=10 HTTP/1.1" 200 1964
+2025-09-15 10:14:27,654 [INFO] django.server - "GET //media/All_Photos/output_2.png HTTP/1.1" 304 0
+2025-09-15 10:14:28,684 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-15 10:14:28,686 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-15 10:14:28,687 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-15 10:14:28,688 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-15 10:14:28,691 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: d34c7034-cf60-4985-9230-04f750c6ffc5 from user: AnonymousUser
+2025-09-15 10:14:28,691 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: d85ada94-6070-4159-802e-c13201e131ba from user: AnonymousUser
+2025-09-15 10:14:28,866 [WARNING] Mainapp.viewsets.person_api - Person with ID d85ada94-6070-4159-802e-c13201e131ba not found or not approved
+2025-09-15 10:14:28,869 [WARNING] django.request - Not Found: /api/persons/d85ada94-6070-4159-802e-c13201e131ba/
+2025-09-15 10:14:28,870 [WARNING] django.server - "GET //api/persons/d85ada94-6070-4159-802e-c13201e131ba/ HTTP/1.1" 404 28
+2025-09-15 10:14:29,154 [WARNING] Mainapp.viewsets.person_api - Person with ID d34c7034-cf60-4985-9230-04f750c6ffc5 not found or not approved
+2025-09-15 10:14:29,367 [WARNING] django.request - Not Found: /api/persons/d34c7034-cf60-4985-9230-04f750c6ffc5/
+2025-09-15 10:14:29,370 [WARNING] django.server - "GET //api/persons/d34c7034-cf60-4985-9230-04f750c6ffc5/ HTTP/1.1" 404 28
+2025-09-15 10:14:30,035 [DEBUG] Mainapp.matching_apis.missing_match_up - Allowing public access for 'retrieve' action
+2025-09-15 10:14:30,036 [INFO] Mainapp.matching_apis.missing_match_up - 🔹 Retrieving matches for MissingPerson ID: ac11801d-3e50-43e7-a9d9-68ddb866d4cc
+2025-09-15 10:14:30,296 [DEBUG] Mainapp.matching_apis.missing_match_up - Found Missing Person: ac11801d-3e50-43e7-a9d9-68ddb866d4cc
+2025-09-15 10:14:30,311 [DEBUG] Mainapp.matching_apis.missing_match_up - Previously matched UP IDs: []
+2025-09-15 10:14:30,318 [INFO] Mainapp.matching_apis.missing_match_up - Eligible UPs for matching: 2
+2025-09-15 10:14:30,343 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc and UP 0b2031e6-99d9-42f7-a48c-b664a46667af
+2025-09-15 10:14:30,348 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc vs UP 0b2031e6-99d9-42f7-a48c-b664a46667af: 0
+2025-09-15 10:14:30,354 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP 0b2031e6-99d9-42f7-a48c-b664a46667af due to 0 score
+2025-09-15 10:14:30,355 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:14:30,412 [DEBUG] Mainapp.matching_apis.missing_match_up - Gender mismatch between MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:14:30,413 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc vs UP a2a524ca-b7f4-4803-8a90-83ed212981f5: 0
+2025-09-15 10:14:30,415 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP a2a524ca-b7f4-4803-8a90-83ed212981f5 due to 0 score
+2025-09-15 10:14:30,419 [INFO] Mainapp.matching_apis.missing_match_up - Returning match response for MP ac11801d-3e50-43e7-a9d9-68ddb866d4cc
+2025-09-15 10:14:30,564 [INFO] django.server - "GET //api/missing-person-with-ups/ac11801d-3e50-43e7-a9d9-68ddb866d4cc/ HTTP/1.1" 200 4744
+2025-09-15 10:14:39,163 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:14:39,164 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:14:39,165 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:14:39,409 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:14:39,430 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:14:39,432 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:14:39,433 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:39,434 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:14:39,435 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:14:39,437 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:14:39,437 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:14:39,438 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:15:40,861 [DEBUG] Mainapp.matching_apis.missing_match_up - Allowing public access for 'retrieve' action
+2025-09-15 10:15:40,862 [INFO] Mainapp.matching_apis.missing_match_up - 🔹 Retrieving matches for MissingPerson ID: b44fe4e8-9755-4d87-aac4-97fe657aea59
+2025-09-15 10:15:41,266 [DEBUG] Mainapp.matching_apis.missing_match_up - Found Missing Person: b44fe4e8-9755-4d87-aac4-97fe657aea59
+2025-09-15 10:15:41,275 [DEBUG] Mainapp.matching_apis.missing_match_up - Previously matched UP IDs: []
+2025-09-15 10:15:41,285 [INFO] Mainapp.matching_apis.missing_match_up - Eligible UPs for matching: 2
+2025-09-15 10:15:41,294 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP b44fe4e8-9755-4d87-aac4-97fe657aea59 and UP 0b2031e6-99d9-42f7-a48c-b664a46667af
+2025-09-15 10:15:41,298 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP b44fe4e8-9755-4d87-aac4-97fe657aea59 vs UP 0b2031e6-99d9-42f7-a48c-b664a46667af: 0
+2025-09-15 10:15:41,300 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP 0b2031e6-99d9-42f7-a48c-b664a46667af due to 0 score
+2025-09-15 10:15:41,301 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP b44fe4e8-9755-4d87-aac4-97fe657aea59 and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:15:41,302 [DEBUG] Mainapp.matching_apis.missing_match_up - Gender mismatch between MP b44fe4e8-9755-4d87-aac4-97fe657aea59 and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:15:41,307 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP b44fe4e8-9755-4d87-aac4-97fe657aea59 vs UP a2a524ca-b7f4-4803-8a90-83ed212981f5: 0
+2025-09-15 10:15:41,308 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP a2a524ca-b7f4-4803-8a90-83ed212981f5 due to 0 score
+2025-09-15 10:15:41,313 [INFO] Mainapp.matching_apis.missing_match_up - Returning match response for MP b44fe4e8-9755-4d87-aac4-97fe657aea59
+2025-09-15 10:15:41,416 [INFO] django.server - "GET //api/missing-person-with-ups/b44fe4e8-9755-4d87-aac4-97fe657aea59/ HTTP/1.1" 200 4307
+2025-09-15 10:16:38,125 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:16:38,126 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:16:38,127 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:16:38,297 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:16:38,315 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:16:38,317 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:16:38,320 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:16:38,323 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:16:38,324 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:16:38,325 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:16:38,325 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:16:38,327 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-15 10:16:41,950 [DEBUG] Mainapp.matching_apis.missing_match_up - Allowing public access for 'retrieve' action
+2025-09-15 10:16:41,955 [INFO] Mainapp.matching_apis.missing_match_up - 🔹 Retrieving matches for MissingPerson ID: 240ec5ba-7423-407e-8bf9-e774237cb3fd
+2025-09-15 10:16:42,187 [DEBUG] Mainapp.matching_apis.missing_match_up - Found Missing Person: 240ec5ba-7423-407e-8bf9-e774237cb3fd
+2025-09-15 10:16:42,194 [DEBUG] Mainapp.matching_apis.missing_match_up - Previously matched UP IDs: []
+2025-09-15 10:16:42,199 [INFO] Mainapp.matching_apis.missing_match_up - Eligible UPs for matching: 2
+2025-09-15 10:16:42,208 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP 240ec5ba-7423-407e-8bf9-e774237cb3fd and UP 0b2031e6-99d9-42f7-a48c-b664a46667af
+2025-09-15 10:16:42,210 [DEBUG] Mainapp.matching_apis.missing_match_up - Gender mismatch between MP 240ec5ba-7423-407e-8bf9-e774237cb3fd and UP 0b2031e6-99d9-42f7-a48c-b664a46667af
+2025-09-15 10:16:42,211 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP 240ec5ba-7423-407e-8bf9-e774237cb3fd vs UP 0b2031e6-99d9-42f7-a48c-b664a46667af: 0
+2025-09-15 10:16:42,212 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP 0b2031e6-99d9-42f7-a48c-b664a46667af due to 0 score
+2025-09-15 10:16:42,213 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP 240ec5ba-7423-407e-8bf9-e774237cb3fd and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:16:42,214 [DEBUG] Mainapp.matching_apis.missing_match_up - Gender mismatch between MP 240ec5ba-7423-407e-8bf9-e774237cb3fd and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-15 10:16:42,214 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP 240ec5ba-7423-407e-8bf9-e774237cb3fd vs UP a2a524ca-b7f4-4803-8a90-83ed212981f5: 0
+2025-09-15 10:16:42,215 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP a2a524ca-b7f4-4803-8a90-83ed212981f5 due to 0 score
+2025-09-15 10:16:42,220 [INFO] Mainapp.matching_apis.missing_match_up - Returning match response for MP 240ec5ba-7423-407e-8bf9-e774237cb3fd
+2025-09-15 10:16:42,324 [INFO] django.server - "GET //api/missing-person-with-ups/240ec5ba-7423-407e-8bf9-e774237cb3fd/ HTTP/1.1" 200 4669
+2025-09-15 10:17:15,658 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-15 10:17:15,660 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-15 10:17:15,661 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-15 10:17:15,841 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-15 10:17:15,881 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-15 10:17:15,884 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-15 10:17:15,886 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:17:15,890 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-15 10:17:15,894 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-15 10:17:15,896 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-15 10:17:15,897 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-15 10:17:15,911 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36

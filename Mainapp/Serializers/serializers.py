@@ -143,6 +143,16 @@ class PersonSerializer(serializers.ModelSerializer):
         ordering = ['-created_at']
         fields = '__all__'
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        # strip leading/trailing spaces for specific fields
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+
+        return data
+
     def get_category(self, obj):
         if not obj.category:
             return []
@@ -183,6 +193,13 @@ class SearchSerializer(serializers.ModelSerializer):
     def get_missing_date(self, obj):
         last_known = obj.last_known_details.first()
         return last_known.missing_date if last_known else None
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+        return data
 
 
 class ApprovePersonSerializer(serializers.ModelSerializer):

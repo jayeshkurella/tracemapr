@@ -12,42 +12,53 @@ from Mainapp.models import Person
 from Mainapp.models.person_match_history import PersonMatchHistory
 from rest_framework.permissions import AllowAny ,IsAuthenticated
 
-
+import logging
+logger = logging.getLogger(__name__)
 
 
 class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
     def get_permissions(self):
         if self.action == 'retrieve':
+            logger.debug("Allowing public access for 'retrieve' action")
             return [AllowAny()]
+        logger.debug("Authenticated access required for action: %s", self.action)
         return [IsAuthenticated()]
 
     def retrieve(self, request, pk=None):
+        logger.info("🔹 Retrieving matches for MissingPerson ID: %s", pk)
         try:
             missing_person = Person.objects.get(
                 id=pk,
                 type='Missing Person',
                 person_approve_status='approved'
             )
+            logger.debug("Found Missing Person: %s", missing_person.id)
         except Person.DoesNotExist:
+            logger.warning("MissingPerson with ID %s not found or not approved", pk)
+
             return Response({"error": "Missing person not found."}, status=status.HTTP_404_NOT_FOUND)
 
         history_qs = PersonMatchHistory.objects.filter(missing_person=missing_person)
         previously_matched_ids = history_qs.values_list('unidentified_person_id', flat=True)
+        logger.debug("Previously matched UP IDs: %s", list(previously_matched_ids))
 
         eligible_ups = Person.objects.filter(
             type='Unidentified Person',
             person_approve_status='approved',
             case_status__in=['pending', 'matched']
         ).exclude(id__in=previously_matched_ids)
+        logger.info("Eligible UPs for matching: %d", eligible_ups.count())
 
         # Calculate scores and find matches
         newly_matched = []
         new_match_ids = set()
         for up in eligible_ups:
             score = self.calculate_match_score(missing_person, up)
+            logger.debug("Score for MP %s vs UP %s: %s", missing_person.id, up.id, score)
 
             # Skip if gender doesn't match (score will be 0)
             if score == 0:
+                logger.debug("Skipping UP %s due to 0 score", up.id)
                 continue
 
             created_by = request.user if request.user.is_authenticated else None
@@ -62,6 +73,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
                 created_by=created_by,
                 is_viewed=False,
             )
+            logger.info("Created Match Record: %s (Score: %d)", match_record.match_id, score)
 
             new_match_ids.add(match_record.id)
 
@@ -88,6 +100,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
             if (match.missing_person.gender and match.unidentified_person.gender and
                     match.missing_person.gender.lower() != match.unidentified_person.gender.lower()):
+                logger.debug("Skipping history match %s due to gender mismatch", match.match_id)
                 continue
 
             up_data = PersonSerializer(match.unidentified_person).data
@@ -116,6 +129,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         viewed.sort(key=lambda x: x['score'], reverse=True)
         rejected.sort(key=lambda x: x['score'], reverse=True)
         confirmed.sort(key=lambda x: x['score'], reverse=True)
+        logger.info("Returning match response for MP %s", missing_person.id)
 
         return Response({
             "newly_matched": newly_matched,
@@ -127,6 +141,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         })
 
     def calculate_match_score(self, mp, up):
+        logger.debug("Calculating match score between MP %s and UP %s", mp.id, up.id)
         score = 0
         gender_mismatch = False
 
@@ -134,6 +149,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         if mp.gender and up.gender:
             if mp.gender.lower() != up.gender.lower():
                 gender_mismatch = True
+                logger.debug("Gender mismatch between MP %s and UP %s", mp.id, up.id)
             else:
                 score += 25  # Gender match points
 
@@ -204,6 +220,36 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         if mp.distinctive_mark and up.distinctive_mark and mp.distinctive_mark.lower() == up.distinctive_mark.lower():
             score += 25
 
+        mp_ai = getattr(mp, "additional_info", None)
+        up_ai = getattr(up, "additional_info", None)
+
+        if mp_ai and up_ai:
+            if mp_ai.caste and up_ai.caste and mp_ai.caste == up_ai.caste:
+                score += 5
+            if mp_ai.subcaste and up_ai.subcaste and mp_ai.subcaste == up_ai.subcaste:
+                score += 5
+            if mp_ai.marital_status and up_ai.marital_status and mp_ai.marital_status == up_ai.marital_status:
+                score += 5
+            if mp_ai.religion and up_ai.religion and mp_ai.religion == up_ai.religion:
+                score += 5
+            if mp_ai.mother_tongue and up_ai.mother_tongue and mp_ai.mother_tongue == up_ai.mother_tongue:
+                score += 5
+
+            # Languages: partial overlap allowed
+            if mp_ai.other_known_languages and up_ai.other_known_languages:
+                mp_langs = {l.strip().lower() for l in mp_ai.other_known_languages.split(",")}
+                up_langs = {l.strip().lower() for l in up_ai.other_known_languages.split(",")}
+                if mp_langs.intersection(up_langs):
+                    score += 2.5
+
+            # Education / Occupation (basic equality check, could be enhanced with fuzzy matching)
+            if mp_ai.education_details and up_ai.education_details and mp_ai.education_details.lower() == up_ai.education_details.lower():
+                score += 1.5
+            if mp_ai.occupation_details and up_ai.occupation_details and mp_ai.occupation_details.lower() == up_ai.occupation_details.lower():
+                score += 1.5
+
+        logger.debug("Final score for MP %s vs UP %s: %s", mp.id, up.id, score)
+
         return min(score, 100)
 
     def _parse_height_range(self, height_range):
@@ -211,9 +257,11 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             min_h, max_h = map(int, height_range.split('-'))
             return min_h, max_h
         except (ValueError, AttributeError):
+            logger.warning("Invalid height_range format: %s", height_range)
             return None, None
 
     def _get_match_parameters(self, mp, up):
+        logger.debug("Getting match parameters for MP %s vs UP %s", mp.id, up.id)
         """
         Returns a dictionary of matching parameters for the history record
         """
@@ -242,13 +290,18 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
     @action(detail=True, methods=['post'], url_path='match-reject')
     def match_reject(self, request, pk=None):
+        logger.info(f"Starting match rejection for missing person ID: {pk}")
         match_id = request.data.get('match_id')
         reject_reason = request.data.get('reject_reason')
 
+        logger.debug(f"Request data - match_id: {match_id}, reject_reason: {reject_reason}")
+
         if not match_id:
+            logger.error("Match rejection failed: match_id is required")
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reject_reason:
+            logger.error("Match rejection failed: reject_reason is required")
             return Response({"error": "reject_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
@@ -256,6 +309,7 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             match = PersonMatchHistory.objects.get(match_id=match_id, missing_person_id=pk)
 
             if match.match_type in ['confirmed', 'rejected']:
+                logger.warning("Match %s already %s", match.match_id, match.match_type)
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
             match.match_type = 'rejected'
@@ -263,10 +317,12 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
             match.is_viewed = False
             match.updated_by = request.user
             match.save()
+            logger.info("Match %s rejected successfully", match.match_id)
 
             return Response({"message": "Match rejected successfully."}, status=status.HTTP_200_OK)
 
         except PersonMatchHistory.DoesNotExist:
+            logger.error("Match not found: ID %s", match_id)
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=True, methods=['post'], url_path='match-unreject')

@@ -14,26 +14,35 @@ from rest_framework.permissions import AllowAny ,IsAuthenticated
 
 
 
+import logging
+logger = logging.getLogger(__name__)
 
 class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
     def get_permissions(self):
+        logger.debug(f"Getting permissions for action: {self.action}")
         if self.action == 'retrieve':
+            logger.info("Allowing any permission for retrieve action")
             return [AllowAny()]
+        logger.info("Requiring authentication for this action")
         return [IsAuthenticated()]
 
     def retrieve(self, request, pk=None):
+        logger.info(f"Retrieving matches for unidentified person ID: {pk}")
         try:
             up = Person.objects.get(
                 id=pk,
                 type='Unidentified Person',
                 person_approve_status='approved'
             )
+            logger.debug(f"Found unidentified person: {up.id} - {up.case_id}")
         except Person.DoesNotExist:
+            logger.error(f"Unidentified person not found with ID: {pk}")
             return Response({"error": "Unidentified person not found."}, status=status.HTTP_404_NOT_FOUND)
 
         # Get history of MPs already seen for this UP
         history_qs = PersonMatchHistory.objects.filter(unidentified_person=up)
         previously_matched_ids = history_qs.values_list('missing_person_id', flat=True)
+        logger.debug(f"Found {len(previously_matched_ids)} previously matched records for UP {pk}")
 
         # Eligible MPs: approved, not already matched
         eligible_mps = Person.objects.filter(
@@ -41,14 +50,17 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             person_approve_status='approved',
             case_status__in=['pending', 'matched']
         ).exclude(id__in=previously_matched_ids)
+        logger.info(f"Found {eligible_mps.count()} eligible missing persons for matching")
 
         newly_matched = []
         new_match_ids = set()
 
         for mp in eligible_mps:
             score = self.calculate_match_score(mp, up)
+            logger.debug(f"Match score for UP {pk} and MP {mp.id}: {score}")
 
             if score == 0:
+                logger.debug(f"Skipping MP {mp.id} due to zero score")
                 continue
 
             created_by = request.user if request.user.is_authenticated else None
@@ -62,6 +74,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
                 created_by=created_by,
                 is_viewed=False,
             )
+            logger.info(f"Created match record {match_record.match_id} with score {score}")
 
             new_match_ids.add(match_record.id)
 
@@ -72,8 +85,10 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
                     'match_id': match_record.match_id,
                     'is_viewed': False
                 })
+                logger.debug(f"Added MP {mp.id} to newly matched list with score {score}")
 
         newly_matched.sort(key=lambda x: x['score'], reverse=True)
+        logger.info(f"Found {len(newly_matched)} new matches with score >= 50")
 
         # Categorize existing history (excluding newly created matches)
         previously_matched, viewed, rejected, confirmed = [], [], [], []
@@ -108,8 +123,13 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
                 confirmed.append(match_data)
 
         # Sort all
+        logger.debug(f"Categorized matches: {len(previously_matched)} previously matched, {len(viewed)} viewed, "
+                     f"{len(rejected)} rejected, {len(confirmed)} confirmed")
+
         for group in (previously_matched, viewed, rejected, confirmed):
             group.sort(key=lambda x: x['score'], reverse=True)
+
+        logger.info(f"Successfully retrieved all match data for UP {pk}")
 
         return Response({
             "newly_matched": newly_matched,
@@ -122,6 +142,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
 
 
     def calculate_match_score(self, mp, up):
+        logger.debug(f"Calculating match score between MP {mp.id} and UP {up.id}")
         score = 0
         gender_mismatch = False
 
@@ -129,11 +150,14 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
         if mp.gender and up.gender:
             if mp.gender.lower() != up.gender.lower():
                 gender_mismatch = True
+                logger.debug(f"Gender mismatch: MP={mp.gender}, UP={up.gender}")
             else:
                 score += 25  # Gender match points
+                logger.debug("Gender match: +25 points")
 
         # If gender doesn't match, return 0 immediately
         if gender_mismatch:
+            logger.debug("Returning 0 due to gender mismatch")
             return 0
 
         # Continue with other scoring criteria
@@ -199,6 +223,9 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
         if mp.distinctive_mark and up.distinctive_mark and mp.distinctive_mark.lower() == up.distinctive_mark.lower():
             score += 25
 
+        final_score = min(score, 100)
+        logger.debug(f"Final match score: {final_score}")
+
         return min(score, 100)
 
     def _parse_height_range(self, height_range):
@@ -206,9 +233,11 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             min_h, max_h = map(int, height_range.split('-'))
             return min_h, max_h
         except (ValueError, AttributeError):
+            logger.warning(f"Invalid height range format: {height_range}")
             return None, None
 
     def _get_match_parameters(self, mp, up):
+        logger.debug(f"Generating match parameters for MP {mp.id} and UP {up.id}")
         """
         Returns a dictionary of matching parameters for the history record
         """
@@ -237,13 +266,16 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
 
     @action(detail=False, methods=['post'], url_path='(?P<match_id>MATCH-[\\w-]+)/mark-viewed')
     def mark_as_viewed(self, request, match_id=None):
+        logger.info(f"Marking match as viewed: {match_id}")
         """Mark a single match record as viewed based on match_id in URL."""
         try:
             match = PersonMatchHistory.objects.get(match_id=match_id)
             match.is_viewed = True
             match.save()
+            logger.info(f"Successfully marked match as viewed: {match_id}")
             return Response("status changed successfully")
         except PersonMatchHistory.DoesNotExist:
+            logger.error(f"Match not found for mark as viewed: {match_id}")
             return Response(
                 {"detail": "Match not found."},
                 status=status.HTTP_404_NOT_FOUND
@@ -251,20 +283,25 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
 
     @action(detail=True, methods=['post'], url_path='match-reject')
     def match_reject(self, request, pk=None):
+        logger.info(f"Rejecting match for unidentified person ID: {pk}")
         match_id = request.data.get('match_id')
         reject_reason = request.data.get('reject_reason')
 
         if not match_id:
+            logger.warning("Match rejection attempted without match_id")
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reject_reason:
+            logger.warning(f"Match rejection attempted without reject_reason for match_id: {match_id}")
             return Response({"error": "reject_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             # Now, match_id is treated as a regular string, not UUID
             match = PersonMatchHistory.objects.get(match_id=match_id, unidentified_person_id=pk)
+            logger.debug(f"Found match record: {match_id}")
 
             if match.match_type in ['confirmed', 'rejected']:
+                logger.warning(f"Attempted to reject already {match.match_type} match: {match_id}")
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
             match.match_type = 'rejected'
@@ -272,32 +309,41 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             match.is_viewed = False
             match.updated_by = request.user
             match.save()
+            logger.info(f"Successfully rejected match: {match_id}")
 
             return Response({"message": "Match rejected successfully."}, status=status.HTTP_200_OK)
 
         except PersonMatchHistory.DoesNotExist:
+            logger.error(f"Match not found for rejection: {match_id}")
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     @action(detail=True, methods=['post'], url_path='match-unreject')
     def match_unreject(self, request, pk=None):
+        logger.info(f"Unrejecting match for unidentified person ID: {pk}")
         match_id = request.data.get('match_id')
         new_status = request.data.get('new_status', 'matched')
         unreject_reason = request.data.get('unreject_reason')
 
         if not match_id:
+            logger.warning("Match unrejection attempted without match_id")
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if new_status not in ['matched', 'potential']:
+            logger.warning(f"Invalid new_status for unrejection: {new_status}")
             return Response({"error": "Invalid new_status. Use 'matched' or 'potential'."},
                             status=status.HTTP_400_BAD_REQUEST)
 
         if not unreject_reason:
+            logger.warning(f"Match unrejection attempted without unreject_reason for match_id: {match_id}")
             return Response({"error": "unreject_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             match = PersonMatchHistory.objects.get(match_id=match_id, unidentified_person_id=pk)
+            logger.debug(f"Found match record: {match_id}")
 
             if match.match_type != 'rejected':
+                logger.warning(
+                    f"Attempted to unreject non-rejected match: {match_id}, current status: {match.match_type}")
                 return Response({"error": f"Match is not rejected. Current status is {match.match_type}."},
                                 status=status.HTTP_400_BAD_REQUEST)
 
@@ -307,26 +353,32 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             match.is_viewed = True
             match.updated_by = request.user
             match.save()
+            logger.info(f"Successfully unrejected match {match_id}, new status: {new_status}")
 
             return Response({"message": f"Match status reverted to '{new_status}' successfully."},
                             status=status.HTTP_200_OK)
 
         except PersonMatchHistory.DoesNotExist:
+            logger.error(f"Match not found for unrejection: {match_id}")
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     # To confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-confirm')
     def match_confirm(self, request, pk=None):
+        logger.info(f"Confirming match for unidentified person ID: {pk}")
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
 
         if not match_id:
+            logger.warning("Match confirmation attempted without match_id")
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             match = PersonMatchHistory.objects.get(match_id=match_id, unidentified_person_id=pk)
+            logger.debug(f"Found match record: {match_id}")
 
             if match.match_type in ['confirmed', 'rejected']:
+                logger.warning(f"Attempted to confirm already {match.match_type} match: {match_id}")
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
             # Update match record
@@ -336,6 +388,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             match.is_viewed = False
             match.updated_by = request.user
             match.save()
+            logger.debug(f"Updated match record: {match_id}")
 
             mp = match.missing_person
             up = match.unidentified_person
@@ -346,33 +399,42 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             mp.matched_person_id = up.id
             mp.matched_case_id = up.case_id
             mp.save()
+            logger.debug(f"Updated missing person case status: {mp.id}")
             up.case_status = 'resolved'
             up.match_with = 'Missing Person'
             up.matched_person_id = mp.id
             up.matched_case_id = mp.case_id
             up.updated_by = request.user
             up.save()
+            logger.debug(f"Updated unidentified person case status: {up.id}")
+            logger.info(f"Successfully confirmed match: {match_id}")
 
             return Response({"message": "Match confirmed successfully."}, status=status.HTTP_200_OK)
 
         except PersonMatchHistory.DoesNotExist:
+            logger.error(f"Match not found for confirmation: {match_id}")
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 
     # To un confirm the match between missing person and unidentified persons
     @action(detail=True, methods=['post'], url_path='match-unconfirm')
     def match_unconfirm(self, request, pk=None):
+        logger.info(f"Unconfirming match for unidentified person ID: {pk}")
+        logger.debug(f"Request data: {request.data}")
         print("data from api",request.data)
         new_status = request.data.get('new_status', 'matched')
         reason = request.data.get('unconfirm_reason')
         matched_person = request.data.get('matched_person_id')
 
         if not matched_person:
+            logger.warning("Match unconfirmation attempted without matched_person_id")
             return Response({"error": "Mising person id is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if not reason:
+            logger.warning(f"Match unconfirmation attempted without reason for MP: {matched_person}")
             return Response({"error": "unconfirm_reason is required."}, status=status.HTTP_400_BAD_REQUEST)
 
         if new_status not in ['matched', 'potential']:
+            logger.warning(f"Invalid new_status for unconfirmation: {new_status}")
             return Response({"error": "Invalid new_status. Use 'matched' or 'potential'."},
                             status=status.HTTP_400_BAD_REQUEST)
 
@@ -380,7 +442,13 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             match = PersonMatchHistory.objects.filter(missing_person=matched_person,unidentified_person_id=pk).first()
             print("current status",match.match_type)
             print("person id",match.unidentified_person)
+
+            logger.debug(f"Current match status: {match.match_type}")
+            logger.debug(f"Person ID: {match.unidentified_person}")
+
             if match.match_type != 'confirmed':
+                logger.warning(
+                    f"Attempted to unconfirm non-confirmed match: {match.match_id}, current status: {match.match_type}")
                 return Response({"error": f"Match is not confirmed. Current status is {match.match_type}."},
                                 status=status.HTTP_400_BAD_REQUEST)
 
@@ -390,6 +458,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             match.updated_by = request.user
             match.is_viewed = True
             match.save()
+            logger.debug(f"Updated match record: {match.match_id}")
 
             # Reset MP (missing person)
             mp = match.missing_person
@@ -398,6 +467,7 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             mp.matched_person_id = None
             mp.updated_by = request.user
             mp.save()
+            logger.debug(f"Reset missing person case status: {mp.id}")
 
             # Reset UP (unidentified person)
             up = match.unidentified_person
@@ -407,10 +477,14 @@ class UnidentifiedPersonMatchWithMPsViewSet(viewsets.ViewSet):
             up.updated_by = request.user
 
             up.save()
+            logger.debug(f"Reset unidentified person case status: {up.id}")
+
+            logger.info(f"Successfully unconfirmed match {match.match_id}, new status: {new_status}")
 
             return Response({"message": f"Match unconfirmed. Status reverted to '{new_status}'."},
                             status=status.HTTP_200_OK)
 
         except PersonMatchHistory.DoesNotExist:
+            logger.error(f"Match not found for unconfirmation with MP: {matched_person}")
             return Response({"error": "Match not found."}, status=status.HTTP_404_NOT_FOUND)
 

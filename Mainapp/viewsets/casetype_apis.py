@@ -14,12 +14,15 @@ from Mainapp.Serializers.serializers import ApprovePersonSerializer, PersonSeria
 from Mainapp.models import Person
 from Mainapp.all_paginations.approve_cases_pagination import StatusPagination
 
+import logging
+logger = logging.getLogger(__name__)
 
 class BasePersonListView(generics.ListAPIView):
     serializer_class = ApprovePersonSerializer
     pagination_class = StatusPagination
 
     def get_queryset(self):
+        logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
         queryset = Person.objects.all().order_by('-created_at','updated_at')
 
         # Get filter parameters
@@ -32,23 +35,29 @@ class BasePersonListView(generics.ListAPIView):
 
         # If case_id is provided, ignore all other filters and return exact match
         if case_id:
+            logger.debug("Filtering by case_id: %s", case_id)
             return queryset.filter(case_id__iexact=case_id)
 
         # Otherwise, apply normal filters
         filters = Q()
         if state:
+            logger.debug("Applying filter: state=%s", state)
             filters &= Q(state__iexact=state)
         if district:
+            logger.debug("Applying filter: district=%s", district)
             filters &= Q(district__iexact=district)
         if city:
+            logger.debug("Applying filter: city=%s", city)
             filters &= Q(city__iexact=city)
         if village:
+            logger.debug("Applying filter: village=%s", village)
             filters &= Q(village__iexact=village)
         if police_station:
             try:
                 filters &= Q(firs__police_station__id=UUID(police_station))
+                logger.debug("Filtering by police_station UUID=%s", police_station)
             except ValueError:
-                pass
+                logger.warning("Invalid police_station UUID: %s", police_station)
 
         return queryset.filter(filters)
 

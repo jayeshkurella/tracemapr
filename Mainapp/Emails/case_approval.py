@@ -9,12 +9,18 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 
 from New_Backend import settings
-
+import logging
+logger = logging.getLogger(__name__)
 
 def send_case_approval_email(user_email,reporter_name, full_name, case_id,type, approved_at):
+    logger.info(f"Preparing to send case approval email for case ID: {case_id} to {user_email}")
+    logger.debug(f"Email parameters - Reporter: {reporter_name}, Full Name: {full_name}, "
+                 f"Case ID: {case_id}, Type: {type}, Approved At: {approved_at}")
+
     subject = f"Your Case {case_id} Has Been Approved"
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = [user_email]
+    logger.debug(f"Email details - Subject: {subject}, From: {from_email}, To: {to_email}")
 
     # Plain text version (for email clients that don't support HTML)
     text_content = f"""

@@ -20,8 +20,9 @@ from rest_framework import generics
 import json
 from django.contrib.gis.geos import Point, GEOSGeometry, GEOSException
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
-
+import logging
+# from Mainapp.access_permision import HasFeaturePermission, FeatureChoices
+logger = logging.getLogger(__name__)
 class HospitalViewSet(viewsets.ModelViewSet):
     """
     API Endpoints for Hospital Management
@@ -30,21 +31,42 @@ class HospitalViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     queryset = Hospital.objects.all()
 
+    # feature_map = {
+    #     "create": FeatureChoices.MANAGE_HOSPITAL,
+    #     "update": FeatureChoices.MANAGE_HOSPITAL,
+    #     "partial_update": FeatureChoices.MANAGE_HOSPITAL,
+    #     "destroy": FeatureChoices.MANAGE_HOSPITAL,
+    #     # list/retrieve not included -> considered public
+    # }
+
+
+
+
     def get_permissions(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
+            logger.debug("Public access method detected: %s", self.request.method)
             return [AllowAny()]
+        logger.debug("Authenticated access method detected: %s", self.request.method)
+
+        # return [IsAuthenticated(),HasFeaturePermission()]
         return [IsAuthenticated()]
 
     # 1. LIST Hospitals with Pagination
 
     def list(self, request):
         try:
+            logger.info("Fetching hospital list with filters")
             name = request.query_params.get('name', '').strip()
             city = request.query_params.get('city', '').strip()
             district = request.query_params.get('district', '').strip()
             state = request.query_params.get('state', '').strip()
             hospital_type = request.query_params.get('type', '').strip()
             status_filter = request.query_params.get('status', '').strip()
+
+            logger.debug(
+                "Filters received -> name: %s, city: %s, district: %s, state: %s, type: %s, status: %s",
+                name, city, district, state, hospital_type, status_filter
+            )
 
             filters = Q()
             if name:
@@ -63,12 +85,17 @@ class HospitalViewSet(viewsets.ModelViewSet):
             queryset = Hospital.objects.select_related('address').prefetch_related('hospital_contact').filter(
                 filters).order_by('name')
 
+            logger.info("Query executed successfully. Total records found: %s", queryset.count())
+
             paginator = CustomPagination()
             paginated_queryset = paginator.paginate_queryset(queryset, request)
             serializer = HospitalSerializer(paginated_queryset, many=True)
+
+            logger.debug("Paginated response prepared with %s records", len(serializer.data))
             return paginator.get_paginated_response(serializer.data)
 
         except Exception as e:
+            logger.error("Error while fetching hospital list: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     # def list(self, request):
@@ -164,18 +191,26 @@ class HospitalViewSet(viewsets.ModelViewSet):
     #         return Response({'error': 'Hospital not found'}, status=status.HTTP_404_NOT_FOUND)
     def retrieve(self, request, pk=None):
         try:
+            logger.info("Hospital RETRIEVE API called for ID=%s", pk)
             # Directly fetch from the database without using cache
             hospital = Hospital.objects.select_related('address').prefetch_related('hospital_contact').get(pk=pk)
 
             # Serialize the data
             serializer = self.get_serializer(hospital)
+            logger.debug("Retrieved hospital data: %s", serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)
 
         except Hospital.DoesNotExist:
+            logger.warning("Hospital with ID=%s not found", pk)
             return Response({'error': 'Hospital not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            logger.error("Error in Hospital RETRIEVE: %s", str(e), exc_info=True)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     #  3. CREATE a new Hospital
     def create(self, request, *args, **kwargs):
+        logger.info("Hospital CREATE API called with data: %s", request.data)
         try:
             print("\n Received API Request Data:", request.data)
 
@@ -193,6 +228,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 address_data = request.data.get("address")
                 if not address_data:
+                    logger.warning("CREATE failed: Address missing")
                     return Response({"error": "Address is required"}, status=status.HTTP_400_BAD_REQUEST)
 
                 if isinstance(address_data, str):
@@ -211,6 +247,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
                                 status=status.HTTP_400_BAD_REQUEST
                             )
                     else:
+                        logger.warning("CREATE failed: Latitude/Longitude missing")
                         return Response(
                             {"error": "Latitude and Longitude cannot be empty."},
                             status=status.HTTP_400_BAD_REQUEST
@@ -218,6 +255,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 address_serializer = AddressSerializer(data=address_data)
                 if not address_serializer.is_valid():
+                    logger.warning("Invalid Address Data: %s", address_serializer.errors)
                     return Response({"address": address_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
                 address = address_serializer.save()
@@ -230,6 +268,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 contacts_data = request.data.get("hospital_contact", "[]")
                 if isinstance(contacts_data, str):
+
                     contacts_data = json.loads(contacts_data)
 
                 hospital_serializer = self.get_serializer(data=hospital_data)
@@ -250,9 +289,11 @@ class HospitalViewSet(viewsets.ModelViewSet):
                 response_data['hospital_contact'] = ContactSerializer(hospital.hospital_contact.all(), many=True).data
 
                 print("\n Final Response Data:", response_data)
+                logger.info("Hospital created successfully with ID=%s", hospital.id)
                 return Response(response_data, status=status.HTTP_201_CREATED)
 
         except Exception as e:
+            logger.error("Error in Hospital CREATE: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     # 4. FULL UPDATE (PUT)
@@ -264,6 +305,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
         return self._update_hospital(request, pk, partial=True)
 
     def _update_hospital(self, request, pk, partial):
+        logger.info("Hospital UPDATE API called for ID=%s with data: %s", pk, request.data)
         print(request.data)
         try:
             with transaction.atomic():
@@ -290,6 +332,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
                                 try:
                                     data[field] = ast.literal_eval(data[field])
                                 except Exception as e:
+                                    logger.warning("Invalid JSON for field %s: %s", field, str(e))
                                     return Response(
                                         {"error": f"Invalid {field} format: {str(e)}"},
                                         status=status.HTTP_400_BAD_REQUEST
@@ -326,6 +369,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
                         partial=partial
                     )
                     if not address_serializer.is_valid():
+                        logger.warning("Invalid Address Data: %s", address_serializer.errors)
                         return Response(
                             {"address": address_serializer.errors},
                             status=status.HTTP_400_BAD_REQUEST
@@ -336,6 +380,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
                 # Main serializer
                 serializer = self.get_serializer(hospital, data=data, partial=partial)
                 if not serializer.is_valid():
+                    logger.warning("Invalid Hospital Data: %s", serializer.errors)
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
                 instance = serializer.save()
@@ -377,21 +422,29 @@ class HospitalViewSet(viewsets.ModelViewSet):
                     instance.hospital_contact.all(), many=True
                 ).data
 
+                logger.info("Hospital updated successfully: ID=%s", instance.id)
+                logger.debug("Updated hospital data: %s", response_data)
+
                 return Response(response_data, status=status.HTTP_200_OK)
 
         except Exception as e:
+            logger.error("Error in Hospital UPDATE: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     #  6. DELETE Hospital
     def destroy(self, request, pk=None):
+        logger.info("Hospital DELETE API called for ID=%s", pk)
         try:
             hospital = get_object_or_404(Hospital, pk=pk)
             hospital_name = hospital.name
             hospital.delete()
+            logger.info("Hospital deleted successfully: %s", hospital_name)
             return Response({"message": f"Hospital '{hospital_name}' is deleted successfully"},
                             status=status.HTTP_200_OK)
         except Hospital.DoesNotExist:
+            logger.warning("Hospital not found for delete: ID=%s", pk)
             return Response({"error": "Hospital not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+            logger.error("Error in Hospital DELETE: %s", str(e), exc_info=True)
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
 
