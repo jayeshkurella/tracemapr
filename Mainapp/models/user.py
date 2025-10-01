@@ -69,6 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ADMIN = "admin", "Admin"
         POLICE_STATION = "police_station", "Police Station"
         MEDICAL_STAFF = "medical_staff", "Medical Staff"
+        ANONYMOUS = "anonymous","ANONYMOUS"
 
     class FamilySubTypeChoices(models.TextChoices):
         FATHER = "father", "Father"

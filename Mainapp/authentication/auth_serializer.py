@@ -46,19 +46,24 @@ class UserSerializer(serializers.ModelSerializer):
         3. Default avatar (fallback)
         """
         logger.debug(f"Getting profile image for user ID: {obj.id}")
+
         if obj.picture:
             logger.debug(f"Using Google picture for user {obj.id}: {obj.picture}")
             return obj.picture  # Google users' picture
+
         if obj.profile_image_upload:
             request = self.context.get('request')
             if request:
+                url = request.build_absolute_uri(obj.profile_image_upload.url)
                 logger.debug(f"Using uploaded profile image with absolute URL for user {obj.id}: {url}")
-                return request.build_absolute_uri(obj.profile_image_upload.url)
-            logger.debug(f"Using uploaded profile image for user {obj.id}: {url}")
-            return obj.profile_image_upload.url  # Form users with uploaded image
+                return url
+            else:
+                url = obj.profile_image_upload.url
+                logger.debug(f"Using uploaded profile image for user {obj.id}: {url}")
+                return url  # Form users with uploaded image
+
         logger.debug(f"Using default avatar for user {obj.id}")
         return '/static/images/default-avatar.png'  # Default fallback
-
 
 
 class AuthSerializer(serializers.Serializer):

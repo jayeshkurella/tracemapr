@@ -321,7 +321,12 @@ class Person(models.Model):
     approved_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='approved_persons')
     modified_at = models.DateTimeField(auto_now=True)
     status_reason = models.TextField(blank=True, null=True, help_text="Reason for suspension or hold")
-
+    matched_case_id = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text="Case ID of the matched person or entity"
+    )
     match_entity_id = models.UUIDField(
         blank=True,
         null=True,
@@ -344,8 +349,25 @@ class Person(models.Model):
     max_length=50,
     blank=True,
     null=True,
-    help_text="Case ID of the matched person or entity"
-)
+    help_text="Case ID of the matched person or entity")
+
+    # in your Match or Confirmation model
+    confirmed_from = models.CharField(
+        max_length=20,
+        choices=[
+            ("MPtoUP", "Missing Person → Unidentified Person"),
+            ("MPtoUB", "Missing Person → Unidentified Body"),
+            ("UPtoMP", "Unidentified Person → Missing Person"),
+            ("UBtoMP", "Unidentified Body → Missing Person"),
+        ],
+        null=True,
+        blank=True,
+        help_text=(
+            "Indicates whether the confirmation was initiated from "
+            "Missing Person, Unidentified Person, or Unidentified Body section"
+        ),
+    )
+
     # below fields for the DNA and mental
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
@@ -365,6 +387,7 @@ class Person(models.Model):
         null=True,
         blank=True
     )
+
 
     def save(self, *args, **kwargs):
         if not self.case_id:

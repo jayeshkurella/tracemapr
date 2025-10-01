@@ -177,6 +177,7 @@ class PersonSerializer(serializers.ModelSerializer):
         except (ValueError, SyntaxError):
             return [x.strip(" '\"") for x in obj.specific_reason.split(',') if x.strip()]
 
+
 # short data for search section component
 class SearchSerializer(serializers.ModelSerializer):
     missing_date = serializers.SerializerMethodField()
@@ -187,8 +188,15 @@ class SearchSerializer(serializers.ModelSerializer):
         fields = [
             'type', 'case_status', 'id', 'full_name', 'age', 'age_range',
             'city', 'village', 'state', 'gender', 'photo_photo',
-            'date_reported', 'missing_date','matched_person_id'
+            'date_reported', 'missing_date','matched_person_id','confirmed_from'
         ]
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+        return data
 
     def get_missing_date(self, obj):
         last_known = obj.last_known_details.first()

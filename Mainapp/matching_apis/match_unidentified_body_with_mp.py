@@ -359,10 +359,15 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
         logger.info(f"Confirming match for unidentified body ID: {pk}")
         match_id = request.data.get('match_id')
         confirmation_note = request.data.get('confirmation_note', '')
+        confirmed_from = request.data.get('confirmed_from')
 
         if not match_id:
             logger.warning("Match confirmation attempted without match_id")
             return Response({"error": "match_id is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # if not confirmed_from or confirmed_from not in ["MP", "UP", "UB"]:
+        #     return Response({"error": "confirmed_from is required (MP/UP/UB)."}, status=status.HTTP_400_BAD_REQUEST)
+
 
         try:
             match = Missing_match_with_body.objects.get(match_id=match_id, unidentified_bodies_id=pk)
@@ -372,6 +377,15 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
                 logger.warning(f"Attempted to confirm already {match.match_type} match: {match_id}")
                 return Response({"error": f"Match already {match.match_type}."}, status=status.HTTP_400_BAD_REQUEST)
 
+            if match.missing_person.case_status == 'resolved':
+                return Response(
+                    {"error": "This Missing Person is already resolved with another Unidentified Body."},
+                    status=status.HTTP_400_BAD_REQUEST)
+
+            if match.unidentified_bodies.case_status == 'resolved':
+                return Response(
+                    {"error": "This Unidentified Body is already resolved with another Missing Person."},
+                    status=status.HTTP_400_BAD_REQUEST)
             # ubdate match record
             match.match_type = 'confirmed'
             match.confirmation_note = confirmation_note
@@ -387,15 +401,19 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
             mp.case_status = 'resolved'
             mp.updated_by = request.user
             mp.match_with = 'Unidentified Body'
+            mp.matched_case_id = ub.case_id
             mp.matched_person_id = ub.id
             mp.matched_case_id = ub.case_id
+            mp.confirmed_from = confirmed_from
             mp.save()
             logger.debug(f"Updated missing person case status: {mp.id}")
             ub.case_status = 'resolved'
             ub.match_with = 'Missing Person'
+            ub.matched_case_id = mp.case_id
             ub.matched_person_id = mp.id
             ub.matched_case_id = mp.case_id
             ub.updated_by = request.user
+            ub.confirmed_from = confirmed_from
             ub.save()
             logger.debug(f"Updated unidentified body case status: {ub.id}")
             logger.info(f"Successfully confirmed match: {match_id}")
@@ -451,7 +469,9 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
             mp.case_status = 'pending'
             mp.match_with = None
             mp.matched_person_id = None
+            mp.matched_case_id = None
             mp.updated_by = request.user
+            mp.confirmed_from = None
             mp.save()
             logger.debug(f"Reset missing person case status: {mp.id}")
 
@@ -459,7 +479,9 @@ class UnidentifiedBodyMatchWithMPsViewSet(viewsets.ViewSet):
             ub = match.unidentified_bodies
             ub.case_status = 'pending'
             ub.match_with = None
+            ub.matched_case_id = None
             ub.matched_person_id = None
+            ub.confirmed_from = None
             ub.updated_by = request.user
 
             ub.save()
