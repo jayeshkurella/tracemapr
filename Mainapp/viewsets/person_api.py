@@ -533,7 +533,7 @@ class PersonViewSet(viewsets.ViewSet):
                     # New photo uploaded - use it
                     data['photo_photo'] = new_photo
                 elif hasattr(person, 'photo_photo') and person.photo_photo:
-                    ogger.debug("Keeping existing photo")
+                    logger.debug("Keeping existing photo")
                     # Keep existing photo if no new one was uploaded
                     data['photo_photo'] = person.photo_photo.name  # This gives the proper media path
                 else:

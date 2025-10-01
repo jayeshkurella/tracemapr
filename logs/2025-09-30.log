@@ -1,0 +1,227 @@
+2025-09-29 11:53:18,163 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-29 11:54:29,843 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-29 11:54:42,258 [WARNING] django.request - Not Found: /
+2025-09-29 11:54:42,260 [WARNING] django.server - "GET / HTTP/1.1" 404 10829
+2025-09-29 11:54:45,192 [WARNING] django.request - Not Found: /favicon.ico
+2025-09-29 11:54:45,194 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 10880
+2025-09-29 11:57:34,571 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:57:34,574 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:57:34,575 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:57:35,075 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:57:35,161 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:57:35,167 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:57:35,168 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:57:35,170 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:57:35,171 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:57:35,173 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:57:35,174 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:57:35,183 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:57:35,308 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:57:35,311 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:57:35,361 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:57:35,576 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-29 11:57:35,779 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:57:35,829 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:57:35,834 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:57:35,835 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:57:35,839 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:57:35,841 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:57:35,843 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:57:35,844 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:57:35,849 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:58:12,004 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 22055
+2025-09-29 11:58:17,175 [INFO] django.server - "GET /admin/Mainapp/person/ HTTP/1.1" 200 124351
+2025-09-29 11:58:17,518 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-29 11:58:17,990 [INFO] django.server - "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+2025-09-29 11:58:22,383 [ERROR] django.contrib.gis - GDAL_ERROR 1: b'PROJ: proj_create_from_database: Cannot find proj.db'
+2025-09-29 11:58:22,809 [INFO] django.server - "GET /admin/Mainapp/person/bff56490-dcca-4860-b910-cf22645bcae1/change/ HTTP/1.1" 200 65990
+2025-09-29 11:58:22,988 [INFO] django.server - "GET /static/leaflet/leaflet_django.css HTTP/1.1" 200 251
+2025-09-29 11:58:22,995 [INFO] django.server - "GET /static/leaflet/leaflet.css HTTP/1.1" 200 14657
+2025-09-29 11:58:23,016 [INFO] django.server - "GET /static/leaflet/draw/leaflet.draw.css HTTP/1.1" 200 5267
+2025-09-29 11:58:23,115 [INFO] django.server - "GET /static/leaflet/draw/leaflet.draw.i18n.js HTTP/1.1" 200 4297
+2025-09-29 11:58:23,142 [INFO] django.server - "GET /static/leaflet/draw/leaflet.draw.js HTTP/1.1" 200 67484
+2025-09-29 11:58:23,152 [INFO] django.server - "GET /static/leaflet/leaflet.extras.js HTTP/1.1" 200 9038
+2025-09-29 11:58:23,156 [INFO] django.server - "GET /static/leaflet/leaflet.forms.js HTTP/1.1" 200 9776
+2025-09-29 11:58:23,206 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-29 11:58:23,257 [INFO] django.server - "GET /static/leaflet/leaflet.js HTTP/1.1" 200 146715
+2025-09-29 11:58:23,635 [INFO] django.server - "GET /static/leaflet/images/marker-icon.png HTTP/1.1" 200 1466
+2025-09-29 11:58:23,666 [INFO] django.server - "GET /static/leaflet/images/marker-shadow.png HTTP/1.1" 200 618
+2025-09-29 11:58:23,668 [INFO] django.server - "GET /static/leaflet/images/marker-icon-2x.png HTTP/1.1" 200 2464
+2025-09-29 11:58:23,685 [INFO] django.server - "GET /static/leaflet/draw/images/spritesheet.svg HTTP/1.1" 200 5551
+2025-09-29 11:58:27,815 [INFO] django.server - "POST /admin/Mainapp/person/bff56490-dcca-4860-b910-cf22645bcae1/change/ HTTP/1.1" 302 0
+2025-09-29 11:58:28,851 [INFO] django.server - "GET /admin/Mainapp/person/ HTTP/1.1" 200 124610
+2025-09-29 11:58:29,181 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-29 11:58:34,726 [ERROR] django.contrib.gis - GDAL_ERROR 1: b'PROJ: proj_create_from_database: Cannot find proj.db'
+2025-09-29 11:58:34,780 [INFO] django.server - "GET /admin/Mainapp/person/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/change/ HTTP/1.1" 200 65961
+2025-09-29 11:58:35,104 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-29 11:58:38,919 [INFO] django.server - "POST /admin/Mainapp/person/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/change/ HTTP/1.1" 302 0
+2025-09-29 11:58:40,058 [INFO] django.server - "GET /admin/Mainapp/person/ HTTP/1.1" 200 124610
+2025-09-29 11:58:40,303 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-09-29 11:58:45,679 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:58:45,681 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:58:45,682 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:58:45,885 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:58:45,931 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:58:45,936 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:58:45,937 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:58:45,940 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:58:45,941 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:58:45,942 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:58:45,942 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:58:45,944 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:58:46,482 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-29 11:58:46,557 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:58:46,558 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:58:46,562 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:58:46,851 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:58:46,911 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:58:46,917 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:58:46,918 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:58:46,922 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:58:46,924 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:58:46,925 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:58:46,928 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:58:46,931 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:58:47,343 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:58:47,344 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:58:47,345 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:58:47,346 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:58:47,347 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: bff56490-dcca-4860-b910-cf22645bcae1 from user: AnonymousUser
+2025-09-29 11:58:47,349 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2 from user: AnonymousUser
+2025-09-29 11:58:47,814 [DEBUG] Mainapp.viewsets.person_api - Found person: Amit varma (ID: bff56490-dcca-4860-b910-cf22645bcae1)
+2025-09-29 11:58:47,815 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2)
+2025-09-29 11:58:47,816 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bff56490-dcca-4860-b910-cf22645bcae1
+2025-09-29 11:58:47,817 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2
+2025-09-29 11:58:47,875 [INFO] django.server - "GET //api/persons/bff56490-dcca-4860-b910-cf22645bcae1/ HTTP/1.1" 200 3751
+2025-09-29 11:58:47,876 [INFO] django.server - "GET //api/persons/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/ HTTP/1.1" 200 3314
+2025-09-29 11:59:08,107 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:59:08,107 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:59:08,109 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:59:08,289 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:59:08,333 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:59:08,337 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:59:08,339 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:59:08,343 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:59:08,345 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:59:08,347 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:59:08,348 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:59:08,351 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:59:08,694 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:59:08,697 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:59:08,701 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:59:08,964 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-29 11:59:08,970 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:59:09,019 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:59:09,025 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:59:09,026 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:59:09,032 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:59:09,033 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:59:09,035 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:59:09,035 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:59:09,037 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:59:09,540 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:09,543 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:09,543 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:09,545 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:09,547 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: bff56490-dcca-4860-b910-cf22645bcae1 from user: AnonymousUser
+2025-09-29 11:59:09,549 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2 from user: AnonymousUser
+2025-09-29 11:59:09,915 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2)
+2025-09-29 11:59:09,916 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2
+2025-09-29 11:59:09,933 [DEBUG] Mainapp.viewsets.person_api - Found person: Amit varma (ID: bff56490-dcca-4860-b910-cf22645bcae1)
+2025-09-29 11:59:09,934 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bff56490-dcca-4860-b910-cf22645bcae1
+2025-09-29 11:59:09,964 [INFO] django.server - "GET //api/persons/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/ HTTP/1.1" 200 3314
+2025-09-29 11:59:09,986 [INFO] django.server - "GET //api/persons/bff56490-dcca-4860-b910-cf22645bcae1/ HTTP/1.1" 200 3751
+2025-09-29 11:59:35,514 [INFO] django.server - "OPTIONS //api/users/ HTTP/1.1" 200 0
+2025-09-29 11:59:35,519 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: admin@gmail.com
+2025-09-29 11:59:35,521 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: admin@123
+2025-09-29 11:59:35,662 [DEBUG] Mainapp.authentication.user_authentication - User found: 8c8b6a47-ff0f-450c-8d12-7bfd7d9a67ab, Status: active
+2025-09-29 11:59:39,374 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 8c8b6a47-ff0f-450c-8d12-7bfd7d9a67ab
+2025-09-29 11:59:39,375 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 8c8b6a47-ff0f-450c-8d12-7bfd7d9a67ab
+2025-09-29 11:59:39,381 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 8c8b6a47-ff0f-450c-8d12-7bfd7d9a67ab
+2025-09-29 11:59:39,383 [DEBUG] Mainapp.authentication.auth_serializer - Using uploaded profile image for user 8c8b6a47-ff0f-450c-8d12-7bfd7d9a67ab: /media/profile_images/TraceMapr_icon.png
+2025-09-29 11:59:39,388 [INFO] django.server - "POST //api/users/ HTTP/1.1" 200 1143
+2025-09-29 11:59:39,721 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:59:39,722 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:59:39,724 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:59:39,903 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:59:39,948 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:59:39,951 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:59:39,952 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:59:39,955 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:59:39,956 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:59:39,957 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:59:39,957 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:59:39,961 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:59:41,022 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 11:59:41,028 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 11:59:41,030 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 11:59:41,261 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 11:59:41,277 [INFO] django.server - "GET //media/profile_images/TraceMapr_icon.png HTTP/1.1" 200 5256
+2025-09-29 11:59:41,309 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 11:59:41,316 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 11:59:41,317 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 11:59:41,322 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 11:59:41,324 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 11:59:41,326 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 11:59:41,327 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 11:59:41,330 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 11:59:41,451 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:41,455 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:41,458 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:41,458 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:41,459 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: bff56490-dcca-4860-b910-cf22645bcae1 from user: AnonymousUser
+2025-09-29 11:59:41,460 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2 from user: AnonymousUser
+2025-09-29 11:59:41,893 [DEBUG] Mainapp.viewsets.person_api - Found person: Amit varma (ID: bff56490-dcca-4860-b910-cf22645bcae1)
+2025-09-29 11:59:41,894 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bff56490-dcca-4860-b910-cf22645bcae1
+2025-09-29 11:59:41,903 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2)
+2025-09-29 11:59:41,922 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2
+2025-09-29 11:59:41,958 [INFO] django.server - "GET //api/persons/bff56490-dcca-4860-b910-cf22645bcae1/ HTTP/1.1" 200 3751
+2025-09-29 11:59:41,958 [INFO] django.server - "GET //api/persons/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/ HTTP/1.1" 200 3314
+2025-09-29 11:59:42,133 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:42,135 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 11:59:42,137 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:42,138 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 11:59:42,139 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: bff56490-dcca-4860-b910-cf22645bcae1 from user: AnonymousUser
+2025-09-29 11:59:42,141 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2 from user: AnonymousUser
+2025-09-29 11:59:42,520 [DEBUG] Mainapp.viewsets.person_api - Found person: Amit varma (ID: bff56490-dcca-4860-b910-cf22645bcae1)
+2025-09-29 11:59:42,522 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bff56490-dcca-4860-b910-cf22645bcae1
+2025-09-29 11:59:42,538 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2)
+2025-09-29 11:59:42,540 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2
+2025-09-29 11:59:42,577 [INFO] django.server - "GET //api/persons/bff56490-dcca-4860-b910-cf22645bcae1/ HTTP/1.1" 200 3751
+2025-09-29 11:59:42,585 [INFO] django.server - "GET //api/persons/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/ HTTP/1.1" 200 3314
+2025-09-29 12:00:05,122 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 12:00:05,124 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Nagaland']}
+2025-09-29 12:00:05,125 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Nagaland
+2025-09-29 12:00:05,355 [DEBUG] Mainapp.viewsets.filters - Found 0 districts from Person model for state: Nagaland
+2025-09-29 12:00:05,401 [DEBUG] Mainapp.viewsets.filters - Found 0 districts from Address model for state: Nagaland
+2025-09-29 12:00:05,405 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 0 items
+2025-09-29 12:00:05,406 [DEBUG] Mainapp.viewsets.filters - Normalized to 0 unique items
+2025-09-29 12:00:05,408 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 0 items
+2025-09-29 12:00:05,409 [DEBUG] Mainapp.viewsets.filters - Normalized to 0 unique items
+2025-09-29 12:00:05,411 [INFO] Mainapp.viewsets.filters - Returning 0 unique districts for state: Nagaland
+2025-09-29 12:00:05,413 [DEBUG] Mainapp.viewsets.filters - Districts data for Nagaland: []
+2025-09-29 12:00:05,416 [INFO] django.server - "GET //api/filters_address/districts/?state=Nagaland HTTP/1.1" 200 2
+2025-09-29 12:00:12,301 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-29 12:00:12,303 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-29 12:00:12,304 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-29 12:00:12,384 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 12:00:12,387 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 12:00:12,388 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: bff56490-dcca-4860-b910-cf22645bcae1 from user: AnonymousUser
+2025-09-29 12:00:12,526 [DEBUG] Mainapp.viewsets.filters - Found 35 districts from Person model for state: Maharashtra
+2025-09-29 12:00:12,564 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Address model for state: Maharashtra
+2025-09-29 12:00:12,570 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 35 items
+2025-09-29 12:00:12,571 [DEBUG] Mainapp.viewsets.filters - Normalized to 18 unique items
+2025-09-29 12:00:12,574 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-09-29 12:00:12,575 [DEBUG] Mainapp.viewsets.filters - Normalized to 10 unique items
+2025-09-29 12:00:12,576 [INFO] Mainapp.viewsets.filters - Returning 26 unique districts for state: Maharashtra
+2025-09-29 12:00:12,576 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Ahilyanagar', 'Akola', 'Akole', 'Amravati', 'Artjnbvcxz', 'Chandrapur', 'Dfghj', 'Dfghn', 'Dhule', 'Drtyukk', 'Dtyuj', 'Jalgaon', 'Kolhapur', 'Latur', 'Mehkar', 'Mumbai', 'Nagar', 'Nagpur', 'Nanded', 'Nashik', 'Pune', 'Rghjygf', 'Satara', 'Sdfghj', 'Wwwww', 'Yavatmal']
+2025-09-29 12:00:12,580 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 246
+2025-09-29 12:00:12,586 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-29 12:00:12,587 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-29 12:00:12,588 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2 from user: AnonymousUser
+2025-09-29 12:00:12,732 [DEBUG] Mainapp.viewsets.person_api - Found person: Amit varma (ID: bff56490-dcca-4860-b910-cf22645bcae1)
+2025-09-29 12:00:12,733 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: bff56490-dcca-4860-b910-cf22645bcae1
+2025-09-29 12:00:12,772 [INFO] django.server - "GET //api/persons/bff56490-dcca-4860-b910-cf22645bcae1/ HTTP/1.1" 200 3751
+2025-09-29 12:00:12,951 [DEBUG] Mainapp.viewsets.person_api - Found person: None (ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2)
+2025-09-29 12:00:12,953 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: e88c1bc2-c562-4e1a-b320-b17bec54e2e2
+2025-09-29 12:00:12,996 [INFO] django.server - "GET //api/persons/e88c1bc2-c562-4e1a-b320-b17bec54e2e2/ HTTP/1.1" 200 3314
