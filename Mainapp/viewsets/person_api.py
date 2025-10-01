@@ -39,6 +39,8 @@ from drf_yasg import openapi
 from django.contrib.gis.geos import Point
 import json
 import traceback
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from user_management.permissions import HasFeaturePermission
 
 logger = logging.getLogger(__name__)
 
@@ -69,7 +71,20 @@ class PersonViewSet(viewsets.ViewSet):
         ]:
             logger.info(f"Allowing public access for action: {self.action}")
             return [AllowAny()]
-        return [permission() for permission in self.permission_classes]
+
+        feature_map = {
+            "list": "view_data",
+            "create": "add_missing_person",
+            "retrieve_unfiltered": "edit_person_data",  # only admin/police
+            # add more actions → feature codes here
+        }
+
+        if self.action in feature_map:
+            return [IsAuthenticated(), HasFeaturePermission(feature_map[self.action])]
+
+        # Default: authenticated only
+        return [IsAuthenticated()]
+        # return [permission() for permission in self.permission_classes]
 
         #  1. LIST all persons
 
@@ -83,7 +98,6 @@ class PersonViewSet(viewsets.ViewSet):
                 'addresses', 'contacts', 'additional_info',
                 'last_known_details', 'firs', 'consent'
             ).order_by('-created_at')
-
             logger.debug(f"Queryset count before pagination: {queryset.count()}")
 
             # Pagination
@@ -126,12 +140,10 @@ class PersonViewSet(viewsets.ViewSet):
     @action(detail=True, methods=['get'], url_path='retrieve-unfiltered', permission_classes=[IsAdminUser])
     def retrieve_unfiltered(self, request, pk=None):
         logger.info(f"RETRIEVE UNFILTERED request for person ID: {pk} from admin: {request.user}")
-
         try:
             person = Person.objects.filter(_is_deleted=False).prefetch_related(
                 'addresses', 'contacts', 'additional_info', 'last_known_details', 'firs','consent').get(pk=pk)
             logger.debug(f"Found unfiltered person: {person.full_name} (Status: {person.person_approve_status})")
-
             serializer = PersonSerializer(person)
             logger.info(f"Successfully retrieved unfiltered person ID: {pk}")
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -143,6 +155,7 @@ class PersonViewSet(viewsets.ViewSet):
             logger.error(f"Error retrieving unfiltered person ID {pk}: {str(e)}")
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
     #  3. CREATE a new person
     def create(self, request):
         logger.info(f"CREATE request received from user: {request.user}")
@@ -151,6 +164,7 @@ class PersonViewSet(viewsets.ViewSet):
         logger.debug(
             f"Request DATA keys: {list(request.data.keys()) if hasattr(request.data, 'keys') else 'No data keys'}")
         # print("data comes", request.data)
+        print("data comes", request.data)
         try:
             with transaction.atomic():
                 # Step 1: Parse JSON from "payload"
@@ -181,6 +195,7 @@ class PersonViewSet(viewsets.ViewSet):
                 logger.debug(f"Photo file: {'Present' if data['photo_photo'] else 'Not present'}")
 
 
+
                 # Extract related data
                 addresses_data = [addr for addr in data.get('addresses', []) if any(addr.values())]
                 contacts_data = [contact for contact in data.get('contacts', []) if any(contact.values())]
@@ -197,7 +212,6 @@ class PersonViewSet(viewsets.ViewSet):
                 logger.debug(f"Last Known Details Data count: {len(last_known_details_data)}")
                 logger.debug(f"FIRs Data count: {len(firs_data)}")
                 logger.debug(f"Consents Data count: {len(consents_data)}")
-
                 # Extract hospital instance (if any)
                 hospital_id = data.get('hospital')
                 hospital = None
@@ -216,7 +230,7 @@ class PersonViewSet(viewsets.ViewSet):
                         'addresses', 'contacts', 'additional_info', 'last_known_details', 'firs', 'consent', 'hospital'
                     ]
                 }
-                # print("Creating person with data:", person_data)
+                print("Creating person with data:", person_data)
                 logger.debug(f"Creating person with data: {person_data}")
                 person = Person(**person_data, hospital=hospital,created_by=request.user)
 
@@ -256,6 +270,15 @@ class PersonViewSet(viewsets.ViewSet):
                     logger.info(f"Person saved successfully with ID: {person.id}")
                     reporter_name = f"{request.user.first_name} {request.user.last_name}".strip()
                     logger.debug(f"Reporter name: {reporter_name}")
+
+                    # send_submission_email(
+                    #     user_email=request.user,
+                    #     reporter_name=reporter_name,
+                    #     full_name=person.full_name,
+                    #     case_id=person.case_id,
+                    #     type=person.type,
+                    #     submitted_at=person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
+                    # )
 
 
                 # Create related objects
@@ -299,9 +322,9 @@ class PersonViewSet(viewsets.ViewSet):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     def _create_addresses(self, person, addresses_data):
-        logger.debug(f"Creating {len(addresses_data)} additional addresses")
         addresses = []
         for address in addresses_data:
+            logger.debug(f"Creating {len(addresses_data)} additional addresses")
             lat = address.get('location', {}).get('latitude')
             lon = address.get('location', {}).get('longitude')
             point = None
@@ -337,12 +360,14 @@ class PersonViewSet(viewsets.ViewSet):
 
     def _create_additional_info(self, person, additional_info_data):
         logger.debug(f"Creating {len(additional_info_data)} additional info records")
+
         additional_info = [
             AdditionalInfo(person=person, **{k: v for k, v in info.items() if k != 'person'})
             for info in additional_info_data if isinstance(info, dict)
         ]
         AdditionalInfo.objects.bulk_create(additional_info)
         logger.info(f"Created {len(additional_info)} additional info records")
+
 
     def _create_last_known_details(self, person, last_known_details_data, request):
         logger.debug(f"Creating {len(last_known_details_data)} last known details")
@@ -389,6 +414,7 @@ class PersonViewSet(viewsets.ViewSet):
                     document.save()
                     logger.debug(f"Created document {doc_index} for detail {detail_index}")
 
+
                     # Attach the file if it exists
                     if document_file:
                         document.document.save(document_file.name, document_file)
@@ -398,8 +424,8 @@ class PersonViewSet(viewsets.ViewSet):
             except Exception as e:
                 logger.error(f"Failed at index {detail_index}: {str(e)}")
                 continue
-
         logger.info(f"Successfully created {len(successful_details)} last known details")
+
         return successful_details
 
     def _create_firs(self, person, firs_data, request):
@@ -409,7 +435,6 @@ class PersonViewSet(viewsets.ViewSet):
         - Handles file uploads from request.FILES
         - Processes documents individually to avoid bulk_create issues with files
         """
-
         logger.debug(f"Creating {len(firs_data)} FIR records")
         successful_firs = []
 
@@ -429,7 +454,6 @@ class PersonViewSet(viewsets.ViewSet):
                 if police_station_id:
                     try:
                         police_station = PoliceStation.objects.get(id=police_station_id)
-
                         logger.debug(f"Associated police station: {police_station.name}")
                     except PoliceStation.DoesNotExist:
                         logger.error(f"PoliceStation with ID {police_station_id} does not exist")
@@ -474,9 +498,9 @@ class PersonViewSet(viewsets.ViewSet):
             except Exception as e:
                 logger.error(f"FIR creation failed at index {fir_index}: {str(e)}")
                 continue
-
         logger.info(f"Successfully created {len(successful_firs)} FIR records")
         return successful_firs
+
 
     def _create_consents(self, person, consents_data):
         logger.debug(f"Creating {len(consents_data)} consent records")
@@ -493,13 +517,13 @@ class PersonViewSet(viewsets.ViewSet):
         logger.info(f"UPDATE request for person ID: {pk} from user: {request.user}")
         logger.debug(f"Request data: {request.data}")
         logger.debug(f"Request FILES: {dict(request.FILES)}")
-
         print(request.data)
 
         try:
             with transaction.atomic():
                 person = Person.objects.get(pk=pk)
                 logger.debug(f"Found person to update: {person.full_name}")
+
                 # Extract content from request
 
                 if request.content_type == 'application/json':
@@ -524,7 +548,7 @@ class PersonViewSet(viewsets.ViewSet):
                     # New photo uploaded - use it
                     data['photo_photo'] = new_photo
                 elif hasattr(person, 'photo_photo') and person.photo_photo:
-                    logger.debug("Keeping existing photo")
+                    ogger.debug("Keeping existing photo")
                     # Keep existing photo if no new one was uploaded
                     data['photo_photo'] = person.photo_photo.name  # This gives the proper media path
                 else:
@@ -558,7 +582,6 @@ class PersonViewSet(viewsets.ViewSet):
                                 logger.error(f"Hospital with ID {hospital_id} does not exist")
                                 raise ValueError(f"Hospital with ID {hospital_id} does not exist")
 
-
                 # Update top-level fields - exclude photo_photo if it wasn't in the original data
                 person_data = {
                     k: v for k, v in data.items()
@@ -571,7 +594,6 @@ class PersonViewSet(viewsets.ViewSet):
                     if value is not None or key in data:
                         setattr(person, key, value)
                         logger.debug(f"Updated person field: {key} = {value}")
-
 
                 # Update top-level address info from first address
                 if addresses_data:
@@ -593,6 +615,7 @@ class PersonViewSet(viewsets.ViewSet):
                         lon = float(str(location_data.get('longitude')).strip())
                         person.location = Point(lon, lat)
                         logger.debug(f"Updated location coordinates: lon={lon}, lat={lat}")
+
                     except:
                         logger.warning("Failed to update location coordinates")
                         pass
@@ -633,6 +656,7 @@ class PersonViewSet(viewsets.ViewSet):
                 lon = float(location.get('longitude'))
                 point = Point(lon, lat)
                 logger.debug(f"Address location: lon={lon}, lat={lat}")
+
             except:
                 logger.warning("Invalid address location data")
                 pass
@@ -651,6 +675,7 @@ class PersonViewSet(viewsets.ViewSet):
                     logger.warning(f"Address with ID {addr_id} not found")
                     continue
             else:
+
                 Address.objects.create(person=person, **address_data)
                 logger.debug("Created new address")
 
@@ -761,7 +786,6 @@ class PersonViewSet(viewsets.ViewSet):
                                 )
                                 existing_doc_ids.append(doc.id)
                                 logger.debug(f"Created new document ID: {doc.id}")
-
                             # If no file but metadata exists, don't create empty document
                             elif doc_data.get('document_type') or doc_data.get('description'):
                                 # Optional: Create document without file if metadata exists
@@ -785,7 +809,6 @@ class PersonViewSet(viewsets.ViewSet):
                 # Create new last known detail with documents
                 detail_obj = LastKnownDetails.objects.create(person=person, **detail_data)
                 logger.debug(f"Created new last known detail ID: {detail_obj.id}")
-
                 # Handle document creation
                 existing_doc_ids = []
                 for doc_idx, doc_data in enumerate(documents_data):
@@ -802,7 +825,6 @@ class PersonViewSet(viewsets.ViewSet):
                         )
                         existing_doc_ids.append(doc.id)
                         logger.debug(f"Created new document with file ID: {doc.id}")
-
                     # Create document without file if only metadata is provided
                     elif doc_data.get('document_type') or doc_data.get('description'):
                         doc = Document.objects.create(
@@ -816,8 +838,8 @@ class PersonViewSet(viewsets.ViewSet):
                         logger.debug(f"Created new document without file ID: {doc.id}")
 
     def _update_firs(self, person, firs_data):
-        logger.debug(f"Updating {len(firs_data)} FIR records")
         for fir_idx, fir in enumerate(firs_data):
+            logger.debug(f"Updating {len(firs_data)} FIR records")
             fir_id = fir.get('id')
             police_station_id = fir.get('police_station')
             police_station = None
@@ -903,6 +925,7 @@ class PersonViewSet(viewsets.ViewSet):
                                 existing_doc_ids.append(doc.id)
                                 logger.debug(f"Created new FIR document without file ID: {doc.id}")
 
+
                     # Remove documents that are no longer in the list
                     fir_obj.documents.exclude(id__in=existing_doc_ids).delete()
 
@@ -969,7 +992,6 @@ class PersonViewSet(viewsets.ViewSet):
     def partial_update(self, request, pk=None):
         logger.info(f"PARTIAL UPDATE request for person ID: {pk} from user: {request.user}")
         logger.debug(f"Request data: {request.data}")
-
         try:
             with transaction.atomic():
                 person = Person.objects.get(pk=pk)
@@ -1221,7 +1243,7 @@ class PersonViewSet(viewsets.ViewSet):
                     logger.debug(f"Start date filter: {start_date}")
                 except (ValueError, TypeError):
                     logger.warning(f"Invalid start date: {start_date}")
-                    # pass
+                    pass
 
             if end_date and end_date != "null":
                 try:
@@ -1229,7 +1251,7 @@ class PersonViewSet(viewsets.ViewSet):
                     logger.debug(f"End date filter: {end_date}")
                 except (ValueError, TypeError):
                     logger.warning(f"Invalid end date: {end_date}")
-                    # pass
+                    pass
 
             # Handle age filtering logic safely
             if age_range and age_range.lower() != "null":
@@ -1240,11 +1262,10 @@ class PersonViewSet(viewsets.ViewSet):
                         filters['age__lte'] = upper
                     else:
                         filters['age_range'] = age_range
-
                     logger.debug(f"Age range filter: {age_range}")
                 except ValueError:
                     logger.warning(f"Invalid age range: {age_range}")
-                    # pass
+                    pass
 
             if age and person_type == 'missing-persons':
                 filters['age'] = age
@@ -1260,6 +1281,7 @@ class PersonViewSet(viewsets.ViewSet):
                 'addresses', 'contacts', 'additional_info',
                 'last_known_details', 'firs', 'consent'
             ).order_by(order_by).distinct()
+
             logger.debug(f"Filtered persons count: {persons.count()}")
 
             if not persons.exists():
@@ -1288,6 +1310,7 @@ class PersonViewSet(viewsets.ViewSet):
     def pending_or_rejected(self, request):
         logger.info(f"PENDING OR REJECTED request from admin: {request.user}")
         logger.debug(f"Query parameters: {dict(request.query_params)}")
+
         try:
             # Extract filter parameters from query string
             state = request.query_params.get('state')
@@ -1343,10 +1366,8 @@ class PersonViewSet(viewsets.ViewSet):
                     summary['on_hold'].append(person)
                 elif approve_status == 'suspended':
                     summary['suspended'].append(person)
-
             logger.info(
                 f"Status summary - Pending: {len(summary['pending'])}, Approved: {len(summary['approved'])}, Rejected: {len(summary['rejected'])}, On Hold: {len(summary['on_hold'])}, Suspended: {len(summary['suspended'])}")
-
 
             return Response({
                 'pending_count': len(summary['pending']),
@@ -1385,24 +1406,29 @@ class PersonViewSet(viewsets.ViewSet):
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} approved successfully")
 
-            # Extract reporter info (assuming created_by is the reporter)
+            # Extract reporter info safely
             reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id  # This must be the reporter's email field
+            if reporter:
+                reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
+                reporter_email = reporter.email_id
+            else:
+                reporter_name = "Reporter not found"
+                reporter_email = None
 
-            # Send approval email in the background
-            threading.Thread(
-                target=send_case_approval_email,
-                kwargs={
-                    'user_email': reporter_email,
-                    'reporter_name': reporter_name,
-                    'full_name': person.full_name,
-                    'case_id': person.case_id,
-                    'type': person.type,  # Missing person, unidentified body, etc.
-                    'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
-                }
-            ).start()
-            logger.info("Approval email thread started")
+            # Send approval email only if reporter email exists
+            if reporter_email:
+                threading.Thread(
+                    target=send_case_approval_email,
+                    kwargs={
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'full_name': person.full_name,
+                        'case_id': person.case_id,
+                        'type': person.type,
+                        'approved_at': timezone.localtime(person.updated_at).strftime("%d/%m/%Y, %I:%M:%S %p")
+                    }
+                ).start()
+                logger.info("Approval email thread started")
 
             return Response(
                 {'message': 'Person approved successfully', 'data': serializer.data},
@@ -1412,10 +1438,6 @@ class PersonViewSet(viewsets.ViewSet):
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for approval")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
-
-        except Exception as e:
-            logger.error(f"Error approving person ID {pk}: {str(e)}")
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def reject_person(self, request, pk=None):
@@ -1446,13 +1468,13 @@ class PersonViewSet(viewsets.ViewSet):
         try:
             person = Person.objects.get(pk=pk)
             logger.debug(f"Found rejected person: {person.full_name}")
-
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
 
             serializer = PersonSerializer(person)
             logger.info(f"Rejected person ID {pk} re-approved successfully")
+
             return Response(
                 {'message': 'Rejected person approved successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
@@ -1465,16 +1487,19 @@ class PersonViewSet(viewsets.ViewSet):
             logger.error(f"Error re-approving person ID {pk}: {str(e)}")
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def change_from_approved(self, request, pk=None):
         logger.info(f"CHANGE FROM APPROVED request for ID: {pk} from admin: {request.user}")
         logger.debug(f"Request data: {request.data}")
+
         try:
             person = Person.objects.get(pk=pk)
             new_status = request.data.get('status')
 
             if not new_status:
                 logger.warning("Status is required for change_from_approved")
+
                 return Response({'error': 'Status is required'}, status=status.HTTP_400_BAD_REQUEST)
 
             previous_status = person.person_approve_status
@@ -1484,12 +1509,14 @@ class PersonViewSet(viewsets.ViewSet):
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} status changed from {previous_status} to {new_status}")
-            reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
 
-            # Send email only if moved to Pending
-            if new_status.lower() == 'pending':
+            # Safe reporter handling
+            reporter = person.created_by
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
+
+            # Send email only if moved to Pending and reporter email exists
+            if reporter_email and new_status.lower() == 'pending':
                 reason = request.data.get(
                     'reason',
                     'The case has been moved back to pending review for further evaluation by the administration team.'
@@ -1519,6 +1546,7 @@ class PersonViewSet(viewsets.ViewSet):
             logger.error(f"Error changing status for person ID {pk}: {str(e)}")
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def suspend_person(self, request, pk=None):
         logger.info(f"SUSPEND PERSON request for ID: {pk} from admin: {request.user}")
@@ -1529,38 +1557,38 @@ class PersonViewSet(viewsets.ViewSet):
 
             if not reason:
                 logger.warning("Reason is required to suspend a person")
-                return Response(
-                    {'error': 'Reason is required to suspend a person'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({'error': 'Reason is required to suspend a person'}, status=status.HTTP_400_BAD_REQUEST)
 
             person.person_approve_status = 'suspended'
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
+
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} suspended with reason: {reason}")
 
+            # Safe reporter handling
             reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
 
-            if person.person_approve_status.lower() == 'suspended':
-                reason = request.data.get("reason")
+            if reporter_email and person.person_approve_status.lower() == 'suspended':
                 threading.Thread(
                     target=send_case_to_suspend_email,
                     kwargs={
-                        "user_email":reporter_email,
-                        "reporter_name":reporter_name,
-                        "case_id":person.case_id,
-                        "reason":reason
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'reason': reason
                     }
                 ).start()
                 logger.info("Suspension email thread started")
+
             return Response(
                 {'message': 'Person suspended successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for suspension")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
@@ -1569,20 +1597,20 @@ class PersonViewSet(viewsets.ViewSet):
             logger.error(f"Error suspending person ID {pk}: {str(e)}")
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+
     @action(detail=True, methods=['post'], permission_classes=[IsAdminUser])
     def hold_person(self, request, pk=None):
         logger.info(f"HOLD PERSON request for ID: {pk} from admin: {request.user}")
         logger.debug(f"Request data: {request.data}")
+
         try:
             person = Person.objects.get(pk=pk)
             reason = request.data.get('reason')
 
             if not reason:
                 logger.warning("Reason is required to put a person on hold")
-                return Response(
-                    {'error': 'Reason is required to put a person on hold'},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
+                return Response({'error': 'Reason is required to put a person on hold'},
+                                status=status.HTTP_400_BAD_REQUEST)
 
             person.person_approve_status = 'on_hold'
             person.status_reason = reason
@@ -1591,26 +1619,29 @@ class PersonViewSet(viewsets.ViewSet):
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} put on hold with reason: {reason}")
-            reporter = person.created_by
-            reporter_name = f"{reporter.first_name} {reporter.last_name}".strip()
-            reporter_email = reporter.email_id
 
-            if person.person_approve_status.lower() == 'on_hold':
-                reason = request.data.get("reason")
+            # Safe reporter handling
+            reporter = person.created_by
+            reporter_name = f"{getattr(reporter, 'first_name', '')} {getattr(reporter, 'last_name', '')}".strip() if reporter else "Reporter not found"
+            reporter_email = getattr(reporter, 'email_id', None)
+
+            if reporter_email and person.person_approve_status.lower() == 'on_hold':
                 threading.Thread(
                     target=send_case_to_hold_email,
                     kwargs={
-                        "user_email": reporter_email,
-                        "reporter_name": reporter_name,
-                        "case_id": person.case_id,
-                        "reason": reason
+                        'user_email': reporter_email,
+                        'reporter_name': reporter_name,
+                        'case_id': person.case_id,
+                        'reason': reason
                     }
                 ).start()
                 logger.info("Hold email thread started")
+
             return Response(
                 {'message': 'Person put on hold successfully', 'data': serializer.data},
                 status=status.HTTP_200_OK
             )
+
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for hold")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)

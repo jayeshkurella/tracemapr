@@ -7,6 +7,92 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from Mainapp.models.person import Person
 from Mainapp.models.user import User   # import your User model
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAdminUser
+
+from .models import Feature, RoleFeatureAccess
+from .serializers import FeatureSerializer, RoleFeatureAccessSerializer
+
+
+class FeatureViewSet(viewsets.ModelViewSet):
+    """
+    API to manage Features (CRUD).
+    Only Admins can manage features.
+    """
+    queryset = Feature.objects.all()
+    serializer_class = FeatureSerializer
+    permission_classes = [IsAdminUser]
+
+
+class RoleFeatureAccessViewSet(viewsets.ModelViewSet):
+    """
+    API to manage Role–Feature Access mapping.
+    Only Admins can manage mappings.
+    """
+    queryset = RoleFeatureAccess.objects.all()
+    serializer_class = RoleFeatureAccessSerializer
+    permission_classes = [IsAdminUser]
+
+    @action(detail=False, methods=["get"], url_path="by-role/(?P<role>[^/.]+)")
+    def get_by_role(self, request, role=None):
+        """
+        Get all features with access status for a specific role.
+        """
+        features = Feature.objects.all()
+        role_features = RoleFeatureAccess.objects.filter(role=role)
+
+        # Create a mapping of feature_id -> access
+        access_map = {rf.feature_id: rf.is_allowed for rf in role_features}
+
+        data = []
+        for feature in features:
+            data.append({
+                "feature_id": feature.id,
+                "feature_code": feature.code,
+                "feature_name": feature.name,
+                "is_allowed": access_map.get(feature.id, False)
+            })
+
+        return Response(data, status=status.HTTP_200_OK)
+
+    @action(detail=False, methods=["post"], url_path="update-role-access")
+    def update_role_access(self, request):
+        """
+        Bulk update role-feature access.
+        Expected payload:
+        {
+            "role": "reporting_person",
+            "features": [
+                {"feature_id": 1, "is_allowed": true},
+                {"feature_id": 2, "is_allowed": false}
+            ]
+        }
+        """
+        role = request.data.get("role")
+        features_data = request.data.get("features", [])
+
+        if not role or not isinstance(features_data, list):
+            return Response(
+                {"error": "Invalid payload"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        for f in features_data:
+            feature_id = f.get("feature_id")
+            is_allowed = f.get("is_allowed", False)
+            try:
+                feature = Feature.objects.get(id=feature_id)
+                RoleFeatureAccess.objects.update_or_create(
+                    role=role,
+                    feature=feature,
+                    defaults={"is_allowed": is_allowed}
+                )
+            except Feature.DoesNotExist:
+                continue
+
+        return Response({"message": f"Access updated for role '{role}'"}, status=status.HTTP_200_OK)
 
 class UserCountAPIView(APIView):
     authentication_classes = [JWTAuthentication]

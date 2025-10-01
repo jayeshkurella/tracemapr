@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'leaflet',
     'drf_yasg',
     'rest_framework',
-    'user_management'
+    'user_management',
+'rest_framework_simplejwt.token_blacklist',
     # 'rest_framework.authtoken'
 
 
