@@ -1,5 +1,7 @@
 import threading
 import uuid
+from random import randint
+
 from django.utils import timezone
 from django.contrib.auth.hashers import make_password, check_password
 from django.core.mail import send_mail
@@ -20,6 +22,8 @@ from .utils import get_client_info
 from ..Emails.user_registration import send_welcome_email
 from ..models import User
 
+from django.utils.crypto import get_random_string
+from django.contrib.auth.hashers import make_password
 import logging
 logger = logging.getLogger(__name__)
 
@@ -68,6 +72,8 @@ class AuthAPIView(APIView):
             return self.register_user(request)
         elif action == "login":
             return self.login_user(request)
+        elif action == "guest_login":
+            return self.guest_login(request)
         elif action == "logout":
             return self.logout_user(request)
         elif action == "forgot-password":
@@ -215,6 +221,56 @@ class AuthAPIView(APIView):
 
         except Exception as e:
             return Response({"error": f"Google login failed: {str(e)}"}, status=400)
+
+    def generate_dummy_phone(self):
+        while True:
+            phone = f"9{randint(100000000, 999999999)}"
+            if not User.objects.filter(phone_no=phone).exists():
+                return phone
+
+    def guest_login(self, request):
+        guest_user_id = request.session.get('guest_user_id')
+        if guest_user_id:
+            # Convert string back to UUID when querying
+            from uuid import UUID
+            user = User.objects.filter(id=UUID(guest_user_id), user_type='anonymous').first()
+            if user:
+                tokens = self.get_tokens_for_user(user)
+                return Response({
+                    "message": "Guest login successful",
+                    "tokens": tokens,
+                    "user": self.get_user_data(user)
+                }, status=200)
+
+        random_str = get_random_string(8)
+        username = f"guest_{random_str}"
+        email = f"{username}@example.com"
+        password = get_random_string(12)
+        dummy_phone = self.generate_dummy_phone()  # make sure phone is unique
+        ip, user_agent = get_client_info(request)
+
+        guest_user = User.objects.create(
+            email_id=email,
+            phone_no=dummy_phone,
+            password=make_password(password),
+            first_name="Guest",
+            last_name=f"User_{random_str}",
+            user_type="anonymous",
+            status=User.StatusChoices.ACTIVE,
+            last_login_ip=ip,
+            last_login_user_agent=user_agent
+        )
+
+        # **Convert UUID to string for session**
+        request.session['guest_user_id'] = str(guest_user.id)
+
+        tokens = self.get_tokens_for_user(guest_user)
+
+        return Response({
+            "message": "Guest login successful",
+            "tokens": tokens,
+            "user": self.get_user_data(guest_user)
+        }, status=200)
 
     def logout_user(self, request):
         refresh_token = request.data.get("refresh")
