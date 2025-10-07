@@ -82,28 +82,28 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 
 # local
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'New_Backend',
-#         'USER': 'postgres',
-#         'PASSWORD': 'Sanket@123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
-# beta (testing)
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'chhaya_beta_new1',
+        'NAME': 'New_Backend',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'Sanket@123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+# beta (testing)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.contrib.gis.db.backends.postgis',
+#         'NAME': 'chhaya_beta_new1',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 # production
 # DATABASES = {
@@ -180,7 +180,7 @@ if os.name == 'nt':
     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj')
 
-# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
+GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
