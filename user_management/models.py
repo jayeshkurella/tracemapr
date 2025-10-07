@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class Feature(models.Model):
     code = models.CharField(max_length=100, unique=True)
@@ -19,3 +20,14 @@ class RoleFeatureAccess(models.Model):
 
     def __str__(self):
         return f"{self.role} -> {self.feature.code} ({'✔' if self.is_allowed else '❌'})"
+
+class UserFeatureAccess(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    feature = models.ForeignKey(Feature, on_delete=models.CASCADE)
+    is_allowed = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ('user', 'feature')
+
+    def __str__(self):
+        return f"{self.user.email_id} -> {self.feature.code} ({'✔' if self.is_allowed else '❌'})"

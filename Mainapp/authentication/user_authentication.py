@@ -25,6 +25,7 @@ from ..models import User
 from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
 import logging
+from user_management.models import Feature, UserFeatureAccess
 logger = logging.getLogger(__name__)
 
 
@@ -88,6 +89,8 @@ class AuthAPIView(APIView):
             return self.google_login(request)
         elif action == "get_profile":
             return self.get_profile(request)
+        elif action == "update_role":
+            return self.update_role(request)
 
         return Response({"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -409,5 +412,54 @@ class AuthAPIView(APIView):
             pass
 
         return Response({"message": "Account deleted"}, status=200)
+
+    def update_role(self, request):
+        if not request.user.is_authenticated or not request.user.is_superuser:
+            return Response(
+                {"error": "Admin privileges required"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        pk = request.data.get("pk")
+        user_type = request.data.get("user_type")
+        sub_user_type = request.data.get("sub_user_type", "")
+        status_value = request.data.get("status")  # active/inactive/hold/rejected
+        features_data = request.data.get("features", [])  # [{ "feature_id": 1, "is_allowed": true }]
+
+        if not pk:
+            return Response({"error": "User ID required"}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = User.objects.filter(pk=pk).first()
+        if not user:
+            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Update role/subrole/status
+        if user_type:
+            user.user_type = user_type
+        if sub_user_type:
+            user.sub_user_type = sub_user_type
+        if status_value:
+            user.status = status_value
+        user.save()
+
+        # ✅ Update feature access (per-user overrides)
+        if isinstance(features_data, list):
+            for f in features_data:
+                feature_id = f.get("feature_id")
+                is_allowed = f.get("is_allowed", False)
+                try:
+                    feature = Feature.objects.get(id=feature_id)
+                    UserFeatureAccess.objects.update_or_create(
+                        user=user,
+                        feature=feature,
+                        defaults={"is_allowed": is_allowed}
+                    )
+                except Feature.DoesNotExist:
+                    continue
+
+        return Response({
+            "message": "User role/status/features updated successfully",
+            "user": self.get_user_data(user)
+        }, status=status.HTTP_200_OK)
 
 
