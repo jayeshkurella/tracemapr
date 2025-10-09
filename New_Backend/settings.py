@@ -1,6 +1,8 @@
 
 from pathlib import Path
 
+#from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,7 +34,9 @@ INSTALLED_APPS = [
     'leaflet',
     'drf_yasg',
     'rest_framework',
-    'rest_framework.authtoken'
+    'user_management',
+    'rest_framework_simplejwt.token_blacklist',
+    # 'rest_framework.authtoken'
 
 
 
@@ -77,6 +81,7 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 # local
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
@@ -92,13 +97,14 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'chhaya_beta',
+#         'NAME': 'chhaya_beta_new1',
 #         'USER': 'postgres',
 #         'PASSWORD': 'postgres',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
 # }
+
 
 # production
 DATABASES = {
@@ -112,6 +118,18 @@ DATABASES = {
     }
 }
 
+
+# from .env file
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST', default='localhost'),
+#         'PORT': config('DB_PORT', default='5432'),
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -163,7 +181,7 @@ if os.name == 'nt':
     os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
     os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj')
 
-# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\Chhaya_FullStack\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
+# GDAL_LIBRARY_PATH = r'C:\Users\sanke\Desktop\coderize\TraceMapr\Chhaya_new_backend\env\Lib\site-packages\osgeo\gdal.dll'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
@@ -185,7 +203,7 @@ CORS_ALLOW_METHODS = [
     "OPTIONS"
 ]
 
-# Google Client ID (replace with your own)
+# Google Client ID
 GOOGLE_CLIENT_ID ='229838098661-qhi912b4egncp89tqeihbsddpb7mjbud.apps.googleusercontent.com'
 
 
@@ -207,14 +225,32 @@ AUTHENTICATION_BACKENDS = [
 
 
 
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',  # Enable Token Authentication
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',  # Require authentication by default
+#     ],
+#     'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+# }
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',  # Enable Token Authentication
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',  # Require authentication by default
-    ],
-    'DATETIME_FORMAT': "%Y-%m-%d %H:%M:%S",
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.IsAuthenticated",
+    ),
+    "DATETIME_FORMAT": "%Y-%m-%d %H:%M:%S",
+}
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),   # 1 day
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),      # 1 week
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),                 # default: Authorization: Bearer <token>
 }
 
 import datetime
@@ -239,6 +275,9 @@ EMAIL_HOST_PASSWORD = 'svud wnfa hbav sevy'
 DEFAULT_FROM_EMAIL = 'tracemapr@gmail.com'
 
 
+# local
+# BACKEND_BASE_URL='http://127.0.0.1:8000/'
+#
 # beta
 # BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
@@ -248,12 +287,307 @@ BACKEND_BASE_URL = 'https://tracemapr.com/backend'
 
 
 
-CACHES = {
-    "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    }
+
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }cd
+
+#
+# import os
+# import logging
+# from logging.handlers import TimedRotatingFileHandler
+#
+# LOG_DIR = os.path.join(BASE_DIR, 'logs')
+# os.makedirs(LOG_DIR, exist_ok=True)  # ensure logs folder exists
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{asctime} [{levelname}] {name} - {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.TimedRotatingFileHandler',
+#             'filename': os.path.join(LOG_DIR, 'django_app.log'),
+#             'when': 'midnight',   # rotate daily at midnight
+#             'interval': 1,
+#             'backupCount': 30,    # keep last 30 days, delete older
+#             'formatter': 'verbose',
+#             'encoding': 'utf-8',
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file', 'console'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'Mainapp': {
+#             'handlers': ['file', 'console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     },
+# }
+# import os
+# import logging
+# from logging.handlers import BaseRotatingHandler
+# from datetime import datetime, timedelta
+# import shutil
+#
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+#
+# LOG_DIR = os.path.join(BASE_DIR, 'logs')
+# os.makedirs(LOG_DIR, exist_ok=True)
+#
+#
+# class DailyRotatingFileHandler(BaseRotatingHandler):
+#     def __init__(self, filename, backupCount=30, encoding=None, delay=False):
+#         self.backupCount = backupCount
+#         self.baseFilename = filename
+#         self.currentFileName = filename
+#         self.encoding = encoding
+#         super().__init__(self.currentFileName, 'a', encoding, delay)
+#
+#     def shouldRollover(self, record):
+#         if not os.path.exists(self.currentFileName):
+#             return False
+#         file_time = datetime.fromtimestamp(os.path.getmtime(self.currentFileName))
+#         return datetime.now().date() != file_time.date()
+#
+#     def doRollover(self):
+#         if self.stream:
+#             self.stream.close()
+#             self.stream = None
+#
+#         yesterday = datetime.now() - timedelta(days=1)
+#         old_filename = os.path.join(
+#             os.path.dirname(self.baseFilename),
+#             f"{yesterday.strftime('%Y-%m-%d')}.log"
+#         )
+#
+#         if os.path.exists(self.currentFileName):
+#             try:
+#                 if os.path.exists(old_filename):
+#                     os.remove(old_filename)  # prevent conflicts
+#                 shutil.move(self.currentFileName, old_filename)  # safer on Windows
+#             except PermissionError:
+#                 # Fallback: append timestamp to avoid crash
+#                 alt_filename = old_filename.replace(".log", f"_{int(datetime.now().timestamp())}.log")
+#                 shutil.move(self.currentFileName, alt_filename)
+#
+#         # cleanup old files
+#         if self.backupCount > 0:
+#             for old_file in self.getFilesToDelete():
+#                 try:
+#                     os.remove(old_file)
+#                 except OSError:
+#                     pass
+#
+#         self.stream = self._open()
+#
+#     def getFilesToDelete(self):
+#         dir_name, _ = os.path.split(self.baseFilename)
+#         file_names = os.listdir(dir_name)
+#         result = []
+#
+#         for file_name in file_names:
+#             if len(file_name) == 14 and file_name.endswith(".log"):  # YYYY-MM-DD.log
+#                 result.append(os.path.join(dir_name, file_name))
+#
+#         result.sort()
+#         if len(result) > self.backupCount:
+#             result = result[:len(result) - self.backupCount]
+#         else:
+#             result = []
+#
+#         return result
+#
+#
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{asctime} [{levelname}] {name} - {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'New_Backend.settings.DailyRotatingFileHandler',  # adjust to your path
+#             'filename': os.path.join(LOG_DIR, 'django_app.log'),
+#             'backupCount': 30,
+#             'formatter': 'verbose',
+#             'encoding': 'utf-8',
+#         },
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file', 'console'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#         'Mainapp': {
+#             'handlers': ['file', 'console'],
+#             'level': 'DEBUG',
+#             'propagate': False,
+#         },
+#     },
+# }
+import os
+import logging
+from logging.handlers import BaseRotatingHandler
+from datetime import datetime, timedelta
+import shutil
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+LOG_DIR = os.path.join(BASE_DIR, "logs")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+
+class DailyRotatingFileHandler(BaseRotatingHandler):
+    """
+    Custom daily log rotation:
+    - Keeps current log in django_app.log (always today's log)
+    - Copies yesterday's log to YYYY-MM-DD.log
+    - Truncates django_app.log at rollover (avoids file locks on Windows)
+    - Deletes logs older than backupCount
+    """
+
+    def __init__(self, filename, backupCount=30, encoding=None, delay=False):
+        self.backupCount = backupCount
+        self.baseFilename = filename
+        self.currentFileName = filename
+        self.encoding = encoding
+        super().__init__(self.currentFileName, "a", encoding, delay)
+
+    def shouldRollover(self, record):
+        if not os.path.exists(self.currentFileName):
+            return False
+        file_time = datetime.fromtimestamp(os.path.getmtime(self.currentFileName))
+        return datetime.now().date() != file_time.date()
+
+    def doRollover(self):
+        if self.stream:
+            self.stream.close()
+            self.stream = None
+
+        yesterday = datetime.now() - timedelta(days=1)
+        dated_filename = os.path.join(
+            os.path.dirname(self.baseFilename),
+            f"{yesterday.strftime('%Y-%m-%d')}.log",
+        )
+
+        if os.path.exists(self.currentFileName):
+            try:
+                # Copy current log → YYYY-MM-DD.log
+                shutil.copy2(self.currentFileName, dated_filename)
+
+                # Truncate django_app.log for today
+                with open(self.currentFileName, "w", encoding=self.encoding or "utf-8"):
+                    pass
+            except Exception as e:
+                print(f"Log rollover failed: {e}")
+
+        # Cleanup old logs
+        if self.backupCount > 0:
+            for old_file in self.getFilesToDelete():
+                try:
+                    os.remove(old_file)
+                except OSError:
+                    pass
+
+        self.stream = self._open()
+
+    def getFilesToDelete(self):
+        dir_name, _ = os.path.split(self.baseFilename)
+        file_names = os.listdir(dir_name)
+        result = []
+
+        for file_name in file_names:
+            if file_name.endswith(".log") and len(file_name) == 14:  # YYYY-MM-DD.log
+                result.append(os.path.join(dir_name, file_name))
+
+        result.sort()
+        if len(result) > self.backupCount:
+            result = result[: len(result) - self.backupCount]
+        else:
+            result = []
+
+        return result
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} [{levelname}] {name} - {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "New_Backend.settings.DailyRotatingFileHandler",  # adjust path if needed
+            "filename": os.path.join(LOG_DIR, "django_app.log"),
+            "backupCount": 30,
+            "formatter": "verbose",
+            "encoding": "utf-8",
+        },
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": True,
+        },
+        "Mainapp": {
+            "handlers": ["file", "console"],
+            "level": "DEBUG",
+            "propagate": False,
+        },
+    },
 }

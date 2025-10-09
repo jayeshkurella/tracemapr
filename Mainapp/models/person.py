@@ -258,8 +258,8 @@ class Person(models.Model):
     Body_Condition = models.CharField(max_length=50, blank=True, null=True,choices=BodyconditionChoices.choices,db_index=True)
     bodies_condition =models.JSONField(default=list, blank=True)
     up_condition = models.JSONField(default=list, blank=True)
-    birth_mark = models.CharField(max_length=100, blank=True, null=True)
-    distinctive_mark = models.CharField(max_length=100, blank=True, null=True)
+    birth_mark = models.CharField(max_length=300, blank=True, null=True)
+    distinctive_mark = models.CharField(max_length=300, blank=True, null=True)
     hospital = models.ForeignKey(Hospital, on_delete=models.SET_NULL, null=True, blank=True)
     document_ids = models.TextField(blank=True, null=True, help_text="Comma-separated document IDs")
     created_at = models.DateTimeField(auto_now_add=True,blank=True, null=True)
@@ -298,6 +298,16 @@ class Person(models.Model):
     village = models.CharField(max_length=50, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True, db_index=True)
     district = models.CharField(max_length=50, blank=True, null=True, db_index=True)
+
+    def save(self, *args, **kwargs):
+        if self.village:
+            self.village = self.village.strip()
+        if self.city:
+            self.city = self.city.strip()
+        if self.district:
+            self.district = self.district.strip()
+        super().save(*args, **kwargs)
+
     state = models.CharField(max_length=50, choices=StateChoices.choices, db_index=True, blank=True, null=True)
     pincode = models.CharField(max_length=50, blank=True, null=True, db_index=True)
     country = models.CharField(max_length=50, help_text="Country code or ID", choices=CountryChoices.choices,
@@ -311,7 +321,12 @@ class Person(models.Model):
     approved_by = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='approved_persons')
     modified_at = models.DateTimeField(auto_now=True)
     status_reason = models.TextField(blank=True, null=True, help_text="Reason for suspension or hold")
-
+    matched_case_id = models.CharField(
+        max_length=50,
+        blank=True,
+        null=True,
+        help_text="Case ID of the matched person or entity"
+    )
     match_entity_id = models.UUIDField(
         blank=True,
         null=True,
@@ -330,13 +345,34 @@ class Person(models.Model):
         help_text="The type of the matched entity"
     )
     matched_person_id = models.UUIDField(null=True, blank=True, help_text="UUID of the matched person")
+    matched_case_id = models.CharField(
+    max_length=50,
+    blank=True,
+    null=True,
+    help_text="Case ID of the matched person or entity")
+
+    # in your Match or Confirmation model
+    confirmed_from = models.CharField(
+        max_length=20,
+        choices=[
+            ("MPtoUP", "Missing Person → Unidentified Person"),
+            ("MPtoUB", "Missing Person → Unidentified Body"),
+            ("UPtoMP", "Unidentified Person → Missing Person"),
+            ("UBtoMP", "Unidentified Body → Missing Person"),
+        ],
+        null=True,
+        blank=True,
+        help_text=(
+            "Indicates whether the confirmation was initiated from "
+            "Missing Person, Unidentified Person, or Unidentified Body section"
+        ),
+    )
+
     # below fields for the DNA and mental
     disappearance_type = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     category = models.CharField(max_length=255, blank=True, null=True, db_index=True)
     specific_reason = models.CharField(max_length=255, blank=True, null=True, db_index=True)
-
-    chronic_illness = models.CharField(max_length=255, null=True, blank=True)
-    chronic_illnesss = models.JSONField(default=list, blank=True, null=True)
+    add_chronic_illness =models.JSONField(default=list, blank=True, null=True)
     surgery_implants = models.JSONField(default=list, blank=True, null=True)
     prosthetics_amputation = models.JSONField(default=list, blank=True, null=True)
     healed_fractures = models.JSONField(default=list, blank=True, null=True)
@@ -348,10 +384,10 @@ class Person(models.Model):
     dna_match = models.CharField(
         max_length=20,
         choices=DNA_MATCH_CHOICES,
-        default='pending',
         null=True,
         blank=True
     )
+
 
     def save(self, *args, **kwargs):
         if not self.case_id:

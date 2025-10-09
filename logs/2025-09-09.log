@@ -1,0 +1,524 @@
+2025-09-09 13:58:11,693 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 13:58:36,084 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-09 13:58:36,084 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-09 13:58:36,085 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf from user: AnonymousUser
+2025-09-09 13:58:36,499 [DEBUG] Mainapp.viewsets.person_api - Found person: Ramesh (ID: 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf)
+2025-09-09 13:58:36,500 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf
+2025-09-09 13:58:36,549 [INFO] django.server - "GET //api/persons/6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf/ HTTP/1.1" 200 4063
+2025-09-09 13:58:36,913 [WARNING] django.request - Not Found: /null
+2025-09-09 13:58:36,913 [WARNING] django.server - "GET //null HTTP/1.1" 404 9642
+2025-09-09 14:09:16,933 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 14:09:24,776 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 14:09:24,777 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 14:09:24,778 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 14:09:24,899 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 14:09:24,921 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 14:09:24,924 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 14:09:24,925 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 14:09:24,926 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 14:09:24,928 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 14:09:24,929 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 14:09:24,929 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 14:09:24,931 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 14:09:27,308 [INFO] django.server - "GET //api/missing-person-with-ups/6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf/ HTTP/1.1" 200 4166
+2025-09-09 14:09:28,631 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 14:09:28,632 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 14:09:28,633 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 14:09:28,781 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 14:09:28,797 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 14:09:28,800 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 14:09:28,801 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 14:09:28,804 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 14:09:28,805 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 14:09:28,812 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 14:09:28,815 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 14:09:28,816 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 14:50:38,550 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 14:50:40,444 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 14:53:23,253 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 14:53:24,464 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 14:53:41,485 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 14:53:42,587 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 14:54:08,513 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 14:54:09,612 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:04:28,102 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:04:29,471 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:04:47,175 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:04:48,389 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:05:00,518 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:05:01,623 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:05:17,430 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:05:18,605 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:05:53,024 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:05:54,117 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:06:53,286 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:06:54,407 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:26:13,585 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:26:15,426 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:26:23,939 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:26:25,344 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:26:35,686 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:26:36,948 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:26:49,534 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:26:51,022 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:27:01,628 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:27:03,021 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:27:17,902 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:27:19,308 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:27:44,755 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:27:46,047 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:27:55,169 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:27:56,556 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:28:17,145 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:28:18,479 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:28:38,431 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:28:39,558 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:29:09,915 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:29:11,765 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:29:22,111 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:29:23,594 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:29:35,898 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:29:37,407 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:30:24,447 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:30:25,754 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:35:51,461 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:35:52,918 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:36:05,249 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:36:06,447 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:36:30,586 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:36:31,754 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:36:54,512 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:36:55,889 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:37:06,433 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:37:07,793 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:37:19,231 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:37:20,379 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:37:30,801 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:37:32,156 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:37:43,718 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\hospital.py changed, reloading.
+2025-09-09 15:37:45,104 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:40:38,164 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:40:39,830 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:42:03,748 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:42:05,162 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:42:20,736 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:42:22,034 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:42:33,386 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:42:34,857 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:42:49,468 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:42:50,896 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:43:01,204 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:43:02,582 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:43:13,040 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:43:14,484 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:43:24,666 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:43:26,230 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:43:39,503 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:43:40,841 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:43:58,113 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:43:59,325 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:44:53,002 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:44:54,349 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:45:09,164 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:45:10,470 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:46:57,423 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:46:58,833 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:48:07,199 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:48:08,748 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:48:20,520 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:48:21,843 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:48:35,777 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:48:37,256 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:48:57,563 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:48:58,929 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:49:38,512 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:49:40,130 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:50:12,592 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:50:14,429 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:50:30,469 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:50:31,868 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:50:43,452 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:50:44,710 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:50:57,133 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:50:58,628 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:51:08,745 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:51:10,182 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:51:21,162 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\police_station.py changed, reloading.
+2025-09-09 15:51:22,666 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:56:53,667 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:56:55,039 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:57:12,972 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:57:14,259 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:57:25,605 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:57:26,952 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:57:34,988 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:57:36,327 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:57:44,562 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:57:45,811 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 15:58:02,370 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 15:58:03,700 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:10:19,078 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:10:20,330 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:10:37,144 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:10:38,605 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:10:51,212 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:10:52,477 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:11:01,475 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:11:02,725 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:11:12,310 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:11:13,520 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:11:24,884 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:11:26,370 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:12:26,568 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:12:27,812 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:13:16,249 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:13:17,499 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:13:36,426 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:13:37,822 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:13:52,865 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:13:54,177 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:14:23,494 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:14:24,768 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:14:34,911 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:14:36,227 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:14:49,773 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:14:51,382 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:15:03,149 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:15:04,519 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:15:14,592 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:15:15,918 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:15:35,994 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:15:37,249 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:15:45,568 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:15:46,988 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:31:06,216 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 16:31:07,924 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 16:57:04,079 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 16:57:04,080 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 16:57:04,081 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 16:57:04,345 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 16:57:04,372 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 16:57:04,375 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 16:57:04,377 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 16:57:04,379 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 16:57:04,380 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 16:57:04,382 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 16:57:04,383 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 16:57:04,387 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 16:57:04,452 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-09 17:07:20,757 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 17:07:22,556 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:07:31,765 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 17:07:32,894 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:07:40,028 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 17:07:41,347 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:07:50,470 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 17:07:51,869 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:08:09,951 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\matching_apis\missing_match_up.py changed, reloading.
+2025-09-09 17:08:11,427 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:23:03,490 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 17:23:03,491 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 17:23:03,492 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 17:23:03,717 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 17:23:03,762 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 17:23:03,765 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 17:23:03,767 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:23:03,770 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 17:23:03,771 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:23:03,772 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 17:23:03,772 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 17:23:03,777 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 17:23:03,789 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 17:23:03,804 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 17:23:03,806 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 17:23:03,951 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 17:23:03,980 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 17:23:03,983 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 17:23:03,984 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:23:03,987 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 17:23:03,990 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:23:03,991 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 17:23:03,991 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 17:23:03,993 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 17:23:04,491 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-09 17:23:04,492 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-09-09 17:23:04,494 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-09 17:23:04,515 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-09-09 17:23:04,533 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: d85ada94-6070-4159-802e-c13201e131ba from user: AnonymousUser
+2025-09-09 17:23:04,534 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: d34c7034-cf60-4985-9230-04f750c6ffc5 from user: AnonymousUser
+2025-09-09 17:23:04,738 [WARNING] Mainapp.viewsets.person_api - Person with ID d34c7034-cf60-4985-9230-04f750c6ffc5 not found or not approved
+2025-09-09 17:23:04,747 [WARNING] Mainapp.viewsets.person_api - Person with ID d85ada94-6070-4159-802e-c13201e131ba not found or not approved
+2025-09-09 17:23:04,751 [WARNING] django.request - Not Found: /api/persons/d34c7034-cf60-4985-9230-04f750c6ffc5/
+2025-09-09 17:23:04,751 [WARNING] django.request - Not Found: /api/persons/d85ada94-6070-4159-802e-c13201e131ba/
+2025-09-09 17:23:04,772 [WARNING] django.server - "GET //api/persons/d34c7034-cf60-4985-9230-04f750c6ffc5/ HTTP/1.1" 404 28
+2025-09-09 17:23:04,779 [WARNING] django.server - "GET //api/persons/d85ada94-6070-4159-802e-c13201e131ba/ HTTP/1.1" 404 28
+2025-09-09 17:24:45,785 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 17:24:45,786 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 17:24:45,787 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 17:24:45,968 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 17:24:45,981 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 17:24:45,984 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 17:24:45,985 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:24:45,987 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 17:24:45,987 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:24:45,987 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 17:24:45,988 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 17:24:45,989 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 17:24:48,295 [DEBUG] Mainapp.matching_apis.missing_match_up - Allowing public access for 'retrieve' action
+2025-09-09 17:24:48,297 [INFO] Mainapp.matching_apis.missing_match_up - 🔹 Retrieving matches for MissingPerson ID: 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf
+2025-09-09 17:24:48,489 [DEBUG] Mainapp.matching_apis.missing_match_up - Found Missing Person: 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf
+2025-09-09 17:24:48,498 [DEBUG] Mainapp.matching_apis.missing_match_up - Previously matched UP IDs: []
+2025-09-09 17:24:48,514 [INFO] Mainapp.matching_apis.missing_match_up - Eligible UPs for matching: 2
+2025-09-09 17:24:48,520 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf and UP 0b2031e6-99d9-42f7-a48c-b664a46667af
+2025-09-09 17:24:48,528 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf vs UP 0b2031e6-99d9-42f7-a48c-b664a46667af: 0
+2025-09-09 17:24:48,530 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP 0b2031e6-99d9-42f7-a48c-b664a46667af due to 0 score
+2025-09-09 17:24:48,531 [DEBUG] Mainapp.matching_apis.missing_match_up - Calculating match score between MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-09 17:24:48,533 [DEBUG] Mainapp.matching_apis.missing_match_up - Gender mismatch between MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf and UP a2a524ca-b7f4-4803-8a90-83ed212981f5
+2025-09-09 17:24:48,534 [DEBUG] Mainapp.matching_apis.missing_match_up - Score for MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf vs UP a2a524ca-b7f4-4803-8a90-83ed212981f5: 0
+2025-09-09 17:24:48,536 [DEBUG] Mainapp.matching_apis.missing_match_up - Skipping UP a2a524ca-b7f4-4803-8a90-83ed212981f5 due to 0 score
+2025-09-09 17:24:48,540 [INFO] Mainapp.matching_apis.missing_match_up - Returning match response for MP 6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf
+2025-09-09 17:24:48,694 [INFO] django.server - "GET //api/missing-person-with-ups/6ebdeb14-0ea6-46c4-be42-5cd4dfbaabbf/ HTTP/1.1" 200 4166
+2025-09-09 17:26:35,304 [INFO] django.server - "OPTIONS //api/police-station-name-list/ HTTP/1.1" 200 0
+2025-09-09 17:26:35,315 [INFO] django.server - "OPTIONS //api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-09-09 17:26:35,319 [INFO] django.server - "OPTIONS //api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-09-09 17:26:35,323 [INFO] django.server - "OPTIONS //api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-09-09 17:26:35,327 [INFO] django.server - "OPTIONS //api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-09-09 17:26:35,335 [INFO] django.server - "OPTIONS //api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-09-09 17:26:35,612 [INFO] django.server - "GET //api/police-station-name-list/ HTTP/1.1" 200 80
+2025-09-09 17:26:35,626 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-09-09 17:26:35,643 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-09-09 17:26:35,648 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-09-09 17:26:35,843 [DEBUG] Mainapp.viewsets.filters - Found 9 districts from Person model for state: Maharashtra
+2025-09-09 17:26:35,894 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-09-09 17:26:35,919 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 9 items
+2025-09-09 17:26:35,923 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:26:35,929 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-09-09 17:26:35,931 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-09-09 17:26:35,975 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-09-09 17:26:36,003 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-09-09 17:26:36,065 [INFO] django.server - "GET //api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-09-09 17:26:36,236 [ERROR] django.request - Internal Server Error: /api/persons_status/approved/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 77, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 73, in get_queryset
+    queryset = super().get_queryset()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 23, in get_queryset
+    logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
+    ^^^^^^
+NameError: name 'logger' is not defined
+2025-09-09 17:26:36,249 [ERROR] django.request - Internal Server Error: /api/persons_status/pending/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 77, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 73, in get_queryset
+    queryset = super().get_queryset()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 23, in get_queryset
+    logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
+    ^^^^^^
+NameError: name 'logger' is not defined
+2025-09-09 17:26:36,276 [ERROR] django.request - Internal Server Error: /api/persons_status/suspended/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 77, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 73, in get_queryset
+    queryset = super().get_queryset()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 23, in get_queryset
+    logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
+    ^^^^^^
+NameError: name 'logger' is not defined
+2025-09-09 17:26:36,301 [ERROR] django.request - Internal Server Error: /api/persons_status/on_hold/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 77, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 73, in get_queryset
+    queryset = super().get_queryset()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 23, in get_queryset
+    logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
+    ^^^^^^
+NameError: name 'logger' is not defined
+2025-09-09 17:26:36,311 [ERROR] django.server - "GET //api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 500 112546
+2025-09-09 17:26:36,334 [ERROR] django.server - "GET //api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 500 112515
+2025-09-09 17:26:36,378 [ERROR] django.server - "GET //api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 500 112577
+2025-09-09 17:26:36,407 [ERROR] django.server - "GET //api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 500 112501
+2025-09-09 17:26:36,597 [ERROR] django.request - Internal Server Error: /api/persons_status/pending/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 77, in list
+    queryset = self.filter_queryset(self.get_queryset())
+                                    ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 73, in get_queryset
+    queryset = super().get_queryset()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py", line 23, in get_queryset
+    logger.info("Fetching persons list with filters: %s", self.request.query_params.dict())
+    ^^^^^^
+NameError: name 'logger' is not defined
+2025-09-09 17:26:36,605 [ERROR] django.server - "GET //api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 500 112515
+2025-09-09 17:27:38,478 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\casetype_apis.py changed, reloading.
+2025-09-09 17:27:40,052 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-09-09 17:27:46,437 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,438 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,441 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,473 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,476 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,494 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,558 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,562 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,575 [INFO] django.server - "GET //api/police-station-name-list/ HTTP/1.1" 200 80
+2025-09-09 17:27:46,587 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,587 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-09-09 17:27:46,590 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,612 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,624 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,660 [INFO] django.server - "GET //api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-09-09 17:27:46,671 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,672 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,678 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,682 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,745 [INFO] django.server - "GET //api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-09-09 17:27:46,759 [INFO] django.server - "GET //api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-09-09 17:27:46,834 [INFO] django.server - "GET //api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 2749
+2025-09-09 17:27:46,955 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,956 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:46,956 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-09-09 17:27:46,957 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-09-09 17:27:47,027 [INFO] django.server - "GET //api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 2749
+2025-09-09 17:31:49,850 [INFO] django.server - "OPTIONS //api/users/hold/?page=1 HTTP/1.1" 200 0
+2025-09-09 17:31:49,855 [INFO] django.server - "OPTIONS //api/users/rejected/?page=1 HTTP/1.1" 200 0
+2025-09-09 17:31:49,856 [INFO] django.server - "OPTIONS //api/users/approved/?page=1 HTTP/1.1" 200 0
+2025-09-09 17:31:50,001 [INFO] django.server - "GET //api/users/hold/?page=1 HTTP/1.1" 200 289
+2025-09-09 17:31:50,051 [INFO] django.server - "GET //api/users/approved/?page=1 HTTP/1.1" 200 803
+2025-09-09 17:31:50,054 [INFO] django.server - "GET //api/users/rejected/?page=1 HTTP/1.1" 200 297

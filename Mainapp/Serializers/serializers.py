@@ -73,6 +73,11 @@ class ContactSerializer(serializers.ModelSerializer):
         model = Contact
         fields = '__all__'
 
+class PoliceStationIdNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PoliceStation
+        fields = ['id', 'name']
+
 class FIRSerializer(serializers.ModelSerializer):
     documents = DocumentSerializer(many=True, read_only=True)
     police_station =serializers.StringRelatedField(read_only=True)
@@ -89,10 +94,6 @@ class HospitalSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class PoliceStationIdNameSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PoliceStation
-        fields = ['id', 'name']
 
 
 
@@ -116,7 +117,7 @@ class PersonSerializer(serializers.ModelSerializer):
         child=serializers.ChoiceField(choices=Person.ConditionChoices.choices),
         required=False
     )
-    chronic_illnesss = serializers.ListField(child=serializers.CharField(), required=False)
+    add_chronic_illness = serializers.ListField(child=serializers.CharField(), required=False)
     surgery_implants = serializers.ListField(child=serializers.CharField(), required=False)
     prosthetics_amputation = serializers.ListField(child=serializers.CharField(), required=False)
     healed_fractures = serializers.ListField(child=serializers.CharField(), required=False)
@@ -142,6 +143,16 @@ class PersonSerializer(serializers.ModelSerializer):
         ordering = ['-created_at']
         fields = '__all__'
 
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+
+        # strip leading/trailing spaces for specific fields
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+
+        return data
+
     def get_category(self, obj):
         if not obj.category:
             return []
@@ -166,6 +177,7 @@ class PersonSerializer(serializers.ModelSerializer):
         except (ValueError, SyntaxError):
             return [x.strip(" '\"") for x in obj.specific_reason.split(',') if x.strip()]
 
+
 # short data for search section component
 class SearchSerializer(serializers.ModelSerializer):
     missing_date = serializers.SerializerMethodField()
@@ -176,19 +188,33 @@ class SearchSerializer(serializers.ModelSerializer):
         fields = [
             'type', 'case_status', 'id', 'full_name', 'age', 'age_range',
             'city', 'village', 'state', 'gender', 'photo_photo',
-            'date_reported', 'missing_date'
+            'date_reported', 'missing_date','matched_person_id','confirmed_from'
         ]
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+        return data
 
     def get_missing_date(self, obj):
         last_known = obj.last_known_details.first()
         return last_known.missing_date if last_known else None
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        for field in ["village", "city", "district"]:
+            if data.get(field):
+                data[field] = data[field].strip()
+        return data
 
 
 class ApprovePersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
         ordering = ['-created_at']
-        fields = ['case_id','id','full_name', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
+        fields = ['case_id','id','full_name','type', 'city', 'village', 'state', 'person_approve_status','status_reason','modified_at']
 
 
 class VolunteerSerializer(serializers.ModelSerializer):

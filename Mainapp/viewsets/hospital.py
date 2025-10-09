@@ -1,10 +1,8 @@
-
 """
 Created By : Sanket Lodhe
 Created Date : Feb 2025
 """
-
-
+import ast
 import hashlib
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -20,9 +18,11 @@ from Mainapp.all_paginations.pagination import CustomPagination
 from django.core.cache import cache
 from rest_framework import generics
 import json
-from django.contrib.gis.geos import Point
+from django.contrib.gis.geos import Point, GEOSGeometry, GEOSException
 from rest_framework.permissions import AllowAny, IsAuthenticated
-
+import logging
+# from Mainapp.access_permision import HasFeaturePermission, FeatureChoices
+logger = logging.getLogger(__name__)
 class HospitalViewSet(viewsets.ModelViewSet):
     """
     API Endpoints for Hospital Management
@@ -31,75 +31,43 @@ class HospitalViewSet(viewsets.ModelViewSet):
     pagination_class = CustomPagination
     queryset = Hospital.objects.all()
 
+    # feature_map = {
+    #     "create": FeatureChoices.MANAGE_HOSPITAL,
+    #     "update": FeatureChoices.MANAGE_HOSPITAL,
+    #     "partial_update": FeatureChoices.MANAGE_HOSPITAL,
+    #     "destroy": FeatureChoices.MANAGE_HOSPITAL,
+    #     # list/retrieve not included -> considered public
+    # }
+
+
+
+
     def get_permissions(self):
         if self.request.method in ['GET', 'HEAD', 'OPTIONS']:
+            logger.debug("Public access method detected: %s", self.request.method)
             return [AllowAny()]
+        logger.debug("Authenticated access method detected: %s", self.request.method)
+
+        # return [IsAuthenticated(),HasFeaturePermission()]
         return [IsAuthenticated()]
 
     # 1. LIST Hospitals with Pagination
 
-    # def list(self, request):
-    #     try:
-    #         name = request.query_params.get('name', '').strip()
-    #         city = request.query_params.get('city', '').strip()
-    #         district = request.query_params.get('district', '').strip()
-    #         state = request.query_params.get('state', '').strip()
-    #         hospital_type = request.query_params.get('type', '').strip()
-    #         status_filter = request.query_params.get('status', '').strip()
-    #
-    #         filters = Q()
-    #         if name:
-    #             filters &= Q(name__istartswith=name)
-    #         if city:
-    #             filters &= Q(address__city__icontains=city)
-    #         if district:
-    #             filters &= Q(address__district__icontains=district)
-    #         if state:
-    #             filters &= Q(address__state__icontains=state)
-    #         if hospital_type:
-    #             filters &= Q(type__iexact=hospital_type)
-    #         if status_filter:
-    #             filters &= Q(activ_Status__iexact=status_filter)
-    #
-    #         queryset = Hospital.objects.select_related('address').prefetch_related('hospital_contact').filter(filters).order_by('name')
-    #
-    #         paginator = CustomPagination()
-    #         paginated_queryset = paginator.paginate_queryset(queryset, request)
-    #         serializer = HospitalSerializer(paginated_queryset, many=True)
-    #         return paginator.get_paginated_response(serializer.data)
-    #
-    #     except Exception as e:
-    #         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-    #
-
     def list(self, request):
         try:
+            logger.info("Fetching hospital list with filters")
             name = request.query_params.get('name', '').strip()
             city = request.query_params.get('city', '').strip()
             district = request.query_params.get('district', '').strip()
             state = request.query_params.get('state', '').strip()
             hospital_type = request.query_params.get('type', '').strip()
             status_filter = request.query_params.get('status', '').strip()
-            page = request.query_params.get('page', '1')
 
-            # Log filters
-            print(
-                f"[DEBUG] Filters => Name: '{name}', City: '{city}', District: '{district}', State: '{state}', Type: '{hospital_type}', Status: '{status_filter}', Page: {page}")
+            logger.debug(
+                "Filters received -> name: %s, city: %s, district: %s, state: %s, type: %s, status: %s",
+                name, city, district, state, hospital_type, status_filter
+            )
 
-            # Construct a hash-based cache key
-            cache_key_raw = f"{name}_{city}_{district}_{state}_{hospital_type}_{status_filter}_{page}"
-            cache_key = "hospital_list_" + hashlib.md5(cache_key_raw.encode()).hexdigest()
-            print(f"[DEBUG] Cache Key: {cache_key}")
-
-            # Try fetching from Redis
-            cached_response = cache.get(cache_key)
-            if cached_response:
-                print("[DEBUG] Data loaded from Redis cache ")
-                return Response(json.loads(cached_response), status=status.HTTP_200_OK)
-
-            print("Cache miss. Querying database...")
-
-            # Build filters
             filters = Q()
             if name:
                 filters &= Q(name__istartswith=name)
@@ -114,58 +82,135 @@ class HospitalViewSet(viewsets.ModelViewSet):
             if status_filter:
                 filters &= Q(activ_Status__iexact=status_filter)
 
-            # Query and sort hospitals
-            queryset = (
-                Hospital.objects
-                .select_related('address')
-                .prefetch_related('hospital_contact')
-                .filter(filters)
-                .order_by('name')
-            )
-            print(f"[DEBUG] Total DB results before pagination: {queryset.count()}")
+            queryset = Hospital.objects.select_related('address').prefetch_related('hospital_contact').filter(
+                filters).order_by('name')
 
-            # Paginate
+            logger.info("Query executed successfully. Total records found: %s", queryset.count())
+
             paginator = CustomPagination()
             paginated_queryset = paginator.paginate_queryset(queryset, request)
-            print(f"[DEBUG] Paginated results count: {len(paginated_queryset)}")
-
-            # Serialize
             serializer = HospitalSerializer(paginated_queryset, many=True)
-            response_data = paginator.get_paginated_response(serializer.data)
 
-            # Cache the final response
-            cache.set(cache_key, json.dumps(response_data.data, cls=DjangoJSONEncoder), timeout=300)
-            print("[DEBUG] Response cached in Redis ")
-
-            return response_data
+            logger.debug("Paginated response prepared with %s records", len(serializer.data))
+            return paginator.get_paginated_response(serializer.data)
 
         except Exception as e:
-            print(f"[ERROR] Exception occurred: {str(e)}")
+            logger.error("Error while fetching hospital list: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+    # def list(self, request):
+    #     try:
+    #         name = request.query_params.get('name', '').strip()
+    #         city = request.query_params.get('city', '').strip()
+    #         district = request.query_params.get('district', '').strip()
+    #         state = request.query_params.get('state', '').strip()
+    #         hospital_type = request.query_params.get('type', '').strip()
+    #         status_filter = request.query_params.get('status', '').strip()
+    #         page = request.query_params.get('page', '1')
+    #
+    #         # Log filters
+    #         print(
+    #             f"[DEBUG] Filters => Name: '{name}', City: '{city}', District: '{district}', State: '{state}', Type: '{hospital_type}', Status: '{status_filter}', Page: {page}")
+    #
+    #         # Construct a hash-based cache key
+    #         cache_key_raw = f"{name}_{city}_{district}_{state}_{hospital_type}_{status_filter}_{page}"
+    #         cache_key = "hospital_list_" + hashlib.md5(cache_key_raw.encode()).hexdigest()
+    #         print(f"[DEBUG] Cache Key: {cache_key}")
+    #
+    #         # Try fetching from Redis
+    #         cached_response = cache.get(cache_key)
+    #         if cached_response:
+    #             print("[DEBUG] Data loaded from Redis cache ")
+    #             return Response(json.loads(cached_response), status=status.HTTP_200_OK)
+    #
+    #         print("Cache miss. Querying database...")
+    #
+    #         # Build filters
+    #         filters = Q()
+    #         if name:
+    #             filters &= Q(name__istartswith=name)
+    #         if city:
+    #             filters &= Q(address__city__icontains=city)
+    #         if district:
+    #             filters &= Q(address__district__icontains=district)
+    #         if state:
+    #             filters &= Q(address__state__icontains=state)
+    #         if hospital_type:
+    #             filters &= Q(type__iexact=hospital_type)
+    #         if status_filter:
+    #             filters &= Q(activ_Status__iexact=status_filter)
+    #
+    #         # Query and sort hospitals
+    #         queryset = (
+    #             Hospital.objects
+    #             .select_related('address')
+    #             .prefetch_related('hospital_contact')
+    #             .filter(filters)
+    #             .order_by('name')
+    #         )
+    #         print(f"[DEBUG] Total DB results before pagination: {queryset.count()}")
+    #
+    #         # Paginate
+    #         paginator = CustomPagination()
+    #         paginated_queryset = paginator.paginate_queryset(queryset, request)
+    #         print(f"[DEBUG] Paginated results count: {len(paginated_queryset)}")
+    #
+    #         # Serialize
+    #         serializer = HospitalSerializer(paginated_queryset, many=True)
+    #         response_data = paginator.get_paginated_response(serializer.data)
+    #
+    #         # Cache the final response
+    #         cache.set(cache_key, json.dumps(response_data.data, cls=DjangoJSONEncoder), timeout=300)
+    #         print("[DEBUG] Response cached in Redis ")
+    #
+    #         return response_data
+    #
+    #     except Exception as e:
+    #         print(f"[ERROR] Exception occurred: {str(e)}")
+    #         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
     # 2. RETRIEVE Hospital by ID
+    # def retrieve(self, request, pk=None):
+    #     try:
+    #         cache_key = f'hospital_{pk}'
+    #         cached_data = cache.get(cache_key)
+    #
+    #         if cached_data:
+    #             # Load cached JSON and return
+    #             data = json.loads(cached_data)
+    #             return Response(data, status=status.HTTP_200_OK)
+    #         # Fetch from DB
+    #         hospital = Hospital.objects.select_related('address').prefetch_related('hospital_contact').get(pk=pk)
+    #         # Serialize data
+    #         serializer = self.get_serializer(hospital)
+    #         serialized_data = serializer.data
+    #         # Store serialized JSON in Redis
+    #         cache.set(cache_key, json.dumps(serialized_data, cls=DjangoJSONEncoder), timeout=300)
+    #         return Response(serialized_data, status=status.HTTP_200_OK)
+    #     except Hospital.DoesNotExist:
+    #         return Response({'error': 'Hospital not found'}, status=status.HTTP_404_NOT_FOUND)
     def retrieve(self, request, pk=None):
         try:
-            cache_key = f'hospital_{pk}'
-            cached_data = cache.get(cache_key)
-
-            if cached_data:
-                # Load cached JSON and return
-                data = json.loads(cached_data)
-                return Response(data, status=status.HTTP_200_OK)
-            # Fetch from DB
+            logger.info("Hospital RETRIEVE API called for ID=%s", pk)
+            # Directly fetch from the database without using cache
             hospital = Hospital.objects.select_related('address').prefetch_related('hospital_contact').get(pk=pk)
-            # Serialize data
+
+            # Serialize the data
             serializer = self.get_serializer(hospital)
-            serialized_data = serializer.data
-            # Store serialized JSON in Redis
-            cache.set(cache_key, json.dumps(serialized_data, cls=DjangoJSONEncoder), timeout=300)
-            return Response(serialized_data, status=status.HTTP_200_OK)
+            logger.debug("Retrieved hospital data: %s", serializer.data)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
         except Hospital.DoesNotExist:
+            logger.warning("Hospital with ID=%s not found", pk)
             return Response({'error': 'Hospital not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        except Exception as e:
+            logger.error("Error in Hospital RETRIEVE: %s", str(e), exc_info=True)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     #  3. CREATE a new Hospital
     def create(self, request, *args, **kwargs):
+        logger.info("Hospital CREATE API called with data: %s", request.data)
         try:
             print("\n Received API Request Data:", request.data)
 
@@ -183,6 +228,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 address_data = request.data.get("address")
                 if not address_data:
+                    logger.warning("CREATE failed: Address missing")
                     return Response({"error": "Address is required"}, status=status.HTTP_400_BAD_REQUEST)
 
                 if isinstance(address_data, str):
@@ -201,6 +247,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
                                 status=status.HTTP_400_BAD_REQUEST
                             )
                     else:
+                        logger.warning("CREATE failed: Latitude/Longitude missing")
                         return Response(
                             {"error": "Latitude and Longitude cannot be empty."},
                             status=status.HTTP_400_BAD_REQUEST
@@ -208,6 +255,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 address_serializer = AddressSerializer(data=address_data)
                 if not address_serializer.is_valid():
+                    logger.warning("Invalid Address Data: %s", address_serializer.errors)
                     return Response({"address": address_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
                 address = address_serializer.save()
@@ -220,6 +268,7 @@ class HospitalViewSet(viewsets.ModelViewSet):
 
                 contacts_data = request.data.get("hospital_contact", "[]")
                 if isinstance(contacts_data, str):
+
                     contacts_data = json.loads(contacts_data)
 
                 hospital_serializer = self.get_serializer(data=hospital_data)
@@ -240,9 +289,11 @@ class HospitalViewSet(viewsets.ModelViewSet):
                 response_data['hospital_contact'] = ContactSerializer(hospital.hospital_contact.all(), many=True).data
 
                 print("\n Final Response Data:", response_data)
+                logger.info("Hospital created successfully with ID=%s", hospital.id)
                 return Response(response_data, status=status.HTTP_201_CREATED)
 
         except Exception as e:
+            logger.error("Error in Hospital CREATE: %s", str(e), exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
     # 4. FULL UPDATE (PUT)
@@ -253,70 +304,150 @@ class HospitalViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, pk=None):
         return self._update_hospital(request, pk, partial=True)
 
-    #  Common function for PUT & PATCH
     def _update_hospital(self, request, pk, partial):
+        logger.info("Hospital UPDATE API called for ID=%s with data: %s", pk, request.data)
+        print(request.data)
         try:
             with transaction.atomic():
                 hospital = get_object_or_404(Hospital, pk=pk)
+                data = request.data.copy()
 
-                # Extract and update address if provided
-                address_data = request.data.pop("address", None)
-                if address_data:
-                    address_serializer = AddressSerializer(hospital.address, data=address_data, partial=partial)
-                    if address_serializer.is_valid():
-                        address_serializer.save()
-                    else:
-                        return Response(address_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                # Handle file upload scenarios
+                if 'hospital_photo' in request.FILES:
+                    data['hospital_photo'] = request.FILES['hospital_photo']
+                elif 'hospital_photo' in data:
+                    if data['hospital_photo'] in ['', 'null', None]:
+                        data['hospital_photo'] = None
+                    elif isinstance(data['hospital_photo'], str) and data['hospital_photo'].startswith('http'):
+                        data.pop('hospital_photo', None)
 
-                # Extract contacts
-                contacts_data = request.data.pop("hospital_contact", [])
+                # Parse address and hospital_contact from JSON strings if needed
+                json_fields = ['address', 'hospital_contact']
+                for field in json_fields:
+                    if field in data:
+                        if isinstance(data[field], str):
+                            try:
+                                data[field] = json.loads(data[field])
+                            except json.JSONDecodeError:
+                                try:
+                                    data[field] = ast.literal_eval(data[field])
+                                except Exception as e:
+                                    logger.warning("Invalid JSON for field %s: %s", field, str(e))
+                                    return Response(
+                                        {"error": f"Invalid {field} format: {str(e)}"},
+                                        status=status.HTTP_400_BAD_REQUEST
+                                    )
 
-                # Update hospital data
-                serializer = self.get_serializer(hospital, data=request.data, partial=partial)
-                if serializer.is_valid():
-                    serializer.save()
-                else:
+                # Now extract address dict
+                address_data = data.get("address") or data.get("address_details")
+                if isinstance(address_data, dict):
+                    location = address_data.get("location")
+                    if isinstance(location, dict):
+                        try:
+                            address_data["location"] = Point(
+                                float(location["longitude"]),
+                                float(location["latitude"]),
+                                srid=4326
+                            )
+                        except (ValueError, TypeError, KeyError):
+                            return Response(
+                                {"error": "Invalid location coordinates"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
+                    elif isinstance(location, str) and location.startswith("POINT"):
+                        try:
+                            address_data["location"] = GEOSGeometry(location)
+                        except (GEOSException, ValueError) as e:
+                            return Response(
+                                {"error": f"Invalid WKT format: {str(e)}"},
+                                status=status.HTTP_400_BAD_REQUEST
+                            )
+
+                    address_serializer = AddressSerializer(
+                        hospital.address,
+                        data=address_data,
+                        partial=partial
+                    )
+                    if not address_serializer.is_valid():
+                        logger.warning("Invalid Address Data: %s", address_serializer.errors)
+                        return Response(
+                            {"address": address_serializer.errors},
+                            status=status.HTTP_400_BAD_REQUEST
+                        )
+                    address_serializer.save()
+                    data["address"] = hospital.address.pk
+
+                # Main serializer
+                serializer = self.get_serializer(hospital, data=data, partial=partial)
+                if not serializer.is_valid():
+                    logger.warning("Invalid Hospital Data: %s", serializer.errors)
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-                # Update contacts
-                existing_contacts = {contact.id: contact for contact in hospital.hospital_contact.all()}
-                new_contacts = []
+                instance = serializer.save()
 
-                for contact_data in contacts_data:
-                    contact_id = contact_data.get("id")
-                    if contact_id and contact_id in existing_contacts:
-                        # Update existing contact
-                        contact = existing_contacts[contact_id]
-                        for key, value in contact_data.items():
-                            setattr(contact, key, value)
-                        contact.save()
-                    else:
-                        # Create new contact
-                        new_contacts.append(Contact(hospital=hospital, **contact_data))
+                if 'hospital_photo' in data and data['hospital_photo'] is None:
+                    instance.hospital_photo = None
+                    instance.save()
 
-                if new_contacts:
-                    Contact.objects.bulk_create(new_contacts)
+                # Contacts
+                contacts_data = data.get("hospital_contact", [])
+                if isinstance(contacts_data, list):
+                    existing_contacts = {str(c.id): c for c in hospital.hospital_contact.all()}
+                    new_contacts = []
 
-                # Return response with updated contacts
+                    for contact_data in contacts_data:
+                        if not isinstance(contact_data, dict):
+                            continue
+
+                        contact_id = str(contact_data.get("id", ""))
+                        if contact_id in existing_contacts:
+                            contact = existing_contacts[contact_id]
+                            for field, value in contact_data.items():
+                                if field != 'id' and hasattr(contact, field):
+                                    setattr(contact, field, value)
+                            contact.save()
+                        else:
+                            clean_data = {
+                                k: v for k, v in contact_data.items()
+                                if k not in ['id', 'hospital']
+                            }
+                            new_contacts.append(Contact(hospital=instance, **clean_data))
+
+                    if new_contacts:
+                        Contact.objects.bulk_create(new_contacts)
+
+                # Final response
                 response_data = serializer.data
-                response_data['hospital_contact'] = ContactSerializer(hospital.hospital_contact.all(), many=True).data
+                response_data['hospital_contact'] = ContactSerializer(
+                    instance.hospital_contact.all(), many=True
+                ).data
+
+                logger.info("Hospital updated successfully: ID=%s", instance.id)
+                logger.debug("Updated hospital data: %s", response_data)
 
                 return Response(response_data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+        except Exception as e:
+            logger.error("Error in Hospital UPDATE: %s", str(e), exc_info=True)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     #  6. DELETE Hospital
     def destroy(self, request, pk=None):
+        logger.info("Hospital DELETE API called for ID=%s", pk)
         try:
             hospital = get_object_or_404(Hospital, pk=pk)
             hospital_name = hospital.name
             hospital.delete()
-            return Response({"message": f"Hospital '{hospital_name}' is deleted successfully"}, status=status.HTTP_200_OK)
+            logger.info("Hospital deleted successfully: %s", hospital_name)
+            return Response({"message": f"Hospital '{hospital_name}' is deleted successfully"},
+                            status=status.HTTP_200_OK)
         except Hospital.DoesNotExist:
+            logger.warning("Hospital not found for delete: ID=%s", pk)
             return Response({"error": "Hospital not found"}, status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+            logger.error("Error in Hospital DELETE: %s", str(e), exc_info=True)
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        
+
+
 # To Get all Hospitals
 class HospitalListView(generics.ListAPIView):
     queryset = Hospital.objects.all().order_by("id")

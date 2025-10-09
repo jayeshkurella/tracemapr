@@ -69,6 +69,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ADMIN = "admin", "Admin"
         POLICE_STATION = "police_station", "Police Station"
         MEDICAL_STAFF = "medical_staff", "Medical Staff"
+        ANONYMOUS = "anonymous","ANONYMOUS"
 
     class FamilySubTypeChoices(models.TextChoices):
         FATHER = "father", "Father"
@@ -136,11 +137,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     reset_token = models.CharField(max_length=255, blank=True, null=True)
     reset_token_created_at = models.DateTimeField(blank=True, null=True)
 
+    last_login_ip = models.GenericIPAddressField(null=True, blank=True)
+    last_login_user_agent = models.TextField(null=True, blank=True)
+
     def is_reset_token_valid(self):
-        """Check if the reset token is valid (e.g., expires after 1 hour)."""
+        """Check if the reset token is valid (e.g., expires after 5 mins)."""
         if self.reset_token_created_at:
             time_difference = (now() - self.reset_token_created_at).total_seconds()
-            return time_difference < 300  # 1 hour
+            return time_difference < 300  # 5 mins
         return False
 
     def save(self, *args, **kwargs):

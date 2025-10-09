@@ -1,0 +1,1231 @@
+2025-10-03 08:47:45,653 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 08:49:00,901 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-03 08:49:00,983 [WARNING] django.request - Unauthorized: /api/filters_address/districts/
+2025-10-03 08:49:01,127 [WARNING] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 401 172
+2025-10-03 08:49:01,339 [WARNING] django.request - Unauthorized: /api/filters_address/districts/
+2025-10-03 08:49:01,404 [INFO] django.server - "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+2025-10-03 08:49:01,426 [WARNING] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 401 172
+2025-10-03 08:49:01,707 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-03 08:49:02,303 [ERROR] django.request - Internal Server Error: /api/token/refresh/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\generic\base.py", line 105, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework_simplejwt\views.py", line 46, in post
+    serializer.is_valid(raise_exception=True)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\serializers.py", line 225, in is_valid
+    self._validated_data = self.run_validation(self.initial_data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\serializers.py", line 447, in run_validation
+    value = self.validate(value)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework_simplejwt\serializers.py", line 116, in validate
+    user := get_user_model().objects.get(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 633, in get
+    raise self.model.DoesNotExist(
+Mainapp.models.user.User.DoesNotExist: User matching query does not exist.
+2025-10-03 08:49:02,350 [ERROR] django.server - "POST /api/token/refresh/ HTTP/1.1" 500 124211
+2025-10-03 08:49:02,401 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-03 08:49:02,522 [WARNING] django.request - Unauthorized: /api/users/
+2025-10-03 08:49:02,583 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 401 172
+2025-10-03 08:49:12,133 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: admin@gmail.com
+2025-10-03 08:49:12,134 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: admin@123
+2025-10-03 08:49:12,259 [DEBUG] Mainapp.authentication.user_authentication - User found: 832326d2-40ae-4c74-8f23-bd70d3458a9b, Status: active
+2025-10-03 08:49:13,341 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:49:13,342 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:49:13,344 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:49:13,347 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:49:13,350 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-03 08:49:13,721 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-03 08:49:13,723 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-03 08:49:13,723 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-03 08:49:13,802 [DEBUG] Mainapp.viewsets.filters - Found 11 districts from Person model for state: Maharashtra
+2025-10-03 08:49:13,847 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-03 08:49:13,851 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 11 items
+2025-10-03 08:49:13,937 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:49:13,966 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-03 08:49:13,987 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:49:13,987 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-03 08:49:13,989 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-03 08:49:13,992 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-03 08:49:14,099 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-03 08:49:14,113 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-03 08:49:14,118 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-03 08:49:14,189 [DEBUG] Mainapp.viewsets.filters - Found 11 districts from Person model for state: Maharashtra
+2025-10-03 08:49:14,257 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-03 08:49:14,271 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 11 items
+2025-10-03 08:49:14,289 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:49:14,299 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-03 08:49:14,325 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-03 08:49:14,371 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:49:14,374 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-03 08:49:14,376 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-03 08:49:14,384 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-03 08:50:47,574 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-03 08:50:47,574 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-03 08:50:47,574 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 08:50:47,576 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 08:50:47,698 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:50:47,699 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:50:47,701 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:50:47,701 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 08:50:47,702 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:50:47,705 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:50:47,707 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:50:47,711 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:50:47,713 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:50:47,717 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:50:47,717 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:50:47,719 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:50:47,774 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 08:50:47,808 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:50:47,809 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:50:47,810 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:50:47,810 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:50:47,813 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:50:47,813 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:50:47,815 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:50:47,816 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:50:47,817 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:50:47,818 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:50:47,819 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:50:47,919 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:53:14,759 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-03 08:53:14,762 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-03 08:53:14,840 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-03 08:53:14,841 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-03 08:53:14,841 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-03 08:53:14,898 [DEBUG] Mainapp.viewsets.filters - Found 11 districts from Person model for state: Maharashtra
+2025-10-03 08:53:14,922 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-03 08:53:14,924 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 11 items
+2025-10-03 08:53:14,925 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:53:14,927 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-03 08:53:14,927 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:53:14,928 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-03 08:53:14,929 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-03 08:53:14,930 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-03 08:53:14,993 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-03 08:53:14,993 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-03 08:53:14,994 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-03 08:53:15,029 [DEBUG] Mainapp.viewsets.filters - Found 11 districts from Person model for state: Maharashtra
+2025-10-03 08:53:15,067 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-03 08:53:15,070 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 11 items
+2025-10-03 08:53:15,071 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:53:15,074 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-03 08:53:15,075 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-03 08:53:15,075 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-03 08:53:15,076 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-03 08:53:15,077 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-03 08:53:15,781 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-03 08:53:25,388 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-03 08:53:25,388 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-03 08:53:25,392 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 08:53:25,393 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 08:53:25,540 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 08:53:25,597 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:25,598 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:25,600 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:25,601 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:25,605 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:25,607 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:25,611 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:25,611 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 08:53:25,612 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:25,621 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:25,631 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:25,638 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:53:25,768 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:25,769 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:25,770 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:25,771 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:25,773 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:25,774 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:25,776 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:25,777 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:25,780 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:25,781 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:25,782 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:53:25,788 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-03 08:53:25,904 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:53:47,846 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:47,847 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:47,848 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:47,851 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:47,854 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:47,855 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:47,857 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:47,859 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:47,861 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:47,862 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:47,864 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:53:47,950 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:53:50,820 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:50,820 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:50,821 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:50,822 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:50,824 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:50,824 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:50,826 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:50,827 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:50,829 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:50,830 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:50,831 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:53:50,917 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:53:56,644 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:56,645 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:53:56,646 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:56,646 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:53:56,651 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:56,652 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:53:56,655 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:56,656 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:53:56,660 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:56,661 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:53:56,662 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:53:56,750 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:54:00,376 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:00,376 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:00,377 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:00,378 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:00,380 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:00,381 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:00,384 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:00,384 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:00,386 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:00,387 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:00,388 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:54:00,462 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:54:04,130 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:04,131 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:04,132 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:04,133 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:04,135 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:04,136 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:04,138 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:04,139 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:04,141 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:04,143 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:04,145 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:54:04,218 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 08:54:11,250 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:11,251 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 08:54:11,251 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:11,252 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 08:54:11,254 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:11,255 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 08:54:11,257 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:11,257 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 08:54:11,259 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:11,260 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 08:54:11,262 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 08:54:11,337 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 09:05:57,768 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: admin@gmail.com
+2025-10-03 09:05:57,773 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: admin@123
+2025-10-03 09:05:57,915 [DEBUG] Mainapp.authentication.user_authentication - User found: 832326d2-40ae-4c74-8f23-bd70d3458a9b, Status: active
+2025-10-03 09:05:58,794 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:05:58,795 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:05:58,809 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:05:58,810 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:05:58,823 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-03 09:06:32,570 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 09:45:03,263 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:45:03,270 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:45:03,270 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 09:45:03,271 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:45:03,273 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:45:03,280 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:45:03,280 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:45:03,283 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:45:03,283 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:45:03,288 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:45:03,289 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:45:03,293 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:45:03,332 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 09:45:03,375 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:45:03,375 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:45:03,376 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:45:03,377 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:45:03,379 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:45:03,380 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:45:03,385 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:45:03,386 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:45:03,390 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:45:03,391 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:45:03,393 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:45:03,502 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 09:53:15,873 [INFO] django.server - "OPTIONS /api/user-management/features/ HTTP/1.1" 200 0
+2025-10-03 09:53:15,970 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/ HTTP/1.1" 200 0
+2025-10-03 09:53:16,001 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:16,031 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 09:53:16,053 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 09:53:16,072 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:16,152 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:16,208 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:16,218 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:16,229 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:16,238 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:16,259 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:16,265 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:16,272 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:16,293 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 09:53:16,339 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:16,348 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 09:53:16,373 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 09:53:16,382 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 09:53:16,520 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:16,543 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:16,558 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:16,579 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:16,595 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:16,609 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:16,613 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:16,671 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:16,678 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:16,726 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:16,732 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:18,170 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 09:53:48,742 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 09:53:48,810 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:48,833 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:48,852 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:48,881 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:48,906 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 09:53:48,909 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:48,940 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:48,970 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:48,984 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 09:53:48,988 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:48,991 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 09:53:48,998 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:49,015 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:49,018 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 09:53:49,019 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:49,053 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 09:53:49,214 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:49,224 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:49,226 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:49,227 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:49,230 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:49,232 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:49,235 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:49,246 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:49,261 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:49,272 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:49,276 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:49,452 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 09:53:51,789 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 09:53:51,923 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 09:53:51,926 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:51,958 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:51,982 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:51,983 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:51,986 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:51,995 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:51,998 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:52,012 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 09:53:52,019 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:52,046 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 09:53:52,048 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:52,066 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:52,072 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:52,121 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 09:53:52,122 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 09:53:52,229 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:52,229 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 09:53:52,231 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:52,231 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 09:53:52,235 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:52,247 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 09:53:52,251 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:52,253 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 09:53:52,263 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:52,275 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 09:53:52,284 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 09:53:52,410 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:00:13,732 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 10:00:13,766 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:13,769 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:13,778 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:13,781 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:13,784 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:13,788 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:13,791 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:13,796 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:13,800 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:13,822 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 10:00:13,823 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:00:13,823 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:13,826 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 10:00:13,827 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:00:13,829 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:00:13,887 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 10:00:13,986 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:13,987 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:13,988 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:13,988 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:13,991 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:13,992 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:13,994 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:13,995 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:13,997 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:13,998 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:14,001 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:00:14,136 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:00:17,180 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 10:00:17,181 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 10:00:17,192 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 10:00:17,198 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 10:00:17,220 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:00:17,221 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:00:17,251 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:17,252 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:17,253 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:17,254 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:17,257 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:17,259 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:17,265 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:17,266 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:17,269 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:17,270 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:17,272 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:00:17,358 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:17,359 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:00:17,360 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:17,360 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:00:17,362 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:17,363 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:00:17,366 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:17,366 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:00:17,367 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:17,368 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:00:17,369 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:00:17,454 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:00:34,492 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:00:34,493 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:01:00,694 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:01:00,694 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:01:00,695 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:01:00,696 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:01:00,700 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:01:00,701 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:01:00,701 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:01:00,701 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:01:00,705 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:01:00,710 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 10:01:00,710 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:01:00,711 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 10:01:00,715 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:01:00,718 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:01:00,721 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:01:00,923 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:35:41,944 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 10:35:41,983 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 10:35:41,997 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:35:41,997 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 10:35:42,002 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 10:35:42,003 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:35:42,009 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:35:42,013 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:35:42,017 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:35:42,018 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:35:42,021 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:35:42,022 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:35:42,022 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:35:42,023 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:35:42,026 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:35:42,028 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:35:42,031 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:35:42,119 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:35:42,120 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:35:42,122 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:35:42,124 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:35:42,126 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:35:42,129 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:35:42,140 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:35:42,141 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:35:42,147 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:35:42,155 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:35:42,158 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:35:42,356 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:36:39,051 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:36:39,053 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 10:36:39,054 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:36:39,056 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:36:39,056 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:36:39,060 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:36:39,063 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:36:39,066 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:36:39,067 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:36:39,070 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:36:39,071 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:36:39,072 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:36:39,090 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 10:36:39,092 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 10:36:39,111 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 10:36:39,114 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 10:36:39,116 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 10:36:39,204 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:36:39,209 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 10:36:39,210 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:36:39,220 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 10:36:39,227 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:36:39,230 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 10:36:39,242 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:36:39,254 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 10:36:39,258 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:36:39,263 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 10:36:39,268 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 10:36:39,465 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 10:38:06,005 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 526
+2025-10-03 10:38:13,237 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-10-03 11:19:06,359 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 11:19:09,419 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:19:19,743 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 11:19:21,150 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:21:29,691 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 11:21:30,944 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:22:21,003 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py changed, reloading.
+2025-10-03 11:22:22,544 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:22:51,574 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 11:22:52,752 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:23:02,133 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 11:23:03,269 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:23:25,590 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\urls.py changed, reloading.
+2025-10-03 11:23:26,781 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:23:33,789 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\urls.py changed, reloading.
+2025-10-03 11:23:34,921 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:24:13,997 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:27:20,836 [WARNING] django.request - Not Found: /api/role-feature-access/update-access/
+2025-10-03 11:27:20,837 [WARNING] django.server - "GET /api/role-feature-access/update-access/ HTTP/1.1" 404 54982
+2025-10-03 11:27:40,207 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/update-access/
+2025-10-03 11:27:40,208 [WARNING] django.server - "GET /api/user-management/role-feature-access/update-access/ HTTP/1.1" 403 63
+2025-10-03 11:28:18,273 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: testuser@example.com
+2025-10-03 11:28:18,273 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: NewPassword123!
+2025-10-03 11:28:18,278 [DEBUG] Mainapp.authentication.user_authentication - User found: 22ae4c09-c333-45f8-930c-ddc1abea3054, Status: active
+2025-10-03 11:28:18,956 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:28:18,956 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:28:18,958 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:28:18,958 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:28:18,988 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-03 11:28:38,931 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/update-access/
+2025-10-03 11:28:38,933 [WARNING] django.server - "GET /api/user-management/role-feature-access/update-access/ HTTP/1.1" 403 63
+2025-10-03 11:29:05,144 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/by-role/<role_id>/
+2025-10-03 11:29:05,145 [WARNING] django.server - "GET /api/user-management/role-feature-access/by-role/%3Crole_id%3E/ HTTP/1.1" 403 63
+2025-10-03 11:29:23,876 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/update-access/
+2025-10-03 11:29:23,878 [WARNING] django.server - "POST /api/user-management/role-feature-access/update-access/ HTTP/1.1" 403 63
+2025-10-03 11:29:25,808 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/update-access/
+2025-10-03 11:29:25,809 [WARNING] django.server - "POST /api/user-management/role-feature-access/update-access/ HTTP/1.1" 403 63
+2025-10-03 11:31:28,128 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 11:31:28,129 [WARNING] django.server - "POST /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 11:31:55,196 [WARNING] django.request - Forbidden: /api/user-management/role-feature-access/
+2025-10-03 11:31:55,196 [WARNING] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 403 63
+2025-10-03 11:35:09,168 [WARNING] django.request - Not Found: /api/features/
+2025-10-03 11:35:09,169 [WARNING] django.server - "GET /api/features/ HTTP/1.1" 404 54907
+2025-10-03 11:35:20,949 [WARNING] django.request - Not Found: /api/user-managementt/features/
+2025-10-03 11:35:20,950 [WARNING] django.server - "GET /api/user-managementt/features/ HTTP/1.1" 404 54958
+2025-10-03 11:35:28,422 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:35:28,422 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:35:57,740 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: admin@gmail.com
+2025-10-03 11:35:57,740 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: admin@123
+2025-10-03 11:35:57,746 [DEBUG] Mainapp.authentication.user_authentication - User found: 832326d2-40ae-4c74-8f23-bd70d3458a9b, Status: active
+2025-10-03 11:35:58,433 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:35:58,434 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:35:58,436 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:35:58,437 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:35:58,441 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-03 11:36:14,194 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:36:14,195 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:36:31,572 [WARNING] django.request - Method Not Allowed: /api/users/
+2025-10-03 11:36:31,572 [WARNING] django.server - "GET /api/users/ HTTP/1.1" 405 40
+2025-10-03 11:36:39,630 [WARNING] django.request - Bad Request: /api/users/
+2025-10-03 11:36:39,631 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 26
+2025-10-03 11:36:49,012 [WARNING] django.request - Method Not Allowed: /users/
+2025-10-03 11:36:49,013 [WARNING] django.server - "POST /users/ HTTP/1.1" 405 41
+2025-10-03 11:36:56,127 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 11:36:56,127 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 11:36:56,128 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 11:36:56,129 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 11:36:56,131 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:36:56,132 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:36:56,134 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 11:36:56,135 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 11:36:56,137 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:36:56,138 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 11:36:56,140 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 11:37:41,963 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:37:41,964 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:45:04,203 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:45:04,204 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:45:20,352 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\urls.py changed, reloading.
+2025-10-03 11:45:23,071 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:45:25,421 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\utils.py changed, reloading.
+2025-10-03 11:45:26,879 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:45:40,030 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 11:45:41,722 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:45:45,739 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 11:45:46,992 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:45:51,644 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:45:51,644 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:46:24,742 [WARNING] django.request - Unauthorized: /api/user-management/features/
+2025-10-03 11:46:24,743 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 401 58
+2025-10-03 11:46:28,929 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:46:28,930 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:47:37,909 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:47:51,970 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: admin@gmail.com
+2025-10-03 11:47:51,971 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: admin@123
+2025-10-03 11:47:52,035 [DEBUG] Mainapp.authentication.user_authentication - User found: 832326d2-40ae-4c74-8f23-bd70d3458a9b, Status: active
+2025-10-03 11:47:53,030 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:47:53,031 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:47:53,033 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:47:53,034 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 11:47:53,052 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-03 11:48:25,225 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:48:25,227 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 11:56:01,633 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 11:56:08,943 [WARNING] django.request - Forbidden: /api/user-management/features/
+2025-10-03 11:56:08,944 [WARNING] django.server - "GET /api/user-management/features/ HTTP/1.1" 403 63
+2025-10-03 12:08:24,882 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 12:08:26,103 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:08:46,981 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py changed, reloading.
+2025-10-03 12:08:48,303 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:23:15,361 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:23:28,940 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 12:28:27,964 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 12:28:29,579 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:28:39,130 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\models.py changed, reloading.
+2025-10-03 12:28:40,662 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:29:26,944 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\utils.py changed, reloading.
+2025-10-03 12:29:28,255 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:29:44,699 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py changed, reloading.
+2025-10-03 12:29:46,217 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:29:56,863 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 12:29:58,356 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:30:04,851 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\serializers.py changed, reloading.
+2025-10-03 12:30:06,117 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:30:12,721 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\urls.py changed, reloading.
+2025-10-03 12:30:14,154 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:30:21,297 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\urls.py changed, reloading.
+2025-10-03 12:30:22,469 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:31:03,959 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:31:08,778 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 12:31:47,788 [INFO] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 200 8889
+2025-10-03 12:32:53,864 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/1/ HTTP/1.1" 200 836
+2025-10-03 12:33:08,317 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/2/ HTTP/1.1" 200 836
+2025-10-03 12:33:25,017 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/3/ HTTP/1.1" 200 836
+2025-10-03 12:34:01,433 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/9/ HTTP/1.1" 200 836
+2025-10-03 12:34:07,788 [WARNING] django.request - Not Found: /api/user-management/role-feature-access/by-role/
+2025-10-03 12:34:07,789 [WARNING] django.server - "GET /api/user-management/role-feature-access/by-role/ HTTP/1.1" 404 23
+2025-10-03 12:34:12,461 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/6/ HTTP/1.1" 200 836
+2025-10-03 12:35:07,068 [WARNING] django.request - Method Not Allowed: /api/user-management/role-feature-access/update-role-access/
+2025-10-03 12:35:07,070 [WARNING] django.server - "GET /api/user-management/role-feature-access/update-role-access/ HTTP/1.1" 405 40
+2025-10-03 12:35:11,283 [WARNING] django.request - Bad Request: /api/user-management/role-feature-access/update-role-access/
+2025-10-03 12:35:11,284 [WARNING] django.server - "POST /api/user-management/role-feature-access/update-role-access/ HTTP/1.1" 400 27
+2025-10-03 12:38:34,270 [WARNING] django.request - Bad Request: /api/user-management/role-feature-access/
+2025-10-03 12:38:34,271 [WARNING] django.server - "POST /api/user-management/role-feature-access/ HTTP/1.1" 400 74
+2025-10-03 12:38:42,594 [INFO] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 200 8889
+2025-10-03 12:39:20,896 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/reporting_person/ HTTP/1.1" 200 834
+2025-10-03 12:39:49,088 [WARNING] django.request - Method Not Allowed: /api/user-management/role-feature-access/update-role-access/
+2025-10-03 12:39:49,088 [WARNING] django.server - "GET /api/user-management/role-feature-access/update-role-access/ HTTP/1.1" 405 40
+2025-10-03 12:40:00,656 [INFO] django.server - "POST /api/user-management/role-feature-access/update-role-access/ HTTP/1.1" 200 56
+2025-10-03 12:41:03,898 [ERROR] django.request - Internal Server Error: /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py", line 162, in get_by_user
+    access_map = {uf.feature_id: uf.is_allowed for uf in user_features}
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+2025-10-03 12:41:03,903 [ERROR] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 500 157509
+2025-10-03 12:41:38,734 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\utils.py changed, reloading.
+2025-10-03 12:41:40,296 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:41:56,232 [ERROR] django.request - Internal Server Error: /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py", line 162, in get_by_user
+    access_map = {uf.feature_id: uf.is_allowed for uf in user_features}
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+2025-10-03 12:41:56,239 [ERROR] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 500 157509
+2025-10-03 12:43:59,442 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 12:44:05,750 [ERROR] django.request - Internal Server Error: /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py", line 162, in get_by_user
+    access_map = {uf.feature_id: uf.is_allowed for uf in user_features}
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+2025-10-03 12:44:05,757 [ERROR] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 500 157509
+2025-10-03 16:29:03,273 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 16:29:07,111 [ERROR] django.request - Internal Server Error: /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\user_management\views.py", line 162, in get_by_user
+    access_map = {uf.feature_id: uf.is_allowed for uf in user_features}
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 384, in __iter__
+    self._fetch_all()
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\models\sql\compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\env\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: relation "user_management_userfeatureaccess" does not exist
+LINE 1: ...r_management_userfeatureaccess"."is_allowed" FROM "user_mana...
+                                                             ^
+
+2025-10-03 16:29:07,118 [ERROR] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 500 157509
+2025-10-03 16:35:55,666 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 16:35:59,644 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 2
+2025-10-03 16:36:16,632 [WARNING] django.request - Method Not Allowed: /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/
+2025-10-03 16:36:16,633 [WARNING] django.server - "POST /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 405 41
+2025-10-03 16:38:04,337 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 16:39:00,510 [WARNING] django.request - Bad Request: /api/user-management/features/
+2025-10-03 16:39:00,511 [WARNING] django.server - "POST /api/user-management/features/ HTTP/1.1" 400 71
+2025-10-03 16:39:04,525 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 2
+2025-10-03 16:41:23,734 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 16:41:28,448 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:41:28,454 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:41:28,479 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:41:28,484 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:41:28,494 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:41:28,495 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:41:28,499 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:41:28,502 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:41:28,505 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:41:28,507 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:41:28,510 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 16:42:10,470 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,470 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,470 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,477 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,477 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,477 [INFO] django.server - "OPTIONS /api/user-management/features/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,623 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 16:42:10,640 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:10,652 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:10,654 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:10,655 [INFO] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 200 2
+2025-10-03 16:42:10,657 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:10,671 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:10,678 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:10,683 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 2
+2025-10-03 16:42:10,684 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:10,692 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:10,697 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:10,699 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:10,702 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 16:42:10,794 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:10,794 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:10,795 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:10,796 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:10,798 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:10,799 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 16:42:10,800 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:10,803 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:10,807 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:10,811 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:10,812 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:10,813 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 16:42:10,821 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-03 16:42:10,916 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 16:42:37,614 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 2
+2025-10-03 16:42:37,684 [INFO] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 200 2
+2025-10-03 16:42:40,703 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 2
+2025-10-03 16:42:40,716 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:40,719 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 16:42:40,723 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:40,724 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 16:42:40,729 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:40,730 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 16:42:40,732 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:40,733 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 16:42:40,736 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:40,737 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 16:42:40,738 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 16:42:40,796 [INFO] django.server - "GET /api/user-management/role-feature-access/ HTTP/1.1" 200 2
+2025-10-03 16:42:40,828 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 16:47:07,842 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 2
+2025-10-03 16:49:19,676 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-03 16:49:23,193 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 17:04:39,614 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:04:39,615 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 17:04:39,619 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 17:04:39,625 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:04:39,706 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 17:04:39,707 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:04:39,713 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:04:39,716 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:04:39,717 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:04:39,719 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:04:39,720 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:04:39,722 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:04:39,723 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:04:39,724 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:04:39,810 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:04:39,812 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:04:39,812 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:04:39,813 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:04:39,815 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:04:39,815 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:04:39,817 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:04:39,819 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:04:39,821 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:04:39,822 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:04:39,823 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:04:39,933 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 17:04:39,938 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 0
+2025-10-03 17:04:40,048 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-03 17:04:57,684 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-10-03 17:04:57,692 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/832326d2-40ae-4c74-8f23-bd70d3458a9b/ HTTP/1.1" 200 0
+2025-10-03 17:04:57,820 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/832326d2-40ae-4c74-8f23-bd70d3458a9b/ HTTP/1.1" 200 836
+2025-10-03 17:06:01,521 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 17:06:01,607 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-03 17:06:06,704 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 0
+2025-10-03 17:06:06,800 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:06,802 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:07,615 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:07,616 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:08,307 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:08,307 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:20,749 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:20,751 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:21,203 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:21,204 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:22,492 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:22,498 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:22,867 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:22,868 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:23,951 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:06:23,952 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:06:27,339 [WARNING] django.request - Bad Request: /api/users/
+2025-10-03 17:06:27,341 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 26
+2025-10-03 17:07:59,289 [WARNING] django.request - Bad Request: /api/users/
+2025-10-03 17:07:59,289 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 26
+2025-10-03 17:52:33,861 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 17:52:33,869 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 17:52:33,939 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:33,948 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:33,951 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:33,956 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:33,961 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:33,962 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:33,978 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 17:52:33,978 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:33,982 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:33,991 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:33,993 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:33,996 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:52:34,244 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:34,251 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:34,254 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:34,254 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:34,265 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:34,267 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:34,274 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:34,275 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:34,278 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:34,279 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:34,286 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:52:37,052 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 17:52:37,385 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-03 17:52:49,011 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 17:52:49,089 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:49,092 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:49,093 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:49,094 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:49,098 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:49,100 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:49,104 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:49,107 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:49,111 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:49,114 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:49,121 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:52:49,123 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 17:52:49,125 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 17:52:49,216 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:49,217 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 17:52:49,218 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:49,219 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 17:52:49,222 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:49,222 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 17:52:49,226 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:49,227 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 17:52:49,230 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:49,231 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 17:52:49,233 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 17:52:49,404 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 17:52:49,535 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-03 17:53:27,665 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 526
+2025-10-03 17:53:27,675 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/b9e59f94-dd59-4df1-9e86-4e17a3792c1d/ HTTP/1.1" 200 0
+2025-10-03 17:53:27,826 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/b9e59f94-dd59-4df1-9e86-4e17a3792c1d/ HTTP/1.1" 200 836
+2025-10-03 17:53:38,402 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:53:38,403 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:53:38,734 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:53:38,735 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 17:53:39,408 [WARNING] django.request - Bad Request: /api/user-management/user-feature-access/update-user-access/
+2025-10-03 17:53:39,411 [WARNING] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 400 27
+2025-10-03 18:01:52,080 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:01:52,083 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:01:52,087 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:01:52,089 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:01:52,093 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:01:52,098 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:01:52,109 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:01:52,112 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:01:52,118 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 18:01:52,768 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 18:01:52,817 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:01:52,824 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:01:52,838 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 18:01:52,850 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 18:01:52,997 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:01:53,019 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:01:53,028 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:01:53,029 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:01:53,040 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:01:53,045 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:01:53,057 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:01:53,065 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:01:53,071 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:01:53,081 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:01:53,109 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 18:01:53,418 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 18:01:53,844 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-03 18:03:53,118 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 18:27:24,598 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 18:27:24,860 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 18:27:26,402 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 18:27:29,870 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-03 18:27:37,058 [WARNING] django.request - Bad Request: /api/users/
+2025-10-03 18:27:37,059 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 26
+2025-10-03 18:33:15,372 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:33:15,375 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 18:33:15,377 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:33:15,381 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:33:15,382 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:33:15,390 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:33:15,392 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:33:15,395 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:33:15,399 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:33:15,407 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:33:15,408 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:33:15,411 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 18:33:15,517 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 18:33:15,670 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 832
+2025-10-03 18:49:40,747 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-03 18:49:40,748 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-03 18:49:40,752 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 18:49:40,836 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-03 18:49:40,912 [INFO] django.server - "OPTIONS /api/user-management/features/ HTTP/1.1" 200 0
+2025-10-03 18:49:41,111 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:49:41,116 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:49:41,118 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:49:41,121 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:49:41,125 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:49:41,127 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:49:41,141 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:49:41,146 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 18:49:41,148 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:49:41,158 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:49:41,165 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 18:49:41,169 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:49:41,177 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 18:49:41,221 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 18:49:41,310 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:49:41,311 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 18:49:41,313 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:49:41,314 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 18:49:41,318 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:49:41,319 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 18:49:41,322 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:49:41,323 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 18:49:41,326 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:49:41,327 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 18:49:41,333 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 18:49:41,404 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-03 18:49:41,515 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 18:49:41,718 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 832
+2025-10-03 20:02:42,298 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-03 20:02:42,400 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 20:02:42,402 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 20:02:42,403 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 20:02:42,403 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 20:02:42,407 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 20:02:42,407 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 20:02:42,410 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 20:02:42,412 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 20:02:42,415 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 20:02:42,416 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 20:02:42,420 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 20:02:42,463 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-03 20:02:42,512 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 146
+2025-10-03 20:02:44,424 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 20:02:44,425 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-03 20:02:44,426 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 20:02:44,426 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-03 20:02:44,429 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 20:02:44,430 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-03 20:02:44,433 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 20:02:44,434 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-03 20:02:44,437 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 20:02:44,437 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-03 20:02:44,439 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-03 20:02:44,531 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-03 20:02:44,539 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 0
+2025-10-03 20:02:44,636 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 832
