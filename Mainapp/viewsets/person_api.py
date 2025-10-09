@@ -63,8 +63,8 @@ class PersonViewSet(viewsets.ViewSet):
         """
         logger.debug(f"Getting permissions for action: {self.action}")
         if self.action in [
-            # "retrieve",
-            # "retrieve_by_case_id",
+            "retrieve",
+            "retrieve_by_case_id",
             "missing_persons",
             "unidentified_persons",
             "unidentified_bodies"
@@ -74,8 +74,8 @@ class PersonViewSet(viewsets.ViewSet):
 
         feature_map = {
               "list": "view_data",
-        "retrieve": "view_data",  # Add this line
-        "retrieve_by_case_id": "view_data",  # Add this line if you want to protect search too
+        # "retrieve": "view_data",  # Add this line
+        # "retrieve_by_case_id": "view_data",  # Add this line if you want to protect search too
         "create": "add_missing_person",
         "retrieve_unfiltered": "edit_person_data",
         "update": "edit_person_data",
