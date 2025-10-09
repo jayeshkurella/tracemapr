@@ -14,7 +14,7 @@ from rest_framework.permissions import IsAdminUser
 
 from .models import Feature, RoleFeatureAccess
 from .serializers import FeatureSerializer, RoleFeatureAccessSerializer
-
+from Mainapp.models.user import User
 
 class FeatureViewSet(viewsets.ModelViewSet):
     """
@@ -156,6 +156,12 @@ class UserFeatureAccessViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, methods=["get"], url_path="by-user/(?P<user_id>[^/.]+)")
     def get_by_user(self, request, user_id=None):
+        user = User.objects.filter(id=user_id).first()
+        if not user:
+            return Response(
+                {"error": f"User with ID {user_id} not found"},
+                status=status.HTTP_404_NOT_FOUND
+            )
         features = Feature.objects.all()
         user_features = UserFeatureAccess.objects.filter(user_id=user_id)
 
