@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from Mainapp.models.user import User
 class Feature(models.Model):
     code = models.CharField(max_length=100, unique=True)
     name = models.CharField(max_length=100)
