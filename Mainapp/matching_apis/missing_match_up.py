@@ -223,6 +223,11 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
         mp_ai = getattr(mp, "additional_info", None)
         up_ai = getattr(up, "additional_info", None)
 
+        if hasattr(mp_ai, "all"):
+            mp_ai = mp_ai.first()
+        if hasattr(up_ai, "all"):
+            up_ai = up_ai.first()
+
         if mp_ai and up_ai:
             if mp_ai.caste and up_ai.caste and mp_ai.caste == up_ai.caste:
                 score += 5
