@@ -455,7 +455,7 @@ class MissingPersonMatchWithUBsViewSet(viewsets.ViewSet):
             match = Missing_match_with_body.objects.filter(unidentified_bodies_id=matched_person,missing_person_id=pk).first()
 
 
-            match = Missing_match_with_body.objects.filter(unidentified_body=matched_person,missing_person_id=pk).first()
+            match = Missing_match_with_body.objects.filter(unidentified_bodies_id=matched_person,missing_person_id=pk).first()
             logger.debug(f"Found match record for UB: {matched_person}")
 
             if match.match_type != 'confirmed':
