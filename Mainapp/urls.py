@@ -29,6 +29,7 @@ from .viewsets.person_api import PersonViewSet
 from .viewsets.police_station import PoliceStationViewSet, PoliceStationListView, police_station_search
 
 from .matching_apis.missing_match_up import MissingPersonMatchWithUPsViewSet
+from .viewsets.statistics import PersonStatisticsAPIView
 from .viewsets.volunteer import VolunteerViewSet
 from .viewsets.change_log import ChangeLogViewSet
 from rest_framework_simplejwt.views import (
@@ -86,9 +87,11 @@ urlpatterns = [
     path('api/educational_tags/', educationaltagAPIView.as_view(), name='educational-list-create'),
     path('api/occupation_tags/', occupationtagAPIView.as_view(), name='occupation-list-create'),
     path('api/case/<uuid:pk>/admin-retrieve/', RetrieveUnfilteredPersonView.as_view(), name='admin-retrieve-person'),
-path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
+    path('api/person/statistics/', PersonStatisticsAPIView.as_view(), name='person-statistics'),
+
 
 ]
 
