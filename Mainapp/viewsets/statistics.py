@@ -44,9 +44,12 @@ class PersonStatisticsAPIView(APIView):
         # PERCENTAGE CHANGE CALCULATIONS
         # =========================
         def percentage_change(current, previous):
-            if previous == 0:
-                return 0
-            return round(((current - previous) / previous) * 100, 2)
+            if previous == 0 and current == 0:
+                return 0.0
+            elif previous == 0 and current > 0:
+                return 100.0
+            else:
+                return round(((current - previous) / previous) * 100, 2)
 
         total_cases_change = percentage_change(total_cases, total_cases_last)
         active_cases_change = percentage_change(active_cases, active_cases_last)
