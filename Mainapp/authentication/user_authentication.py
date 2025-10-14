@@ -297,8 +297,8 @@ class AuthAPIView(APIView):
         user.reset_token_created_at = timezone.now()
         user.save()
 
-        reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
-        # reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
+        # reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
+        reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
         # reset_url = f"https://http://127.0.0.1:8000/reset-password/{reset_token}"
         send_mail("Password Reset Request",
                   f"Click the link to reset your password: {reset_url}",
