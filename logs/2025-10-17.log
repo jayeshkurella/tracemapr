@@ -1,0 +1,848 @@
+2025-10-17 09:38:50,513 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 10:13:44,631 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-17 10:13:44,802 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-17 10:13:45,790 [WARNING] django.request - Unauthorized: /api/filters_address/districts/
+2025-10-17 10:13:45,801 [WARNING] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 401 172
+2025-10-17 10:13:46,666 [INFO] django.server - "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+2025-10-17 10:13:46,722 [WARNING] django.request - Unauthorized: /api/filters_address/districts/
+2025-10-17 10:13:46,915 [WARNING] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 401 172
+2025-10-17 10:13:48,523 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:13:48,712 [INFO] django.server - "POST /api/token/refresh/ HTTP/1.1" 200 582
+2025-10-17 10:13:48,920 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 10:13:48,924 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 10:13:48,925 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 10:13:49,061 [DEBUG] Mainapp.viewsets.filters - Found 12 districts from Person model for state: Maharashtra
+2025-10-17 10:13:49,126 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 10:13:49,173 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 12 items
+2025-10-17 10:13:49,178 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 10:13:49,206 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 10:13:49,219 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 10:13:49,222 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-17 10:13:49,226 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-17 10:13:49,230 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-17 10:13:49,728 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 10:13:49,749 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 10:13:49,758 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 10:13:49,862 [DEBUG] Mainapp.viewsets.filters - Found 12 districts from Person model for state: Maharashtra
+2025-10-17 10:13:49,911 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 10:13:49,926 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 12 items
+2025-10-17 10:13:49,941 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 10:13:49,944 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 10:13:49,945 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 10:13:49,992 [INFO] Mainapp.viewsets.filters - Returning 4 unique districts for state: Maharashtra
+2025-10-17 10:13:49,994 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune']
+2025-10-17 10:13:50,006 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 36
+2025-10-17 10:17:11,729 [INFO] django.server - "OPTIONS /api/police-station-name-list/ HTTP/1.1" 200 0
+2025-10-17 10:17:11,763 [INFO] django.server - "OPTIONS /api/govt-hospital-name-list/ HTTP/1.1" 200 0
+2025-10-17 10:17:11,789 [INFO] django.server - "OPTIONS /api/educational_tags/ HTTP/1.1" 200 0
+2025-10-17 10:17:11,885 [INFO] django.server - "OPTIONS /api/occupation_tags/ HTTP/1.1" 200 0
+2025-10-17 10:17:12,544 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:17:12,691 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:17:12,816 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:17:12,894 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:20:52,775 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:20:52,785 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:20:52,828 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:20:52,870 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:20:53,844 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:21:03,646 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:21:03,676 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:21:03,701 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:21:03,708 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:21:04,257 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:22:00,866 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:22:00,907 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:22:00,968 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:22:00,993 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:22:01,704 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:22:17,864 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:22:17,870 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:22:17,908 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:22:17,908 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:22:18,579 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:22:59,548 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:22:59,556 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:22:59,598 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:22:59,632 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:23:00,196 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:23:36,714 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:23:36,799 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:23:36,826 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:23:36,927 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:23:46,768 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:24:05,602 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:24:05,662 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:24:05,694 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:24:05,764 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:24:09,073 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:24:23,989 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:24:24,008 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:24:24,058 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:24:24,099 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:24:25,044 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:25:04,207 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:25:04,286 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:25:04,557 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:25:04,578 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:25:04,703 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:25:42,757 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:25:42,758 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:25:42,783 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:25:42,807 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:25:43,328 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:27:42,800 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:27:42,806 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:27:42,806 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:27:42,827 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:29:45,929 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:29:45,936 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:29:45,968 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:29:45,986 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:29:47,479 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:30:14,426 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:30:14,426 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:30:14,559 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:30:14,615 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:30:17,516 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:30:27,772 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:30:27,804 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:30:27,828 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:30:27,828 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:30:28,552 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:50:53,858 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:50:53,871 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:50:53,926 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:50:53,936 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:50:55,184 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:51:04,586 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:51:04,594 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:51:04,628 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:51:04,643 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:51:08,657 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:55:36,290 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:55:36,355 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:55:36,552 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:55:36,552 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:55:40,287 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:55:46,413 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:55:46,427 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:55:46,543 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:55:46,554 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:55:48,109 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:57:17,722 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 10:57:17,724 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:57:17,725 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:57:17,726 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:57:18,396 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 10:57:22,682 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 10:57:22,696 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 10:57:22,752 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 10:57:22,785 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:03:18,128 [INFO] django.server - "OPTIONS /api/hospital-name-list/ HTTP/1.1" 200 0
+2025-10-17 11:03:18,300 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:03:18,311 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:03:18,320 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:03:18,331 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:08:27,194 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 11:08:27,641 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:08:27,641 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:08:27,642 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:08:27,655 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:10:18,325 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:10:18,401 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:10:18,440 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:10:18,461 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 11:10:18,473 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:11:05,431 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:11:05,453 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:11:05,498 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:11:05,619 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:11:06,515 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 11:11:55,664 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:11:55,729 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:11:56,019 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:11:56,119 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 11:11:56,130 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:19:13,432 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:19:13,432 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:19:13,441 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:19:13,466 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 11:22:44,468 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 11:22:44,470 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:22:44,474 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:22:44,493 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:22:45,218 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 11:23:45,635 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:23:45,642 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:23:45,647 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:23:45,673 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:55:22,457 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 11:55:22,465 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 11:55:22,568 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 11:55:22,862 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 11:55:26,004 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:02:19,385 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:02:19,454 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:02:19,579 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:02:20,435 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:02:20,564 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:27:18,664 [INFO] django.server - "OPTIONS /api/educational_tags/ HTTP/1.1" 200 0
+2025-10-17 12:27:18,684 [INFO] django.server - "OPTIONS /api/police-station-name-list/ HTTP/1.1" 200 0
+2025-10-17 12:27:18,710 [INFO] django.server - "OPTIONS /api/occupation_tags/ HTTP/1.1" 200 0
+2025-10-17 12:27:18,849 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:27:18,910 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:27:18,964 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:27:18,994 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:27:19,501 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:34:22,083 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:34:22,633 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:34:22,684 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:34:22,718 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:34:22,731 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:35:51,328 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:35:51,330 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:35:51,367 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:35:51,377 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:35:51,433 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:36:36,277 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:36:36,301 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:36:36,313 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:36:36,349 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:36:36,405 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:37:42,177 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:37:42,201 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:37:42,262 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:37:42,301 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:37:42,312 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:38:42,249 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:38:42,270 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:38:42,313 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:38:42,343 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:38:43,230 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:44:27,411 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:44:27,468 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:44:27,513 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:44:27,514 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:44:27,600 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:50:57,198 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:50:57,364 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:50:57,412 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:50:57,509 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:51:01,444 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:51:22,880 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:51:22,903 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:51:23,010 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:51:23,045 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 12:51:23,896 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 12:53:42,828 [INFO] django.server - "OPTIONS /api/govt-hospital-name-list/ HTTP/1.1" 200 0
+2025-10-17 12:53:42,954 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 12:53:42,955 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 12:53:42,955 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 12:53:42,983 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:03:04,678 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:03:04,678 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:03:04,695 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:03:04,697 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:03:05,477 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 13:04:36,104 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:04:36,131 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:04:36,206 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:04:36,232 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:04:36,306 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 13:04:39,290 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:04:39,293 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:04:39,323 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:04:39,396 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:05:52,126 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:05:52,192 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:05:52,260 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:05:52,262 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:05:53,647 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 13:12:06,614 [INFO] django.server - "OPTIONS /api/hospital-name-list/ HTTP/1.1" 200 0
+2025-10-17 13:12:06,802 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:12:06,923 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:12:07,093 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:12:07,340 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 13:12:09,975 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:12:10,112 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:12:10,131 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:12:10,155 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:31:14,469 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:31:14,476 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:31:14,493 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:31:14,573 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:31:16,303 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 13:44:25,044 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:44:25,219 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 13:44:25,315 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:44:25,348 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:44:25,567 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 13:44:29,142 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 13:44:29,346 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 13:44:29,394 [INFO] django.server - "GET /api/govt-hospital-name-list/ HTTP/1.1" 200 131
+2025-10-17 13:44:29,533 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 14:47:31,418 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 14:47:44,477 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-17 14:47:44,478 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-17 14:47:44,478 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-17 14:47:44,490 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-17 14:47:44,490 [INFO] django.server - "OPTIONS /api/user-management/features/ HTTP/1.1" 200 0
+2025-10-17 14:47:44,743 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 14:47:44,758 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 14:47:44,762 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-17 14:47:44,769 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-17 14:47:44,807 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 14:47:44,813 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 14:47:44,823 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 14:47:44,824 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 14:47:44,830 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 14:47:44,830 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 14:47:44,833 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 14:47:44,835 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 14:47:44,840 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-17 14:47:44,891 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 147
+2025-10-17 14:47:44,961 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 14:47:44,962 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 14:47:44,966 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 14:47:44,967 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 14:47:44,970 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 14:47:44,971 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 14:47:44,974 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 14:47:44,976 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 14:47:44,982 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 14:47:44,983 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 14:47:44,985 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-17 14:47:45,001 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-17 14:47:45,114 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-17 14:47:45,120 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 0
+2025-10-17 14:47:45,233 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 835
+2025-10-17 14:47:46,382 [INFO] django.server - "OPTIONS /api/person/statistics/ HTTP/1.1" 200 0
+2025-10-17 14:47:46,826 [INFO] django.server - "GET /api/person/statistics/ HTTP/1.1" 200 836
+2025-10-17 15:33:35,528 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 15:35:00,452 [INFO] django.server - "OPTIONS /api/persons/ HTTP/1.1" 200 0
+2025-10-17 15:35:00,577 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: create
+2025-10-17 15:35:00,579 [INFO] Mainapp.viewsets.person_api - CREATE request received from user: admin@gmail.com (admin)
+2025-10-17 15:35:00,579 [DEBUG] Mainapp.viewsets.person_api - Request content-type: multipart/form-data; boundary=----WebKitFormBoundaryAonktuLVzkgQnCIw
+2025-10-17 15:35:00,580 [DEBUG] Mainapp.viewsets.person_api - Request FILES keys: ['payload', 'photo_photo']
+2025-10-17 15:35:00,582 [DEBUG] Mainapp.viewsets.person_api - Request DATA keys: ['payload', 'photo_photo']
+2025-10-17 15:35:00,582 [DEBUG] Mainapp.viewsets.person_api - Processing multipart/form-data request
+2025-10-17 15:35:00,583 [DEBUG] Mainapp.viewsets.person_api - Incoming data from angular: {
+  "type": "Missing Person",
+  "full_name": "Pragati",
+  "birth_date": "2025-09-30",
+  "age": 0,
+  "birthtime": null,
+  "gender": "male",
+  "birthplace": "",
+  "height_range": "161-170",
+  "weight": "",
+  "blood_group": "",
+  "complexion": "",
+  "hair_color": "",
+  "hair_type": "",
+  "eye_color": "",
+  "condition": "",
+  "Body_Condition": "",
+  "disappearance_type": "",
+  "birth_mark": "",
+  "distinctive_mark": "",
+  "photo_photo": {},
+  "hospital": null,
+  "document_ids": null,
+  "created_by": null,
+  "updated_by": null,
+  "_is_deleted": false,
+  "addresses": [
+    {
+      "address_type": "permanent",
+      "street": "solapur",
+      "appartment_name": "",
+      "village": "solapur",
+      "city": "solapur",
+      "district": "solapur",
+      "state": "Maharashtra",
+      "country": "India",
+      "pincode": "415263",
+      "landmark_details": "solapur",
+      "location": {
+        "latitude": 19.55979,
+        "longitude": 74.428101
+      },
+      "user": null,
+      "created_by": null,
+      "updated_by": null
+    }
+  ],
+  "contacts": [
+    {
+      "phone_no": "8956458923",
+      "type": "personal",
+      "country_cd": "",
+      "email_id": "",
+      "company_name": "",
+      "job_title": "",
+      "website_url": "",
+      "social_media_url": "",
+      "social_media_availability": "",
+      "additional_details": "",
+      "is_primary": false,
+      "user": null,
+      "hospital": null,
+      "police_station": null,
+      "person": "",
+      "created_by": null,
+      "updated_by": null
+    }
+  ],
+  "additional_info": [
+    {
+      "marital_status": "married",
+      "mother_tongue": "hindi",
+      "other_known_languages": "marathi",
+      "caste": "",
+      "subcaste": "",
+      "religion": "",
+      "id_type": "",
+      "id_no": "",
+      "education_details": "",
+      "occupation_details": "",
+      "user": null,
+      "person": "",
+      "created_by": null,
+      "updated_by": null
+    }
+  ],
+  "last_known_details": [
+    {
+      "reference_photo": null,
+      "missing_time": "13:00",
+      "missing_date": "2025-10-01",
+      "missing_location_details": "solapur",
+      "last_seen_location": "solapur",
+      "address": null,
+      "documents": [],
+      "person": "",
+      "created_by": null,
+      "updated_by": null
+    }
+  ],
+  "firs": [
+    {
+      "fir_number": "",
+      "fir_photo": null,
+      "case_status": "Open",
+      "investigation_officer_name": "",
+      "investigation_officer_contact": null,
+      "investigation_officer_contacts": "",
+      "documents": [],
+      "police_station": null,
+      "document": null,
+      "person": "",
+      "created_by": null,
+      "updated_by": null
+    }
+  ],
+  "consent": [
+    {
+      "data": "",
+      "person": "",
+      "is_consent": true,
+      "created_by": null,
+      "updated_by": null
+    }
+  ]
+}
+2025-10-17 15:35:00,586 [DEBUG] Mainapp.viewsets.person_api - Extracted JSON Data: {
+    "type": "Missing Person",
+    "full_name": "Pragati",
+    "birth_date": "2025-09-30",
+    "age": 0,
+    "birthtime": null,
+    "gender": "male",
+    "birthplace": "",
+    "height_range": "161-170",
+    "weight": "",
+    "blood_group": "",
+    "complexion": "",
+    "hair_color": "",
+    "hair_type": "",
+    "eye_color": "",
+    "condition": "",
+    "Body_Condition": "",
+    "disappearance_type": "",
+    "birth_mark": "",
+    "distinctive_mark": "",
+    "photo_photo": {},
+    "hospital": null,
+    "document_ids": null,
+    "created_by": null,
+    "updated_by": null,
+    "_is_deleted": false,
+    "addresses": [
+        {
+            "address_type": "permanent",
+            "street": "solapur",
+            "appartment_name": "",
+            "village": "solapur",
+            "city": "solapur",
+            "district": "solapur",
+            "state": "Maharashtra",
+            "country": "India",
+            "pincode": "415263",
+            "landmark_details": "solapur",
+            "location": {
+                "latitude": 19.55979,
+                "longitude": 74.428101
+            },
+            "user": null,
+            "created_by": null,
+            "updated_by": null
+        }
+    ],
+    "contacts": [
+        {
+            "phone_no": "8956458923",
+            "type": "personal",
+            "country_cd": "",
+            "email_id": "",
+            "company_name": "",
+            "job_title": "",
+            "website_url": "",
+            "social_media_url": "",
+            "social_media_availability": "",
+            "additional_details": "",
+            "is_primary": false,
+            "user": null,
+            "hospital": null,
+            "police_station": null,
+            "person": "",
+            "created_by": null,
+            "updated_by": null
+        }
+    ],
+    "additional_info": [
+        {
+            "marital_status": "married",
+            "mother_tongue": "hindi",
+            "other_known_languages": "marathi",
+            "caste": "",
+            "subcaste": "",
+            "religion": "",
+            "id_type": "",
+            "id_no": "",
+            "education_details": "",
+            "occupation_details": "",
+            "user": null,
+            "person": "",
+            "created_by": null,
+            "updated_by": null
+        }
+    ],
+    "last_known_details": [
+        {
+            "reference_photo": null,
+            "missing_time": "13:00",
+            "missing_date": "2025-10-01",
+            "missing_location_details": "solapur",
+            "last_seen_location": "solapur",
+            "address": null,
+            "documents": [],
+            "person": "",
+            "created_by": null,
+            "updated_by": null
+        }
+    ],
+    "firs": [
+        {
+            "fir_number": "",
+            "fir_photo": null,
+            "case_status": "Open",
+            "investigation_officer_name": "",
+            "investigation_officer_contact": null,
+            "investigation_officer_contacts": "",
+            "documents": [],
+            "police_station": null,
+            "document": null,
+            "person": "",
+            "created_by": null,
+            "updated_by": null
+        }
+    ],
+    "consent": [
+        {
+            "data": "",
+            "person": "",
+            "is_consent": true,
+            "created_by": null,
+            "updated_by": null
+        }
+    ]
+}
+2025-10-17 15:35:00,596 [DEBUG] Mainapp.viewsets.person_api - Photo file: Present
+2025-10-17 15:35:00,597 [DEBUG] Mainapp.viewsets.person_api - Filtered Addresses Data: [
+    {
+        "address_type": "permanent",
+        "street": "solapur",
+        "appartment_name": "",
+        "village": "solapur",
+        "city": "solapur",
+        "district": "solapur",
+        "state": "Maharashtra",
+        "country": "India",
+        "pincode": "415263",
+        "landmark_details": "solapur",
+        "location": {
+            "latitude": 19.55979,
+            "longitude": 74.428101
+        },
+        "user": null,
+        "created_by": null,
+        "updated_by": null
+    }
+]
+2025-10-17 15:35:00,599 [DEBUG] Mainapp.viewsets.person_api - Filtered Addresses Data count: 1
+2025-10-17 15:35:00,600 [DEBUG] Mainapp.viewsets.person_api - Contacts Data count: 1
+2025-10-17 15:35:00,601 [DEBUG] Mainapp.viewsets.person_api - Additional Info Data count: 1
+2025-10-17 15:35:00,603 [DEBUG] Mainapp.viewsets.person_api - Last Known Details Data count: 1
+2025-10-17 15:35:00,604 [DEBUG] Mainapp.viewsets.person_api - FIRs Data count: 1
+2025-10-17 15:35:00,606 [DEBUG] Mainapp.viewsets.person_api - Consents Data count: 1
+2025-10-17 15:35:00,608 [DEBUG] Mainapp.viewsets.person_api - Creating person with data: {'type': 'Missing Person', 'full_name': 'Pragati', 'birth_date': '2025-09-30', 'age': 0, 'gender': 'male', 'height_range': '161-170', 'photo_photo': <InMemoryUploadedFile: Screenshot 2025-08-29 122339.png (image/png)>, '_is_deleted': False}
+2025-10-17 15:35:00,617 [DEBUG] Mainapp.viewsets.person_api - Set location coordinates: lon=74.428101, lat=19.55979
+2025-10-17 15:35:00,728 [INFO] Mainapp.viewsets.person_api - Person saved successfully with ID: 816e03be-ade0-4f7e-b660-0204843c5d66
+2025-10-17 15:35:00,728 [DEBUG] Mainapp.viewsets.person_api - Reporter name: admin admin
+2025-10-17 15:35:00,729 [INFO] Mainapp.viewsets.person_api - Created 0 additional addresses
+2025-10-17 15:35:00,730 [DEBUG] Mainapp.viewsets.person_api - Creating 1 contacts
+2025-10-17 15:35:00,735 [INFO] Mainapp.viewsets.person_api - Created 1 contacts
+2025-10-17 15:35:00,736 [DEBUG] Mainapp.viewsets.person_api - Creating 1 additional info records
+2025-10-17 15:35:00,739 [INFO] Mainapp.viewsets.person_api - Created 1 additional info records
+2025-10-17 15:35:00,740 [DEBUG] Mainapp.viewsets.person_api - Creating 1 last known details
+2025-10-17 15:35:00,760 [DEBUG] Mainapp.viewsets.person_api - Saving LastKnownDetails 0: {'reference_photo': None, 'missing_time': '13:00', 'missing_date': '2025-10-01', 'missing_location_details': 'solapur', 'last_seen_location': 'solapur', 'address': None, 'documents': [], 'person': '', 'created_by': None, 'updated_by': None}
+2025-10-17 15:35:00,763 [DEBUG] Mainapp.viewsets.person_api - Processing 0 documents for detail 0
+2025-10-17 15:35:00,764 [INFO] Mainapp.viewsets.person_api - Successfully created 1 last known details
+2025-10-17 15:35:00,765 [DEBUG] Mainapp.viewsets.person_api - Creating 1 FIR records
+2025-10-17 15:35:00,765 [DEBUG] Mainapp.viewsets.person_api - FIR 0 has 0 documents
+2025-10-17 15:35:00,786 [DEBUG] Mainapp.viewsets.person_api - Created FIR 0
+2025-10-17 15:35:00,786 [INFO] Mainapp.viewsets.person_api - Successfully created 1 FIR records
+2025-10-17 15:35:00,787 [DEBUG] Mainapp.viewsets.person_api - Creating 1 consent records
+2025-10-17 15:35:00,790 [INFO] Mainapp.viewsets.person_api - Created 1 consent records
+2025-10-17 15:35:00,791 [INFO] Mainapp.viewsets.person_api - Person created successfully: Pragati (ID: 816e03be-ade0-4f7e-b660-0204843c5d66)
+2025-10-17 15:35:00,876 [INFO] Mainapp.Emails.Case_submit - Preparing to send case submission email for case ID: MP-202510-SOLA-001 to admin@gmail.com (admin)
+2025-10-17 15:35:00,876 [INFO] Mainapp.viewsets.person_api - Email submission thread started
+2025-10-17 15:35:00,877 [DEBUG] Mainapp.Emails.Case_submit - Email parameters - Reporter: admin admin, Full Name: Pragati, Case ID: MP-202510-SOLA-001, Type: Missing Person, Submitted At: 17/10/2025, 10:05:00 AM
+2025-10-17 15:35:00,878 [DEBUG] Mainapp.Emails.Case_submit - Email details - Subject: Case Submission Successful - MP-202510-SOLA-001, From: tracemapr@gmail.com, To: [<User: admin@gmail.com (admin)>]
+2025-10-17 15:35:00,888 [INFO] django.server - "POST /api/persons/ HTTP/1.1" 201 3814
+2025-10-17 15:35:01,081 [INFO] django.server - "OPTIONS /api/police-station-name-list/ HTTP/1.1" 200 0
+2025-10-17 15:35:01,081 [INFO] django.server - "OPTIONS /api/hospital-name-list/ HTTP/1.1" 200 0
+2025-10-17 15:35:01,085 [INFO] django.server - "OPTIONS /api/educational_tags/ HTTP/1.1" 200 0
+2025-10-17 15:35:01,088 [INFO] django.server - "OPTIONS /api/occupation_tags/ HTTP/1.1" 200 0
+2025-10-17 15:35:01,260 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-17 15:35:01,294 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-17 15:35:01,527 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-17 15:35:01,573 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-17 15:35:05,345 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-17 15:35:05,535 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 15:35:05,546 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 15:35:05,559 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 15:35:05,643 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 15:35:05,668 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 15:35:05,670 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 15:35:05,675 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 15:35:05,677 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 15:35:05,678 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 15:35:05,679 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 15:35:05,680 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 15:35:05,685 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 15:35:05,788 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 15:35:05,789 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 15:35:05,789 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 15:35:05,851 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 15:35:05,869 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 15:35:05,871 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 15:35:05,873 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 15:35:05,876 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 15:35:05,878 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 15:35:05,878 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 15:35:05,878 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 15:35:05,881 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 15:35:11,708 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-17 15:35:11,760 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 15:35:11,761 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-17 15:35:11,762 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 15:35:11,767 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 15:35:11,785 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 15:35:11,790 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 15:35:11,791 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 15:35:11,792 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 15:35:11,794 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 15:35:11,796 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 15:35:11,797 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 15:35:11,799 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-17 15:35:11,855 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 148
+2025-10-17 15:35:11,890 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 15:35:11,891 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-17 15:35:11,891 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 15:35:11,891 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-17 15:35:11,895 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 15:35:11,895 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-17 15:35:11,899 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 15:35:11,899 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-17 15:35:11,902 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 15:35:11,903 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-17 15:35:11,904 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-17 15:35:11,989 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-17 15:35:12,114 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 835
+2025-10-17 15:35:16,090 [INFO] django.server - "GET /api/person/statistics/ HTTP/1.1" 200 888
+2025-10-17 15:39:21,230 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 15:50:42,628 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 15:50:43,243 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 15:50:43,314 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 15:50:43,436 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 15:50:43,780 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 15:50:43,899 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 15:50:43,982 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 15:50:44,060 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 15:50:44,062 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 15:50:44,177 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 15:50:44,331 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 15:50:44,413 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 15:50:44,535 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 15:50:45,420 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 15:50:45,431 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 15:50:45,431 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 15:50:45,483 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 15:50:45,505 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 15:50:45,509 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 15:50:45,509 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 15:50:45,512 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 15:50:45,513 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 15:50:45,514 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 15:50:45,514 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 15:50:45,517 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 17:03:24,322 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 25728
+2025-10-17 17:03:24,613 [INFO] django.server - "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+2025-10-17 17:03:24,627 [INFO] django.server - "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+2025-10-17 17:03:24,645 [INFO] django.server - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+2025-10-17 17:03:24,659 [INFO] django.server - "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+2025-10-17 17:03:24,679 [INFO] django.server - "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+2025-10-17 17:03:24,679 [INFO] django.server - "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+2025-10-17 17:03:24,733 [INFO] django.server - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+2025-10-17 17:03:24,747 [INFO] django.server - "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+2025-10-17 17:03:24,755 [INFO] django.server - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+2025-10-17 17:03:24,766 [INFO] django.server - "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+2025-10-17 17:03:24,916 [WARNING] django.request - Not Found: /favicon.ico
+2025-10-17 17:03:24,917 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 11177
+2025-10-17 17:03:29,565 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 26263
+2025-10-17 17:03:29,620 [INFO] django.server - "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+2025-10-17 17:03:29,625 [INFO] django.server - "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+2025-10-17 17:03:29,678 [INFO] django.server - "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+2025-10-17 17:03:29,680 [INFO] django.server - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+2025-10-17 17:03:29,681 [INFO] django.server - "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+2025-10-17 17:03:29,685 [INFO] django.server - "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+2025-10-17 17:03:29,745 [INFO] django.server - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+2025-10-17 17:03:29,765 [INFO] django.server - "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+2025-10-17 17:03:29,765 [INFO] django.server - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2025-10-17 17:03:29,769 [INFO] django.server - "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+2025-10-17 17:03:29,901 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-17 17:03:29,935 [INFO] django.server - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+2025-10-17 17:03:29,961 [INFO] django.server - "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+2025-10-17 17:03:29,966 [INFO] django.server - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+2025-10-17 17:03:29,997 [INFO] django.server - "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+2025-10-17 17:03:29,998 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+2025-10-17 17:03:41,225 [INFO] django.server - "GET /admin/Mainapp/user/%22832326d2-40ae-4c74-8f23-bd70d3458a9b%22/ HTTP/1.1" 302 0
+2025-10-17 17:03:41,295 [INFO] django.server - "GET /admin/Mainapp/user/%22832326d2-40ae-4c74-8f23-bd70d3458a9b%22/change/ HTTP/1.1" 302 0
+2025-10-17 17:03:41,403 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 25942
+2025-10-17 17:03:41,451 [INFO] django.server - "GET /static/admin/img/icon-alert.svg HTTP/1.1" 200 504
+2025-10-17 17:03:45,870 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 26263
+2025-10-17 17:03:45,966 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-17 17:03:49,925 [INFO] django.server - "GET /admin/Mainapp/user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/change/ HTTP/1.1" 200 64361
+2025-10-17 17:03:49,971 [INFO] django.server - "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+2025-10-17 17:03:49,988 [INFO] django.server - "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+2025-10-17 17:03:49,992 [INFO] django.server - "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+2025-10-17 17:03:50,007 [INFO] django.server - "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+2025-10-17 17:03:50,030 [INFO] django.server - "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+2025-10-17 17:03:50,062 [INFO] django.server - "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+2025-10-17 17:03:50,086 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-17 17:03:50,184 [INFO] django.server - "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+2025-10-17 17:03:50,185 [INFO] django.server - "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+2025-10-17 17:03:53,347 [INFO] django.server - "GET /admin/Mainapp/user/ HTTP/1.1" 200 26263
+2025-10-17 17:03:55,529 [INFO] django.server - "GET /admin/Mainapp/user/832326d2-40ae-4c74-8f23-bd70d3458a9b/change/ HTTP/1.1" 200 64402
+2025-10-17 17:03:55,627 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-17 17:46:01,535 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-10-17 17:46:10,541 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:49:47,849 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-10-17 17:49:49,177 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:50:43,594 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:51:13,386 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-10-17 17:51:14,851 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:51:38,018 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-10-17 17:51:39,682 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:54:11,262 [INFO] django.utils.autoreload - C:\Users\lenovo\Desktop\Coderize\Chhaya_Project\Chhayya_Backend\Mainapp\viewsets\person_api.py changed, reloading.
+2025-10-17 17:54:14,177 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-17 17:57:25,933 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-17 17:57:25,946 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-17 17:57:26,167 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-17 17:57:26,335 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 17:57:26,336 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 17:57:26,336 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 17:57:26,451 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 17:57:26,491 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 17:57:26,497 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 17:57:26,501 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 17:57:26,501 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 17:57:26,503 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 17:57:26,503 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 17:57:26,504 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 17:57:26,512 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 17:57:26,616 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 17:57:26,618 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 17:57:26,618 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 17:57:26,699 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 17:57:26,728 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 17:57:26,738 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 17:57:26,779 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 17:57:26,849 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 17:57:26,865 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 17:57:26,867 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 17:57:26,868 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 17:57:26,870 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 17:57:51,814 [INFO] django.server - "OPTIONS /api/persons/missing-persons/?state=Maharashtra&case_status=resolved&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-17 17:57:51,919 [INFO] django.server - "OPTIONS /api/persons/missing-persons/?state=Maharashtra&case_status=pending&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-17 17:57:52,807 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-17 17:57:52,872 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-17 17:57:52,936 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-17 17:57:53,632 [DEBUG] Mainapp.viewsets.filters - Found 13 districts from Person model for state: Maharashtra
+2025-10-17 17:57:53,645 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: missing_persons
+2025-10-17 17:57:53,653 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: missing_persons
+2025-10-17 17:57:53,676 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-17 17:57:53,682 [INFO] Mainapp.viewsets.person_api - MISSING PERSONS list request
+2025-10-17 17:57:53,688 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 13 items
+2025-10-17 17:57:53,693 [INFO] Mainapp.viewsets.person_api - Getting persons by type: Missing Person
+2025-10-17 17:57:53,699 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-17 17:57:53,700 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-17 17:57:53,703 [DEBUG] Mainapp.viewsets.person_api - Query parameters: {'state': ['Maharashtra'], 'case_status': ['pending'], 'page': ['1'], 'page_size': ['10']}
+2025-10-17 17:57:53,708 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-17 17:57:53,734 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: missing_persons
+2025-10-17 17:57:53,735 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-17 17:57:53,793 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: missing_persons
+2025-10-17 17:57:53,849 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Solapur']
+2025-10-17 17:57:53,850 [INFO] Mainapp.viewsets.person_api - MISSING PERSONS list request
+2025-10-17 17:57:53,852 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-17 17:57:53,852 [INFO] Mainapp.viewsets.person_api - Getting persons by type: Missing Person
+2025-10-17 17:57:53,858 [DEBUG] Mainapp.viewsets.person_api - Query parameters: {'state': ['Maharashtra'], 'case_status': ['resolved'], 'page': ['1'], 'page_size': ['10']}
+2025-10-17 17:57:54,593 [DEBUG] Mainapp.viewsets.person_api - Filtered persons count: 7
+2025-10-17 17:57:54,595 [DEBUG] Mainapp.viewsets.person_api - Filtered persons count: 2
+2025-10-17 17:57:55,692 [INFO] Mainapp.viewsets.person_api - Returning paginated missing person (page size: 2)
+2025-10-17 17:57:55,712 [INFO] Mainapp.viewsets.person_api - Returning paginated missing person (page size: 7)
+2025-10-17 17:57:55,750 [INFO] django.server - "GET /api/persons/missing-persons/?state=Maharashtra&case_status=resolved&page=1&page_size=10 HTTP/1.1" 200 1030
+2025-10-17 17:57:55,767 [INFO] django.server - "GET /api/persons/missing-persons/?state=Maharashtra&case_status=pending&page=1&page_size=10 HTTP/1.1" 200 2749
+2025-10-17 17:57:56,715 [INFO] django.server - "GET //media/All_Photos/output_2.png HTTP/1.1" 200 124196
+2025-10-17 17:57:59,630 [INFO] django.server - "OPTIONS /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/ HTTP/1.1" 200 0
+2025-10-17 17:58:00,079 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: retrieve
+2025-10-17 17:58:00,087 [INFO] Mainapp.viewsets.person_api - Allowing public access for action: retrieve
+2025-10-17 17:58:00,089 [INFO] Mainapp.viewsets.person_api - RETRIEVE request for person ID: 2d926d58-f52f-456d-a948-69e7e60e7401 from user: admin@gmail.com (admin)
+2025-10-17 17:58:00,241 [DEBUG] Mainapp.viewsets.person_api - Found person: Swagati (ID: 2d926d58-f52f-456d-a948-69e7e60e7401)
+2025-10-17 17:58:00,245 [INFO] Mainapp.viewsets.person_api - Successfully retrieved person ID: 2d926d58-f52f-456d-a948-69e7e60e7401
+2025-10-17 17:58:00,448 [INFO] django.server - "GET /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/ HTTP/1.1" 200 3292
+2025-10-17 17:58:02,700 [WARNING] django.request - Not Found: /null
+2025-10-17 17:58:03,042 [WARNING] django.server - "GET //null HTTP/1.1" 404 11156
+2025-10-17 18:57:53,498 [INFO] django.server - "GET /admin/Mainapp/user/832326d2-40ae-4c74-8f23-bd70d3458a9b/change/ HTTP/1.1" 200 64402
