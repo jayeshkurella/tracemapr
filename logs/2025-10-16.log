@@ -1,0 +1,700 @@
+2025-10-16 12:22:51,622 [INFO] django.utils.autoreload - Watching for file changes with StatReloader
+2025-10-16 12:24:50,264 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-16 12:24:50,979 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 12:24:51,040 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:24:51,041 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:24:51,042 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:24:51,554 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:24:51,685 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:24:51,715 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:24:51,718 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:24:51,776 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:24:51,785 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:24:51,792 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:24:51,798 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:24:51,800 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:24:52,023 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:24:52,030 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:24:52,033 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:24:52,134 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:24:52,217 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:24:52,264 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:24:52,317 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:24:52,378 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:24:52,380 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:24:52,383 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:24:52,411 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:24:52,414 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:24:53,680 [INFO] django.server - "OPTIONS /api/user-management/count/ HTTP/1.1" 200 0
+2025-10-16 12:24:53,680 [INFO] django.server - "OPTIONS /api/user-management/case-management/count/ HTTP/1.1" 200 0
+2025-10-16 12:24:53,713 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-16 12:24:53,718 [INFO] django.server - "OPTIONS /users/ HTTP/1.1" 200 0
+2025-10-16 12:24:53,733 [INFO] django.server - "OPTIONS /api/user-management/features/ HTTP/1.1" 200 0
+2025-10-16 12:24:54,012 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-16 12:24:54,233 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:24:54,235 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:24:54,255 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 148
+2025-10-16 12:24:54,261 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-16 12:24:54,290 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:24:54,294 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:24:54,308 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:24:54,309 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:24:54,314 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:24:54,320 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:24:54,325 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:24:54,327 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:24:54,329 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:24:54,459 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:24:54,460 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:24:54,461 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:24:54,462 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:24:54,467 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:24:54,468 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:24:54,473 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:24:54,478 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:24:54,481 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:24:54,484 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:24:54,488 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:24:54,498 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-16 12:24:54,658 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:24:54,666 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 0
+2025-10-16 12:24:54,855 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 834
+2025-10-16 12:24:59,996 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:25:00,218 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 834
+2025-10-16 12:25:30,315 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 12:25:32,722 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:25:32,774 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:25:32,932 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:25:33,572 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:25:33,636 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:25:33,679 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:25:33,680 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:25:33,691 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:25:33,706 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:25:33,711 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:25:33,714 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:25:33,719 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:25:35,429 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:25:35,691 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:25:35,897 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:25:36,019 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:25:36,073 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:25:36,248 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:25:36,462 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:25:36,610 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:25:36,623 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:25:36,625 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:25:36,627 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:25:36,629 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:25:47,506 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:25:47,508 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:25:47,509 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:25:48,393 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:25:48,456 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:25:48,566 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:25:48,587 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:25:48,596 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:25:48,598 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:25:48,604 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:25:48,607 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:25:48,610 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:25:48,656 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:25:48,780 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:25:48,791 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:25:49,141 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:25:49,181 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:25:49,264 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:25:49,276 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:25:49,281 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:25:49,288 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:25:49,296 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:25:49,310 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:25:49,313 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:27:01,580 [INFO] django.server - "GET /api/user-management/count/ HTTP/1.1" 200 86
+2025-10-16 12:27:01,654 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:01,655 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-16 12:27:01,656 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:01,661 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:27:01,664 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:27:01,670 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:27:01,682 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:27:01,691 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:27:01,693 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:27:01,707 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:27:01,711 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:27:01,719 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:27:01,770 [INFO] django.server - "GET /api/user-management/case-management/count/ HTTP/1.1" 200 148
+2025-10-16 12:27:01,868 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:01,869 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:01,870 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:27:01,871 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:27:01,873 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:27:01,874 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:27:01,878 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:27:01,883 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:27:01,890 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:27:01,892 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:27:01,893 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:27:02,060 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:27:02,157 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 834
+2025-10-16 12:27:16,986 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 495
+2025-10-16 12:27:17,010 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/by-user/22ae4c09-c333-45f8-930c-ddc1abea3054/ HTTP/1.1" 200 0
+2025-10-16 12:27:17,356 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/22ae4c09-c333-45f8-930c-ddc1abea3054/ HTTP/1.1" 200 836
+2025-10-16 12:27:19,290 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:27:19,502 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 834
+2025-10-16 12:27:47,084 [INFO] django.server - "OPTIONS /api/users/ HTTP/1.1" 200 0
+2025-10-16 12:27:47,092 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: testuser1@example.com
+2025-10-16 12:27:47,093 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: Newpassword@12!
+2025-10-16 12:27:47,185 [DEBUG] Mainapp.authentication.user_authentication - User found: bd8fce0e-faa2-4596-b670-fb5f80dc2452, Status: active
+2025-10-16 12:27:48,276 [WARNING] Mainapp.authentication.user_authentication - Login failed: Incorrect password for user: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:48,936 [WARNING] django.request - Bad Request: /api/users/
+2025-10-16 12:27:48,938 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 31
+2025-10-16 12:27:52,441 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: testuser1@example.com
+2025-10-16 12:27:52,441 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: Newpassword@123!
+2025-10-16 12:27:52,551 [DEBUG] Mainapp.authentication.user_authentication - User found: bd8fce0e-faa2-4596-b670-fb5f80dc2452, Status: active
+2025-10-16 12:27:53,574 [WARNING] Mainapp.authentication.user_authentication - Login failed: Incorrect password for user: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:27:53,575 [WARNING] django.request - Bad Request: /api/users/
+2025-10-16 12:27:53,577 [WARNING] django.server - "POST /api/users/ HTTP/1.1" 400 31
+2025-10-16 12:28:35,513 [INFO] Mainapp.authentication.user_authentication - Login attempt for email: testuser@example.com
+2025-10-16 12:28:35,514 [INFO] Mainapp.authentication.user_authentication - Login attempt for password: NewPassword123!
+2025-10-16 12:28:35,602 [DEBUG] Mainapp.authentication.user_authentication - User found: 22ae4c09-c333-45f8-930c-ddc1abea3054, Status: active
+2025-10-16 12:28:36,577 [INFO] Mainapp.authentication.user_authentication - Login successful for user: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:28:36,578 [DEBUG] Mainapp.authentication.user_authentication - Generated tokens for user: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:28:36,580 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:28:36,581 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:28:36,581 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 1136
+2025-10-16 12:28:36,772 [INFO] django.server - "OPTIONS /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 0
+2025-10-16 12:28:36,886 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:28:36,888 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:28:36,888 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:28:36,953 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:28:36,982 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:28:36,989 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:28:36,994 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:28:37,001 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:28:37,003 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:28:37,004 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:28:37,031 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:28:37,036 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:28:37,367 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:28:37,368 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:28:37,369 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:28:37,468 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 12:28:37,507 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:28:37,578 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:28:37,581 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:28:37,582 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:28:37,584 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:28:37,585 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:28:37,587 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:28:37,600 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:28:37,604 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:28:46,726 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:28:46,874 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 834
+2025-10-16 12:28:50,378 [INFO] django.server - "OPTIONS /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 0
+2025-10-16 12:28:50,484 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-16 12:28:51,217 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-16 12:28:52,568 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:28:52,568 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:28:52,569 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 575
+2025-10-16 12:28:56,344 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/reporting_person/ HTTP/1.1" 200 0
+2025-10-16 12:28:56,350 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/volunteer/ HTTP/1.1" 200 0
+2025-10-16 12:28:56,351 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/admin/ HTTP/1.1" 200 0
+2025-10-16 12:28:56,881 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/family/ HTTP/1.1" 200 0
+2025-10-16 12:28:58,619 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/police_station/ HTTP/1.1" 200 0
+2025-10-16 12:28:58,647 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/medical_staff/ HTTP/1.1" 200 0
+2025-10-16 12:28:58,674 [INFO] django.server - "OPTIONS /api/user-management/role-feature-access/by-role/anonymous_user/ HTTP/1.1" 200 0
+2025-10-16 12:28:59,348 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/admin/ HTTP/1.1" 200 828
+2025-10-16 12:29:00,462 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/volunteer/ HTTP/1.1" 200 833
+2025-10-16 12:29:01,036 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/reporting_person/ HTTP/1.1" 200 834
+2025-10-16 12:29:01,315 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/family/ HTTP/1.1" 200 833
+2025-10-16 12:29:01,500 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/police_station/ HTTP/1.1" 200 832
+2025-10-16 12:29:01,607 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/anonymous_user/ HTTP/1.1" 200 835
+2025-10-16 12:29:01,642 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/medical_staff/ HTTP/1.1" 200 832
+2025-10-16 12:29:04,461 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-16 12:29:04,469 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:29:04,470 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:29:04,471 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:29:04,472 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:29:04,476 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:29:04,478 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:29:04,482 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:29:04,483 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:29:04,487 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:29:04,487 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:29:04,488 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:29:04,598 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:29:04,697 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-16 12:29:09,441 [INFO] django.server - "OPTIONS /api/hospital-name-list/ HTTP/1.1" 200 0
+2025-10-16 12:29:09,454 [INFO] django.server - "OPTIONS /api/police-station-name-list/ HTTP/1.1" 200 0
+2025-10-16 12:29:09,462 [INFO] django.server - "OPTIONS /api/educational_tags/ HTTP/1.1" 200 0
+2025-10-16 12:29:09,476 [INFO] django.server - "OPTIONS /api/occupation_tags/ HTTP/1.1" 200 0
+2025-10-16 12:29:09,623 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-16 12:29:09,653 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-16 12:29:09,702 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-16 12:29:09,729 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 12:30:32,063 [INFO] django.server - "OPTIONS /api/persons/ HTTP/1.1" 200 0
+2025-10-16 12:30:32,158 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: create
+2025-10-16 12:30:32,168 [WARNING] django.request - Forbidden: /api/persons/
+2025-10-16 12:30:32,169 [WARNING] django.server - "POST /api/persons/ HTTP/1.1" 403 63
+2025-10-16 12:30:56,036 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: create
+2025-10-16 12:30:56,051 [WARNING] django.request - Forbidden: /api/persons/
+2025-10-16 12:30:56,054 [WARNING] django.server - "POST /api/persons/ HTTP/1.1" 403 63
+2025-10-16 12:31:15,678 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:31:15,779 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-16 12:31:18,230 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/reporting_person/ HTTP/1.1" 200 834
+2025-10-16 12:31:18,230 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/volunteer/ HTTP/1.1" 200 833
+2025-10-16 12:31:18,336 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/family/ HTTP/1.1" 200 833
+2025-10-16 12:31:18,347 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/police_station/ HTTP/1.1" 200 832
+2025-10-16 12:31:18,440 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/medical_staff/ HTTP/1.1" 200 832
+2025-10-16 12:31:18,449 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/anonymous_user/ HTTP/1.1" 200 835
+2025-10-16 12:31:18,506 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/admin/ HTTP/1.1" 200 828
+2025-10-16 12:31:19,534 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-16 12:31:19,543 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:19,543 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:19,543 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:31:19,543 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:31:19,546 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:31:19,548 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:31:19,551 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:31:19,554 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:31:19,558 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:31:19,559 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:31:19,561 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:31:19,665 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:31:19,763 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-16 12:31:21,978 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/police_station/ HTTP/1.1" 200 832
+2025-10-16 12:31:21,991 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/reporting_person/ HTTP/1.1" 200 834
+2025-10-16 12:31:22,047 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/family/ HTTP/1.1" 200 833
+2025-10-16 12:31:22,140 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/volunteer/ HTTP/1.1" 200 833
+2025-10-16 12:31:22,141 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/anonymous_user/ HTTP/1.1" 200 835
+2025-10-16 12:31:22,162 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/admin/ HTTP/1.1" 200 828
+2025-10-16 12:31:22,175 [INFO] django.server - "GET /api/user-management/role-feature-access/by-role/medical_staff/ HTTP/1.1" 200 832
+2025-10-16 12:31:31,558 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:31,562 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:31,571 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:31:31,572 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user b9e59f94-dd59-4df1-9e86-4e17a3792c1d
+2025-10-16 12:31:31,581 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:31:31,589 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 832326d2-40ae-4c74-8f23-bd70d3458a9b
+2025-10-16 12:31:31,595 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:31:31,606 [INFO] django.server - "GET /api/user-management/features/ HTTP/1.1" 200 644
+2025-10-16 12:31:31,606 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 418d0040-fd3d-4252-a6e7-3b089c49942d
+2025-10-16 12:31:31,630 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:31:31,633 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user 22ae4c09-c333-45f8-930c-ddc1abea3054
+2025-10-16 12:31:31,637 [INFO] django.server - "GET /users/ HTTP/1.1" 200 2604
+2025-10-16 12:31:31,788 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:31:32,023 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-16 12:31:32,835 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 496
+2025-10-16 12:31:32,936 [INFO] django.server - "GET /api/user-management/user-feature-access/by-user/bd8fce0e-faa2-4596-b670-fb5f80dc2452/ HTTP/1.1" 200 836
+2025-10-16 12:31:34,479 [INFO] django.server - "POST /api/user-management/user-feature-access/update-user-access/ HTTP/1.1" 200 74
+2025-10-16 12:31:36,520 [DEBUG] Mainapp.authentication.auth_serializer - Getting profile image for user ID: bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:36,521 [DEBUG] Mainapp.authentication.auth_serializer - Using default avatar for user bd8fce0e-faa2-4596-b670-fb5f80dc2452
+2025-10-16 12:31:36,522 [INFO] django.server - "POST /api/users/ HTTP/1.1" 200 575
+2025-10-16 12:31:46,497 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: create
+2025-10-16 12:31:46,509 [WARNING] django.request - Forbidden: /api/persons/
+2025-10-16 12:31:46,511 [WARNING] django.server - "POST /api/persons/ HTTP/1.1" 403 63
+2025-10-16 12:31:50,046 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: create
+2025-10-16 12:31:50,063 [WARNING] django.request - Forbidden: /api/persons/
+2025-10-16 12:31:50,063 [WARNING] django.server - "POST /api/persons/ HTTP/1.1" 403 63
+2025-10-16 12:31:56,748 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 12:31:56,773 [INFO] django.server - "GET /api/educational_tags/ HTTP/1.1" 200 95
+2025-10-16 12:31:56,792 [INFO] django.server - "GET /api/hospital-name-list/ HTTP/1.1" 200 202
+2025-10-16 12:31:56,909 [INFO] django.server - "GET /api/occupation_tags/ HTTP/1.1" 200 112
+2025-10-16 12:32:02,164 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 12:32:59,503 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:32:59,504 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:32:59,505 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:32:59,578 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:32:59,628 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:32:59,631 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:32:59,634 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:32:59,639 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:32:59,642 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:32:59,642 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:32:59,643 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:32:59,645 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:32:59,765 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:32:59,766 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:32:59,766 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:32:59,815 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:32:59,841 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:32:59,842 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:32:59,843 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:32:59,844 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:32:59,845 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:32:59,846 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:32:59,846 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:32:59,848 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:59:32,829 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 12:59:32,903 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:59:32,903 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:59:32,904 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:59:32,948 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:59:32,968 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:59:32,970 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:59:32,971 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:59:32,972 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:59:32,972 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:59:32,974 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:59:32,975 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:59:32,978 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 12:59:33,058 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 12:59:33,059 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 12:59:33,060 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 12:59:33,099 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 12:59:33,118 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 12:59:33,120 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 12:59:33,120 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 12:59:33,122 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 12:59:33,122 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 12:59:33,126 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 12:59:33,127 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 12:59:33,129 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 13:27:59,204 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:27:59,289 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 13:27:59,314 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 13:27:59,327 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 13:27:59,410 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 13:27:59,435 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 13:27:59,437 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 13:27:59,438 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 13:27:59,440 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 13:27:59,441 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 13:27:59,442 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 13:27:59,443 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 13:27:59,443 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 13:27:59,519 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 13:27:59,519 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 13:27:59,520 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 13:27:59,548 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 13:27:59,566 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 13:27:59,568 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 13:27:59,568 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 13:27:59,570 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 13:27:59,570 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 13:27:59,570 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 13:27:59,575 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 13:27:59,579 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 13:28:02,283 [INFO] django.server - "OPTIONS /api/police-station-name-list/ HTTP/1.1" 200 0
+2025-10-16 13:28:02,284 [INFO] django.server - "OPTIONS /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-16 13:28:02,287 [INFO] django.server - "OPTIONS /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-16 13:28:02,289 [INFO] django.server - "OPTIONS /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-16 13:28:02,294 [INFO] django.server - "OPTIONS /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 0
+2025-10-16 13:28:02,432 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,445 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,465 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,467 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,469 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,471 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,471 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,472 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,569 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:28:02,630 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 2702
+2025-10-16 13:28:02,673 [INFO] Mainapp.viewsets.filters - DISTRICTS request received from client: 127.0.0.1
+2025-10-16 13:28:02,683 [DEBUG] Mainapp.viewsets.filters - Request query params: {'state': ['Maharashtra']}
+2025-10-16 13:28:02,728 [DEBUG] Mainapp.viewsets.filters - Fetching districts for state: Maharashtra
+2025-10-16 13:28:02,731 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,760 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,784 [DEBUG] Mainapp.viewsets.filters - Found 16 districts from Person model for state: Maharashtra
+2025-10-16 13:28:02,825 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,902 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,991 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,995 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:02,995 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:28:02,996 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:02,999 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:03,004 [DEBUG] Mainapp.viewsets.filters - Found 6 districts from Address model for state: Maharashtra
+2025-10-16 13:28:03,008 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:03,014 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:03,018 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 16 items
+2025-10-16 13:28:03,018 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:28:03,021 [DEBUG] Mainapp.viewsets.filters - Normalized to 4 unique items
+2025-10-16 13:28:03,026 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:28:03,035 [DEBUG] Mainapp.viewsets.filters - Normalizing queryset with 6 items
+2025-10-16 13:28:03,047 [DEBUG] Mainapp.viewsets.filters - Normalized to 3 unique items
+2025-10-16 13:28:03,059 [INFO] Mainapp.viewsets.filters - Returning 5 unique districts for state: Maharashtra
+2025-10-16 13:28:03,061 [DEBUG] Mainapp.viewsets.filters - Districts data for Maharashtra: ['Amravati', 'Jalna', 'Mumbai', 'Pune', 'Wwwwwww']
+2025-10-16 13:28:03,066 [INFO] django.server - "GET /api/filters_address/districts/?state=Maharashtra HTTP/1.1" 200 46
+2025-10-16 13:28:03,110 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:28:03,140 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:28:03,195 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 2702
+2025-10-16 13:28:06,158 [INFO] django.server - "OPTIONS /api/persons/adae9350-10b1-4e56-b8ed-d5d20248116d/approve_person/ HTTP/1.1" 200 0
+2025-10-16 13:28:06,221 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:28:06,222 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: adae9350-10b1-4e56-b8ed-d5d20248116d from admin: admin@gmail.com (admin)
+2025-10-16 13:28:06,276 [DEBUG] Mainapp.viewsets.person_api - Found person: rrrrrr (Current status: pending)
+2025-10-16 13:28:06,336 [INFO] Mainapp.viewsets.person_api - Person ID adae9350-10b1-4e56-b8ed-d5d20248116d approved successfully
+2025-10-16 13:28:06,339 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: MP-202510-QQQQ-001 to admin@gmail.com
+2025-10-16 13:28:06,339 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:28:06,340 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: rrrrrr, Case ID: MP-202510-QQQQ-001, Type: Missing Person, Approved At: 16/10/2025, 01:28:06 PM
+2025-10-16 13:28:06,348 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case MP-202510-QQQQ-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:28:06,459 [INFO] django.server - "POST /api/persons/adae9350-10b1-4e56-b8ed-d5d20248116d/approve_person/ HTTP/1.1" 200 3382
+2025-10-16 13:28:10,534 [INFO] django.server - "OPTIONS /api/persons/4e7d3e60-fb7c-4643-9a82-841aa8317fb4/approve_person/ HTTP/1.1" 200 0
+2025-10-16 13:28:10,601 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:28:10,602 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: 4e7d3e60-fb7c-4643-9a82-841aa8317fb4 from admin: admin@gmail.com (admin)
+2025-10-16 13:28:10,662 [DEBUG] Mainapp.viewsets.person_api - Found person: rrrrrrrrr (Current status: pending)
+2025-10-16 13:28:10,679 [INFO] Mainapp.viewsets.person_api - Person ID 4e7d3e60-fb7c-4643-9a82-841aa8317fb4 approved successfully
+2025-10-16 13:28:10,681 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: MP-202510-UUUU-001 to admin@gmail.com
+2025-10-16 13:28:10,681 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:28:10,682 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: rrrrrrrrr, Case ID: MP-202510-UUUU-001, Type: Missing Person, Approved At: 16/10/2025, 01:28:10 PM
+2025-10-16 13:28:10,689 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case MP-202510-UUUU-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:28:10,741 [INFO] django.server - "POST /api/persons/4e7d3e60-fb7c-4643-9a82-841aa8317fb4/approve_person/ HTTP/1.1" 200 2543
+2025-10-16 13:28:13,515 [INFO] django.server - "OPTIONS /api/persons/e20308f4-22f4-4cd3-a54d-a8e0e247e303/approve_person/ HTTP/1.1" 200 0
+2025-10-16 13:28:13,583 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:28:13,584 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: e20308f4-22f4-4cd3-a54d-a8e0e247e303 from admin: admin@gmail.com (admin)
+2025-10-16 13:28:13,635 [DEBUG] Mainapp.viewsets.person_api - Found person: eeeeee (Current status: pending)
+2025-10-16 13:28:13,648 [INFO] Mainapp.viewsets.person_api - Person ID e20308f4-22f4-4cd3-a54d-a8e0e247e303 approved successfully
+2025-10-16 13:28:13,651 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: MP-202510-IIII-001 to admin@gmail.com
+2025-10-16 13:28:13,651 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:28:13,651 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: eeeeee, Case ID: MP-202510-IIII-001, Type: Missing Person, Approved At: 16/10/2025, 01:28:13 PM
+2025-10-16 13:28:13,656 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case MP-202510-IIII-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:28:13,706 [INFO] django.server - "POST /api/persons/e20308f4-22f4-4cd3-a54d-a8e0e247e303/approve_person/ HTTP/1.1" 200 3380
+2025-10-16 13:28:26,618 [INFO] django.server - "GET /admin/ HTTP/1.1" 302 0
+2025-10-16 13:28:26,863 [INFO] django.server - "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4176
+2025-10-16 13:28:27,189 [INFO] django.server - "GET /static/admin/css/base.css HTTP/1.1" 200 22120
+2025-10-16 13:28:27,191 [INFO] django.server - "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+2025-10-16 13:28:27,195 [INFO] django.server - "GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+2025-10-16 13:28:27,201 [INFO] django.server - "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+2025-10-16 13:28:27,208 [INFO] django.server - "GET /static/admin/css/login.css HTTP/1.1" 200 951
+2025-10-16 13:28:27,215 [INFO] django.server - "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+2025-10-16 13:28:27,260 [INFO] django.server - "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+2025-10-16 13:28:27,311 [WARNING] django.request - Not Found: /favicon.ico
+2025-10-16 13:28:27,313 [WARNING] django.server - "GET /favicon.ico HTTP/1.1" 404 11177
+2025-10-16 13:28:29,923 [INFO] django.server - "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+2025-10-16 13:28:30,952 [INFO] django.server - "GET /admin/ HTTP/1.1" 200 26455
+2025-10-16 13:28:31,064 [INFO] django.server - "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+2025-10-16 13:28:31,111 [INFO] django.server - "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+2025-10-16 13:28:31,123 [INFO] django.server - "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+2025-10-16 13:28:34,622 [INFO] django.server - "GET /admin/Mainapp/person/ HTTP/1.1" 200 80149
+2025-10-16 13:28:34,666 [INFO] django.server - "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+2025-10-16 13:28:34,692 [INFO] django.server - "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+2025-10-16 13:28:34,709 [INFO] django.server - "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+2025-10-16 13:28:34,709 [INFO] django.server - "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+2025-10-16 13:28:34,761 [INFO] django.server - "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+2025-10-16 13:28:34,779 [INFO] django.server - "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+2025-10-16 13:28:34,794 [INFO] django.server - "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+2025-10-16 13:28:34,805 [INFO] django.server - "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+2025-10-16 13:28:34,846 [INFO] django.server - "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+2025-10-16 13:28:34,879 [INFO] django.server - "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+2025-10-16 13:28:34,958 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-16 13:28:35,023 [INFO] django.server - "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+2025-10-16 13:28:35,024 [INFO] django.server - "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+2025-10-16 13:28:35,081 [INFO] django.server - "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+2025-10-16 13:28:35,087 [INFO] django.server - "GET /static/admin/img/sorting-icons.svg HTTP/1.1" 200 1097
+2025-10-16 13:28:35,091 [INFO] django.server - "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+2025-10-16 13:28:54,735 [INFO] django.server - "POST /admin/Mainapp/person/ HTTP/1.1" 200 21057
+2025-10-16 13:28:54,789 [INFO] django.server - "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+2025-10-16 13:28:56,602 [INFO] django.server - "POST /admin/Mainapp/person/ HTTP/1.1" 302 0
+2025-10-16 13:28:56,795 [INFO] django.server - "GET /admin/Mainapp/person/ HTTP/1.1" 200 64650
+2025-10-16 13:28:56,879 [INFO] django.server - "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+2025-10-16 13:28:56,914 [INFO] django.server - "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+2025-10-16 13:29:04,835 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:04,847 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:04,856 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:04,908 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:04,923 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:29:04,978 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,068 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:29:05,078 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,082 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,093 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,103 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,117 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,123 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,142 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,147 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,165 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,167 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,210 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,243 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 586
+2025-10-16 13:29:05,322 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:29:05,341 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:29:05,422 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,423 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,424 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:29:05,425 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:29:05,445 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:29:05,495 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 586
+2025-10-16 13:29:09,897 [INFO] django.server - "OPTIONS /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/approve_person/ HTTP/1.1" 200 0
+2025-10-16 13:29:09,966 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:29:09,967 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: 2d926d58-f52f-456d-a948-69e7e60e7401 from admin: admin@gmail.com (admin)
+2025-10-16 13:29:10,019 [DEBUG] Mainapp.viewsets.person_api - Found person: Swagati (Current status: pending)
+2025-10-16 13:29:10,033 [INFO] Mainapp.viewsets.person_api - Person ID 2d926d58-f52f-456d-a948-69e7e60e7401 approved successfully
+2025-10-16 13:29:10,038 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: MP-202510-PUNE-001 to admin@gmail.com
+2025-10-16 13:29:10,038 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:29:10,039 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: Swagati, Case ID: MP-202510-PUNE-001, Type: Missing Person, Approved At: 16/10/2025, 01:29:10 PM
+2025-10-16 13:29:10,046 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case MP-202510-PUNE-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:29:10,111 [INFO] django.server - "POST /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/approve_person/ HTTP/1.1" 200 3340
+2025-10-16 13:29:23,913 [INFO] django.server - "OPTIONS /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/hold_person/ HTTP/1.1" 200 0
+2025-10-16 13:29:23,979 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: hold_person
+2025-10-16 13:29:23,980 [INFO] Mainapp.viewsets.person_api - HOLD PERSON request for ID: 2d926d58-f52f-456d-a948-69e7e60e7401 from admin: admin@gmail.com (admin)
+2025-10-16 13:29:23,982 [DEBUG] Mainapp.viewsets.person_api - Request data: {'reason': 'hold'}
+2025-10-16 13:29:24,032 [INFO] Mainapp.viewsets.person_api - Person ID 2d926d58-f52f-456d-a948-69e7e60e7401 put on hold with reason: hold
+2025-10-16 13:29:24,035 [INFO] Mainapp.Emails.case_hold - Preparing to send case hold email for case ID: MP-202510-PUNE-001 to admin@gmail.com
+2025-10-16 13:29:24,035 [INFO] Mainapp.viewsets.person_api - Hold email thread started
+2025-10-16 13:29:24,036 [DEBUG] Mainapp.Emails.case_hold - Email parameters - Reporter: admin admin, Case ID: MP-202510-PUNE-001, Reason: hold
+2025-10-16 13:29:24,041 [DEBUG] Mainapp.Emails.case_hold - Email details - Subject: Your Case MP-202510-PUNE-001 is on Hold., From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:29:24,042 [DEBUG] Mainapp.Emails.case_hold - Plain text email content generated
+2025-10-16 13:29:24,094 [INFO] django.server - "POST /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/hold_person/ HTTP/1.1" 200 3344
+2025-10-16 13:31:32,134 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,160 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,172 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,181 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,192 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,234 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,234 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,246 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,246 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,248 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,250 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,254 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,261 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,274 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,275 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:31:32,286 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,288 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,386 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:31:32,432 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:31:32,432 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:31:32,481 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 588
+2025-10-16 13:31:32,494 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:31:32,686 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,702 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,736 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:32,777 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:32,888 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:31:38,880 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:31:39,084 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:31:39,300 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,302 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,302 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,303 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,310 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,312 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,313 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,314 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,315 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,316 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,318 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,318 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,508 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,509 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,510 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,516 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,516 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:31:39,774 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:31:39,804 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:31:39,960 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 588
+2025-10-16 13:31:39,977 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,979 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:39,980 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:31:39,981 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:31:40,182 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3096
+2025-10-16 13:32:10,185 [INFO] django.server - "OPTIONS /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/hold_person/ HTTP/1.1" 200 0
+2025-10-16 13:32:10,567 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: hold_person
+2025-10-16 13:32:10,567 [INFO] Mainapp.viewsets.person_api - HOLD PERSON request for ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6 from admin: admin@gmail.com (admin)
+2025-10-16 13:32:10,573 [DEBUG] Mainapp.viewsets.person_api - Request data: {'reason': 'hold'}
+2025-10-16 13:32:11,006 [INFO] Mainapp.viewsets.person_api - Person ID bc6dd356-17c0-424a-afa9-9d816a8e3ac6 put on hold with reason: hold
+2025-10-16 13:32:11,014 [INFO] Mainapp.Emails.case_hold - Preparing to send case hold email for case ID: UB-202509-PUNE-001 to admin@gmail.com
+2025-10-16 13:32:11,014 [INFO] Mainapp.viewsets.person_api - Hold email thread started
+2025-10-16 13:32:11,015 [DEBUG] Mainapp.Emails.case_hold - Email parameters - Reporter: admin admin, Case ID: UB-202509-PUNE-001, Reason: hold
+2025-10-16 13:32:11,047 [DEBUG] Mainapp.Emails.case_hold - Email details - Subject: Your Case UB-202509-PUNE-001 is on Hold., From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:32:11,047 [DEBUG] Mainapp.Emails.case_hold - Plain text email content generated
+2025-10-16 13:32:11,151 [INFO] django.server - "POST /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/hold_person/ HTTP/1.1" 200 4115
+2025-10-16 13:32:21,968 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:21,971 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:21,972 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:21,983 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,054 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:32:22,103 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:32:22,118 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,132 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,135 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:32:22,142 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,149 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,154 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,155 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,166 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,194 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,225 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:32:22,272 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,274 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,275 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,280 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,294 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,296 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,299 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:22,302 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:22,313 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3022
+2025-10-16 13:32:22,349 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:32:22,378 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 855
+2025-10-16 13:32:25,000 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:32:25,001 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: 2d926d58-f52f-456d-a948-69e7e60e7401 from admin: admin@gmail.com (admin)
+2025-10-16 13:32:25,052 [DEBUG] Mainapp.viewsets.person_api - Found person: Swagati (Current status: on_hold)
+2025-10-16 13:32:25,061 [INFO] Mainapp.viewsets.person_api - Person ID 2d926d58-f52f-456d-a948-69e7e60e7401 approved successfully
+2025-10-16 13:32:25,063 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: MP-202510-PUNE-001 to admin@gmail.com
+2025-10-16 13:32:25,063 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:32:25,064 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: Swagati, Case ID: MP-202510-PUNE-001, Type: Missing Person, Approved At: 16/10/2025, 01:32:25 PM
+2025-10-16 13:32:25,069 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case MP-202510-PUNE-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:32:25,134 [INFO] django.server - "POST /api/persons/2d926d58-f52f-456d-a948-69e7e60e7401/approve_person/ HTTP/1.1" 200 3342
+2025-10-16 13:32:26,168 [INFO] django.server - "OPTIONS /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/approve_person/ HTTP/1.1" 200 0
+2025-10-16 13:32:26,531 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:32:26,532 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6 from admin: admin@gmail.com (admin)
+2025-10-16 13:32:26,691 [DEBUG] Mainapp.viewsets.person_api - Found person: None (Current status: on_hold)
+2025-10-16 13:32:26,910 [INFO] Mainapp.viewsets.person_api - Person ID bc6dd356-17c0-424a-afa9-9d816a8e3ac6 approved successfully
+2025-10-16 13:32:26,913 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: UB-202509-PUNE-001 to admin@gmail.com
+2025-10-16 13:32:26,913 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:32:26,915 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: None, Case ID: UB-202509-PUNE-001, Type: Unidentified Body, Approved At: 16/10/2025, 01:32:26 PM
+2025-10-16 13:32:26,925 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case UB-202509-PUNE-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:32:27,154 [INFO] django.server - "POST /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/approve_person/ HTTP/1.1" 200 4113
+2025-10-16 13:32:33,330 [INFO] django.server - "OPTIONS /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/change_from_approved/ HTTP/1.1" 200 0
+2025-10-16 13:32:33,671 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: change_from_approved
+2025-10-16 13:32:33,678 [INFO] Mainapp.viewsets.person_api - CHANGE FROM APPROVED request for ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6 from admin: admin@gmail.com (admin)
+2025-10-16 13:32:33,678 [DEBUG] Mainapp.viewsets.person_api - Request data: {'status': 'pending'}
+2025-10-16 13:32:33,780 [INFO] Mainapp.viewsets.person_api - Person ID bc6dd356-17c0-424a-afa9-9d816a8e3ac6 status changed from approved to pending
+2025-10-16 13:32:33,806 [INFO] Mainapp.Emails.case_pending - Preparing to send case hold email for case ID: UB-202509-PUNE-001 to admin@gmail.com
+2025-10-16 13:32:33,806 [INFO] Mainapp.viewsets.person_api - Pending status email thread started
+2025-10-16 13:32:33,837 [DEBUG] Mainapp.Emails.case_pending - Email parameters - Reporter: admin admin, Case ID: UB-202509-PUNE-001, Reason: The case has been moved back to pending review for further evaluation by the administration team.
+2025-10-16 13:32:33,945 [INFO] django.server - "POST /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/change_from_approved/ HTTP/1.1" 200 4116
+2025-10-16 13:32:34,114 [DEBUG] Mainapp.Emails.case_pending - Email details - Subject: Your Case UB-202509-PUNE-001 is Back to Pending Review, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:32:34,124 [DEBUG] Mainapp.Emails.case_pending - Plain text email content generated
+2025-10-16 13:32:36,066 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:36,083 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:36,165 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:36,178 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:36,246 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3100
+2025-10-16 13:32:46,301 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,307 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,318 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,327 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,335 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,340 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,349 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,372 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,373 [WARNING] django.server - "GET //static/images/default-avatar.png HTTP/1.1" 404 2002
+2025-10-16 13:32:46,381 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,383 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,393 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,399 [INFO] django.server - "GET /api/police-station-name-list/ HTTP/1.1" 200 80
+2025-10-16 13:32:46,404 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,405 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,410 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,423 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:46,424 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:46,779 [INFO] django.server - "GET /api/persons_status/on_hold/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 320
+2025-10-16 13:32:46,804 [INFO] django.server - "GET /api/persons_status/suspended/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 324
+2025-10-16 13:32:46,921 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 586
+2025-10-16 13:32:47,147 [INFO] django.server - "GET /api/persons_status/approved/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 3100
+2025-10-16 13:32:47,564 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:47,577 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:47,577 [INFO] Mainapp.viewsets.casetype_apis - Fetching persons list with filters: {'state': 'Maharashtra', 'page': '1', 'page_size': '10'}
+2025-10-16 13:32:47,578 [DEBUG] Mainapp.viewsets.casetype_apis - Applying filter: state=Maharashtra
+2025-10-16 13:32:47,675 [INFO] django.server - "GET /api/persons_status/pending/?state=Maharashtra&page=1&page_size=10 HTTP/1.1" 200 586
+2025-10-16 13:32:51,433 [DEBUG] Mainapp.viewsets.person_api - Getting permissions for action: approve_person
+2025-10-16 13:32:51,433 [INFO] Mainapp.viewsets.person_api - APPROVE PERSON request for ID: bc6dd356-17c0-424a-afa9-9d816a8e3ac6 from admin: admin@gmail.com (admin)
+2025-10-16 13:32:51,481 [DEBUG] Mainapp.viewsets.person_api - Found person: None (Current status: pending)
+2025-10-16 13:32:51,486 [INFO] Mainapp.viewsets.person_api - Person ID bc6dd356-17c0-424a-afa9-9d816a8e3ac6 approved successfully
+2025-10-16 13:32:51,488 [INFO] Mainapp.Emails.case_approval - Preparing to send case approval email for case ID: UB-202509-PUNE-001 to admin@gmail.com
+2025-10-16 13:32:51,489 [INFO] Mainapp.viewsets.person_api - Approval email thread started
+2025-10-16 13:32:51,490 [DEBUG] Mainapp.Emails.case_approval - Email parameters - Reporter: admin admin, Full Name: None, Case ID: UB-202509-PUNE-001, Type: Unidentified Body, Approved At: 16/10/2025, 01:32:51 PM
+2025-10-16 13:32:51,495 [DEBUG] Mainapp.Emails.case_approval - Email details - Subject: Your Case UB-202509-PUNE-001 Has Been Approved, From: tracemapr@gmail.com, To: ['admin@gmail.com']
+2025-10-16 13:32:51,556 [INFO] django.server - "POST /api/persons/bc6dd356-17c0-424a-afa9-9d816a8e3ac6/approve_person/ HTTP/1.1" 200 4113

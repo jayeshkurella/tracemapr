@@ -392,6 +392,12 @@ class Person(models.Model):
     def save(self, *args, **kwargs):
         if not self.case_id:
             self.case_id = self.generate_case_id()
+        if self.city:
+            self.city = self.city.capitalize()
+        if self.district:
+            self.district = self.district.capitalize()
+        if self.village:
+            self.village = self.village.capitalize()
         super().save(*args, **kwargs)
 
     def generate_case_id(self):

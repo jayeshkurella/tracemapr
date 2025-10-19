@@ -118,6 +118,15 @@ class Address(models.Model):
     updated_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                    related_name="updated_%(class)s_set", db_index=True)
 
+    def save(self, *args, **kwargs):
+        if self.city:
+            self.city = self.city.capitalize()
+        if self.district:
+            self.district = self.district.capitalize()
+        if self.village:
+            self.village = self.village.capitalize()
+        super().save(*args, **kwargs)
+
     class Meta:
         indexes = [
             models.Index(fields=["address_type", "city", "state", "pincode"]),
