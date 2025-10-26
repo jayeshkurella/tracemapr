@@ -86,3 +86,35 @@ def get_recent_activities(limit=50, user_id=None):
         queryset = queryset.filter(user_id=user_id)
 
     return queryset[:limit]
+
+
+def log_search_activity(user, search_type, filters, results_count=0):
+    """
+    Logs user search activity with applied filters
+    """
+    try:
+        user_name = f"{user.first_name} {user.last_name}".strip() or user.name or user.email_id
+        user_role = getattr(user, 'user_type', 'Unknown')
+
+        # Format filters for display
+        filter_display = []
+        for key, value in filters.items():
+            if value and value != "null" and value != "":
+                filter_display.append(f"{key}: {value}")
+
+        filter_text = ", ".join(filter_display) if filter_display else "No filters"
+
+        description = f"Searched {search_type} with filters: {filter_text} | Results: {results_count}"
+
+        UserActivityLog.objects.create(
+            user=user,
+            user_name=user_name,
+            user_role=user_role,
+            action='VIEW',  # or 'SEARCH' if you add it to choices
+            description=description
+        )
+
+        return True
+    except Exception as e:
+        print(f"Error logging search activity: {str(e)}")
+        return False
