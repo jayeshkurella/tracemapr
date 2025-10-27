@@ -15,6 +15,7 @@ from django.conf import settings
 
 from Mainapp.all_paginations.users_pagination import AdminUserPagination
 from Mainapp.authentication.auth_serializer import User, UserSerializer
+from user_management.utils import log_user_activity
 
 from django.db.models import Q
 
@@ -86,8 +87,18 @@ class AdminUserApprovalView(generics.ListAPIView):
         serializer = self.get_serializer(paginated_queryset, many=True)
         logger.info("Successfully prepared response with paginated data")
 
+        filters = {
+            "first_name": request.query_params.get("first_name", ""),
+            "last_name": request.query_params.get("last_name", ""),
+            "email_id": request.query_params.get("email_id", ""),
+            "phone_no": request.query_params.get("phone_no", ""),
+            "user_type": request.query_params.get("user_type", ""),
+            "search": request.query_params.get("search", "")
+        }
+
         return Response({
             "counts": counts,
+            "filters": filters,
             "data": self.paginator.get_paginated_response(serializer.data).data
         }, status=status.HTTP_200_OK)
 
@@ -108,13 +119,28 @@ class AdminUserApprovalView(generics.ListAPIView):
                 user.status = User.StatusChoices.ACTIVE
                 logger.info(f"Approving user: {user.email_id}")
                 self.send_status_change_email(user, "approved")
+                log_user_activity(
+                    user=request.user,
+                    action='APPROVE',
+                    description=f"Approved user {user.email_id}"
+                )
             elif action == "reject":
                 user.status = User.StatusChoices.REJECTED
                 logger.info(f"Rejecting user: {user.email_id}")
                 self.send_status_change_email(user, "rejected")
+                log_user_activity(
+                    user=request.user,
+                    action='REJECT',
+                    description=f"Rejected user {user.email_id}"
+                )
             elif action == "hold":
                 logger.info(f"Putting user on hold: {user.email_id}")
                 user.status = User.StatusChoices.HOLD
+                log_user_activity(
+                    user=request.user,
+                    action='HOLD',
+                    description=f"Put user {user.email_id} on hold"
+                )
             else:
                 logger.warning(f"Invalid action requested: {action}")
                 return Response({"error": "Invalid action"}, status=status.HTTP_400_BAD_REQUEST)

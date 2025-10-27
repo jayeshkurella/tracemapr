@@ -26,7 +26,7 @@ class Command(BaseCommand):
             "family": ["add_missing_person", "edit_person_data", "view_data"],
             "police_station": [f[0] for f in features],
             "medical_staff": ["view_data", "match_data", "confirm_matches", "add_unidentified_person"],
-            "anonymous_user": ["view_data"],
+            "anonymous": ["view_data"],
             "admin": [f[0] for f in features],
         }
 

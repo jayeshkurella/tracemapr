@@ -26,6 +26,8 @@ from django.utils.crypto import get_random_string
 from django.contrib.auth.hashers import make_password
 import logging
 from user_management.models import Feature, UserFeatureAccess
+from user_management.utils import log_user_activity
+
 logger = logging.getLogger(__name__)
 
 
@@ -138,6 +140,12 @@ class AuthAPIView(APIView):
         full_name = f"{first_name} {last_name}".strip()
         threading.Thread(target=send_welcome_email, args=(full_name, email_id), daemon=True).start()
 
+        log_user_activity(
+            user=user,
+            action='CREATE',
+            description=f"New user registered with email {email_id}"
+        )
+
         return Response({
             "message": "User registered successfully. Awaiting admin approval.",
             "user": self.get_user_data(user)
@@ -171,6 +179,11 @@ class AuthAPIView(APIView):
             tokens = self.get_tokens_for_user(user)
             logger.info(f"Login successful for user: {user.id}")
             logger.debug(f"Generated tokens for user: {user.id}")
+            log_user_activity(
+                user=user,
+                action='VIEW',
+                description="User logged in successfully"
+            )
 
             return Response({
                 "message": "Login successful",
@@ -216,6 +229,12 @@ class AuthAPIView(APIView):
                 return Response({"error": "Account pending admin approval."}, status=status.HTTP_403_FORBIDDEN)
 
             tokens = self.get_tokens_for_user(user)
+            log_user_activity(
+                user=user,
+                action='VIEW',
+                description="User logged in via Google OAuth"
+            )
+
             return Response({
                 "message": "Google login successful",
                 "tokens": tokens,
@@ -239,6 +258,12 @@ class AuthAPIView(APIView):
             user = User.objects.filter(id=UUID(guest_user_id), user_type='anonymous').first()
             if user:
                 tokens = self.get_tokens_for_user(user)
+                log_user_activity(
+                    user=guest_user,
+                    action='CREATE',
+                    description="Guest user logged in"
+                )
+
                 return Response({
                     "message": "Guest login successful",
                     "tokens": tokens,
@@ -282,6 +307,11 @@ class AuthAPIView(APIView):
         try:
             token = RefreshToken(refresh_token)
             token.blacklist()
+            log_user_activity(
+                user=request.user,
+                action='VIEW',  # or use a custom action like 'LOGOUT'
+                description="User logged out successfully"
+            )
             return Response({"message": "Logout successful"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -296,6 +326,11 @@ class AuthAPIView(APIView):
         user.reset_token = reset_token
         user.reset_token_created_at = timezone.now()
         user.save()
+        log_user_activity(
+            user=user,
+            action='UPDATE',
+            description="Password reset requested"
+        )
 
         reset_url = f"https://beta.tracemapr.com/authentication/reset-password/{reset_token}"
         # reset_url = f"https://tracemapr.com/authentication/reset-password/{reset_token}"
@@ -318,6 +353,11 @@ class AuthAPIView(APIView):
         user.reset_token = None
         user.reset_token_created_at = None
         user.save()
+        log_user_activity(
+            user=user,
+            action='UPDATE',
+            description="Password reset successfully"
+        )
 
         return Response({"message": "Password reset successful."}, status=status.HTTP_200_OK)
 
@@ -333,6 +373,11 @@ class AuthAPIView(APIView):
 
         request.user.set_password(new_password)
         request.user.save()
+        log_user_activity(
+            user=request.user,
+            action='UPDATE',
+            description="Password changed"
+        )
         return Response({"message": "Password changed successfully"}, status=status.HTTP_200_OK)
 
 
@@ -381,6 +426,12 @@ class AuthAPIView(APIView):
             return Response({"error": f"Cannot update fields: {', '.join(attempted_changes)}"}, status=403)
 
         serializer = UserProfileUpdateSerializer(user, data=data, partial=True)
+        log_user_activity(
+            user=request.user,
+            action='UPDATE',
+            description="Profile updated"
+        )
+
         if serializer.is_valid():
             serializer.save()
             response_data = {"message": "Profile updated", "user": serializer.data}
@@ -401,6 +452,11 @@ class AuthAPIView(APIView):
         email = user.email_id
         full_name = f"{user.first_name} {user.last_name}".strip()
         user.delete()
+        log_user_activity(
+            user=user,
+            action='DELETE',
+            description="User account deleted"
+        )
 
         try:
             send_mail(

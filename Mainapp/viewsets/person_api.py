@@ -41,9 +41,7 @@ import json
 import traceback
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from user_management.permissions import HasFeaturePermission
-from user_management.utils import log_user_activity
-
-
+from user_management.utils import log_user_activity, log_search_activity
 
 logger = logging.getLogger(__name__)
 
@@ -1246,10 +1244,14 @@ class PersonViewSet(viewsets.ViewSet):
 
             age_range = request.query_params.get('age_range')
             age = request.query_params.get('age')
+            search_filters = {}
 
             for key, value in request.query_params.items():
-                if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
+                if not value or key in ['page', 'page_size']:
+                # if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
                     continue
+
+                search_filters[key] = value
 
                 # Fields from related model 'additional_info'
                 if key == 'caste':
@@ -1260,6 +1262,8 @@ class PersonViewSet(viewsets.ViewSet):
                     filters['height_range'] = value
                 elif key == 'full_name':
                     filters['full_name__istartswith'] = value
+                elif key in ['startDate', 'endDate', 'age_range', 'age']:
+                    continue
                 else:
                     filters[key] = value
 
@@ -1313,6 +1317,14 @@ class PersonViewSet(viewsets.ViewSet):
             ).order_by(order_by).distinct()
 
             logger.debug(f"Filtered persons count: {persons.count()}")
+
+            if request.user.is_authenticated:
+                log_search_activity(
+                    user=request.user,
+                    search_type=person_type,
+                    filters=search_filters,
+                    results_count=persons.count()
+                )
 
             if not persons.exists():
                 logger.info(f"No {person_type.lower()} found with given filters")
