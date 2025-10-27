@@ -225,6 +225,38 @@ class MissingPersonMatchWithUPsViewSet(viewsets.ViewSet):
 
         return min(score, 100)
 
+        # mp_ai = getattr(mp, "additional_info", None)
+        # up_ai = getattr(up, "additional_info", None)
+        #
+        # if mp_ai and up_ai:
+        #     if mp_ai.caste and up_ai.caste and mp_ai.caste == up_ai.caste:
+        #         score += 5
+        #     if mp_ai.subcaste and up_ai.subcaste and mp_ai.subcaste == up_ai.subcaste:
+        #         score += 5
+        #     if mp_ai.marital_status and up_ai.marital_status and mp_ai.marital_status == up_ai.marital_status:
+        #         score += 5
+        #     if mp_ai.religion and up_ai.religion and mp_ai.religion == up_ai.religion:
+        #         score += 5
+        #     if mp_ai.mother_tongue and up_ai.mother_tongue and mp_ai.mother_tongue == up_ai.mother_tongue:
+        #         score += 5
+        #
+        #     # Languages: partial overlap allowed
+        #     if mp_ai.other_known_languages and up_ai.other_known_languages:
+        #         mp_langs = {l.strip().lower() for l in mp_ai.other_known_languages.split(",")}
+        #         up_langs = {l.strip().lower() for l in up_ai.other_known_languages.split(",")}
+        #         if mp_langs.intersection(up_langs):
+        #             score += 2.5
+        #
+        #     # Education / Occupation (basic equality check, could be enhanced with fuzzy matching)
+        #     if mp_ai.education_details and up_ai.education_details and mp_ai.education_details.lower() == up_ai.education_details.lower():
+        #         score += 1.5
+        #     if mp_ai.occupation_details and up_ai.occupation_details and mp_ai.occupation_details.lower() == up_ai.occupation_details.lower():
+        #         score += 1.5
+        #
+        # logger.debug("Final score for MP %s vs UP %s: %s", mp.id, up.id, score)
+        #
+        # return min(score, 100)
+
     def _parse_height_range(self, height_range):
         try:
             min_h, max_h = map(int, height_range.split('-'))

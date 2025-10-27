@@ -41,6 +41,7 @@ import json
 import traceback
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from user_management.permissions import HasFeaturePermission
+from user_management.utils import log_user_activity, log_search_activity
 
 logger = logging.getLogger(__name__)
 
@@ -133,6 +134,13 @@ class PersonViewSet(viewsets.ViewSet):
             person = Person.objects.filter(_is_deleted=False,person_approve_status='approved').prefetch_related(
                 'addresses', 'contacts', 'additional_info', 'last_known_details', 'firs','consent').get(pk=pk)
             logger.debug(f"Found person: {person.full_name} (ID: {person.id})")
+            log_user_activity(
+                user=request.user,
+                action='VIEW',
+                description=f"Viewed details of {person.full_name} (Case #{person.case_id})",
+                person=person
+            )
+            logger.info(f"User activity logged for viewing Case ID: {person.case_id}")
             serializer = PersonSerializer(person)
             logger.info(f"Successfully retrieved person ID: {pk}")
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -286,7 +294,13 @@ class PersonViewSet(viewsets.ViewSet):
                     #     submitted_at=person.created_at.strftime("%d/%m/%Y, %I:%M:%S %p")
                     # )
 
-
+                log_user_activity(
+                    user=request.user,
+                    action='CREATE',
+                    person=person,
+                    description=f"Created new {person.type} case #{person.case_id}"
+                )
+                logger.info(f"User activity logged for Case ID: {person.case_id}")
                 # Create related objects
                 self._create_addresses(person, addresses_data[1:])
                 self._create_contacts(person, contacts_data)
@@ -628,6 +642,12 @@ class PersonViewSet(viewsets.ViewSet):
 
                 person.save()
                 logger.debug("Person saved with updated fields")
+                log_user_activity(
+                    user=request.user,
+                    action='UPDATE',
+                    person=person,
+                    description=f"Updated {person.type} case #{person.case_id}"
+                )
 
                 # Update nested data
                 self._update_addresses(person, addresses_data[1:])
@@ -1138,6 +1158,8 @@ class PersonViewSet(viewsets.ViewSet):
             person.save()
             logger.info(f"Soft deleted person ID: {pk}")
             return Response({'message': 'Person deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+
+
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for deletion")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
@@ -1222,10 +1244,14 @@ class PersonViewSet(viewsets.ViewSet):
 
             age_range = request.query_params.get('age_range')
             age = request.query_params.get('age')
+            search_filters = {}
 
             for key, value in request.query_params.items():
-                if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
+                if not value or key in ['page', 'page_size']:
+                # if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
                     continue
+
+                search_filters[key] = value
 
                 # Fields from related model 'additional_info'
                 if key == 'caste':
@@ -1236,6 +1262,8 @@ class PersonViewSet(viewsets.ViewSet):
                     filters['height_range'] = value
                 elif key == 'full_name':
                     filters['full_name__istartswith'] = value
+                elif key in ['startDate', 'endDate', 'age_range', 'age']:
+                    continue
                 else:
                     filters[key] = value
 
@@ -1289,6 +1317,14 @@ class PersonViewSet(viewsets.ViewSet):
             ).order_by(order_by).distinct()
 
             logger.debug(f"Filtered persons count: {persons.count()}")
+
+            if request.user.is_authenticated:
+                log_search_activity(
+                    user=request.user,
+                    search_type=person_type,
+                    filters=search_filters,
+                    results_count=persons.count()
+                )
 
             if not persons.exists():
                 logger.info(f"No {person_type.lower()} found with given filters")
@@ -1408,6 +1444,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='APPROVE',
+                description=f"Approved person {person.full_name} (Case #{person.case_id})",
+                person=person
+            )
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} approved successfully")
@@ -1454,6 +1496,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.person_approve_status = 'rejected'
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='REJECT',
+                description=f"Rejected person {person.full_name} (Case #{person.case_id})",
+                person=person
+            )
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} rejected successfully")
             return Response(
@@ -1477,6 +1525,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.person_approve_status = 'approved'
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='REAPPROVE',
+                description=f"Re-approved person {person.full_name} (Case #{person.case_id})",
+                person=person
+            )
 
             serializer = PersonSerializer(person)
             logger.info(f"Rejected person ID {pk} re-approved successfully")
@@ -1512,6 +1566,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.person_approve_status = new_status
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='CHANGE_FROM_APPROVED',
+                description=f"Changed person {person.full_name} status from {previous_status} to {new_status} (Case #{person.case_id})",
+                person=person
+            )
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} status changed from {previous_status} to {new_status}")
@@ -1569,6 +1629,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='SUSPEND',
+                description=f"Suspended person {person.full_name} (Case #{person.case_id})",
+                person=person
+            )
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} suspended with reason: {reason}")
@@ -1622,6 +1688,12 @@ class PersonViewSet(viewsets.ViewSet):
             person.status_reason = reason
             person.approved_by = request.user
             person.save()
+            log_user_activity(
+                user=request.user,
+                action='HOLD',
+                description=f"Put person {person.full_name} on hold (Case #{person.case_id})",
+                person=person
+            )
 
             serializer = PersonSerializer(person)
             logger.info(f"Person ID {pk} put on hold with reason: {reason}")
