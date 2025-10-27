@@ -287,11 +287,6 @@ BACKEND_BASE_URL = 'https://beta.tracemapr.com/backend'
 
 
 
-
-
-
-
-
 # CACHES = {
 #     "default": {
 #         "BACKEND": "django_redis.cache.RedisCache",
