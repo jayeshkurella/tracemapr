@@ -1247,7 +1247,8 @@ class PersonViewSet(viewsets.ViewSet):
             search_filters = {}
 
             for key, value in request.query_params.items():
-                if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
+                if not value or key in ['page', 'page_size']:
+                # if not value or key in ['startDate', 'endDate', 'age_range', 'age', 'page', 'page_size']:
                     continue
 
                 search_filters[key] = value
@@ -1261,6 +1262,8 @@ class PersonViewSet(viewsets.ViewSet):
                     filters['height_range'] = value
                 elif key == 'full_name':
                     filters['full_name__istartswith'] = value
+                elif key in ['startDate', 'endDate', 'age_range', 'age']:
+                    continue
                 else:
                     filters[key] = value
 
