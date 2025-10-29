@@ -142,6 +142,12 @@ class PersonSerializer(serializers.ModelSerializer):
         model = Person
         ordering = ['-created_at']
         fields = '__all__'
+        read_only_fields = ['created_by']
+
+    def update(self, instance, validated_data):
+        # Prevent clearing created_by
+        validated_data.pop('created_by', None)
+        return super().update(instance, validated_data)
 
     def to_representation(self, instance):
         data = super().to_representation(instance)

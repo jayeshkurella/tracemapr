@@ -1,4 +1,3 @@
-
 from datetime import date, timedelta
 from calendar import monthrange
 from django.db.models import Count
