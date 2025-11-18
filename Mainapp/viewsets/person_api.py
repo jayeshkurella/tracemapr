@@ -533,22 +533,162 @@ class PersonViewSet(viewsets.ViewSet):
 
 
     # To update the records
+    # def update(self, request, pk=None):
+    #     logger.info(f"UPDATE request for person ID: {pk} from user: {request.user}")
+    #     logger.debug(f"Request data: {request.data}")
+    #     logger.debug(f"Request FILES: {dict(request.FILES)}")
+    #     print(request.data)
+    #
+    #     try:
+    #         with transaction.atomic():
+    #             person = Person.objects.get(pk=pk)
+    #             logger.debug(f"Found person to update: {person.full_name}")
+    #
+    #             # Extract content from request
+    #
+    #             if request.content_type == 'application/json':
+    #                 data = request.data
+    #                 logger.debug("Processing JSON content-type update request")
+    #             elif request.content_type.startswith('multipart/form-data'):
+    #                 logger.debug("Processing multipart/form-data update request")
+    #                 if 'payload' in request.FILES:
+    #                     payload_str = request.FILES['payload'].read().decode('utf-8')
+    #                     data = json.loads(payload_str)
+    #                 else:
+    #                     logger.warning("Missing payload in multipart update request")
+    #                     return Response({'error': 'Missing payload in request'}, status=status.HTTP_400_BAD_REQUEST)
+    #             else:
+    #                 logger.warning(f"Unsupported media type for update: {request.content_type}")
+    #                 return Response({'error': 'Unsupported media type'}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+    #
+    #                 # Handle photo_photo field
+    #             new_photo = request.FILES.get('photo_photo')
+    #             if new_photo:
+    #                 logger.debug("New photo uploaded for update")
+    #                 # New photo uploaded - use it
+    #                 data['photo_photo'] = new_photo
+    #             elif hasattr(person, 'photo_photo') and person.photo_photo:
+    #                 logger.debug("Keeping existing photo")
+    #                 # Keep existing photo if no new one was uploaded
+    #                 data['photo_photo'] = person.photo_photo.name  # This gives the proper media path
+    #             else:
+    #                 logger.debug("No photo provided")
+    #                 # No photo at all - set to None
+    #                 data['photo_photo'] = None
+    #
+    #             addresses_data = data.get('addresses', [])
+    #             contacts_data = data.get('contacts', [])
+    #             additional_info_data = data.get('additional_info', [])
+    #             last_known_details_data = data.get('last_known_details', [])
+    #             firs_data = data.get('firs', [])
+    #             consents_data = data.get('consent', [])
+    #             logger.debug(f"Update data counts - Addresses: {len(addresses_data)}, Contacts: {len(contacts_data)}")
+    #
+    #             hospital_data = data.get('hospital')
+    #             hospital_id = hospital_data.get('id') if isinstance(hospital_data, dict) else hospital_data
+    #
+    #             if hospital_data is None:
+    #                 logger.debug("Clearing hospital association")
+    #                 # If payload explicitly sent null → clear the hospital
+    #                 person.hospital = None
+    #             else:
+    #                 # If payload has a hospital id → update it
+    #                 if hospital_id:
+    #                     if not person.hospital or str(person.hospital.id) != str(hospital_id):
+    #                         try:
+    #                             person.hospital = Hospital.objects.get(id=hospital_id)
+    #                             logger.debug(f"Updated hospital to: {person.hospital.name}")
+    #                         except Hospital.DoesNotExist:
+    #                             logger.error(f"Hospital with ID {hospital_id} does not exist")
+    #                             raise ValueError(f"Hospital with ID {hospital_id} does not exist")
+    #
+    #             # Update top-level fields - exclude photo_photo if it wasn't in the original data
+    #             person_data = {
+    #                 k: v for k, v in data.items()
+    #                 if k not in ['addresses', 'contacts', 'additional_info', 'last_known_details', 'firs', 'consent',
+    #                              'hospital']
+    #             }
+    #
+    #             for key, value in person_data.items():
+    #                 # Only update fields that are actually in the payload or have new values
+    #                 if value is not None or key in data:
+    #                     setattr(person, key, value)
+    #                     logger.debug(f"Updated person field: {key} = {value}")
+    #
+    #
+    #
+    #
+    #
+    #             # Update top-level address info from first address
+    #             if addresses_data:
+    #                 addr = addresses_data[0]
+    #                 person.address_type = addr.get('address_type', '')
+    #                 person.appartment_name = addr.get('appartment_name', '')
+    #                 person.appartment_no = addr.get('appartment_no', '')
+    #                 person.street = addr.get('street', '')
+    #                 person.village = addr.get('village', '')
+    #                 person.landmark_details = addr.get('landmark_details', '')
+    #                 person.pincode = addr.get('pincode', '')
+    #                 person.city = addr.get('city', '')
+    #                 person.district = addr.get('district', '')
+    #                 person.state = addr.get('state', '')
+    #                 person.country = addr.get('country', '')
+    #                 location_data = addr.get('location', {})
+    #                 try:
+    #                     lat = float(str(location_data.get('latitude')).strip())
+    #                     lon = float(str(location_data.get('longitude')).strip())
+    #                     person.location = Point(lon, lat)
+    #                     logger.debug(f"Updated location coordinates: lon={lon}, lat={lat}")
+    #
+    #                 except:
+    #                     logger.warning("Failed to update location coordinates")
+    #                     pass
+    #
+    #             person.save()
+    #             logger.debug("Person saved with updated fields")
+    #             log_user_activity(
+    #                 user=request.user,
+    #                 action='UPDATE',
+    #                 person=person,
+    #                 description=f"Updated {person.type} case #{person.case_id}"
+    #             )
+    #
+    #             # Update nested data
+    #             self._update_addresses(person, addresses_data[1:])
+    #             self._update_contacts(person, contacts_data)
+    #             self._update_additional_info(person, additional_info_data)
+    #             self._update_last_known_details(person, last_known_details_data)
+    #             self._update_firs(person, firs_data)
+    #             self._update_consents(person, consents_data)
+    #
+    #             serializer = PersonSerializer(person)
+    #             logger.info(f"Successfully updated person ID: {pk}")
+    #             return Response({'message': 'Person updated successfully', 'data': serializer.data},
+    #                             status=status.HTTP_200_OK)
+    #
+    #     except Person.DoesNotExist:
+    #         logger.warning(f"Person with ID {pk} not found for update")
+    #         return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
+    #     except Exception as e:
+    #         # logger.error(str(e))
+    #         logger.error(f"Error updating person ID {pk}: {str(e)}")
+    #         logger.error(f"Traceback: {traceback.format_exc()}")
+    #         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
     def update(self, request, pk=None):
         logger.info(f"UPDATE request for person ID: {pk} from user: {request.user}")
         logger.debug(f"Request data: {request.data}")
         logger.debug(f"Request FILES: {dict(request.FILES)}")
-        print(request.data)
 
         try:
             with transaction.atomic():
                 person = Person.objects.get(pk=pk)
                 logger.debug(f"Found person to update: {person.full_name}")
 
-                # Extract content from request
-
+                # ---- Handle request content type ----
                 if request.content_type == 'application/json':
                     data = request.data
                     logger.debug("Processing JSON content-type update request")
+
                 elif request.content_type.startswith('multipart/form-data'):
                     logger.debug("Processing multipart/form-data update request")
                     if 'payload' in request.FILES:
@@ -561,38 +701,36 @@ class PersonViewSet(viewsets.ViewSet):
                     logger.warning(f"Unsupported media type for update: {request.content_type}")
                     return Response({'error': 'Unsupported media type'}, status=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
 
-                    # Handle photo_photo field
+                # ---- Handle photo field ----
                 new_photo = request.FILES.get('photo_photo')
                 if new_photo:
                     logger.debug("New photo uploaded for update")
-                    # New photo uploaded - use it
                     data['photo_photo'] = new_photo
                 elif hasattr(person, 'photo_photo') and person.photo_photo:
                     logger.debug("Keeping existing photo")
-                    # Keep existing photo if no new one was uploaded
-                    data['photo_photo'] = person.photo_photo.name  # This gives the proper media path
+                    data['photo_photo'] = person.photo_photo.name
                 else:
                     logger.debug("No photo provided")
-                    # No photo at all - set to None
                     data['photo_photo'] = None
 
+                # ---- Extract nested data ----
                 addresses_data = data.get('addresses', [])
                 contacts_data = data.get('contacts', [])
                 additional_info_data = data.get('additional_info', [])
                 last_known_details_data = data.get('last_known_details', [])
                 firs_data = data.get('firs', [])
                 consents_data = data.get('consent', [])
+                hospital_data = data.get('hospital')
+
                 logger.debug(f"Update data counts - Addresses: {len(addresses_data)}, Contacts: {len(contacts_data)}")
 
-                hospital_data = data.get('hospital')
+                # ---- Handle hospital ----
                 hospital_id = hospital_data.get('id') if isinstance(hospital_data, dict) else hospital_data
 
                 if hospital_data is None:
                     logger.debug("Clearing hospital association")
-                    # If payload explicitly sent null → clear the hospital
                     person.hospital = None
                 else:
-                    # If payload has a hospital id → update it
                     if hospital_id:
                         if not person.hospital or str(person.hospital.id) != str(hospital_id):
                             try:
@@ -602,20 +740,24 @@ class PersonViewSet(viewsets.ViewSet):
                                 logger.error(f"Hospital with ID {hospital_id} does not exist")
                                 raise ValueError(f"Hospital with ID {hospital_id} does not exist")
 
-                # Update top-level fields - exclude photo_photo if it wasn't in the original data
+                # ---- Update top-level fields ----
                 person_data = {
                     k: v for k, v in data.items()
-                    if k not in ['addresses', 'contacts', 'additional_info', 'last_known_details', 'firs', 'consent',
-                                 'hospital']
+                    if k not in [
+                        'addresses', 'contacts', 'additional_info', 'last_known_details',
+                        'firs', 'consent', 'hospital'
+                    ]
                 }
 
                 for key, value in person_data.items():
-                    # Only update fields that are actually in the payload or have new values
+                    # Prevent overwriting protected fields
+                    if key in ['created_by', 'updated_by']:
+                        continue
                     if value is not None or key in data:
                         setattr(person, key, value)
                         logger.debug(f"Updated person field: {key} = {value}")
 
-                # Update top-level address info from first address
+                # ---- Update address info ----
                 if addresses_data:
                     addr = addresses_data[0]
                     person.address_type = addr.get('address_type', '')
@@ -629,19 +771,21 @@ class PersonViewSet(viewsets.ViewSet):
                     person.district = addr.get('district', '')
                     person.state = addr.get('state', '')
                     person.country = addr.get('country', '')
+
                     location_data = addr.get('location', {})
                     try:
                         lat = float(str(location_data.get('latitude')).strip())
                         lon = float(str(location_data.get('longitude')).strip())
                         person.location = Point(lon, lat)
                         logger.debug(f"Updated location coordinates: lon={lon}, lat={lat}")
-
-                    except:
+                    except Exception:
                         logger.warning("Failed to update location coordinates")
-                        pass
 
+                # ---- Save updated record ----
                 person.save()
                 logger.debug("Person saved with updated fields")
+
+                # ---- Log update ----
                 log_user_activity(
                     user=request.user,
                     action='UPDATE',
@@ -649,7 +793,7 @@ class PersonViewSet(viewsets.ViewSet):
                     description=f"Updated {person.type} case #{person.case_id}"
                 )
 
-                # Update nested data
+                # ---- Update nested relations ----
                 self._update_addresses(person, addresses_data[1:])
                 self._update_contacts(person, contacts_data)
                 self._update_additional_info(person, additional_info_data)
@@ -659,14 +803,17 @@ class PersonViewSet(viewsets.ViewSet):
 
                 serializer = PersonSerializer(person)
                 logger.info(f"Successfully updated person ID: {pk}")
-                return Response({'message': 'Person updated successfully', 'data': serializer.data},
-                                status=status.HTTP_200_OK)
+
+                return Response(
+                    {'message': 'Person updated successfully', 'data': serializer.data},
+                    status=status.HTTP_200_OK
+                )
 
         except Person.DoesNotExist:
             logger.warning(f"Person with ID {pk} not found for update")
             return Response({'error': 'Person not found'}, status=status.HTTP_404_NOT_FOUND)
+
         except Exception as e:
-            # logger.error(str(e))
             logger.error(f"Error updating person ID {pk}: {str(e)}")
             logger.error(f"Traceback: {traceback.format_exc()}")
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

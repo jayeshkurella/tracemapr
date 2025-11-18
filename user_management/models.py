@@ -68,4 +68,4 @@ class UserActivityLog(models.Model):
         db_table = 'user_activity_logs'
 
     def __str__(self):
-        return f"{self.user.get_full_name()} - {self.action} - {self.created_at}"
+        return f"{self.user.get_user_name ()} - {self.action} - {self.created_at}"
