@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn for Chhaya
+
+[Service]
+User=jayesh
+Type=simple
+WorkingDirectory=/var/lib/jenkins/workspace/tracemapr_beta
+ExecStart=/var/lib/jenkins/workspace/tracemapr_beta/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:8777
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
