@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Define project directory and log directory paths
-project_directory="/home/administrator/backend_project/workspace/chhaya-backend"
-log_directory="/var/log/chhaya"
+project_directory="/var/lib/jenkins/workspace/tracemapr_master"
+#log_directory="/var/log/chhaya"
 
 echo "Changing directory to project workspace directory"
 cd $project_directory || { echo "Failed to change directory to $project_directory"; exit 1; }
