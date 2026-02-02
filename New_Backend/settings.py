@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-#         'NAME': 'New_Backend',
-#         'USER': 'postgres',
-#         'PASSWORD': 'Sanket@123',
+#         'NAME': 'tracemapr_master',
+#         'USER': 'admin',
+#         'PASSWORD': 'admin123',
 #         'HOST': 'localhost',
 #         'PORT': '5432',
 #     }
