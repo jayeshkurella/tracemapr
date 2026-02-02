@@ -97,9 +97,9 @@ WSGI_APPLICATION = 'New_Backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'chhaya_beta_new1',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'NAME': 'tracemapr_master',
+        'USER': 'admin',
+        'PASSWORD': 'admin123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
