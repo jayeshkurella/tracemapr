@@ -2,10 +2,10 @@
 Description=Gunicorn for Chhaya
 
 [Service]
-User=administrator
+User=jayesh
 Type=simple
-WorkingDirectory=/home/administrator/backend_project/workspace/chhaya-backend
-ExecStart=/home/administrator/backend_project/workspace/chhaya-backend/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:8090 --error-logfile /var/log/geo_scanner/error.log --error-logfile /var/log/chhaya/error.log --access-logfile /var/log/chhaya/access.log
+WorkingDirectory=/var/lib/jenkins/workspace/tracemapr_beta
+ExecStart=/var/lib/jenkins/workspace/tracemapr_beta/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:8777
 Restart=always
 RestartSec=3
 
