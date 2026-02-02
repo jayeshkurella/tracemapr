@@ -5,7 +5,7 @@ Description=Gunicorn for Chhaya
 User=jayesh
 Type=simple
 WorkingDirectory=/var/lib/jenkins/workspace/tracemapr_master
-ExecStart=/var/lib/jenkins/workspace/tracemapr_master/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:8090 --error-logfile /var/log/geo_scanner/error.log --error-logfile /var/log/chhaya/error.log --access-logfile /var/log/chhaya/access.log
+ExecStart=/var/lib/jenkins/workspace/tracemapr_master/venv/bin/gunicorn New_Backend.wsgi:application -b 0.0.0.0:9999
 Restart=always
 RestartSec=3
 
